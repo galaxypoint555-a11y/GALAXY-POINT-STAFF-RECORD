@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Galaxy Point — Staff &amp; Operations Portal</title>
   <meta name="theme-color" content="#0B4F9F" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Galaxy Point" />
   <link id="apple-touch-icon-link" rel="apple-touch-icon" href="" />
   <link id="favicon-link" rel="icon" type="image/png" href="" />
@@ -15,9 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -28,69 +26,84 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      padding-top: env(safe-area-inset-top);
     }
     h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: #F1F5F9; }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
 
     .login-bg {
       background:
-        radial-gradient(circle at 12% 18%, rgba(29, 99, 220, 0.14) 0%, transparent 42%),
-        radial-gradient(circle at 88% 82%, rgba(11, 79, 159, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 12% 18%, rgba(29, 99, 220, 0.16) 0%, transparent 44%),
+        radial-gradient(circle at 88% 82%, rgba(11, 79, 159, 0.18) 0%, transparent 46%),
         linear-gradient(135deg, #EEF4FF 0%, #F8FAFC 48%, #E6EFFD 100%);
     }
     .hero-panel-gradient {
-      background: linear-gradient(145deg, #083B7A 0%, #0B4F9F 48%, #1D63DC 100%);
+      background: linear-gradient(145deg, #072F63 0%, #0B4F9F 50%, #1D63DC 100%);
     }
     .glass-card {
       background: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
       border: 1px solid rgba(226, 232, 240, 0.95);
-      box-shadow: 0 20px 50px -12px rgba(11, 79, 159, 0.14);
+      box-shadow: 0 24px 55px -12px rgba(11, 79, 159, 0.16);
     }
     .royal-btn {
       background: linear-gradient(135deg, #0B4F9F 0%, #1D63DC 100%);
-      transition: all 0.2s ease;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
     }
     .royal-btn:hover:not(:disabled) {
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px -6px rgba(29, 99, 220, 0.45);
+      box-shadow: 0 12px 26px -6px rgba(29, 99, 220, 0.45);
     }
-    .royal-btn:disabled { opacity: 0.65; cursor: not-allowed; }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(12px); }
+    .royal-btn:active:not(:disabled) { transform: scale(0.98); }
+    .royal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .tap-scale { transition: transform 0.14s ease; }
+    .tap-scale:active { transform: scale(0.96); }
+
+    @keyframes viewFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .animate-slide-up { animation: slideUp 0.28s ease-out forwards; }
+    .animate-view { animation: viewFadeUp 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float { animation: floatSlow 5s ease-in-out infinite; }
+
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .mobile-bottom-nav {
+      padding-bottom: max(0.45rem, env(safe-area-inset-bottom));
+    }
   </style>
 </head>
 <body class="min-h-screen antialiased selection:bg-blue-600 selection:text-white">
 
   <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
 
-  <!-- Install PWA Modal -->
-  <div id="install-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-slide-up">
+  <!-- Install App Modal -->
+  <div id="install-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-900/65 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-view">
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-3">
           <div id="install-modal-logo" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1.5"></div>
           <div>
             <h3 class="font-bold text-slate-900 text-lg">Install Galaxy Point</h3>
-            <p class="text-xs text-slate-500">Add to Home Screen for iPhone &amp; Android</p>
+            <p class="text-xs text-slate-500">Native iPhone &amp; Android App Experience</p>
           </div>
         </div>
-        <button type="button" onclick="window.closeInstallModal && window.closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <button type="button" onclick="window.closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 text-sm font-bold">✕</button>
       </div>
 
       <div id="native-install-box" class="hidden mb-4 p-3.5 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-3">
         <div>
-          <p class="text-sm font-semibold text-blue-950">One-Tap Install Available</p>
-          <p class="text-xs text-blue-700">Install directly onto your device</p>
+          <p class="text-sm font-semibold text-blue-950">One-Tap Install Ready</p>
+          <p class="text-xs text-blue-700">Install directly onto your Home Screen</p>
         </div>
         <button type="button" id="trigger-pwa-install" class="royal-btn text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow">Install Now</button>
       </div>
@@ -103,7 +116,7 @@
           </div>
           <ol class="text-xs text-slate-600 space-y-1 list-decimal list-inside">
             <li>Open this link in <strong>Safari</strong> on your iPhone.</li>
-            <li>Tap the <strong>Share</strong> icon at the bottom of the screen.</li>
+            <li>Tap the <strong>Share</strong> button at the bottom bar.</li>
             <li>Tap <strong>"Add to Home Screen"</strong> &rarr; <strong>Add</strong>.</li>
           </ol>
         </div>
@@ -121,46 +134,48 @@
         </div>
       </div>
 
-      <button type="button" onclick="window.closeInstallModal && window.closeInstallModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
-        Got It
+      <button type="button" onclick="window.closeInstallModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+        Done
       </button>
     </div>
   </div>
 
-  <!-- 1. LOGIN SCREEN -->
+  <!-- =========================================================
+       1. LOGIN SCREEN (BOSS ID HIDDEN FROM DIRECTORY)
+  ========================================================== -->
   <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
-    <header class="max-w-6xl w-full mx-auto flex items-center justify-between">
+    <header class="max-w-6xl w-full mx-auto flex items-center justify-between animate-view">
       <div class="flex items-center gap-3">
         <div id="login-top-logo" class="w-11 h-11 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
         <div>
           <div class="flex items-center gap-2">
             <span class="font-display font-extrabold text-slate-900 text-lg tracking-tight">GALAXY POINT</span>
-            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">Official Portal</span>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">Official App</span>
           </div>
-          <p class="text-xs text-slate-500">Staff Attendance, Tasks &amp; Operations</p>
+          <p class="text-xs text-slate-500">Attendance, GPS Check-In &amp; Store Operations</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2.5">
-        <div id="cloud-status-pill" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-xs">
-          <span id="cloud-dot" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-          <span id="cloud-status-text">Initializing Cloud...</span>
+        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Cloud Sync Active</span>
         </div>
-        <button type="button" onclick="window.openInstallModal && window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-xs transition">
-          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+        <button type="button" onclick="window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-2xs transition tap-scale">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           <span>Install App</span>
         </button>
       </div>
     </header>
 
-    <main class="max-w-5xl w-full mx-auto my-6">
+    <main class="max-w-5xl w-full mx-auto my-6 animate-view">
       <div class="glass-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
         <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
           <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
           <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-400/15 blur-xl pointer-events-none"></div>
 
           <div class="relative z-10">
-            <div class="inline-flex items-center gap-3 bg-white rounded-2xl p-2.5 pr-4 shadow-lg mb-7">
+            <div class="inline-flex items-center gap-3 bg-white rounded-2xl p-2.5 pr-4 shadow-lg mb-7 animate-float">
               <div id="hero-gp-logo" class="w-12 h-10 flex items-center justify-center"></div>
               <div>
                 <p class="text-[11px] font-bold uppercase tracking-widest text-blue-700 leading-none">Enterprise Suite</p>
@@ -169,10 +184,10 @@
             </div>
 
             <h1 class="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight">
-              Smart Attendance &amp; Team Operations
+              Smart Store &amp; Team Management
             </h1>
             <p class="text-blue-100/90 text-sm mt-3 leading-relaxed">
-              Real-time GPS check-in, unified 60-minute break tracker, task incentives, urgent leave, and 6-month performance records.
+              Verified GPS check-in, unified 60-minute flexible break timer, department performance leaderboards, incentives &amp; leave approvals.
             </p>
 
             <div class="mt-6 p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
@@ -185,7 +200,7 @@
           </div>
 
           <div class="relative z-10 mt-8 pt-6 border-t border-white/15">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Active Store Departments</p>
+            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Store Departments (18 Staff)</p>
             <div class="flex flex-wrap gap-1.5 text-[11px] font-medium">
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Salesman (6)</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accessories (4)</span>
@@ -201,26 +216,22 @@
           <div class="max-w-md w-full mx-auto">
             <div class="mb-6">
               <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Secure Sign In
+                Secure Portal Login
               </span>
               <h2 class="font-display text-2xl font-extrabold text-slate-900">Welcome Back</h2>
-              <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point ID</p>
+              <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point credentials</p>
             </div>
 
-            <!-- action="javascript:void(0)" prevents page reload completely -->
             <form id="login-form" action="javascript:void(0)" class="space-y-4">
               <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Login ID (Email)</label>
-                <div class="relative">
-                  <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                  <input
-                    id="login-email"
-                    type="email"
-                    autocomplete="username"
-                    placeholder="e.g. jagdish@gmail.com or sohail@gmail.com"
-                    class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
-                  />
-                </div>
+                <input
+                  id="login-email"
+                  type="email"
+                  autocomplete="username"
+                  placeholder="Enter your email ID"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                />
               </div>
 
               <div>
@@ -229,42 +240,36 @@
                   <span class="text-[11px] text-slate-400">Case-sensitive</span>
                 </div>
                 <div class="relative">
-                  <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
                   <input
                     id="login-password"
                     type="password"
                     autocomplete="current-password"
                     placeholder="Enter your password"
-                    class="w-full pl-10 pr-11 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                    class="w-full pl-4 pr-11 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
                   />
-                  <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 text-xs font-bold">
+                    Show
                   </button>
                 </div>
               </div>
 
-              <div id="login-error-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium flex items-start gap-2">
-                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 mt-0.5"></i>
+              <div id="login-error-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                 <span id="login-error-text">Invalid credentials</span>
               </div>
 
               <button id="login-submit-btn" type="button" class="royal-btn w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2">
-                <span id="login-btn-label">Sign In to Portal</span>
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span id="login-btn-label">Sign In to Portal &rarr;</span>
               </button>
             </form>
 
-            <!-- Quick Login Directory Accordion -->
+            <!-- Staff-Only Quick Fill Directory (Boss ID Completely Excluded) -->
             <div class="mt-6 pt-5 border-t border-slate-100">
-              <button type="button" id="toggle-dir-btn" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-1.5 px-2.5 rounded-lg hover:bg-slate-50 transition">
-                <span class="flex items-center gap-2">
-                  <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
-                  <span>Quick-Fill Staff &amp; Admin Directory (19 IDs)</span>
-                </span>
-                <i id="dir-chevron" data-lucide="chevron-down" class="w-4 h-4 transition-transform"></i>
+              <button type="button" id="toggle-dir-btn" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-2 px-3 rounded-xl bg-slate-50 hover:bg-blue-50/60 transition">
+                <span>Quick-Fill Staff Directory (18 Staff IDs)</span>
+                <span id="dir-chevron" class="transition-transform">&#9662;</span>
               </button>
 
-              <div id="quick-directory-panel" class="hidden mt-3 space-y-2.5 animate-slide-up">
+              <div id="quick-directory-panel" class="hidden mt-3 space-y-2.5 animate-view">
                 <input
                   id="dir-search"
                   type="text"
@@ -280,13 +285,15 @@
     </main>
 
     <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-400">
-      &copy; 2026 Galaxy Point Operations Portal &bull; Cloud Synced &amp; Mobile Ready
+      &copy; 2026 Galaxy Point Operations Portal &bull; iOS &amp; Android Ready
     </footer>
   </div>
 
-  <!-- 2. STAFF PORTAL -->
+  <!-- =========================================================
+       2. STAFF PORTAL (STRICTLY NO BOSS CONTROLS VISIBLE)
+  ========================================================== -->
   <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
       <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
           <div id="staff-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
@@ -300,59 +307,55 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition" title="Boss Task Alerts">
-            <i data-lucide="bell" class="w-4 h-4"></i>
+          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition tap-scale" title="Boss Task Alerts">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
             <span id="staff-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">0</span>
           </button>
 
-          <button type="button" onclick="window.openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition">
-            <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>App</span>
+          <button type="button" onclick="window.openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition tap-scale">
+            <span>Install App</span>
           </button>
 
-          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 transition">
-            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 transition tap-scale">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             <span class="hidden sm:inline">Logout</span>
           </button>
         </div>
       </div>
 
+      <!-- Desktop Sub-Nav -->
       <div class="hidden md:block border-t border-slate-100 bg-slate-50/70">
         <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 py-2">
           <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <i data-lucide="clock" class="w-4 h-4"></i> Attendance &amp; Break
+            <span>Attendance &amp; Break</span>
           </button>
           <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <i data-lucide="check-square" class="w-4 h-4"></i> Tasks &amp; Daily Report
+            <span>Tasks &amp; Daily Report</span>
           </button>
           <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <i data-lucide="award" class="w-4 h-4"></i> Claim Incentive
+            <span>Claim Incentive</span>
           </button>
           <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <i data-lucide="calendar-plus" class="w-4 h-4"></i> Urgent Leave &amp; Advance
+            <span>Urgent Leave &amp; Advance</span>
           </button>
         </div>
       </div>
     </header>
 
     <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
-      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-slide-up">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
-            <i data-lucide="megaphone" class="w-5 h-5 text-amber-300"></i>
-          </div>
-          <div>
-            <p class="text-xs font-bold uppercase tracking-wider text-blue-200">New Task Assigned by JAGDISH BOSS</p>
-            <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
-          </div>
+      <!-- Live Boss Task Banner -->
+      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-view">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200">New Task Assigned by JAGDISH BOSS</p>
+          <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
         </div>
-        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition">
-          View Tasks
+        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition tap-scale">
+          Open Tasks
         </button>
       </div>
 
-      <!-- TAB 1: ATTENDANCE & UNIFIED 60-MIN BREAK -->
-      <section id="staff-view-home" class="space-y-5">
+      <!-- TAB 1: STRICT GPS ATTENDANCE & UNIFIED 60-MIN BREAK -->
+      <section id="staff-view-home" class="space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-100">
             <div>
@@ -369,25 +372,25 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+            <!-- Strict GPS Check-In -->
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Morning / Shift Check-In</span>
-                  <span id="staff-checkin-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-600">Pending</span>
+                  <span id="staff-checkin-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800">GPS Required</span>
                 </div>
                 <div id="staff-checkin-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
-                <div id="staff-checkin-location" class="mt-2 text-xs text-slate-500 flex items-start gap-1.5">
-                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i>
-                  <span>GPS location captured automatically on check-in</span>
+                <div id="staff-checkin-location" class="mt-2 text-xs text-slate-500">
+                  <span>Live GPS permission is mandatory to check in. No check-in without location.</span>
                 </div>
               </div>
 
-              <button type="button" id="btn-staff-checkin" onclick="window.handleStaffCheckIn()" class="mt-4 royal-btn w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow">
-                <i data-lucide="log-in" class="w-4 h-4"></i>
-                <span>Check In Now (with GPS)</span>
+              <button type="button" id="btn-staff-checkin" onclick="window.handleStaffCheckIn()" class="mt-4 royal-btn w-full py-3.5 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow">
+                <span>Check In Now (GPS Required)</span>
               </button>
             </div>
 
+            <!-- Check-Out -->
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between">
@@ -396,12 +399,11 @@
                 </div>
                 <div id="staff-checkout-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
                 <p class="mt-2 text-xs text-slate-500">
-                  No GPS needed for check-out. Ensure your daily tasks/report are updated.
+                  No GPS required for check-out. Submit your daily report &amp; numbers before leaving.
                 </p>
               </div>
 
-              <button type="button" id="btn-staff-checkout" onclick="window.handleStaffCheckOut()" disabled class="mt-4 w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition">
-                <i data-lucide="log-out" class="w-4 h-4"></i>
+              <button type="button" id="btn-staff-checkout" onclick="window.handleStaffCheckOut()" disabled class="mt-4 w-full py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition tap-scale">
                 <span>Check Out</span>
               </button>
             </div>
@@ -411,17 +413,12 @@
         <!-- Unified 60-Minute Break Tracker -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
-                <i data-lucide="coffee" class="w-6 h-6"></i>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
+                <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
               </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
-                  <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
-                </div>
-                <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; use anytime in splits</p>
-              </div>
+              <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; use anytime in splits</p>
             </div>
 
             <div class="text-right">
@@ -436,9 +433,7 @@
 
           <div class="flex items-center justify-between text-xs mt-2">
             <span id="break-remaining-text" class="font-semibold text-emerald-700">60 minutes remaining today</span>
-            <span id="break-exceed-warning" class="hidden font-bold text-red-600 flex items-center gap-1">
-              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Break Exceeded! Alert sent to Boss
-            </span>
+            <span id="break-exceed-warning" class="hidden font-bold text-red-600">Break Exceeded! Alert sent to Boss</span>
           </div>
 
           <div id="active-break-box" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
@@ -446,11 +441,10 @@
               <p class="text-xs font-bold uppercase tracking-wider text-amber-800">Current Break Session Running</p>
               <p id="active-break-timer" class="font-display text-2xl font-extrabold text-amber-950 mt-0.5">00:00</p>
             </div>
-            <span class="text-xs text-amber-800 font-medium">Tap button below to end break</span>
+            <span class="text-xs text-amber-800 font-medium">Tap below when back</span>
           </div>
 
-          <button type="button" id="btn-toggle-break" onclick="window.handleToggleBreak()" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition">
-            <i data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i>
+          <button type="button" id="btn-toggle-break" onclick="window.handleToggleBreak()" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition tap-scale">
             <span>Want a Break? Tap Here to Start</span>
           </button>
 
@@ -458,8 +452,9 @@
         </div>
       </section>
 
-      <!-- TAB 2: TODAY'S TASKS & AUTO DAILY WORK REPORT -->
-      <section id="staff-view-tasks" class="hidden space-y-5">
+      <!-- TAB 2: TASKS, DEPARTMENT METRICS & EDITABLE DAILY REPORT -->
+      <section id="staff-view-tasks" class="hidden space-y-5 animate-view">
+        <!-- Boss Assigned Tasks -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex items-center justify-between gap-3 mb-4">
             <div>
@@ -471,9 +466,36 @@
           <div id="staff-tasks-list" class="space-y-3"></div>
         </div>
 
+        <!-- Department Performance Numbers (Feeds Boss Day/Week/Month Leaderboard) -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 id="dept-metric-heading" class="font-display text-lg font-extrabold text-slate-900">Today's Department Performance Numbers</h3>
+              <p class="text-xs text-slate-500">Enter your today's figures for Boss Day / Week / Month comparison</p>
+            </div>
+          </div>
+
+          <form action="javascript:void(0)" onsubmit="window.handleSaveDeptMetrics(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+            <div>
+              <label id="metric-primary-label" class="block text-xs font-bold text-slate-600 mb-1">Units / Count Today</label>
+              <input id="metric-primary-input" type="number" min="0" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+            <div>
+              <label id="metric-secondary-label" class="block text-xs font-bold text-slate-600 mb-1">Total Amount / Leads</label>
+              <input id="metric-secondary-input" type="number" min="0" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+            <div class="flex items-end">
+              <button type="submit" class="royal-btn w-full py-2.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
+                Save Today's Figures
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Additional Work (Add, Edit & Delete) & Auto Report -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <h3 class="font-display text-lg font-extrabold text-slate-900">Additional Work &amp; Daily Report</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Log any extra work done today for JAGDISH BOSS</p>
+          <p class="text-xs text-slate-500 mt-0.5">Add extra work done today &mdash; you can Edit or Delete entries anytime</p>
 
           <form action="javascript:void(0)" onsubmit="window.handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
             <input
@@ -483,19 +505,21 @@
               placeholder="Write extra work completed today..."
               class="flex-1 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
-            <button type="submit" class="royal-btn px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0 flex items-center justify-center gap-1.5">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i>
-              <span>Add to Report</span>
+            <button type="submit" class="royal-btn px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0">
+              + Add to Report
             </button>
           </form>
 
+          <!-- Editable Additional Work Items -->
+          <div id="staff-editable-extra-list" class="mt-4 space-y-2"></div>
+
+          <!-- Compiled Auto Report Preview -->
           <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900 flex items-center gap-1.5">
-                <i data-lucide="file-check-2" class="w-4 h-4 text-blue-600"></i>
-                Auto-Generated Report Sent to Boss
+              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">
+                Live Report Synced to JAGDISH BOSS
               </span>
-              <span class="text-[11px] font-semibold text-slate-500">Today</span>
+              <span class="text-[11px] font-semibold text-slate-500">Auto-Updated</span>
             </div>
             <div id="staff-auto-report-items" class="space-y-2 text-xs text-slate-700"></div>
           </div>
@@ -503,7 +527,7 @@
       </section>
 
       <!-- TAB 3: CLAIM YOUR INCENTIVE -->
-      <section id="staff-view-incentives" class="hidden space-y-5">
+      <section id="staff-view-incentives" class="hidden space-y-5 animate-view">
         <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -524,25 +548,20 @@
       </section>
 
       <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY REQUEST -->
-      <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
-              <i data-lucide="calendar-off" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h3 class="font-display font-extrabold text-slate-900 text-lg">Urgent Leave Request</h3>
-              <p class="text-xs text-slate-500">Apply for Tomorrow, Day After, or This Week</p>
-            </div>
+          <div>
+            <h3 class="font-display font-extrabold text-slate-900 text-lg">Urgent Leave Request</h3>
+            <p class="text-xs text-slate-500">Apply for Tomorrow, Day After, or This Week</p>
           </div>
 
           <form action="javascript:void(0)" onsubmit="window.handleApplyLeave(event)" class="space-y-3">
             <div>
               <label class="block text-xs font-bold text-slate-600 mb-1">Quick Select Day</label>
               <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="window.setLeaveQuickDate(1)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Tomorrow</button>
-                <button type="button" onclick="window.setLeaveQuickDate(2)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Day After</button>
-                <button type="button" onclick="window.setLeaveQuickDate(3)" class="py-2 px-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">This Week</button>
+                <button type="button" onclick="window.setLeaveQuickDate(1)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition tap-scale">Tomorrow</button>
+                <button type="button" onclick="window.setLeaveQuickDate(2)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition tap-scale">Day After</button>
+                <button type="button" onclick="window.setLeaveQuickDate(3)" class="py-2 px-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition tap-scale">This Week</button>
               </div>
             </div>
 
@@ -568,14 +587,9 @@
         </div>
 
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
-              <i data-lucide="indian-rupee" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h3 class="font-display font-extrabold text-slate-900 text-lg">Advance Salary Request</h3>
-              <p class="text-xs text-slate-500">Request salary advance directly from JAGDISH BOSS</p>
-            </div>
+          <div>
+            <h3 class="font-display font-extrabold text-slate-900 text-lg">Advance Salary Request</h3>
+            <p class="text-xs text-slate-500">Request salary advance directly from JAGDISH BOSS</p>
           </div>
 
           <form action="javascript:void(0)" onsubmit="window.handleApplyAdvance(event)" class="space-y-3">
@@ -595,7 +609,7 @@
               <textarea id="advance-reason-input" rows="2" required placeholder="Mention reason for advance salary..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
             </div>
 
-            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow transition">
+            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow transition tap-scale">
               Send Advance Salary Request
             </button>
           </form>
@@ -608,30 +622,32 @@
       </section>
     </main>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 grid grid-cols-4 py-1.5 px-1">
-      <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
-        <i data-lucide="clock" class="w-4 h-4 mb-0.5"></i>
+    <!-- MOBILE BOTTOM NAVIGATION BAR (WITH PERMANENT SHARP SVG ICONS) -->
+    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 grid grid-cols-4 pt-1.5 px-1.5 mobile-bottom-nav shadow-[0_-4px_20px_rgba(15,23,42,0.06)]">
+      <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <span>Attendance</span>
       </button>
-      <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
-        <i data-lucide="check-square" class="w-4 h-4 mb-0.5"></i>
+      <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <span>Tasks/Report</span>
       </button>
-      <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
-        <i data-lucide="award" class="w-4 h-4 mb-0.5"></i>
+      <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
         <span>Incentive</span>
       </button>
-      <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
-        <i data-lucide="calendar-plus" class="w-4 h-4 mb-0.5"></i>
+      <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <span>Leave/Adv</span>
       </button>
     </nav>
   </div>
 
-  <!-- 3. BOSS COMMAND CENTER -->
+  <!-- =========================================================
+       3. BOSS COMMAND CENTER (JAGDISH BOSS EXCLUSIVE)
+  ========================================================== -->
   <div id="boss-portal" class="hidden min-h-screen flex flex-col pb-12">
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
       <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3">
           <div id="boss-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1"></div>
@@ -640,40 +656,44 @@
               <span class="font-display font-extrabold text-slate-900 text-base sm:text-lg">JAGDISH BOSS</span>
               <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-900 text-white">Command Center</span>
             </div>
-            <p class="text-[11px] text-slate-500">Galaxy Point Live Operations &bull; 18 Staff Members</p>
+            <p class="text-[11px] text-slate-500">Galaxy Point Live Operations &bull; 18 Staff</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
           <span id="boss-live-clock" class="hidden sm:inline-block font-display font-bold text-xs text-blue-900 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100">--:--:--</span>
-          <button type="button" onclick="window.openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition" title="Install App">
-            <i data-lucide="smartphone" class="w-4 h-4"></i>
+          <button type="button" onclick="window.openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition tap-scale" title="Install App">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           </button>
-          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition">
-            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition tap-scale">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             <span>Logout</span>
           </button>
         </div>
       </div>
 
+      <!-- Boss Navigation Tabs -->
       <div class="border-t border-slate-100 bg-slate-50/80 overflow-x-auto no-scrollbar">
         <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2 min-w-max">
           <button type="button" data-boss-tab="live" onclick="window.switchBossTab('live')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <i data-lucide="activity" class="w-4 h-4"></i> Live Attendance &amp; GPS
+            <span>Live Attendance &amp; GPS</span>
+          </button>
+          <button type="button" data-boss-tab="analytics" onclick="window.switchBossTab('analytics')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <span>Department Leaderboard</span>
           </button>
           <button type="button" data-boss-tab="tasks" onclick="window.switchBossTab('tasks')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <i data-lucide="send" class="w-4 h-4"></i> Assign Tasks &amp; Incentives
+            <span>Assign Tasks &amp; Incentives</span>
           </button>
           <button type="button" data-boss-tab="leaves" onclick="window.switchBossTab('leaves')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <i data-lucide="calendar-check" class="w-4 h-4"></i> Leave Requests
+            <span>Leave Requests</span>
             <span id="boss-leave-badge" class="hidden px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">0</span>
           </button>
           <button type="button" data-boss-tab="advances" onclick="window.switchBossTab('advances')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <i data-lucide="wallet" class="w-4 h-4"></i> Advance Salary
+            <span>Advance Salary</span>
             <span id="boss-advance-badge" class="hidden px-1.5 py-0.2 rounded-full bg-amber-600 text-white text-[10px]">0</span>
           </button>
           <button type="button" data-boss-tab="history" onclick="window.switchBossTab('history')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <i data-lucide="database" class="w-4 h-4"></i> 6-Month Records &amp; Reports
+            <span>6-Month Records</span>
           </button>
         </div>
       </div>
@@ -703,13 +723,13 @@
         </div>
       </div>
 
-      <!-- BOSS TAB 1: LIVE ATTENDANCE -->
-      <section id="boss-view-live" class="space-y-4">
+      <!-- BOSS TAB 1: LIVE ATTENDANCE & VERIFIED GPS LOCATION -->
+      <section id="boss-view-live" class="space-y-4 animate-view">
         <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
-              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Live Staff Attendance, Check-In GPS &amp; Break Monitor</h2>
-              <p class="text-xs text-slate-500">Real-time status across all 6 Galaxy Point departments</p>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Live Staff Attendance &amp; Verified GPS Location</h2>
+              <p class="text-xs text-slate-500">Every check-in is GPS verified with exact address &amp; Google Maps pin</p>
             </div>
             <div class="flex flex-wrap items-center gap-2">
               <select id="boss-dept-filter" onchange="window.renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
@@ -721,9 +741,8 @@
                 <option value="New Mobile Sale">New Mobile Sale (2)</option>
                 <option value="Accountant">Accountant (1)</option>
               </select>
-              <button type="button" onclick="window.provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition">
-                <i data-lucide="cloud-cog" class="w-4 h-4"></i>
-                <span>Sync 19 Cloud IDs</span>
+              <button type="button" onclick="window.provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold transition tap-scale">
+                Sync 18 Staff Cloud IDs
               </button>
             </div>
           </div>
@@ -734,10 +753,10 @@
                 <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
                   <th class="py-3 px-3">Staff &amp; Dept</th>
                   <th class="py-3 px-3">Shift</th>
-                  <th class="py-3 px-3">Check-In &amp; GPS Location</th>
+                  <th class="py-3 px-3">Check-In &amp; Live GPS Pin</th>
                   <th class="py-3 px-3">Check-Out</th>
-                  <th class="py-3 px-3">Break (60m Limit)</th>
-                  <th class="py-3 px-3">Today's Report</th>
+                  <th class="py-3 px-3">Break (60m)</th>
+                  <th class="py-3 px-3">Daily Report &amp; Figures</th>
                 </tr>
               </thead>
               <tbody id="boss-live-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
@@ -746,8 +765,37 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 2: ASSIGN TASKS & INCENTIVES -->
-      <section id="boss-view-tasks" class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <!-- BOSS TAB 2: DEPARTMENT PERFORMANCE LEADERBOARD (DAY / WEEK / MONTH) -->
+      <section id="boss-view-analytics" class="hidden space-y-4 animate-view">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Department Performance &amp; Comparison Leaderboard</h2>
+              <p class="text-xs text-slate-500">Compare who is leading in Salesman, New Mobile Sale, Accessories, Service Centre, Social Team &amp; Accounts</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <select id="analytics-dept-select" onchange="window.loadDepartmentAnalytics()" class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
+                <option value="Salesman">Salesman (6)</option>
+                <option value="New Mobile Sale">New Mobile Sale (2)</option>
+                <option value="Accessories">Accessories (4)</option>
+                <option value="Service Centre">Service Centre (3)</option>
+                <option value="Social Team">Social Team (2)</option>
+                <option value="Accountant">Accountant (1)</option>
+              </select>
+              <div class="inline-flex rounded-xl bg-slate-100 p-1">
+                <button type="button" data-period="day" onclick="window.setAnalyticsPeriod('day')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Today</button>
+                <button type="button" data-period="week" onclick="window.setAnalyticsPeriod('week')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">This Week</button>
+                <button type="button" data-period="month" onclick="window.setAnalyticsPeriod('month')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">This Month</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="analytics-leaderboard-container" class="mt-5 space-y-3"></div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 3: ASSIGN TASKS & INCENTIVES -->
+      <section id="boss-view-tasks" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 animate-view">
         <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs h-fit">
           <h2 class="font-display text-lg font-extrabold text-slate-900">Assign Task &amp; Optional Incentive</h2>
           <p class="text-xs text-slate-500 mt-0.5">Sends instant notification to selected staff or whole department</p>
@@ -788,9 +836,8 @@
               </div>
             </div>
 
-            <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-sm shadow flex items-center justify-center gap-2">
-              <i data-lucide="send" class="w-4 h-4"></i>
-              <span>Assign Task &amp; Notify Staff</span>
+            <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-sm shadow">
+              Assign Task &amp; Notify Staff
             </button>
           </form>
         </div>
@@ -807,8 +854,8 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 3: LEAVE REQUESTS -->
-      <section id="boss-view-leaves" class="hidden">
+      <!-- BOSS TAB 4: LEAVE REQUESTS -->
+      <section id="boss-view-leaves" class="hidden animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
           <div class="mb-4">
             <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Staff Urgent Leave Requests</h2>
@@ -818,8 +865,8 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 4: ADVANCE SALARY REQUESTS -->
-      <section id="boss-view-advances" class="hidden">
+      <!-- BOSS TAB 5: ADVANCE SALARY REQUESTS -->
+      <section id="boss-view-advances" class="hidden animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
           <div class="mb-4">
             <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Advance Salary Requests</h2>
@@ -829,17 +876,16 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 5: 6-MONTH ARCHIVE -->
-      <section id="boss-view-history" class="hidden space-y-4">
+      <!-- BOSS TAB 6: 6-MONTH ARCHIVE -->
+      <section id="boss-view-history" class="hidden space-y-4 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
               <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">6-Month Historical Attendance &amp; Work Reports</h2>
-              <p class="text-xs text-slate-500">Complete 180-day archive of check-in/out timings, GPS locations, break logs &amp; daily reports</p>
+              <p class="text-xs text-slate-500">180-day archive of GPS check-ins, break logs &amp; daily reports</p>
             </div>
-            <button type="button" onclick="window.exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs flex items-center gap-1.5 shadow">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Export CSV Report</span>
+            <button type="button" onclick="window.exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs shadow">
+              Export CSV Report
             </button>
           </div>
 
@@ -872,7 +918,7 @@
                   <th class="py-3 px-3">Check-In &amp; GPS</th>
                   <th class="py-3 px-3">Check-Out</th>
                   <th class="py-3 px-3">Break Used</th>
-                  <th class="py-3 px-3">Daily Report &amp; Additional Work</th>
+                  <th class="py-3 px-3">Daily Report &amp; Figures</th>
                 </tr>
               </thead>
               <tbody id="boss-history-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
@@ -884,7 +930,7 @@
   </div>
 
   <!-- =========================================================
-       CORE UI + FIREBASE CLOUD MODULE (ZERO PAGE RELOAD)
+       CORE APP & FIREBASE CLOUD MODULE
   ========================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -922,11 +968,12 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
+    // Private Boss Credentials (Hidden from Quick-Fill Directory)
     const BOSS_ACCOUNT = {
       id: "jagdish",
       name: "JAGDISH BOSS",
-      email: "jagdish@gmail.com",
-      pass: "Jagdish@777s",
+      email: "jagdishboss@gmail.com",
+      pass: "Jagdish@221486",
       role: "boss",
       department: "Management",
       tag: "Owner / Boss",
@@ -955,6 +1002,15 @@
       { id: "rajni", name: "RAJNI", email: "rajni@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" }
     ];
 
+    const DEPT_METRIC_CONFIG = {
+      "Salesman": { heading: "Salesman Daily Output", pLabel: "Phones / Units Sold (Qty)", sLabel: "Total Sales Value (₹)" },
+      "New Mobile Sale": { heading: "New Mobile Sale Output", pLabel: "New Mobiles Sold (Qty)", sLabel: "Total Billing Value (₹)" },
+      "Accessories": { heading: "Accessories Daily Output", pLabel: "Accessories Items Sold (Qty)", sLabel: "Accessories Amount (₹)" },
+      "Service Centre": { heading: "Service Centre Daily Output", pLabel: "Handsets Repaired / Serviced (Qty)", sLabel: "Service Billing Amount (₹)" },
+      "Social Team": { heading: "Social Media Daily Output", pLabel: "Reels / Videos Posted (Qty)", sLabel: "Leads / Enquiries Generated (Qty)" },
+      "Accountant": { heading: "Accounts & Billing Daily Output", pLabel: "Bills / Vouchers Processed (Qty)", sLabel: "Total Reconciled Amount (₹)" }
+    };
+
     const DEFAULT_STAFF_PASS = "Jio@2022";
 
     let currentUserProfile = null;
@@ -965,6 +1021,7 @@
     let allAdvances = [];
     let lastKnownPendingTaskIds = new Set();
     let historyExportCache = [];
+    let currentAnalyticsPeriod = "day";
 
     function getGpLogoSvg(className = "w-full h-full") {
       return `
@@ -1000,7 +1057,7 @@
         document.getElementById("favicon-link").href = pngUrl;
 
         const manifest = {
-          name: "Galaxy Point Staff & Boss Portal",
+          name: "Galaxy Point Operations Portal",
           short_name: "Galaxy Point",
           start_url: "./",
           display: "standalone",
@@ -1053,10 +1110,10 @@
         error: "bg-red-600 text-white border-red-500"
       };
       const el = document.createElement("div");
-      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-bold flex items-center justify-between gap-3 animate-slide-up ${colors[type] || colors.info}`;
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-bold flex items-center justify-between gap-3 animate-view ${colors[type] || colors.info}`;
       el.innerHTML = `<span>${message}</span>`;
       container.appendChild(el);
-      setTimeout(() => el.remove(), 4200);
+      setTimeout(() => el.remove(), 4500);
     };
 
     function playNotificationChime() {
@@ -1102,23 +1159,23 @@
       m.classList.remove("flex");
     };
 
+    // Quick Directory (ONLY 18 STAFF — BOSS COMPLETELY EXCLUDED)
     function renderQuickDirectory() {
       const q = (document.getElementById("dir-search")?.value || "").toLowerCase();
       const list = document.getElementById("quick-directory-list");
-      const allAccounts = [BOSS_ACCOUNT, ...STAFF_ROSTER];
-      const filtered = allAccounts.filter(a =>
+      const filtered = STAFF_ROSTER.filter(a =>
         a.name.toLowerCase().includes(q) ||
         a.email.toLowerCase().includes(q) ||
         a.department.toLowerCase().includes(q)
       );
 
       list.innerHTML = filtered.map(acc => `
-        <button type="button" data-fill-email="${acc.email}" data-fill-pass="${acc.role === 'boss' ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS}"
-          class="quick-fill-item w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition">
+        <button type="button" data-fill-email="${acc.email}" data-fill-pass="${DEFAULT_STAFF_PASS}"
+          class="quick-fill-item w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition tap-scale">
           <div>
             <div class="flex items-center gap-1.5">
               <span class="text-xs font-extrabold text-slate-900">${acc.name}</span>
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${acc.role === 'boss' ? 'bg-blue-900 text-white' : 'bg-blue-100 text-blue-800'}">${acc.tag}</span>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">${acc.tag}</span>
             </div>
             <p class="text-[11px] text-slate-500">${acc.email}</p>
           </div>
@@ -1136,7 +1193,7 @@
     }
 
     function resolveAccountByEmail(emailClean) {
-      if (emailClean === BOSS_ACCOUNT.email || emailClean === "boss@gmail.com") {
+      if (emailClean === BOSS_ACCOUNT.email) {
         return { ...BOSS_ACCOUNT };
       }
       const staff = STAFF_ROSTER.find(s => s.email.toLowerCase() === emailClean);
@@ -1162,7 +1219,7 @@
 
       const matched = resolveAccountByEmail(email);
       if (!matched) {
-        errText.textContent = "This email is not in the Galaxy Point Staff Directory.";
+        errText.textContent = "Invalid Login ID. Please check your Galaxy Point email.";
         errBox.classList.remove("hidden");
         return;
       }
@@ -1208,30 +1265,23 @@
         console.error("Login Error:", err);
         let friendlyMsg = err.message || "Unable to connect to Firebase Authentication.";
         if (err.code === "auth/operation-not-allowed") {
-          friendlyMsg = "Firebase Error: Go to Firebase Console -> Authentication -> Sign-in method -> Enable Email/Password.";
+          friendlyMsg = "Firebase Error: Enable Email/Password in Firebase Console -> Authentication -> Sign-in method.";
         } else if (err.code === "auth/unauthorized-domain") {
-          friendlyMsg = "Firebase Error: Add 'galaxypoint555-a11y.github.io' in Firebase Authentication -> Settings -> Authorized domains.";
+          friendlyMsg = "Firebase Error: Add 'galaxypoint555-a11y.github.io' in Firebase Authentication -> Authorized domains.";
         }
         errText.textContent = friendlyMsg;
         errBox.classList.remove("hidden");
         btn.disabled = false;
-        btnLabel.textContent = "Sign In to Portal";
+        btnLabel.textContent = "Sign In to Portal ->";
       }
     }
 
-    // Bind Login Button, Enter Key & Directory Controls cleanly
     document.getElementById("login-submit-btn").addEventListener("click", performLogin);
     document.getElementById("login-password").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        performLogin();
-      }
+      if (e.key === "Enter") { e.preventDefault(); performLogin(); }
     });
     document.getElementById("login-email").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        performLogin();
-      }
+      if (e.key === "Enter") { e.preventDefault(); performLogin(); }
     });
     document.getElementById("toggle-pwd-btn").addEventListener("click", () => {
       const inp = document.getElementById("login-password");
@@ -1254,17 +1304,13 @@
       document.getElementById("boss-portal").classList.add("hidden");
       document.getElementById("login-screen").classList.remove("hidden");
       document.getElementById("login-submit-btn").disabled = false;
-      document.getElementById("login-btn-label").textContent = "Sign In to Portal";
+      document.getElementById("login-btn-label").textContent = "Sign In to Portal ->";
     };
 
     function clearActiveListeners() {
       activeUnsubscribers.forEach(unsub => { try { unsub(); } catch (e) {} });
       activeUnsubscribers = [];
     }
-
-    // Update Cloud Status Pill immediately
-    document.getElementById("cloud-dot").className = "w-2 h-2 rounded-full bg-emerald-500";
-    document.getElementById("cloud-status-text").textContent = "galaxy-point-staff Ready";
 
     onAuthStateChanged(auth, async (user) => {
       if (!user) return;
@@ -1286,7 +1332,7 @@
     });
 
     // =========================================================
-    // STAFF PORTAL LOGIC
+    // STAFF PORTAL LOGIC (NO AUTO CHECK-IN; STRICT GPS ONLY)
     // =========================================================
     function initStaffPortal(profile) {
       clearActiveListeners();
@@ -1299,6 +1345,11 @@
       document.getElementById("staff-role-subtitle").textContent = `${profile.department} (${profile.tag}) • Shift ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
       document.getElementById("staff-today-date").textContent = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
+      const mCfg = DEPT_METRIC_CONFIG[profile.department] || DEPT_METRIC_CONFIG["Salesman"];
+      document.getElementById("dept-metric-heading").textContent = mCfg.heading;
+      document.getElementById("metric-primary-label").textContent = mCfg.pLabel;
+      document.getElementById("metric-secondary-label").textContent = mCfg.sLabel;
+
       window.setLeaveQuickDate(1);
       document.getElementById("advance-date-input").value = getTodayKey();
       window.switchStaffTab("home");
@@ -1310,7 +1361,12 @@
         const data = snap.exists() ? snap.data() : null;
         todayAttendanceMap[profile.id] = data;
         renderStaffAttendanceAndBreak(data);
+        renderStaffEditableExtraWork(data);
         renderStaffAutoReport();
+        if (data?.metrics) {
+          document.getElementById("metric-primary-input").value = data.metrics.primary ?? "";
+          document.getElementById("metric-secondary-input").value = data.metrics.secondary ?? "";
+        }
       });
       activeUnsubscribers.push(unsubAtt);
 
@@ -1365,41 +1421,70 @@
       });
       document.querySelectorAll(".staff-tab-btn").forEach(btn => {
         const active = btn.dataset.staffTab === tabName;
-        btn.className = active
-          ? "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-blue-700 text-white shadow-xs transition"
-          : "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 text-slate-600 hover:bg-slate-200/70 transition";
+        if (btn.closest("nav")) {
+          btn.className = active
+            ? "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-extrabold text-blue-700 bg-blue-50/90 tap-scale"
+            : "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-semibold text-slate-500 hover:text-slate-800 tap-scale";
+        } else {
+          btn.className = active
+            ? "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-blue-700 text-white shadow-xs transition"
+            : "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 text-slate-600 hover:bg-slate-200/70 transition";
+        }
       });
     };
 
+    // STRICT MANDATORY GPS CHECK-IN (BLOCKS CHECK-IN IF LOCATION DENIED/OFF)
     window.handleStaffCheckIn = async function() {
       if (!currentUserProfile) return;
       const btn = document.getElementById("btn-staff-checkin");
-      btn.disabled = true;
-      btn.innerHTML = `<span>Capturing GPS Location...</span>`;
 
-      const getCoords = () => new Promise((resolve) => {
-        if (!navigator.geolocation) return resolve(null);
+      if (!navigator.geolocation) {
+        window.showToast("GPS is not supported on this browser. Check-in blocked.", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>Verifying Live GPS...</span>`;
+
+      const getStrictCoords = () => new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(
-          (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-          () => resolve(null),
-          { enableHighAccuracy: true, timeout: 8000 }
+          (pos) => resolve({
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude,
+            accuracy: Math.round(pos.coords.accuracy || 0)
+          }),
+          (err) => reject(err),
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
         );
       });
 
-      const coords = await getCoords();
-      let locationText = "Location permission denied / unavailable";
-      let mapsUrl = "";
-
-      if (coords) {
-        mapsUrl = `https://maps.google.com/?q=${coords.lat},${coords.lng}`;
-        try {
-          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`);
-          const geo = await res.json();
-          locationText = geo.display_name ? geo.display_name.split(",").slice(0, 3).join(", ") : `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
-        } catch {
-          locationText = `GPS: ${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
-        }
+      let coords;
+      try {
+        coords = await getStrictCoords();
+      } catch (geoErr) {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
+        window.showToast("Check-In BLOCKED: Please turn ON Location/GPS and allow permission in your browser settings.", "error");
+        return;
       }
+
+      if (!coords || typeof coords.lat !== "number" || typeof coords.lng !== "number") {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
+        window.showToast("Unable to verify GPS coordinates. Check-in blocked.", "error");
+        return;
+      }
+
+      const mapsUrl = `https://maps.google.com/?q=${coords.lat},${coords.lng}`;
+      let locationText = `GPS (${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)})`;
+
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`);
+        const geo = await res.json();
+        if (geo && geo.display_name) {
+          locationText = geo.display_name.split(",").slice(0, 3).join(", ");
+        }
+      } catch (e) {}
 
       const nowMs = Date.now();
       const punctuality = computePunctuality(nowMs, currentUserProfile.shiftStart);
@@ -1418,6 +1503,9 @@
         isLate: punctuality.isLate,
         checkInLocation: locationText,
         checkInMapsUrl: mapsUrl,
+        gpsLat: coords.lat,
+        gpsLng: coords.lng,
+        gpsVerified: true,
         checkOutMs: null,
         totalBreakMs: 0,
         activeBreakStartMs: null,
@@ -1425,7 +1513,7 @@
         additionalWork: []
       }, { merge: true });
 
-      window.showToast(`Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
+      window.showToast(`GPS Verified! Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
     };
 
     window.handleStaffCheckOut = async function() {
@@ -1451,7 +1539,7 @@
         breakSessions: sessions
       });
 
-      window.showToast(`Checked out at ${formatTimestampTime(nowMs)}. Have a great evening!`, "success");
+      window.showToast(`Checked out at ${formatTimestampTime(nowMs)}.`, "success");
     };
 
     window.handleToggleBreak = async function() {
@@ -1461,7 +1549,7 @@
       const existing = todayAttendanceMap[currentUserProfile.id];
 
       if (!existing || !existing.checkInMs) {
-        window.showToast("Please Check In first before starting a break.", "warn");
+        window.showToast("Please complete GPS Check-In first before starting a break.", "warn");
         return;
       }
       if (existing.checkOutMs) {
@@ -1511,10 +1599,10 @@
         badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600";
         badge.textContent = "Not Checked In";
         inTime.textContent = "--:--";
-        inStatus.textContent = "Pending";
-        inStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-600";
+        inStatus.textContent = "GPS Required";
+        inStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
         btnIn.disabled = false;
-        btnIn.innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i><span>Check In Now (with GPS)</span>`;
+        btnIn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
         btnOut.disabled = true;
         outTime.textContent = "--:--";
         outStatus.textContent = "Waiting";
@@ -1526,11 +1614,11 @@
           : "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
 
         inLoc.innerHTML = data.checkInMapsUrl
-          ? `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i><a href="${data.checkInMapsUrl}" target="_blank" class="text-blue-700 underline font-medium">${data.checkInLocation}</a>`
-          : `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5"></i><span>${data.checkInLocation || "Checked in"}</span>`;
+          ? `<a href="${data.checkInMapsUrl}" target="_blank" class="text-blue-700 underline font-semibold">${data.checkInLocation} (View Map)</a>`
+          : `<span>${data.checkInLocation || "GPS Verified"}</span>`;
 
         btnIn.disabled = true;
-        btnIn.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i><span>Checked In</span>`;
+        btnIn.innerHTML = `<span>GPS Checked In &#10003;</span>`;
 
         if (!data.checkOutMs) {
           badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
@@ -1550,7 +1638,6 @@
       }
 
       updateBreakLiveDisplay(data);
-      lucide.createIcons();
     }
 
     function updateBreakLiveDisplay(data) {
@@ -1592,13 +1679,13 @@
         const ss = String(secTotal % 60).padStart(2, "0");
         document.getElementById("active-break-timer").textContent = `${mm}:${ss}`;
 
-        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-lg transition";
-        btnToggle.innerHTML = `<i data-lucide="stop-circle" class="w-5 h-5"></i><span>End Break &amp; Resume Duty</span>`;
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-lg transition tap-scale";
+        btnToggle.innerHTML = `<span>End Break &amp; Resume Duty</span>`;
       } else {
         activeBox.classList.add("hidden");
         liveBadge.classList.add("hidden");
-        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition";
-        btnToggle.innerHTML = `<i data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i><span>Want a Break? Tap Here to Start</span>`;
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition tap-scale";
+        btnToggle.innerHTML = `<span>Want a Break? Tap Here to Start</span>`;
       }
 
       const listEl = document.getElementById("break-sessions-list");
@@ -1614,6 +1701,103 @@
             </div>
           `).join("");
       }
+    }
+
+    // Department Daily Metrics Save
+    window.handleSaveDeptMetrics = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const primary = Number(document.getElementById("metric-primary-input").value || 0);
+      const secondary = Number(document.getElementById("metric-secondary-input").value || 0);
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        metrics: { primary, secondary, updatedAt: Date.now() }
+      }, { merge: true });
+
+      window.showToast("Today's performance numbers updated for Boss leaderboard!", "success");
+    };
+
+    // Additional Work Add, Edit & Delete
+    window.handleAddAdditionalWork = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const inp = document.getElementById("additional-work-input");
+      const text = inp.value.trim();
+      if (!text) return;
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = existing?.additionalWork || [];
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        additionalWork: [...currentExtra, { text, timeMs: Date.now() }]
+      }, { merge: true });
+
+      inp.value = "";
+      window.showToast("Added to report!", "success");
+    };
+
+    window.handleEditAdditionalWork = async function(idx) {
+      if (!currentUserProfile) return;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = [...(existing?.additionalWork || [])];
+      if (!currentExtra[idx]) return;
+
+      const updatedText = prompt("Edit your report entry:", currentExtra[idx].text);
+      if (updatedText === null || !updatedText.trim()) return;
+
+      currentExtra[idx] = { ...currentExtra[idx], text: updatedText.trim(), editedAt: Date.now() };
+      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
+      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
+      window.showToast("Report entry updated!", "success");
+    };
+
+    window.handleDeleteAdditionalWork = async function(idx) {
+      if (!currentUserProfile) return;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = [...(existing?.additionalWork || [])];
+      currentExtra.splice(idx, 1);
+
+      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
+      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
+      window.showToast("Report entry deleted.", "info");
+    };
+
+    function renderStaffEditableExtraWork(data) {
+      const container = document.getElementById("staff-editable-extra-list");
+      const list = data?.additionalWork || [];
+      if (list.length === 0) {
+        container.innerHTML = "";
+        return;
+      }
+      container.innerHTML = list.map((item, idx) => `
+        <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-xs">
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 break-words">${item.text}</p>
+            <span class="text-[10px] text-slate-500">${formatTimestampTime(item.timeMs)} ${item.editedAt ? '(Edited)' : ''}</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="window.handleEditAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-blue-600 text-blue-700 hover:text-white border border-blue-200 font-bold text-[11px] transition tap-scale">
+              Edit
+            </button>
+            <button type="button" onclick="window.handleDeleteAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-red-600 text-red-600 hover:text-white border border-red-200 font-bold text-[11px] transition tap-scale">
+              Delete
+            </button>
+          </div>
+        </div>
+      `).join("");
     }
 
     function renderStaffTasksAndIncentives() {
@@ -1642,8 +1826,8 @@
             <div class="p-4 rounded-2xl border ${isDone ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200'} flex items-start justify-between gap-3 transition">
               <div class="flex items-start gap-3">
                 <button type="button" onclick="window.toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
-                  class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
-                  ${isDone ? '<i data-lucide="check" class="w-4 h-4"></i>' : ''}
+                  class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition tap-scale ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
+                  ${isDone ? '&#10003;' : ''}
                 </button>
                 <div>
                   <div class="flex flex-wrap items-center gap-2">
@@ -1657,7 +1841,7 @@
                 </div>
               </div>
               ${isDone && t.incentiveAmount > 0 ? `
-                <button type="button" onclick="window.switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0">
+                <button type="button" onclick="window.switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0 tap-scale">
                   Claim &#8377;${t.incentiveAmount}
                 </button>
               ` : ''}
@@ -1672,7 +1856,7 @@
 
       const incListEl = document.getElementById("staff-incentives-list");
       if (incTasks.length === 0) {
-        incListEl.innerHTML = `<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center text-xs text-slate-500">No incentive tasks assigned to you yet. When Boss assigns an incentive task, it will appear here.</div>`;
+        incListEl.innerHTML = `<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center text-xs text-slate-500">No incentive tasks assigned to you yet.</div>`;
       } else {
         incListEl.innerHTML = incTasks.map(t => {
           const isDone = t.status === "completed";
@@ -1698,12 +1882,11 @@
 
               <div class="shrink-0">
                 ${!isDone
-                  ? `<button type="button" onclick="window.switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Go Complete Task</button>`
+                  ? `<button type="button" onclick="window.switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs tap-scale">Go Complete Task</button>`
                   : isClaimed
-                    ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs"><i data-lucide="badge-check" class="w-4 h-4"></i> Claimed &amp; Received</span>`
-                    : `<button type="button" onclick="window.handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow flex items-center gap-1.5">
-                        <i data-lucide="hand-coins" class="w-4 h-4"></i>
-                        <span>Did You Claim? Yes, Received</span>
+                    ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs">Claimed &amp; Received &#10003;</span>`
+                    : `<button type="button" onclick="window.handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow">
+                        Did You Claim? Yes, Received
                       </button>`
                 }
               </div>
@@ -1711,7 +1894,6 @@
           `;
         }).join("");
       }
-      lucide.createIcons();
     }
 
     window.toggleCompleteTask = async function(docId, currentStatus, incentiveAmt) {
@@ -1721,7 +1903,7 @@
         completedAt: nextStatus === "completed" ? Date.now() : null
       });
       if (nextStatus === "completed") {
-        window.showToast(incentiveAmt > 0 ? `Task completed! \u20B9${incentiveAmt} incentive unlocked!` : "Task completed & added to Daily Report!", "success");
+        window.showToast(incentiveAmt > 0 ? `Task completed! \u20B9${incentiveAmt} incentive unlocked!` : "Task completed & synced to Daily Report!", "success");
         if (incentiveAmt > 0) window.switchStaffTab("incentives");
       }
     };
@@ -1734,54 +1916,32 @@
       window.showToast("Incentive claim confirmed! JAGDISH BOSS has been updated.", "success");
     };
 
-    window.handleAddAdditionalWork = async function(e) {
-      if (e) e.preventDefault();
-      if (!currentUserProfile) return;
-      const inp = document.getElementById("additional-work-input");
-      const text = inp.value.trim();
-      if (!text) return;
-
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-      const currentExtra = existing?.additionalWork || [];
-
-      await setDoc(doc(db, "attendance", attDocId), {
-        date: todayKey,
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        additionalWork: [...currentExtra, { text, timeMs: Date.now() }]
-      }, { merge: true });
-
-      inp.value = "";
-      window.showToast("Additional work added to today's report!", "success");
-    };
-
     function renderStaffAutoReport() {
       const box = document.getElementById("staff-auto-report-items");
+      const att = todayAttendanceMap[currentUserProfile?.id];
       const completedTasks = allTasksToday.filter(t => t.status === "completed");
-      const extraWork = todayAttendanceMap[currentUserProfile?.id]?.additionalWork || [];
+      const extraWork = att?.additionalWork || [];
+      const metrics = att?.metrics;
 
-      if (completedTasks.length === 0 && extraWork.length === 0) {
-        box.innerHTML = `<p class="text-slate-400 italic">No completed tasks or additional work logged yet today.</p>`;
-        return;
+      const items = [];
+      if (metrics && (metrics.primary > 0 || metrics.secondary > 0)) {
+        const cfg = DEPT_METRIC_CONFIG[currentUserProfile.department] || DEPT_METRIC_CONFIG["Salesman"];
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">FIGURES</span><span>${cfg.pLabel}: <strong>${metrics.primary}</strong> | ${cfg.sLabel}: <strong>${metrics.secondary}</strong></span></div>`);
       }
+      completedTasks.forEach(t => {
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">TASK DONE</span><span>${t.title}</span></div>`);
+      });
+      extraWork.forEach(w => {
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">EXTRA WORK</span><span>${w.text}</span></div>`);
+      });
 
-      const items = [
-        ...completedTasks.map(t => `<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">TASK DONE</span><span>${t.title}</span></div>`),
-        ...extraWork.map(w => `<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">EXTRA WORK</span><span>${w.text} (${formatTimestampTime(w.timeMs)})</span></div>`)
-      ];
-      box.innerHTML = items.join("");
+      box.innerHTML = items.length ? items.join("") : `<p class="text-slate-400 italic">No report items logged yet today.</p>`;
     }
 
     window.setLeaveQuickDate = function(daysAhead) {
       const d = new Date();
       d.setDate(d.getDate() + daysAhead);
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      document.getElementById("leave-date-input").value = `${y}-${m}-${day}`;
+      document.getElementById("leave-date-input").value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
     };
 
     window.handleApplyLeave = async function(e) {
@@ -1812,11 +1972,7 @@
         return;
       }
       el.innerHTML = list.map(l => {
-        const badge = l.status === "approved"
-          ? "bg-emerald-100 text-emerald-800"
-          : l.status === "rejected"
-            ? "bg-red-100 text-red-700"
-            : "bg-amber-100 text-amber-800";
+        const badge = l.status === "approved" ? "bg-emerald-100 text-emerald-800" : l.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
         return `
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
             <div>
@@ -1860,11 +2016,7 @@
         return;
       }
       el.innerHTML = list.map(a => {
-        const badge = a.status === "approved" || a.status === "paid"
-          ? "bg-emerald-100 text-emerald-800"
-          : a.status === "rejected"
-            ? "bg-red-100 text-red-700"
-            : "bg-amber-100 text-amber-800";
+        const badge = a.status === "approved" || a.status === "paid" ? "bg-emerald-100 text-emerald-800" : a.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
         return `
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
             <div>
@@ -1878,7 +2030,7 @@
     }
 
     // =========================================================
-    // BOSS COMMAND CENTER LOGIC
+    // BOSS COMMAND CENTER LOGIC (JAGDISH BOSS)
     // =========================================================
     function initBossPortal() {
       clearActiveListeners();
@@ -1939,7 +2091,7 @@
     }
 
     window.switchBossTab = function(tabName) {
-      ["live", "tasks", "leaves", "advances", "history"].forEach(v => {
+      ["live", "analytics", "tasks", "leaves", "advances", "history"].forEach(v => {
         document.getElementById(`boss-view-${v}`).classList.toggle("hidden", v !== tabName);
       });
       document.querySelectorAll(".boss-tab-btn").forEach(btn => {
@@ -1949,6 +2101,7 @@
           : "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-600 hover:bg-slate-200/70 transition";
       });
       if (tabName === "history") window.loadSixMonthHistory();
+      if (tabName === "analytics") window.setAnalyticsPeriod(currentAnalyticsPeriod);
     };
 
     function updateBossKPIs() {
@@ -1991,7 +2144,8 @@
         const att = todayAttendanceMap[s.id];
         const staffTasksDone = allTasksToday.filter(t => t.assignedToId === s.id && t.status === "completed");
         const extraWork = att?.additionalWork || [];
-        const totalReportCount = staffTasksDone.length + extraWork.length;
+        const metrics = att?.metrics;
+        const totalReportCount = staffTasksDone.length + extraWork.length + (metrics ? 1 : 0);
 
         const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
         const breakMins = Math.floor(totalBreakMs / 60000);
@@ -2012,10 +2166,11 @@
                   <span class="font-extrabold text-slate-900">${formatTimestampTime(att.checkInMs)}</span>
                   <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${att.isLate ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${att.checkInStatus}</span>
                 </div>
-                <div class="text-[11px] text-slate-500 mt-0.5 max-w-[210px] truncate">
-                  ${att.checkInMapsUrl ? `<a href="${att.checkInMapsUrl}" target="_blank" class="text-blue-700 underline">${att.checkInLocation}</a>` : (att.checkInLocation || '')}
+                <div class="text-[11px] text-slate-600 mt-1 flex items-center gap-1.5">
+                  <span class="max-w-[180px] truncate">${att.checkInLocation || 'GPS Verified'}</span>
+                  ${att.checkInMapsUrl ? `<a href="${att.checkInMapsUrl}" target="_blank" class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px] shrink-0 hover:bg-blue-700">Open Map</a>` : ''}
                 </div>
-              ` : `<span class="text-slate-400 font-medium">Absent / Not Checked In</span>`}
+              ` : `<span class="text-slate-400 font-medium">Not Checked In</span>`}
             </td>
             <td class="py-3.5 px-3 whitespace-nowrap">
               ${att?.checkOutMs
@@ -2034,8 +2189,9 @@
             <td class="py-3.5 px-3">
               ${totalReportCount > 0 ? `
                 <details class="cursor-pointer">
-                  <summary class="font-bold text-blue-700">${totalReportCount} item(s) logged</summary>
+                  <summary class="font-bold text-blue-700">${totalReportCount} update(s)</summary>
                   <ul class="mt-1 space-y-0.5 text-[11px] text-slate-600 list-disc list-inside">
+                    ${metrics ? `<li><strong>Qty: ${metrics.primary} | Val: ${metrics.secondary}</strong></li>` : ''}
                     ${staffTasksDone.map(t => `<li>[Task] ${t.title}</li>`).join("")}
                     ${extraWork.map(w => `<li>[Extra] ${w.text}</li>`).join("")}
                   </ul>
@@ -2043,6 +2199,79 @@
               ` : `<span class="text-slate-400">No items yet</span>`}
             </td>
           </tr>
+        `;
+      }).join("");
+    };
+
+    // Department Performance Leaderboard (Day / Week / Month)
+    window.setAnalyticsPeriod = function(period) {
+      currentAnalyticsPeriod = period;
+      document.querySelectorAll(".analytics-period-btn").forEach(btn => {
+        const active = btn.dataset.period === period;
+        btn.className = active
+          ? "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-extrabold bg-blue-900 text-white shadow-2xs transition"
+          : "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition";
+      });
+      window.loadDepartmentAnalytics();
+    };
+
+    window.loadDepartmentAnalytics = async function() {
+      const dept = document.getElementById("analytics-dept-select").value;
+      const container = document.getElementById("analytics-leaderboard-container");
+      container.innerHTML = `<p class="text-xs text-slate-400 py-6 text-center">Calculating ${dept} performance rankings...</p>`;
+
+      const days = currentAnalyticsPeriod === "day" ? 0 : currentAnalyticsPeriod === "week" ? 7 : 30;
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - days);
+      const cutoffKey = `${cutoff.getFullYear()}-${String(cutoff.getMonth() + 1).padStart(2, "0")}-${String(cutoff.getDate()).padStart(2, "0")}`;
+
+      const deptStaff = STAFF_ROSTER.filter(s => s.department === dept);
+      const stats = {};
+      deptStaff.forEach(s => {
+        stats[s.id] = { ...s, primaryTotal: 0, secondaryTotal: 0, daysActive: 0 };
+      });
+
+      const attSnap = await getDocs(collection(db, "attendance"));
+      attSnap.forEach(d => {
+        const r = d.data();
+        if (r.date >= cutoffKey && stats[r.staffId]) {
+          if (r.checkInMs) stats[r.staffId].daysActive++;
+          if (r.metrics) {
+            stats[r.staffId].primaryTotal += Number(r.metrics.primary || 0);
+            stats[r.staffId].secondaryTotal += Number(r.metrics.secondary || 0);
+          }
+        }
+      });
+
+      const ranked = Object.values(stats).sort((a, b) => (b.secondaryTotal - a.secondaryTotal) || (b.primaryTotal - a.primaryTotal));
+      const maxVal = Math.max(1, ...ranked.map(r => r.secondaryTotal || r.primaryTotal || 1));
+      const cfg = DEPT_METRIC_CONFIG[dept] || DEPT_METRIC_CONFIG["Salesman"];
+
+      container.innerHTML = ranked.map((item, idx) => {
+        const pct = Math.min(100, Math.round(((item.secondaryTotal || item.primaryTotal) / maxVal) * 100));
+        const rankColors = ["bg-amber-400 text-slate-950", "bg-slate-200 text-slate-800", "bg-amber-700/20 text-amber-900"];
+        const badgeCls = rankColors[idx] || "bg-blue-50 text-blue-800";
+
+        return `
+          <div class="p-4 rounded-2xl border ${idx === 0 ? 'border-blue-300 bg-blue-50/40' : 'border-slate-200 bg-white'}">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-xl font-display font-extrabold text-xs flex items-center justify-center ${badgeCls}">#${idx + 1}</span>
+                <div>
+                  <span class="font-extrabold text-sm text-slate-900">${item.name}</span>
+                  <span class="ml-1.5 text-[11px] font-semibold text-slate-500">(${item.tag} &bull; ${item.daysActive} active day(s))</span>
+                </div>
+              </div>
+              <div class="text-right text-xs">
+                <span class="font-bold text-slate-600">${cfg.pLabel}: <strong class="text-slate-900">${item.primaryTotal}</strong></span>
+                <span class="mx-2 text-slate-300">|</span>
+                <span class="font-bold text-slate-600">${cfg.sLabel}: <strong class="text-emerald-700">${item.secondaryTotal}</strong></span>
+              </div>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
+              <div class="h-full rounded-full ${idx === 0 ? 'bg-blue-700' : 'bg-blue-400'} transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+          </div>
         `;
       }).join("");
     };
@@ -2144,8 +2373,8 @@
           </div>
           ${l.status === "pending" ? `
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Leave</button>
-              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve Leave</button>
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
             </div>
           ` : ''}
         </div>
@@ -2154,7 +2383,7 @@
 
     window.updateLeaveStatus = async function(docId, status) {
       await updateDoc(doc(db, "leaves", docId), { status, reviewedAt: Date.now() });
-      window.showToast(`Leave request marked as ${status.toUpperCase()}`, "info");
+      window.showToast(`Leave marked as ${status.toUpperCase()}`, "info");
     };
 
     function renderBossAdvancesList() {
@@ -2178,8 +2407,8 @@
           </div>
           ${a.status === "pending" ? `
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Advance</button>
-              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve Advance</button>
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
             </div>
           ` : ''}
         </div>
@@ -2221,7 +2450,8 @@
           const k = `${r.date}_${r.staffId}`;
           const doneTasks = tasksByKey[k] || [];
           const extra = (r.additionalWork || []).map(w => w.text);
-          rows.push({ ...r, combinedReport: [...doneTasks, ...extra] });
+          const metricStr = r.metrics ? [`Qty: ${r.metrics.primary} | Val: ${r.metrics.secondary}`] : [];
+          rows.push({ ...r, combinedReport: [...metricStr, ...doneTasks, ...extra] });
         }
       });
 
@@ -2284,23 +2514,21 @@
     window.provisionAllAccounts = async function() {
       const btn = document.getElementById("btn-provision-all");
       btn.disabled = true;
-      btn.innerHTML = `<span>Syncing 19 IDs...</span>`;
+      btn.textContent = "Syncing 18 IDs...";
 
       try {
         const secApp = initializeApp(firebaseConfig, "ProvisionWorker_" + Date.now());
         const secAuth = getAuth(secApp);
-        const all = [BOSS_ACCOUNT, ...STAFF_ROSTER];
 
-        for (const acc of all) {
-          const pwd = acc.role === "boss" ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS;
+        for (const acc of STAFF_ROSTER) {
           try {
-            await createUserWithEmailAndPassword(secAuth, acc.email, pwd);
+            await createUserWithEmailAndPassword(secAuth, acc.email, DEFAULT_STAFF_PASS);
           } catch (e) {}
           await setDoc(doc(db, "users", acc.id), {
             id: acc.id,
             name: acc.name,
             email: acc.email,
-            role: acc.role || "staff",
+            role: "staff",
             department: acc.department,
             tag: acc.tag,
             shiftStart: acc.shiftStart,
@@ -2308,13 +2536,12 @@
           }, { merge: true });
         }
         await signOut(secAuth);
-        window.showToast("All 19 Galaxy Point accounts synced to Firebase Cloud!", "success");
+        window.showToast("All 18 Staff Cloud IDs synced successfully!", "success");
       } catch (err) {
         window.showToast("Sync note: " + err.message, "warn");
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="cloud-cog" class="w-4 h-4"></i><span>Sync 19 Cloud IDs</span>`;
-        lucide.createIcons();
+        btn.textContent = "Sync 18 Staff Cloud IDs";
       }
     };
 
@@ -2343,7 +2570,6 @@
     }, 1000);
 
     setupAppIconsAndManifest();
-    lucide.createIcons();
   </script>
 </body>
 </html>
