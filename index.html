@@ -12,15 +12,11 @@
   <link id="favicon-link" rel="icon" type="image/png" href="" />
   <link id="manifest-link" rel="manifest" href="" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -34,14 +30,10 @@
       overflow-x: hidden;
     }
     h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
-
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #F1F5F9; }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
-    /* Login Background Mesh */
     .login-bg {
       background:
         radial-gradient(circle at 12% 18%, rgba(29, 99, 220, 0.14) 0%, transparent 42%),
@@ -52,7 +44,7 @@
       background: linear-gradient(145deg, #083B7A 0%, #0B4F9F 48%, #1D63DC 100%);
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(226, 232, 240, 0.95);
       box-shadow: 0 20px 50px -12px rgba(11, 79, 159, 0.14);
@@ -66,34 +58,17 @@
       box-shadow: 0 10px 24px -6px rgba(29, 99, 220, 0.45);
     }
     .royal-btn:disabled { opacity: 0.65; cursor: not-allowed; }
-
-    @keyframes pulseRing {
-      0% { transform: scale(0.95); opacity: 0.7; }
-      70% { transform: scale(1.15); opacity: 0; }
-      100% { transform: scale(0.95); opacity: 0; }
-    }
-    .pulse-ring::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: inherit;
-      border: 2px solid currentColor;
-      animation: pulseRing 2s infinite;
-    }
-
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-slide-up { animation: slideUp 0.28s ease-out forwards; }
-
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="min-h-screen antialiased selection:bg-blue-600 selection:text-white">
 
-  <!-- Toast Container -->
   <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
 
   <!-- Install PWA Modal -->
@@ -107,7 +82,7 @@
             <p class="text-xs text-slate-500">Add to Home Screen for iPhone &amp; Android</p>
           </div>
         </div>
-        <button onclick="closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+        <button type="button" onclick="window.closeInstallModal && window.closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -117,9 +92,7 @@
           <p class="text-sm font-semibold text-blue-950">One-Tap Install Available</p>
           <p class="text-xs text-blue-700">Install directly onto your device</p>
         </div>
-        <button id="trigger-pwa-install" class="royal-btn text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow">
-          Install Now
-        </button>
+        <button type="button" id="trigger-pwa-install" class="royal-btn text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow">Install Now</button>
       </div>
 
       <div class="space-y-3 text-sm">
@@ -130,8 +103,8 @@
           </div>
           <ol class="text-xs text-slate-600 space-y-1 list-decimal list-inside">
             <li>Open this link in <strong>Safari</strong> on your iPhone.</li>
-            <li>Tap the <strong>Share</strong> icon (square with upward arrow) at the bottom.</li>
-            <li>Scroll down and tap <strong>"Add to Home Screen"</strong> → <strong>Add</strong>.</li>
+            <li>Tap the <strong>Share</strong> icon at the bottom of the screen.</li>
+            <li>Tap <strong>"Add to Home Screen"</strong> &rarr; <strong>Add</strong>.</li>
           </ol>
         </div>
 
@@ -142,23 +115,20 @@
           </div>
           <ol class="text-xs text-slate-700 space-y-1 list-decimal list-inside">
             <li>Open this link in <strong>Google Chrome</strong>.</li>
-            <li>Tap the <strong>⋮ Menu</strong> (top-right corner).</li>
+            <li>Tap the <strong>&#8942; Menu</strong> (top-right corner).</li>
             <li>Tap <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</li>
           </ol>
         </div>
       </div>
 
-      <button onclick="closeInstallModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+      <button type="button" onclick="window.closeInstallModal && window.closeInstallModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
         Got It
       </button>
     </div>
   </div>
 
-  <!-- =========================================================
-       1. LOGIN SCREEN (WHITE & ROYAL BLUE ENTERPRISE PORTAL)
-  ========================================================== -->
+  <!-- 1. LOGIN SCREEN -->
   <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
-    <!-- Top Bar -->
     <header class="max-w-6xl w-full mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div id="login-top-logo" class="w-11 h-11 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
@@ -174,22 +144,18 @@
       <div class="flex items-center gap-2.5">
         <div id="cloud-status-pill" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-xs">
           <span id="cloud-dot" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-          <span id="cloud-status-text">Connecting Cloud...</span>
+          <span id="cloud-status-text">Initializing Cloud...</span>
         </div>
-        <button onclick="openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-xs transition">
+        <button type="button" onclick="window.openInstallModal && window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-xs transition">
           <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
           <span>Install App</span>
         </button>
       </div>
     </header>
 
-    <!-- Center Split Card -->
     <main class="max-w-5xl w-full mx-auto my-6">
       <div class="glass-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-
-        <!-- Left Brand & Department Showcase (Desktop / Tablet) -->
         <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
-          <!-- Decorative Circles -->
           <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
           <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-400/15 blur-xl pointer-events-none"></div>
 
@@ -209,15 +175,12 @@
               Real-time GPS check-in, unified 60-minute break tracker, task incentives, urgent leave, and 6-month performance records.
             </p>
 
-            <!-- Live Clock Widget -->
             <div class="mt-6 p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
               <div class="flex items-center justify-between text-xs text-blue-100">
                 <span class="uppercase tracking-wider font-semibold">Mumbai Store Time</span>
                 <span id="login-live-date" class="font-medium">--</span>
               </div>
-              <div id="login-live-clock" class="font-display text-2xl font-extrabold tracking-tight mt-1">
-                --:--:--
-              </div>
+              <div id="login-live-clock" class="font-display text-2xl font-extrabold tracking-tight mt-1">--:--:--</div>
             </div>
           </div>
 
@@ -234,20 +197,18 @@
           </div>
         </div>
 
-        <!-- Right Sign-In Form -->
         <div class="lg:col-span-7 p-6 sm:p-9 lg:p-10 bg-white flex flex-col justify-center">
           <div class="max-w-md w-full mx-auto">
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Secure Sign In
-                </span>
-                <h2 class="font-display text-2xl font-extrabold text-slate-900">Welcome Back</h2>
-                <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point ID</p>
-              </div>
+            <div class="mb-6">
+              <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Secure Sign In
+              </span>
+              <h2 class="font-display text-2xl font-extrabold text-slate-900">Welcome Back</h2>
+              <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point ID</p>
             </div>
 
-            <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+            <!-- action="javascript:void(0)" prevents page reload completely -->
+            <form id="login-form" action="javascript:void(0)" class="space-y-4">
               <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Login ID (Email)</label>
                 <div class="relative">
@@ -255,9 +216,8 @@
                   <input
                     id="login-email"
                     type="email"
-                    required
                     autocomplete="username"
-                    placeholder="e.g. sohail@gmail.com"
+                    placeholder="e.g. jagdish@gmail.com or sohail@gmail.com"
                     class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
                   />
                 </div>
@@ -273,13 +233,12 @@
                   <input
                     id="login-password"
                     type="password"
-                    required
                     autocomplete="current-password"
                     placeholder="Enter your password"
                     class="w-full pl-10 pr-11 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
                   />
-                  <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1">
-                    <i id="pwd-eye-icon" data-lucide="eye" class="w-4 h-4"></i>
+                  <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
                   </button>
                 </div>
               </div>
@@ -289,7 +248,7 @@
                 <span id="login-error-text">Invalid credentials</span>
               </div>
 
-              <button id="login-submit-btn" type="submit" class="royal-btn w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2">
+              <button id="login-submit-btn" type="button" class="royal-btn w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2">
                 <span id="login-btn-label">Sign In to Portal</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </button>
@@ -297,7 +256,7 @@
 
             <!-- Quick Login Directory Accordion -->
             <div class="mt-6 pt-5 border-t border-slate-100">
-              <button type="button" onclick="toggleQuickDirectory()" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-1.5 px-2.5 rounded-lg hover:bg-slate-50 transition">
+              <button type="button" id="toggle-dir-btn" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-1.5 px-2.5 rounded-lg hover:bg-slate-50 transition">
                 <span class="flex items-center gap-2">
                   <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
                   <span>Quick-Fill Staff &amp; Admin Directory (19 IDs)</span>
@@ -309,7 +268,6 @@
                 <input
                   id="dir-search"
                   type="text"
-                  oninput="renderQuickDirectory()"
                   placeholder="Search staff name or department..."
                   class="w-full px-3 py-2 text-xs rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -326,11 +284,8 @@
     </footer>
   </div>
 
-  <!-- =========================================================
-       2. STAFF PORTAL (STRICTLY NO BOSS CONTROLS VISIBLE)
-  ========================================================== -->
+  <!-- 2. STAFF PORTAL -->
   <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
-    <!-- Top Header -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90">
       <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
@@ -345,47 +300,42 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <!-- Notification Bell -->
-          <button onclick="switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition" title="Boss Task Alerts">
+          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition" title="Boss Task Alerts">
             <i data-lucide="bell" class="w-4 h-4"></i>
             <span id="staff-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">0</span>
           </button>
 
-          <button onclick="openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition">
+          <button type="button" onclick="window.openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
             <span>App</span>
           </button>
 
-          <button onclick="handleLogout()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 transition">
+          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 transition">
             <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
             <span class="hidden sm:inline">Logout</span>
           </button>
         </div>
       </div>
 
-      <!-- Desktop / Tablet Sub-Nav -->
       <div class="hidden md:block border-t border-slate-100 bg-slate-50/70">
         <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 py-2">
-          <button data-staff-tab="home" onclick="switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+          <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
             <i data-lucide="clock" class="w-4 h-4"></i> Attendance &amp; Break
           </button>
-          <button data-staff-tab="tasks" onclick="switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+          <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
             <i data-lucide="check-square" class="w-4 h-4"></i> Tasks &amp; Daily Report
           </button>
-          <button data-staff-tab="incentives" onclick="switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+          <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
             <i data-lucide="award" class="w-4 h-4"></i> Claim Incentive
           </button>
-          <button data-staff-tab="requests" onclick="switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+          <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
             <i data-lucide="calendar-plus" class="w-4 h-4"></i> Urgent Leave &amp; Advance
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Staff Content Container -->
     <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
-
-      <!-- Live Boss Task Banner Alert -->
       <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-slide-up">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
@@ -396,14 +346,13 @@
             <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
           </div>
         </div>
-        <button onclick="switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition">
+        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition">
           View Tasks
         </button>
       </div>
 
       <!-- TAB 1: ATTENDANCE & UNIFIED 60-MIN BREAK -->
       <section id="staff-view-home" class="space-y-5">
-        <!-- Hero Attendance Card -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-100">
             <div>
@@ -419,9 +368,7 @@
             </div>
           </div>
 
-          <!-- Check-In / Check-Out Action Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
-            <!-- Check In Box -->
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between">
@@ -435,13 +382,12 @@
                 </div>
               </div>
 
-              <button id="btn-staff-checkin" onclick="handleStaffCheckIn()" class="mt-4 royal-btn w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow">
+              <button type="button" id="btn-staff-checkin" onclick="window.handleStaffCheckIn()" class="mt-4 royal-btn w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow">
                 <i data-lucide="log-in" class="w-4 h-4"></i>
                 <span>Check In Now (with GPS)</span>
               </button>
             </div>
 
-            <!-- Check Out Box -->
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between">
@@ -454,7 +400,7 @@
                 </p>
               </div>
 
-              <button id="btn-staff-checkout" onclick="handleStaffCheckOut()" disabled class="mt-4 w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition">
+              <button type="button" id="btn-staff-checkout" onclick="window.handleStaffCheckOut()" disabled class="mt-4 w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition">
                 <i data-lucide="log-out" class="w-4 h-4"></i>
                 <span>Check Out</span>
               </button>
@@ -466,7 +412,7 @@
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div class="flex items-center gap-3">
-              <div id="break-icon-box" class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
                 <i data-lucide="coffee" class="w-6 h-6"></i>
               </div>
               <div>
@@ -474,7 +420,7 @@
                   <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
                   <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
                 </div>
-                <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance — use anytime in splits</p>
+                <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; use anytime in splits</p>
               </div>
             </div>
 
@@ -484,7 +430,6 @@
             </div>
           </div>
 
-          <!-- Progress Bar -->
           <div class="w-full h-3.5 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200/70">
             <div id="break-progress-bar" class="h-full rounded-full bg-blue-600 transition-all duration-500" style="width: 0%"></div>
           </div>
@@ -496,7 +441,6 @@
             </span>
           </div>
 
-          <!-- Active Break Live Timer Banner -->
           <div id="active-break-box" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
             <div>
               <p class="text-xs font-bold uppercase tracking-wider text-amber-800">Current Break Session Running</p>
@@ -505,37 +449,33 @@
             <span class="text-xs text-amber-800 font-medium">Tap button below to end break</span>
           </div>
 
-          <button id="btn-toggle-break" onclick="handleToggleBreak()" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition">
-            <i id="break-btn-icon" data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i>
-            <span id="break-btn-label">Want a Break? Tap Here to Start</span>
+          <button type="button" id="btn-toggle-break" onclick="window.handleToggleBreak()" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition">
+            <i data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i>
+            <span>Want a Break? Tap Here to Start</span>
           </button>
 
-          <!-- Break Sessions Log -->
           <div id="break-sessions-list" class="mt-4 space-y-1.5"></div>
         </div>
       </section>
 
       <!-- TAB 2: TODAY'S TASKS & AUTO DAILY WORK REPORT -->
       <section id="staff-view-tasks" class="hidden space-y-5">
-        <!-- Boss Assigned Tasks -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex items-center justify-between gap-3 mb-4">
             <div>
               <h2 class="font-display text-xl font-extrabold text-slate-900">Today's Assigned Tasks</h2>
-              <p class="text-xs text-slate-500">Tick completed tasks — they automatically sync to your Daily Work Report</p>
+              <p class="text-xs text-slate-500">Tick completed tasks &mdash; they automatically sync to your Daily Work Report</p>
             </div>
             <span id="staff-tasks-count-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0 Tasks</span>
           </div>
-
           <div id="staff-tasks-list" class="space-y-3"></div>
         </div>
 
-        <!-- Additional Work & Auto-Generated Report -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <h3 class="font-display text-lg font-extrabold text-slate-900">Additional Work &amp; Daily Report</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Log any extra work done today (customer handling, stock, service, billing) for JAGDISH BOSS</p>
+          <p class="text-xs text-slate-500 mt-0.5">Log any extra work done today for JAGDISH BOSS</p>
 
-          <form onsubmit="handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
+          <form action="javascript:void(0)" onsubmit="window.handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
             <input
               id="additional-work-input"
               type="text"
@@ -549,21 +489,20 @@
             </button>
           </form>
 
-          <!-- Auto-Compiled Daily Report Preview -->
           <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900 flex items-center gap-1.5">
                 <i data-lucide="file-check-2" class="w-4 h-4 text-blue-600"></i>
                 Auto-Generated Report Sent to Boss
               </span>
-              <span id="staff-report-date-tag" class="text-[11px] font-semibold text-slate-500">Today</span>
+              <span class="text-[11px] font-semibold text-slate-500">Today</span>
             </div>
             <div id="staff-auto-report-items" class="space-y-2 text-xs text-slate-700"></div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 3: CLAIM YOUR INCENTIVE PAGE -->
+      <!-- TAB 3: CLAIM YOUR INCENTIVE -->
       <section id="staff-view-incentives" class="hidden space-y-5">
         <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-4">
@@ -571,12 +510,12 @@
               <span class="px-2.5 py-1 rounded-lg bg-white/15 text-[11px] font-bold uppercase tracking-wider">Performance Rewards</span>
               <h2 class="font-display text-2xl font-extrabold mt-2">Claim Your Incentive</h2>
               <p class="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-                Complete incentive tasks assigned by <strong>JAGDISH BOSS</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your cash/reward and confirm below.
+                Complete incentive tasks assigned by <strong>JAGDISH BOSS</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your reward and confirm below.
               </p>
             </div>
             <div class="bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-right">
               <p class="text-[11px] uppercase tracking-wider text-blue-200 font-semibold">Total Earned</p>
-              <p id="staff-total-incentive" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">₹0</p>
+              <p id="staff-total-incentive" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">&#8377;0</p>
             </div>
           </div>
         </div>
@@ -586,7 +525,6 @@
 
       <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY REQUEST -->
       <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <!-- Urgent Leave Card -->
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
@@ -598,13 +536,13 @@
             </div>
           </div>
 
-          <form onsubmit="handleApplyLeave(event)" class="space-y-3">
+          <form action="javascript:void(0)" onsubmit="window.handleApplyLeave(event)" class="space-y-3">
             <div>
               <label class="block text-xs font-bold text-slate-600 mb-1">Quick Select Day</label>
               <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="setLeaveQuickDate(1)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Tomorrow</button>
-                <button type="button" onclick="setLeaveQuickDate(2)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Day After</button>
-                <button type="button" onclick="setLeaveQuickDate(3)" class="py-2 px-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">This Week</button>
+                <button type="button" onclick="window.setLeaveQuickDate(1)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Tomorrow</button>
+                <button type="button" onclick="window.setLeaveQuickDate(2)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Day After</button>
+                <button type="button" onclick="window.setLeaveQuickDate(3)" class="py-2 px-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">This Week</button>
               </div>
             </div>
 
@@ -629,7 +567,6 @@
           </div>
         </div>
 
-        <!-- Advance Salary Request Card -->
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
@@ -641,10 +578,10 @@
             </div>
           </div>
 
-          <form onsubmit="handleApplyAdvance(event)" class="space-y-3">
+          <form action="javascript:void(0)" onsubmit="window.handleApplyAdvance(event)" class="space-y-3">
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-bold text-slate-600 mb-1">Amount Needed (₹)</label>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Amount Needed (&#8377;)</label>
                 <input id="advance-amount-input" type="number" min="100" step="100" required placeholder="e.g. 2000" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
@@ -671,32 +608,29 @@
       </section>
     </main>
 
-    <!-- Mobile Bottom Navigation (Staff) -->
+    <!-- Mobile Bottom Navigation -->
     <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 grid grid-cols-4 py-1.5 px-1">
-      <button data-staff-tab="home" onclick="switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+      <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
         <i data-lucide="clock" class="w-4 h-4 mb-0.5"></i>
         <span>Attendance</span>
       </button>
-      <button data-staff-tab="tasks" onclick="switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+      <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
         <i data-lucide="check-square" class="w-4 h-4 mb-0.5"></i>
         <span>Tasks/Report</span>
       </button>
-      <button data-staff-tab="incentives" onclick="switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+      <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
         <i data-lucide="award" class="w-4 h-4 mb-0.5"></i>
         <span>Incentive</span>
       </button>
-      <button data-staff-tab="requests" onclick="switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+      <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
         <i data-lucide="calendar-plus" class="w-4 h-4 mb-0.5"></i>
         <span>Leave/Adv</span>
       </button>
     </nav>
   </div>
 
-  <!-- =========================================================
-       3. BOSS COMMAND CENTER (JAGDISH BOSS EXCLUSIVE)
-  ========================================================== -->
+  <!-- 3. BOSS COMMAND CENTER -->
   <div id="boss-portal" class="hidden min-h-screen flex flex-col pb-12">
-    <!-- Boss Header -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3">
@@ -712,44 +646,40 @@
 
         <div class="flex items-center gap-2">
           <span id="boss-live-clock" class="hidden sm:inline-block font-display font-bold text-xs text-blue-900 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100">--:--:--</span>
-          <button onclick="openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition" title="Install App">
+          <button type="button" onclick="window.openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition" title="Install App">
             <i data-lucide="smartphone" class="w-4 h-4"></i>
           </button>
-          <button onclick="handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition">
+          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition">
             <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
             <span>Logout</span>
           </button>
         </div>
       </div>
 
-      <!-- Boss Navigation Tabs -->
       <div class="border-t border-slate-100 bg-slate-50/80 overflow-x-auto no-scrollbar">
         <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2 min-w-max">
-          <button data-boss-tab="live" onclick="switchBossTab('live')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+          <button type="button" data-boss-tab="live" onclick="window.switchBossTab('live')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
             <i data-lucide="activity" class="w-4 h-4"></i> Live Attendance &amp; GPS
           </button>
-          <button data-boss-tab="tasks" onclick="switchBossTab('tasks')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+          <button type="button" data-boss-tab="tasks" onclick="window.switchBossTab('tasks')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
             <i data-lucide="send" class="w-4 h-4"></i> Assign Tasks &amp; Incentives
           </button>
-          <button data-boss-tab="leaves" onclick="switchBossTab('leaves')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+          <button type="button" data-boss-tab="leaves" onclick="window.switchBossTab('leaves')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
             <i data-lucide="calendar-check" class="w-4 h-4"></i> Leave Requests
             <span id="boss-leave-badge" class="hidden px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">0</span>
           </button>
-          <button data-boss-tab="advances" onclick="switchBossTab('advances')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+          <button type="button" data-boss-tab="advances" onclick="window.switchBossTab('advances')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
             <i data-lucide="wallet" class="w-4 h-4"></i> Advance Salary
             <span id="boss-advance-badge" class="hidden px-1.5 py-0.2 rounded-full bg-amber-600 text-white text-[10px]">0</span>
           </button>
-          <button data-boss-tab="history" onclick="switchBossTab('history')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+          <button type="button" data-boss-tab="history" onclick="window.switchBossTab('history')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
             <i data-lucide="database" class="w-4 h-4"></i> 6-Month Records &amp; Reports
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Boss Main Content -->
     <main class="max-w-7xl w-full mx-auto px-4 pt-5 space-y-5">
-
-      <!-- KPI Summary Strip -->
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
         <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
           <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Checked In Today</p>
@@ -773,7 +703,7 @@
         </div>
       </div>
 
-      <!-- BOSS TAB 1: LIVE ATTENDANCE, GPS & BREAK MONITOR -->
+      <!-- BOSS TAB 1: LIVE ATTENDANCE -->
       <section id="boss-view-live" class="space-y-4">
         <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -782,7 +712,7 @@
               <p class="text-xs text-slate-500">Real-time status across all 6 Galaxy Point departments</p>
             </div>
             <div class="flex flex-wrap items-center gap-2">
-              <select id="boss-dept-filter" onchange="renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <select id="boss-dept-filter" onchange="window.renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
                 <option value="ALL">All Departments (18)</option>
                 <option value="Salesman">Salesman (6)</option>
                 <option value="Accessories">Accessories (4)</option>
@@ -791,7 +721,7 @@
                 <option value="New Mobile Sale">New Mobile Sale (2)</option>
                 <option value="Accountant">Accountant (1)</option>
               </select>
-              <button onclick="provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition">
+              <button type="button" onclick="window.provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition">
                 <i data-lucide="cloud-cog" class="w-4 h-4"></i>
                 <span>Sync 19 Cloud IDs</span>
               </button>
@@ -816,14 +746,13 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 2: ASSIGN TASKS & INCENTIVE TRACKER -->
+      <!-- BOSS TAB 2: ASSIGN TASKS & INCENTIVES -->
       <section id="boss-view-tasks" class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        <!-- Assign Form -->
         <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs h-fit">
           <h2 class="font-display text-lg font-extrabold text-slate-900">Assign Task &amp; Optional Incentive</h2>
           <p class="text-xs text-slate-500 mt-0.5">Sends instant notification to selected staff or whole department</p>
 
-          <form onsubmit="handleBossAssignTask(event)" class="mt-4 space-y-3.5">
+          <form action="javascript:void(0)" onsubmit="window.handleBossAssignTask(event)" class="mt-4 space-y-3.5">
             <div>
               <label class="block text-xs font-bold text-slate-600 mb-1">Assign To (Staff or Department)</label>
               <select id="boss-task-target" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
@@ -847,7 +776,7 @@
 
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-bold text-slate-600 mb-1">Incentive Reward (₹)</label>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Incentive Reward (&#8377;)</label>
                 <input id="boss-task-incentive" type="number" min="0" step="50" value="0" placeholder="0 for none" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-emerald-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
@@ -866,7 +795,6 @@
           </form>
         </div>
 
-        <!-- Live Tasks & Incentive Claim Status -->
         <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
           <div class="flex items-center justify-between mb-4">
             <div>
@@ -879,14 +807,12 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 3: URGENT LEAVE REQUESTS -->
+      <!-- BOSS TAB 3: LEAVE REQUESTS -->
       <section id="boss-view-leaves" class="hidden">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Staff Urgent Leave Requests</h2>
-              <p class="text-xs text-slate-500">Approve or reject urgent leave requests for tomorrow, day after, or this week</p>
-            </div>
+          <div class="mb-4">
+            <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Staff Urgent Leave Requests</h2>
+            <p class="text-xs text-slate-500">Approve or reject urgent leave requests</p>
           </div>
           <div id="boss-leaves-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
         </div>
@@ -895,46 +821,43 @@
       <!-- BOSS TAB 4: ADVANCE SALARY REQUESTS -->
       <section id="boss-view-advances" class="hidden">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Advance Salary Requests</h2>
-              <p class="text-xs text-slate-500">Review requested amount, needed date, and approve/mark paid</p>
-            </div>
+          <div class="mb-4">
+            <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Advance Salary Requests</h2>
+            <p class="text-xs text-slate-500">Review requested amount, needed date, and approve/reject</p>
           </div>
           <div id="boss-advances-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
         </div>
       </section>
 
-      <!-- BOSS TAB 5: 6-MONTH ARCHIVE & REPORTS -->
+      <!-- BOSS TAB 5: 6-MONTH ARCHIVE -->
       <section id="boss-view-history" class="hidden space-y-4">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
               <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">6-Month Historical Attendance &amp; Work Reports</h2>
-              <p class="text-xs text-slate-500">Complete 180-day archive of check-in/out timings, GPS locations, break exceed logs &amp; daily reports</p>
+              <p class="text-xs text-slate-500">Complete 180-day archive of check-in/out timings, GPS locations, break logs &amp; daily reports</p>
             </div>
-            <button onclick="exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs flex items-center gap-1.5 shadow">
+            <button type="button" onclick="window.exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs flex items-center gap-1.5 shadow">
               <i data-lucide="download" class="w-4 h-4"></i>
               <span>Export CSV Report</span>
             </button>
           </div>
 
-          <!-- Filter Controls -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
             <div>
               <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Select Staff Member</label>
-              <select id="history-staff-select" onchange="loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800"></select>
+              <select id="history-staff-select" onchange="window.loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800"></select>
             </div>
             <div>
               <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Date Range</label>
-              <select id="history-range-select" onchange="loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
+              <select id="history-range-select" onchange="window.loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
                 <option value="30">Last 30 Days</option>
                 <option value="90">Last 3 Months (90 Days)</option>
                 <option value="180" selected>Full 6 Months (180 Days)</option>
               </select>
             </div>
             <div class="flex items-end">
-              <button onclick="loadSixMonthHistory()" class="w-full py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-xs border border-blue-200 transition">
+              <button type="button" onclick="window.loadSixMonthHistory()" class="w-full py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-xs border border-blue-200 transition">
                 Refresh Archive
               </button>
             </div>
@@ -957,12 +880,11 @@
           </div>
         </div>
       </section>
-
     </main>
   </div>
 
   <!-- =========================================================
-       4. APPLICATION LOGIC & FIREBASE LIVE CLOUD BACKEND
+       CORE UI + FIREBASE CLOUD MODULE (ZERO PAGE RELOAD)
   ========================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -977,7 +899,6 @@
       getFirestore,
       doc,
       setDoc,
-      getDoc,
       updateDoc,
       addDoc,
       collection,
@@ -987,7 +908,6 @@
       getDocs
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Firebase Config (galaxy-point-staff)
     const firebaseConfig = {
       apiKey: "AIzaSyDj3UpL9JpHOIxb_cNIcj-bNV4MYzrF-K8",
       authDomain: "galaxy-point-staff.firebaseapp.com",
@@ -998,14 +918,10 @@
       measurementId: "G-XQYN844JTM"
     };
 
-    // Initialize Firebase Safely
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    window._gpAuth = auth;
-    window._gpDb = db;
 
-    // Master Roster (1 Boss + 18 Department Staff)
     const BOSS_ACCOUNT = {
       id: "jagdish",
       name: "JAGDISH BOSS",
@@ -1019,60 +935,48 @@
     };
 
     const STAFF_ROSTER = [
-      // Salesman (6)
       { id: "ashok", name: "ASHOK", email: "ashok@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "zohair", name: "ZOHAIR", email: "zohair@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "rutik", name: "RUTIK", email: "rutik@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "abdul", name: "ABDUL", email: "abdul@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "vikas", name: "VIKAS", email: "vikas@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "devendra", name: "DEVENDRA", email: "devendra@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      // Accessories (4)
       { id: "mahindra", name: "MAHINDRA", email: "mahindra@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "naresh", name: "NARESH", email: "naresh@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "arvind", name: "ARVIND", email: "arvind@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "anas", name: "ANAS", email: "anas@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      // Service Centre (3)
       { id: "arif", name: "ARIF", email: "arif@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
       { id: "mohammed", name: "MOHAMMED", email: "mohammed@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
       { id: "sunil", name: "SUNIL", email: "sunil@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "11:00", shiftEnd: "22:30" },
-      // Social Team (2)
       { id: "guffran", name: "GUFFRAN", email: "guffran@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
       { id: "sohail", name: "SOHAIL", email: "sohail@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
-      // Accountant (1)
       { id: "vishal", name: "VISHAL", email: "vishal@gmail.com", department: "Accountant", tag: "Accountant", shiftStart: "11:00", shiftEnd: "22:30" },
-      // New Mobile Sale (2)
       { id: "sahab", name: "SAHAB", email: "sahab@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
       { id: "rajni", name: "RAJNI", email: "rajni@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" }
     ];
 
     const DEFAULT_STAFF_PASS = "Jio@2022";
 
-    // Global State
     let currentUserProfile = null;
     let activeUnsubscribers = [];
-    let todayAttendanceMap = {}; // staffId -> attendance doc
+    let todayAttendanceMap = {};
     let allTasksToday = [];
     let allLeaves = [];
     let allAdvances = [];
     let lastKnownPendingTaskIds = new Set();
     let historyExportCache = [];
 
-    // Helper: Original GP Monogram SVG
     function getGpLogoSvg(className = "w-full h-full") {
       return `
         <svg viewBox="0 0 240 120" class="${className}" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Sweeping Black P Arch -->
           <path d="M18 68C18 33 45 14 86 14H182C212 14 230 30 230 53C230 76 212 92 182 92H144V112H118V68H180C194 68 202 62 202 53C202 44 194 38 180 38H84C52 38 30 50 18 68Z" fill="#121619"/>
-          <!-- Deep Royal Blue Geometric G -->
           <path d="M62 48H110V108H66C36 108 18 90 18 68C32 54 47 48 62 48ZM66 64C54 64 46 70 46 78C46 86 54 91 68 91H86V79H66V64Z" fill="#0F4378"/>
         </svg>
       `;
     }
 
-    // Generate PNG App Icons dynamically for iOS & Android PWA
     function setupAppIconsAndManifest() {
-      const logoTargets = ["login-top-logo", "hero-gp-logo", "install-modal-logo", "staff-header-logo", "boss-header-logo"];
-      logoTargets.forEach(id => {
+      ["login-top-logo", "hero-gp-logo", "install-modal-logo", "staff-header-logo", "boss-header-logo"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.innerHTML = getGpLogoSvg();
       });
@@ -1110,13 +1014,9 @@
       img.src = "data:image/svg+xml;base64," + btoa(svgData);
     }
 
-    // Date & Time Utilities
     function getTodayKey() {
       const now = new Date();
-      const y = now.getFullYear();
-      const m = String(now.getMonth() + 1).padStart(2, "0");
-      const d = String(now.getDate()).padStart(2, "0");
-      return `${y}-${m}-${d}`;
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     }
 
     function format12Hour(hhmm) {
@@ -1144,7 +1044,6 @@
       return { label: `Late by ${diffMins}m`, isLate: true, diffMins };
     }
 
-    // Toast Notification
     window.showToast = function(message, type = "info") {
       const container = document.getElementById("toast-container");
       const colors = {
@@ -1160,7 +1059,6 @@
       setTimeout(() => el.remove(), 4200);
     };
 
-    // Audio Chime for New Boss Task Notification
     function playNotificationChime() {
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1178,7 +1076,6 @@
       } catch (e) {}
     }
 
-    // PWA Install Prompt Handling
     let deferredPrompt = null;
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
@@ -1191,7 +1088,7 @@
       deferredPrompt.prompt();
       await deferredPrompt.userChoice;
       deferredPrompt = null;
-      closeInstallModal();
+      window.closeInstallModal();
     });
 
     window.openInstallModal = () => {
@@ -1205,16 +1102,7 @@
       m.classList.remove("flex");
     };
 
-    // Quick Directory on Login Screen
-    window.toggleQuickDirectory = () => {
-      const panel = document.getElementById("quick-directory-panel");
-      const chev = document.getElementById("dir-chevron");
-      panel.classList.toggle("hidden");
-      chev.classList.toggle("rotate-180");
-      renderQuickDirectory();
-    };
-
-    window.renderQuickDirectory = () => {
+    function renderQuickDirectory() {
       const q = (document.getElementById("dir-search")?.value || "").toLowerCase();
       const list = document.getElementById("quick-directory-list");
       const allAccounts = [BOSS_ACCOUNT, ...STAFF_ROSTER];
@@ -1225,8 +1113,8 @@
       );
 
       list.innerHTML = filtered.map(acc => `
-        <button type="button" onclick="fillLoginCredentials('${acc.email}', '${acc.role === 'boss' ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS}')"
-          class="w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition">
+        <button type="button" data-fill-email="${acc.email}" data-fill-pass="${acc.role === 'boss' ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS}"
+          class="quick-fill-item w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition">
           <div>
             <div class="flex items-center gap-1.5">
               <span class="text-xs font-extrabold text-slate-900">${acc.name}</span>
@@ -1237,20 +1125,16 @@
           <span class="text-[10px] font-bold text-blue-700">Fill &rarr;</span>
         </button>
       `).join("");
-    };
 
-    window.fillLoginCredentials = (email, pass) => {
-      document.getElementById("login-email").value = email;
-      document.getElementById("login-password").value = pass;
-      showToast(`Filled ID for ${email}`, "info");
-    };
+      list.querySelectorAll(".quick-fill-item").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("login-email").value = btn.dataset.fillEmail;
+          document.getElementById("login-password").value = btn.dataset.fillPass;
+          window.showToast(`Filled ID for ${btn.dataset.fillEmail}`, "info");
+        });
+      });
+    }
 
-    window.togglePasswordVisibility = () => {
-      const inp = document.getElementById("login-password");
-      inp.type = inp.type === "password" ? "text" : "password";
-    };
-
-    // Match Account Profile by Email
     function resolveAccountByEmail(emailClean) {
       if (emailClean === BOSS_ACCOUNT.email || emailClean === "boss@gmail.com") {
         return { ...BOSS_ACCOUNT };
@@ -1260,9 +1144,7 @@
       return null;
     }
 
-    // Login Handler (Auto-creates Firebase Auth user on first login if valid Galaxy Point ID)
-    window.handleLoginSubmit = async function(e) {
-      e.preventDefault();
+    async function performLogin() {
       const email = document.getElementById("login-email").value.trim().toLowerCase();
       const password = document.getElementById("login-password").value;
       const errBox = document.getElementById("login-error-box");
@@ -1272,9 +1154,15 @@
 
       errBox.classList.add("hidden");
 
+      if (!email || !password) {
+        errText.textContent = "Please enter both your Login ID and Password.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
       const matched = resolveAccountByEmail(email);
       if (!matched) {
-        errText.textContent = "This email is not registered in Galaxy Point Staff Directory.";
+        errText.textContent = "This email is not in the Galaxy Point Staff Directory.";
         errBox.classList.remove("hidden");
         return;
       }
@@ -1293,14 +1181,17 @@
         try {
           await signInWithEmailAndPassword(auth, matched.email, expectedPass);
         } catch (signInErr) {
-          if (signInErr.code === "auth/user-not-found" || signInErr.code === "auth/invalid-credential") {
+          if (
+            signInErr.code === "auth/user-not-found" ||
+            signInErr.code === "auth/invalid-credential" ||
+            signInErr.code === "auth/invalid-login-credentials"
+          ) {
             await createUserWithEmailAndPassword(auth, matched.email, expectedPass);
           } else {
             throw signInErr;
           }
         }
 
-        // Save/Update profile in Firestore
         await setDoc(doc(db, "users", matched.id), {
           id: matched.id,
           name: matched.name,
@@ -1314,13 +1205,46 @@
         }, { merge: true });
 
       } catch (err) {
-        console.error(err);
-        errText.textContent = err.message || "Cloud connection error. Check Firebase Email/Password provider.";
+        console.error("Login Error:", err);
+        let friendlyMsg = err.message || "Unable to connect to Firebase Authentication.";
+        if (err.code === "auth/operation-not-allowed") {
+          friendlyMsg = "Firebase Error: Go to Firebase Console -> Authentication -> Sign-in method -> Enable Email/Password.";
+        } else if (err.code === "auth/unauthorized-domain") {
+          friendlyMsg = "Firebase Error: Add 'galaxypoint555-a11y.github.io' in Firebase Authentication -> Settings -> Authorized domains.";
+        }
+        errText.textContent = friendlyMsg;
         errBox.classList.remove("hidden");
         btn.disabled = false;
         btnLabel.textContent = "Sign In to Portal";
       }
-    };
+    }
+
+    // Bind Login Button, Enter Key & Directory Controls cleanly
+    document.getElementById("login-submit-btn").addEventListener("click", performLogin);
+    document.getElementById("login-password").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        performLogin();
+      }
+    });
+    document.getElementById("login-email").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        performLogin();
+      }
+    });
+    document.getElementById("toggle-pwd-btn").addEventListener("click", () => {
+      const inp = document.getElementById("login-password");
+      inp.type = inp.type === "password" ? "text" : "password";
+    });
+    document.getElementById("toggle-dir-btn").addEventListener("click", () => {
+      const panel = document.getElementById("quick-directory-panel");
+      const chev = document.getElementById("dir-chevron");
+      panel.classList.toggle("hidden");
+      chev.classList.toggle("rotate-180");
+      renderQuickDirectory();
+    });
+    document.getElementById("dir-search").addEventListener("input", renderQuickDirectory);
 
     window.handleLogout = async function() {
       clearActiveListeners();
@@ -1338,15 +1262,12 @@
       activeUnsubscribers = [];
     }
 
-    // Auth State Observer
+    // Update Cloud Status Pill immediately
+    document.getElementById("cloud-dot").className = "w-2 h-2 rounded-full bg-emerald-500";
+    document.getElementById("cloud-status-text").textContent = "galaxy-point-staff Ready";
+
     onAuthStateChanged(auth, async (user) => {
-      const dot = document.getElementById("cloud-dot");
-      const statusTxt = document.getElementById("cloud-status-text");
-      dot.className = "w-2 h-2 rounded-full bg-emerald-500";
-      statusTxt.textContent = "galaxy-point-staff Live";
-
       if (!user) return;
-
       const profile = resolveAccountByEmail(user.email.toLowerCase());
       if (!profile) return;
 
@@ -1354,12 +1275,10 @@
       document.getElementById("login-screen").classList.add("hidden");
 
       if (profile.role === "boss") {
-        // Strict Role Separation: Ensure Staff portal is completely hidden
         document.getElementById("staff-portal").classList.add("hidden");
         document.getElementById("boss-portal").classList.remove("hidden");
         initBossPortal();
       } else {
-        // Strict Role Separation: Ensure Boss portal is completely hidden
         document.getElementById("boss-portal").classList.add("hidden");
         document.getElementById("staff-portal").classList.remove("hidden");
         initStaffPortal(profile);
@@ -1380,14 +1299,13 @@
       document.getElementById("staff-role-subtitle").textContent = `${profile.department} (${profile.tag}) • Shift ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
       document.getElementById("staff-today-date").textContent = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
-      setLeaveQuickDate(1);
+      window.setLeaveQuickDate(1);
       document.getElementById("advance-date-input").value = getTodayKey();
-      switchStaffTab("home");
+      window.switchStaffTab("home");
 
       const todayKey = getTodayKey();
       const attDocId = `${todayKey}_${profile.id}`;
 
-      // 1. Listen to Today's Attendance & Break
       const unsubAtt = onSnapshot(doc(db, "attendance", attDocId), (snap) => {
         const data = snap.exists() ? snap.data() : null;
         todayAttendanceMap[profile.id] = data;
@@ -1396,7 +1314,6 @@
       });
       activeUnsubscribers.push(unsubAtt);
 
-      // 2. Listen to Today's Tasks Assigned to this Staff
       const qTasks = query(
         collection(db, "tasks"),
         where("date", "==", todayKey),
@@ -1407,12 +1324,11 @@
         snap.forEach(d => tasks.push({ docId: d.id, ...d.data() }));
         tasks.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
-        // Notify if new pending task arrived from Boss
         tasks.forEach(t => {
           if (t.status === "pending" && !lastKnownPendingTaskIds.has(t.docId)) {
             if (lastKnownPendingTaskIds.size > 0) {
               playNotificationChime();
-              showToast(`New Task from Boss: ${t.title}`, "info");
+              window.showToast(`New Task from Boss: ${t.title}`, "info");
             }
             lastKnownPendingTaskIds.add(t.docId);
           }
@@ -1424,7 +1340,6 @@
       });
       activeUnsubscribers.push(unsubTasks);
 
-      // 3. Listen to Staff Leaves
       const qLeaves = query(collection(db, "leaves"), where("staffId", "==", profile.id));
       const unsubLeaves = onSnapshot(qLeaves, (snap) => {
         const list = [];
@@ -1434,7 +1349,6 @@
       });
       activeUnsubscribers.push(unsubLeaves);
 
-      // 4. Listen to Staff Advances
       const qAdv = query(collection(db, "advances"), where("staffId", "==", profile.id));
       const unsubAdv = onSnapshot(qAdv, (snap) => {
         const list = [];
@@ -1446,8 +1360,7 @@
     }
 
     window.switchStaffTab = function(tabName) {
-      const views = ["home", "tasks", "incentives", "requests"];
-      views.forEach(v => {
+      ["home", "tasks", "incentives", "requests"].forEach(v => {
         document.getElementById(`staff-view-${v}`).classList.toggle("hidden", v !== tabName);
       });
       document.querySelectorAll(".staff-tab-btn").forEach(btn => {
@@ -1458,7 +1371,6 @@
       });
     };
 
-    // GPS Check-In Handler
     window.handleStaffCheckIn = async function() {
       if (!currentUserProfile) return;
       const btn = document.getElementById("btn-staff-checkin");
@@ -1513,10 +1425,9 @@
         additionalWork: []
       }, { merge: true });
 
-      showToast(`Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
+      window.showToast(`Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
     };
 
-    // Check-Out Handler (No GPS required)
     window.handleStaffCheckOut = async function() {
       if (!currentUserProfile) return;
       const todayKey = getTodayKey();
@@ -1528,7 +1439,6 @@
       let extraBreakMs = 0;
       const sessions = [...(existing.breakSessions || [])];
 
-      // Auto-close active break if running
       if (existing.activeBreakStartMs) {
         extraBreakMs = nowMs - existing.activeBreakStartMs;
         sessions.push({ startMs: existing.activeBreakStartMs, endMs: nowMs, durationMs: extraBreakMs });
@@ -1541,10 +1451,9 @@
         breakSessions: sessions
       });
 
-      showToast(`Checked out at ${formatTimestampTime(nowMs)}. Have a great evening!`, "success");
+      window.showToast(`Checked out at ${formatTimestampTime(nowMs)}. Have a great evening!`, "success");
     };
 
-    // Unified 60-Min Break Toggle
     window.handleToggleBreak = async function() {
       if (!currentUserProfile) return;
       const todayKey = getTodayKey();
@@ -1552,23 +1461,19 @@
       const existing = todayAttendanceMap[currentUserProfile.id];
 
       if (!existing || !existing.checkInMs) {
-        showToast("Please Check In first before starting a break.", "warn");
+        window.showToast("Please Check In first before starting a break.", "warn");
         return;
       }
       if (existing.checkOutMs) {
-        showToast("You have already checked out for today.", "warn");
+        window.showToast("You have already checked out for today.", "warn");
         return;
       }
 
       const nowMs = Date.now();
       if (!existing.activeBreakStartMs) {
-        // Start Break
-        await updateDoc(doc(db, "attendance", attDocId), {
-          activeBreakStartMs: nowMs
-        });
-        showToast("Break started. Tap again when you return.", "info");
+        await updateDoc(doc(db, "attendance", attDocId), { activeBreakStartMs: nowMs });
+        window.showToast("Break started. Tap again when you return.", "info");
       } else {
-        // End Break
         const sessionDuration = nowMs - existing.activeBreakStartMs;
         const newTotalMs = (existing.totalBreakMs || 0) + sessionDuration;
         const sessions = [...(existing.breakSessions || []), {
@@ -1585,9 +1490,9 @@
 
         const totalMins = Math.round(newTotalMs / 60000);
         if (totalMins > 60) {
-          showToast(`Break ended (${totalMins}m used — Exceeded 60m limit!)`, "error");
+          window.showToast(`Break ended (${totalMins}m used — Exceeded 60m limit!)`, "error");
         } else {
-          showToast(`Break ended (${60 - totalMins}m remaining today)`, "success");
+          window.showToast(`Break ended (${60 - totalMins}m remaining today)`, "success");
         }
       }
     };
@@ -1644,7 +1549,6 @@
         }
       }
 
-      // Break UI
       updateBreakLiveDisplay(data);
       lucide.createIcons();
     }
@@ -1712,7 +1616,6 @@
       }
     }
 
-    // Tasks & Incentives Rendering (Staff)
     function renderStaffTasksAndIncentives() {
       const pendingCount = allTasksToday.filter(t => t.status === "pending").length;
       const badge = document.getElementById("staff-notif-badge");
@@ -1738,7 +1641,7 @@
           return `
             <div class="p-4 rounded-2xl border ${isDone ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200'} flex items-start justify-between gap-3 transition">
               <div class="flex items-start gap-3">
-                <button onclick="toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
+                <button type="button" onclick="window.toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
                   class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
                   ${isDone ? '<i data-lucide="check" class="w-4 h-4"></i>' : ''}
                 </button>
@@ -1746,7 +1649,7 @@
                   <div class="flex flex-wrap items-center gap-2">
                     <span class="text-sm font-bold ${isDone ? 'line-through text-slate-400' : 'text-slate-900'}">${t.title}</span>
                     ${t.priority === 'Urgent' ? '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">URGENT</span>' : ''}
-                    ${t.incentiveAmount > 0 ? `<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800">Incentive: ₹${t.incentiveAmount}</span>` : ''}
+                    ${t.incentiveAmount > 0 ? `<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
                   </div>
                   <p class="text-[11px] text-slate-500 mt-1">
                     ${isDone ? `Completed at ${formatTimestampTime(t.completedAt)} • Synced to Report` : 'Assigned by JAGDISH BOSS'}
@@ -1754,8 +1657,8 @@
                 </div>
               </div>
               ${isDone && t.incentiveAmount > 0 ? `
-                <button onclick="switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0">
-                  Claim ₹${t.incentiveAmount}
+                <button type="button" onclick="window.switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0">
+                  Claim &#8377;${t.incentiveAmount}
                 </button>
               ` : ''}
             </div>
@@ -1763,10 +1666,9 @@
         }).join("");
       }
 
-      // Render Claim Your Incentive Tab
       const incTasks = allTasksToday.filter(t => (t.incentiveAmount || 0) > 0);
       const totalEarned = incTasks.filter(t => t.status === "completed").reduce((s, t) => s + Number(t.incentiveAmount || 0), 0);
-      document.getElementById("staff-total-incentive").textContent = `₹${totalEarned}`;
+      document.getElementById("staff-total-incentive").textContent = `\u20B9${totalEarned}`;
 
       const incListEl = document.getElementById("staff-incentives-list");
       if (incTasks.length === 0) {
@@ -1779,7 +1681,7 @@
             <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <div class="flex items-center gap-2">
-                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs">₹${t.incentiveAmount} Reward</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs">&#8377;${t.incentiveAmount} Reward</span>
                   <span class="text-xs font-bold ${isDone ? 'text-emerald-700' : 'text-slate-500'}">
                     ${isDone ? 'Task Completed' : 'Task Pending'}
                   </span>
@@ -1790,16 +1692,16 @@
                     ? 'Complete this task first to unlock your incentive claim.'
                     : isClaimed
                       ? `Claim confirmed on ${formatTimestampTime(t.claimedAt)} (Verified for JAGDISH BOSS)`
-                      : 'Visit VISHAL (Accountant) to collect your ₹' + t.incentiveAmount + ', then tap confirm below.'}
+                      : 'Visit VISHAL (Accountant) to collect your \u20B9' + t.incentiveAmount + ', then tap confirm below.'}
                 </p>
               </div>
 
               <div class="shrink-0">
                 ${!isDone
-                  ? `<button onclick="switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Go Complete Task</button>`
+                  ? `<button type="button" onclick="window.switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Go Complete Task</button>`
                   : isClaimed
                     ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs"><i data-lucide="badge-check" class="w-4 h-4"></i> Claimed &amp; Received</span>`
-                    : `<button onclick="handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow flex items-center gap-1.5">
+                    : `<button type="button" onclick="window.handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow flex items-center gap-1.5">
                         <i data-lucide="hand-coins" class="w-4 h-4"></i>
                         <span>Did You Claim? Yes, Received</span>
                       </button>`
@@ -1819,8 +1721,8 @@
         completedAt: nextStatus === "completed" ? Date.now() : null
       });
       if (nextStatus === "completed") {
-        showToast(incentiveAmt > 0 ? `Task completed! ₹${incentiveAmt} incentive unlocked!` : "Task completed & added to Daily Report!", "success");
-        if (incentiveAmt > 0) switchStaffTab("incentives");
+        window.showToast(incentiveAmt > 0 ? `Task completed! \u20B9${incentiveAmt} incentive unlocked!` : "Task completed & added to Daily Report!", "success");
+        if (incentiveAmt > 0) window.switchStaffTab("incentives");
       }
     };
 
@@ -1829,12 +1731,11 @@
         incentiveClaimed: true,
         claimedAt: Date.now()
       });
-      showToast("Incentive claim confirmed! JAGDISH BOSS has been updated.", "success");
+      window.showToast("Incentive claim confirmed! JAGDISH BOSS has been updated.", "success");
     };
 
-    // Additional Work & Auto Report
     window.handleAddAdditionalWork = async function(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
       if (!currentUserProfile) return;
       const inp = document.getElementById("additional-work-input");
       const text = inp.value.trim();
@@ -1854,7 +1755,7 @@
       }, { merge: true });
 
       inp.value = "";
-      showToast("Additional work added to today's report!", "success");
+      window.showToast("Additional work added to today's report!", "success");
     };
 
     function renderStaffAutoReport() {
@@ -1874,7 +1775,6 @@
       box.innerHTML = items.join("");
     }
 
-    // Urgent Leave & Advance Salary (Staff)
     window.setLeaveQuickDate = function(daysAhead) {
       const d = new Date();
       d.setDate(d.getDate() + daysAhead);
@@ -1885,7 +1785,7 @@
     };
 
     window.handleApplyLeave = async function(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
       if (!currentUserProfile) return;
       const leaveDate = document.getElementById("leave-date-input").value;
       const reason = document.getElementById("leave-reason-input").value.trim();
@@ -1902,7 +1802,7 @@
       });
 
       document.getElementById("leave-reason-input").value = "";
-      showToast("Urgent leave request sent to JAGDISH BOSS!", "success");
+      window.showToast("Urgent leave request sent to JAGDISH BOSS!", "success");
     };
 
     function renderStaffLeaves(list) {
@@ -1930,7 +1830,7 @@
     }
 
     window.handleApplyAdvance = async function(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
       if (!currentUserProfile) return;
       const amount = Number(document.getElementById("advance-amount-input").value);
       const neededDate = document.getElementById("advance-date-input").value;
@@ -1950,7 +1850,7 @@
 
       document.getElementById("advance-amount-input").value = "";
       document.getElementById("advance-reason-input").value = "";
-      showToast(`Advance request of ₹${amount} sent to Boss!`, "success");
+      window.showToast(`Advance request of \u20B9${amount} sent to Boss!`, "success");
     };
 
     function renderStaffAdvances(list) {
@@ -1968,7 +1868,7 @@
         return `
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
             <div>
-              <p class="text-xs font-extrabold text-slate-900">₹${a.amount} <span class="font-normal text-slate-500">for ${a.neededDate}</span></p>
+              <p class="text-xs font-extrabold text-slate-900">&#8377;${a.amount} <span class="font-normal text-slate-500">for ${a.neededDate}</span></p>
               <p class="text-[11px] text-slate-500">${a.reason}</p>
             </div>
             <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${a.status}</span>
@@ -1978,12 +1878,11 @@
     }
 
     // =========================================================
-    // BOSS COMMAND CENTER LOGIC (JAGDISH BOSS)
+    // BOSS COMMAND CENTER LOGIC
     // =========================================================
     function initBossPortal() {
       clearActiveListeners();
 
-      // Populate Individual Staff Selectors
       const indivGroup = document.getElementById("boss-task-individual-options");
       indivGroup.innerHTML = STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} (${s.tag})</option>`).join("");
 
@@ -1991,11 +1890,9 @@
       histSel.innerHTML = `<option value="ALL">All 18 Staff Members</option>` +
         STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} — ${s.department}</option>`).join("");
 
-      switchBossTab("live");
-
+      window.switchBossTab("live");
       const todayKey = getTodayKey();
 
-      // 1. Live Today's Attendance across all 18 staff
       const qAtt = query(collection(db, "attendance"), where("date", "==", todayKey));
       const unsubAtt = onSnapshot(qAtt, (snap) => {
         const map = {};
@@ -2005,11 +1902,10 @@
         });
         todayAttendanceMap = map;
         updateBossKPIs();
-        renderBossLiveTable();
+        window.renderBossLiveTable();
       });
       activeUnsubscribers.push(unsubAtt);
 
-      // 2. Live Today's Tasks
       const qTasks = query(collection(db, "tasks"), where("date", "==", todayKey));
       const unsubTasks = onSnapshot(qTasks, (snap) => {
         const list = [];
@@ -2017,11 +1913,10 @@
         list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
         allTasksToday = list;
         renderBossTasksList();
-        renderBossLiveTable();
+        window.renderBossLiveTable();
       });
       activeUnsubscribers.push(unsubTasks);
 
-      // 3. Live Leave Requests
       const unsubLeaves = onSnapshot(collection(db, "leaves"), (snap) => {
         const list = [];
         snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
@@ -2032,7 +1927,6 @@
       });
       activeUnsubscribers.push(unsubLeaves);
 
-      // 4. Live Advance Requests
       const unsubAdv = onSnapshot(collection(db, "advances"), (snap) => {
         const list = [];
         snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
@@ -2045,8 +1939,7 @@
     }
 
     window.switchBossTab = function(tabName) {
-      const views = ["live", "tasks", "leaves", "advances", "history"];
-      views.forEach(v => {
+      ["live", "tasks", "leaves", "advances", "history"].forEach(v => {
         document.getElementById(`boss-view-${v}`).classList.toggle("hidden", v !== tabName);
       });
       document.querySelectorAll(".boss-tab-btn").forEach(btn => {
@@ -2055,7 +1948,7 @@
           ? "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 bg-blue-900 text-white shadow-xs transition"
           : "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-600 hover:bg-slate-200/70 transition";
       });
-      if (tabName === "history") loadSixMonthHistory();
+      if (tabName === "history") window.loadSixMonthHistory();
     };
 
     function updateBossKPIs() {
@@ -2154,9 +2047,8 @@
       }).join("");
     };
 
-    // Boss Assign Task (Individual, Department, or All 18)
     window.handleBossAssignTask = async function(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
       const target = document.getElementById("boss-task-target").value;
       const title = document.getElementById("boss-task-title").value.trim();
       const incentiveAmount = Number(document.getElementById("boss-task-incentive").value || 0);
@@ -2194,7 +2086,7 @@
 
       document.getElementById("boss-task-title").value = "";
       document.getElementById("boss-task-incentive").value = "0";
-      showToast(`Task assigned to ${recipients.length} staff member(s)!`, "success");
+      window.showToast(`Task assigned to ${recipients.length} staff member(s)!`, "success");
     };
 
     function renderBossTasksList() {
@@ -2202,7 +2094,7 @@
       const el = document.getElementById("boss-tasks-list");
 
       if (allTasksToday.length === 0) {
-        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned yet today. Use the left panel to assign tasks.</div>`;
+        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned yet today.</div>`;
         return;
       }
 
@@ -2214,7 +2106,7 @@
               <div class="flex flex-wrap items-center gap-1.5">
                 <span class="text-xs font-extrabold text-blue-900">${t.assignedToName}</span>
                 <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200/70 text-slate-700">${t.department}</span>
-                ${t.incentiveAmount > 0 ? `<span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Incentive: ₹${t.incentiveAmount}</span>` : ''}
+                ${t.incentiveAmount > 0 ? `<span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
               </div>
               <p class="text-xs font-semibold text-slate-800 mt-1">${t.title}</p>
             </div>
@@ -2225,7 +2117,7 @@
               </span>
               ${t.incentiveAmount > 0 ? (
                 t.incentiveClaimed
-                  ? `<span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-900 text-white">Incentive Claimed ✓</span>`
+                  ? `<span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-900 text-white">Incentive Claimed &#10003;</span>`
                   : `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-200 text-slate-600">Unclaimed</span>`
               ) : ''}
             </div>
@@ -2234,7 +2126,6 @@
       }).join("");
     }
 
-    // Boss Leave Approvals
     function renderBossLeavesList() {
       const el = document.getElementById("boss-leaves-list");
       if (allLeaves.length === 0) {
@@ -2253,8 +2144,8 @@
           </div>
           ${l.status === "pending" ? `
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button onclick="updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Leave</button>
-              <button onclick="updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Leave</button>
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
             </div>
           ` : ''}
         </div>
@@ -2263,10 +2154,9 @@
 
     window.updateLeaveStatus = async function(docId, status) {
       await updateDoc(doc(db, "leaves", docId), { status, reviewedAt: Date.now() });
-      showToast(`Leave request marked as ${status.toUpperCase()}`, "info");
+      window.showToast(`Leave request marked as ${status.toUpperCase()}`, "info");
     };
 
-    // Boss Advance Salary Approvals
     function renderBossAdvancesList() {
       const el = document.getElementById("boss-advances-list");
       if (allAdvances.length === 0) {
@@ -2281,15 +2171,15 @@
               <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${a.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : a.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${a.status}</span>
             </div>
             <div class="flex items-center gap-3 mt-1.5">
-              <span class="font-display text-lg font-extrabold text-emerald-700">₹${a.amount}</span>
+              <span class="font-display text-lg font-extrabold text-emerald-700">&#8377;${a.amount}</span>
               <span class="text-xs font-bold text-slate-600">Required Date: ${a.neededDate}</span>
             </div>
             <p class="text-xs text-slate-600 mt-1">${a.reason}</p>
           </div>
           ${a.status === "pending" ? `
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button onclick="updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Advance</button>
-              <button onclick="updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Advance</button>
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
             </div>
           ` : ''}
         </div>
@@ -2298,10 +2188,9 @@
 
     window.updateAdvanceStatus = async function(docId, status) {
       await updateDoc(doc(db, "advances", docId), { status, reviewedAt: Date.now() });
-      showToast(`Advance request marked as ${status.toUpperCase()}`, "info");
+      window.showToast(`Advance request marked as ${status.toUpperCase()}`, "info");
     };
 
-    // 6-Month Historical Archive Loader
     window.loadSixMonthHistory = async function() {
       const staffFilter = document.getElementById("history-staff-select").value;
       const daysBack = Number(document.getElementById("history-range-select").value || 180);
@@ -2328,4 +2217,133 @@
       const rows = [];
       attSnap.forEach(d => {
         const r = d.data();
-        if (r.date >= cutoffKey && (staffFilter === "ALL" || r.staffId === staffFilter))
+        if (r.date >= cutoffKey && (staffFilter === "ALL" || r.staffId === staffFilter)) {
+          const k = `${r.date}_${r.staffId}`;
+          const doneTasks = tasksByKey[k] || [];
+          const extra = (r.additionalWork || []).map(w => w.text);
+          rows.push({ ...r, combinedReport: [...doneTasks, ...extra] });
+        }
+      });
+
+      rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      historyExportCache = rows;
+
+      if (rows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">No historical records found in this date range yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = rows.map(r => {
+        const breakMins = Math.floor((r.totalBreakMs || 0) / 60000);
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="py-3 px-3 font-bold text-slate-800 whitespace-nowrap">${r.date}</td>
+            <td class="py-3 px-3 font-extrabold text-blue-900">${r.staffName} <span class="block text-[10px] font-normal text-slate-500">${r.department || ''}</span></td>
+            <td class="py-3 px-3">
+              <span class="font-bold">${formatTimestampTime(r.checkInMs)}</span>
+              <span class="ml-1 text-[10px] font-bold ${r.isLate ? 'text-amber-700' : 'text-emerald-700'}">(${r.checkInStatus || 'OK'})</span>
+              <div class="text-[11px] text-slate-500 max-w-[200px] truncate">${r.checkInLocation || ''}</div>
+            </td>
+            <td class="py-3 px-3 font-semibold">${formatTimestampTime(r.checkOutMs)}</td>
+            <td class="py-3 px-3 font-bold ${breakMins > 60 ? 'text-red-600' : 'text-slate-700'}">${breakMins}m / 60m</td>
+            <td class="py-3 px-3 text-slate-700">${r.combinedReport.length ? r.combinedReport.join(" • ") : '<span class="text-slate-400">—</span>'}</td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.exportBossHistoryCSV = function() {
+      if (!historyExportCache.length) {
+        window.showToast("No records available to export.", "warn");
+        return;
+      }
+      const headers = ["Date", "Staff Name", "Department", "Check-In Time", "Status", "Check-In Location", "Check-Out Time", "Break Minutes", "Work Report"];
+      const csvLines = [headers.join(",")];
+      historyExportCache.forEach(r => {
+        const line = [
+          r.date,
+          `"${r.staffName}"`,
+          `"${r.department || ''}"`,
+          `"${formatTimestampTime(r.checkInMs)}"`,
+          `"${r.checkInStatus || ''}"`,
+          `"${(r.checkInLocation || '').replace(/"/g, "'")}"`,
+          `"${formatTimestampTime(r.checkOutMs)}"`,
+          Math.floor((r.totalBreakMs || 0) / 60000),
+          `"${(r.combinedReport || []).join(" | ").replace(/"/g, "'")}"`
+        ];
+        csvLines.push(line.join(","));
+      });
+      const blob = new Blob([csvLines.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Galaxy_Point_6Month_Report_${getTodayKey()}.csv`;
+      a.click();
+    };
+
+    window.provisionAllAccounts = async function() {
+      const btn = document.getElementById("btn-provision-all");
+      btn.disabled = true;
+      btn.innerHTML = `<span>Syncing 19 IDs...</span>`;
+
+      try {
+        const secApp = initializeApp(firebaseConfig, "ProvisionWorker_" + Date.now());
+        const secAuth = getAuth(secApp);
+        const all = [BOSS_ACCOUNT, ...STAFF_ROSTER];
+
+        for (const acc of all) {
+          const pwd = acc.role === "boss" ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS;
+          try {
+            await createUserWithEmailAndPassword(secAuth, acc.email, pwd);
+          } catch (e) {}
+          await setDoc(doc(db, "users", acc.id), {
+            id: acc.id,
+            name: acc.name,
+            email: acc.email,
+            role: acc.role || "staff",
+            department: acc.department,
+            tag: acc.tag,
+            shiftStart: acc.shiftStart,
+            shiftEnd: acc.shiftEnd
+          }, { merge: true });
+        }
+        await signOut(secAuth);
+        window.showToast("All 19 Galaxy Point accounts synced to Firebase Cloud!", "success");
+      } catch (err) {
+        window.showToast("Sync note: " + err.message, "warn");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="cloud-cog" class="w-4 h-4"></i><span>Sync 19 Cloud IDs</span>`;
+        lucide.createIcons();
+      }
+    };
+
+    setInterval(() => {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+      const dateStr = now.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+
+      const lClock = document.getElementById("login-live-clock");
+      const lDate = document.getElementById("login-live-date");
+      if (lClock) lClock.textContent = timeStr;
+      if (lDate) lDate.textContent = dateStr;
+
+      const sClock = document.getElementById("staff-live-clock");
+      if (sClock) sClock.textContent = timeStr;
+
+      const bClock = document.getElementById("boss-live-clock");
+      if (bClock) bClock.textContent = `${dateStr} • ${timeStr}`;
+
+      if (currentUserProfile?.role === "staff") {
+        const myAtt = todayAttendanceMap[currentUserProfile.id];
+        if (myAtt?.activeBreakStartMs) {
+          updateBreakLiveDisplay(myAtt);
+        }
+      }
+    }, 1000);
+
+    setupAppIconsAndManifest();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
