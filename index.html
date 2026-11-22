@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Galaxy Point — Staff &amp; Operations Portal</title>
+  <meta name="theme-color" content="#0B4F9F" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Galaxy Point" />
+  <link id="apple-touch-icon-link" rel="apple-touch-icon" href="" />
+  <link id="favicon-link" rel="icon" type="image/png" href="" />
+  <link id="manifest-link" rel="manifest" href="" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F4F7FC;
+      color: #0F172A;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+    /* Login Background Mesh */
+    .login-bg {
+      background:
+        radial-gradient(circle at 12% 18%, rgba(29, 99, 220, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 88% 82%, rgba(11, 79, 159, 0.16) 0%, transparent 45%),
+        linear-gradient(135deg, #EEF4FF 0%, #F8FAFC 48%, #E6EFFD 100%);
+    }
+    .hero-panel-gradient {
+      background: linear-gradient(145deg, #083B7A 0%, #0B4F9F 48%, #1D63DC 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 20px 50px -12px rgba(11, 79, 159, 0.14);
+    }
+    .royal-btn {
+      background: linear-gradient(135deg, #0B4F9F 0%, #1D63DC 100%);
+      transition: all 0.2s ease;
+    }
+    .royal-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px -6px rgba(29, 99, 220, 0.45);
+    }
+    .royal-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      70% { transform: scale(1.15); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      border: 2px solid currentColor;
+      animation: pulseRing 2s infinite;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slide-up { animation: slideUp 0.28s ease-out forwards; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
+
+  <!-- Install PWA Modal -->
+  <div id="install-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-slide-up">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div id="install-modal-logo" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1.5"></div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-lg">Install Galaxy Point</h3>
+            <p class="text-xs text-slate-500">Add to Home Screen for iPhone &amp; Android</p>
+          </div>
+        </div>
+        <button onclick="closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="native-install-box" class="hidden mb-4 p-3.5 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-3">
+        <div>
+          <p class="text-sm font-semibold text-blue-950">One-Tap Install Available</p>
+          <p class="text-xs text-blue-700">Install directly onto your device</p>
+        </div>
+        <button id="trigger-pwa-install" class="royal-btn text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow">
+          Install Now
+        </button>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <div class="flex items-center gap-2 font-bold text-slate-800 mb-1.5">
+            <span class="px-2 py-0.5 text-[11px] rounded-md bg-slate-900 text-white">iPhone (iOS)</span>
+            <span>Safari Browser</span>
+          </div>
+          <ol class="text-xs text-slate-600 space-y-1 list-decimal list-inside">
+            <li>Open this link in <strong>Safari</strong> on your iPhone.</li>
+            <li>Tap the <strong>Share</strong> icon (square with upward arrow) at the bottom.</li>
+            <li>Scroll down and tap <strong>"Add to Home Screen"</strong> → <strong>Add</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100">
+          <div class="flex items-center gap-2 font-bold text-blue-950 mb-1.5">
+            <span class="px-2 py-0.5 text-[11px] rounded-md bg-blue-700 text-white">Android</span>
+            <span>Chrome Browser</span>
+          </div>
+          <ol class="text-xs text-slate-700 space-y-1 list-decimal list-inside">
+            <li>Open this link in <strong>Google Chrome</strong>.</li>
+            <li>Tap the <strong>⋮ Menu</strong> (top-right corner).</li>
+            <li>Tap <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <button onclick="closeInstallModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+        Got It
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       1. LOGIN SCREEN (WHITE & ROYAL BLUE ENTERPRISE PORTAL)
+  ========================================================== -->
+  <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
+    <!-- Top Bar -->
+    <header class="max-w-6xl w-full mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div id="login-top-logo" class="w-11 h-11 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-extrabold text-slate-900 text-lg tracking-tight">GALAXY POINT</span>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">Official Portal</span>
+          </div>
+          <p class="text-xs text-slate-500">Staff Attendance, Tasks &amp; Operations</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <div id="cloud-status-pill" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-xs">
+          <span id="cloud-dot" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="cloud-status-text">Connecting Cloud...</span>
+        </div>
+        <button onclick="openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-xs transition">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+          <span>Install App</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Center Split Card -->
+    <main class="max-w-5xl w-full mx-auto my-6">
+      <div class="glass-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+
+        <!-- Left Brand & Department Showcase (Desktop / Tablet) -->
+        <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
+          <!-- Decorative Circles -->
+          <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-400/15 blur-xl pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-2xl p-2.5 pr-4 shadow-lg mb-7">
+              <div id="hero-gp-logo" class="w-12 h-10 flex items-center justify-center"></div>
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-widest text-blue-700 leading-none">Enterprise Suite</p>
+                <p class="font-display font-extrabold text-slate-900 text-base leading-tight mt-0.5">GALAXY POINT</p>
+              </div>
+            </div>
+
+            <h1 class="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight">
+              Smart Attendance &amp; Team Operations
+            </h1>
+            <p class="text-blue-100/90 text-sm mt-3 leading-relaxed">
+              Real-time GPS check-in, unified 60-minute break tracker, task incentives, urgent leave, and 6-month performance records.
+            </p>
+
+            <!-- Live Clock Widget -->
+            <div class="mt-6 p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
+              <div class="flex items-center justify-between text-xs text-blue-100">
+                <span class="uppercase tracking-wider font-semibold">Mumbai Store Time</span>
+                <span id="login-live-date" class="font-medium">--</span>
+              </div>
+              <div id="login-live-clock" class="font-display text-2xl font-extrabold tracking-tight mt-1">
+                --:--:--
+              </div>
+            </div>
+          </div>
+
+          <div class="relative z-10 mt-8 pt-6 border-t border-white/15">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Active Store Departments</p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] font-medium">
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Salesman (6)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accessories (4)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Service Centre (3)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Social Team (2)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">New Mobile Sale (2)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accountant (1)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sign-In Form -->
+        <div class="lg:col-span-7 p-6 sm:p-9 lg:p-10 bg-white flex flex-col justify-center">
+          <div class="max-w-md w-full mx-auto">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Secure Sign In
+                </span>
+                <h2 class="font-display text-2xl font-extrabold text-slate-900">Welcome Back</h2>
+                <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point ID</p>
+              </div>
+            </div>
+
+            <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Login ID (Email)</label>
+                <div class="relative">
+                  <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                  <input
+                    id="login-email"
+                    type="email"
+                    required
+                    autocomplete="username"
+                    placeholder="e.g. sohail@gmail.com"
+                    class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Password</label>
+                  <span class="text-[11px] text-slate-400">Case-sensitive</span>
+                </div>
+                <div class="relative">
+                  <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                  <input
+                    id="login-password"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Enter your password"
+                    class="w-full pl-10 pr-11 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                  />
+                  <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1">
+                    <i id="pwd-eye-icon" data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div id="login-error-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium flex items-start gap-2">
+                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                <span id="login-error-text">Invalid credentials</span>
+              </div>
+
+              <button id="login-submit-btn" type="submit" class="royal-btn w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2">
+                <span id="login-btn-label">Sign In to Portal</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </form>
+
+            <!-- Quick Login Directory Accordion -->
+            <div class="mt-6 pt-5 border-t border-slate-100">
+              <button type="button" onclick="toggleQuickDirectory()" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-1.5 px-2.5 rounded-lg hover:bg-slate-50 transition">
+                <span class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4 text-blue-600"></i>
+                  <span>Quick-Fill Staff &amp; Admin Directory (19 IDs)</span>
+                </span>
+                <i id="dir-chevron" data-lucide="chevron-down" class="w-4 h-4 transition-transform"></i>
+              </button>
+
+              <div id="quick-directory-panel" class="hidden mt-3 space-y-2.5 animate-slide-up">
+                <input
+                  id="dir-search"
+                  type="text"
+                  oninput="renderQuickDirectory()"
+                  placeholder="Search staff name or department..."
+                  class="w-full px-3 py-2 text-xs rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <div id="quick-directory-list" class="max-h-48 overflow-y-auto space-y-1.5 pr-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-400">
+      &copy; 2026 Galaxy Point Operations Portal &bull; Cloud Synced &amp; Mobile Ready
+    </footer>
+  </div>
+
+  <!-- =========================================================
+       2. STAFF PORTAL (STRICTLY NO BOSS CONTROLS VISIBLE)
+  ========================================================== -->
+  <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90">
+      <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div id="staff-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <h1 id="staff-nav-name" class="font-display font-extrabold text-slate-900 text-sm sm:text-base truncate">STAFF</h1>
+              <span id="staff-nav-dept" class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-200/70 shrink-0">Dept</span>
+            </div>
+            <p id="staff-nav-shift" class="text-[11px] text-slate-500 truncate">Shift: 11:00 AM – 10:30 PM</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Notification Bell -->
+          <button onclick="switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition" title="Boss Task Alerts">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span id="staff-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">0</span>
+          </button>
+
+          <button onclick="openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>App</span>
+          </button>
+
+          <button onclick="handleLogout()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 transition">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Desktop / Tablet Sub-Nav -->
+      <div class="hidden md:block border-t border-slate-100 bg-slate-50/70">
+        <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 py-2">
+          <button data-staff-tab="home" onclick="switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+            <i data-lucide="clock" class="w-4 h-4"></i> Attendance &amp; Break
+          </button>
+          <button data-staff-tab="tasks" onclick="switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+            <i data-lucide="check-square" class="w-4 h-4"></i> Tasks &amp; Daily Report
+          </button>
+          <button data-staff-tab="incentives" onclick="switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+            <i data-lucide="award" class="w-4 h-4"></i> Claim Incentive
+          </button>
+          <button data-staff-tab="requests" onclick="switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+            <i data-lucide="calendar-plus" class="w-4 h-4"></i> Urgent Leave &amp; Advance
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Staff Content Container -->
+    <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
+
+      <!-- Live Boss Task Banner Alert -->
+      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-slide-up">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+            <i data-lucide="megaphone" class="w-5 h-5 text-amber-300"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-200">New Task Assigned by JAGDISH BOSS</p>
+            <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
+          </div>
+        </div>
+        <button onclick="switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition">
+          View Tasks
+        </button>
+      </div>
+
+      <!-- TAB 1: ATTENDANCE & UNIFIED 60-MIN BREAK -->
+      <section id="staff-view-home" class="space-y-5">
+        <!-- Hero Attendance Card -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+          <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-100">
+            <div>
+              <span id="staff-today-date" class="text-xs font-bold uppercase tracking-wider text-blue-700">--</span>
+              <h2 id="staff-greeting" class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Hello, Staff</h2>
+              <p id="staff-role-subtitle" class="text-xs text-slate-500 mt-0.5">Department &bull; Shift Schedule</p>
+            </div>
+            <div class="text-right">
+              <div id="staff-live-clock" class="font-display text-2xl sm:text-3xl font-extrabold text-blue-900">--:--:--</div>
+              <span id="staff-attendance-badge" class="inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600">
+                Not Checked In
+              </span>
+            </div>
+          </div>
+
+          <!-- Check-In / Check-Out Action Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+            <!-- Check In Box -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Morning / Shift Check-In</span>
+                  <span id="staff-checkin-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-600">Pending</span>
+                </div>
+                <div id="staff-checkin-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
+                <div id="staff-checkin-location" class="mt-2 text-xs text-slate-500 flex items-start gap-1.5">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i>
+                  <span>GPS location captured automatically on check-in</span>
+                </div>
+              </div>
+
+              <button id="btn-staff-checkin" onclick="handleStaffCheckIn()" class="mt-4 royal-btn w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 shadow">
+                <i data-lucide="log-in" class="w-4 h-4"></i>
+                <span>Check In Now (with GPS)</span>
+              </button>
+            </div>
+
+            <!-- Check Out Box -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Shift Check-Out</span>
+                  <span id="staff-checkout-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-600">Waiting</span>
+                </div>
+                <div id="staff-checkout-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
+                <p class="mt-2 text-xs text-slate-500">
+                  No GPS needed for check-out. Ensure your daily tasks/report are updated.
+                </p>
+              </div>
+
+              <button id="btn-staff-checkout" onclick="handleStaffCheckOut()" disabled class="mt-4 w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span>Check Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unified 60-Minute Break Tracker -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <div id="break-icon-box" class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+                <i data-lucide="coffee" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
+                  <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
+                </div>
+                <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance — use anytime in splits</p>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Used / Allowance</span>
+              <div id="break-summary-counter" class="font-display text-xl font-extrabold text-slate-900">0m / 60m</div>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full h-3.5 rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200/70">
+            <div id="break-progress-bar" class="h-full rounded-full bg-blue-600 transition-all duration-500" style="width: 0%"></div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs mt-2">
+            <span id="break-remaining-text" class="font-semibold text-emerald-700">60 minutes remaining today</span>
+            <span id="break-exceed-warning" class="hidden font-bold text-red-600 flex items-center gap-1">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Break Exceeded! Alert sent to Boss
+            </span>
+          </div>
+
+          <!-- Active Break Live Timer Banner -->
+          <div id="active-break-box" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-amber-800">Current Break Session Running</p>
+              <p id="active-break-timer" class="font-display text-2xl font-extrabold text-amber-950 mt-0.5">00:00</p>
+            </div>
+            <span class="text-xs text-amber-800 font-medium">Tap button below to end break</span>
+          </div>
+
+          <button id="btn-toggle-break" onclick="handleToggleBreak()" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition">
+            <i id="break-btn-icon" data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i>
+            <span id="break-btn-label">Want a Break? Tap Here to Start</span>
+          </button>
+
+          <!-- Break Sessions Log -->
+          <div id="break-sessions-list" class="mt-4 space-y-1.5"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: TODAY'S TASKS & AUTO DAILY WORK REPORT -->
+      <section id="staff-view-tasks" class="hidden space-y-5">
+        <!-- Boss Assigned Tasks -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-xl font-extrabold text-slate-900">Today's Assigned Tasks</h2>
+              <p class="text-xs text-slate-500">Tick completed tasks — they automatically sync to your Daily Work Report</p>
+            </div>
+            <span id="staff-tasks-count-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0 Tasks</span>
+          </div>
+
+          <div id="staff-tasks-list" class="space-y-3"></div>
+        </div>
+
+        <!-- Additional Work & Auto-Generated Report -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+          <h3 class="font-display text-lg font-extrabold text-slate-900">Additional Work &amp; Daily Report</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Log any extra work done today (customer handling, stock, service, billing) for JAGDISH BOSS</p>
+
+          <form onsubmit="handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
+            <input
+              id="additional-work-input"
+              type="text"
+              required
+              placeholder="Write extra work completed today..."
+              class="flex-1 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+            <button type="submit" class="royal-btn px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0 flex items-center justify-center gap-1.5">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>Add to Report</span>
+            </button>
+          </form>
+
+          <!-- Auto-Compiled Daily Report Preview -->
+          <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900 flex items-center gap-1.5">
+                <i data-lucide="file-check-2" class="w-4 h-4 text-blue-600"></i>
+                Auto-Generated Report Sent to Boss
+              </span>
+              <span id="staff-report-date-tag" class="text-[11px] font-semibold text-slate-500">Today</span>
+            </div>
+            <div id="staff-auto-report-items" class="space-y-2 text-xs text-slate-700"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CLAIM YOUR INCENTIVE PAGE -->
+      <section id="staff-view-incentives" class="hidden space-y-5">
+        <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="px-2.5 py-1 rounded-lg bg-white/15 text-[11px] font-bold uppercase tracking-wider">Performance Rewards</span>
+              <h2 class="font-display text-2xl font-extrabold mt-2">Claim Your Incentive</h2>
+              <p class="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
+                Complete incentive tasks assigned by <strong>JAGDISH BOSS</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your cash/reward and confirm below.
+              </p>
+            </div>
+            <div class="bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-right">
+              <p class="text-[11px] uppercase tracking-wider text-blue-200 font-semibold">Total Earned</p>
+              <p id="staff-total-incentive" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">₹0</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="staff-incentives-list" class="space-y-3"></div>
+      </section>
+
+      <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY REQUEST -->
+      <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <!-- Urgent Leave Card -->
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <i data-lucide="calendar-off" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-display font-extrabold text-slate-900 text-lg">Urgent Leave Request</h3>
+              <p class="text-xs text-slate-500">Apply for Tomorrow, Day After, or This Week</p>
+            </div>
+          </div>
+
+          <form onsubmit="handleApplyLeave(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Quick Select Day</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" onclick="setLeaveQuickDate(1)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Tomorrow</button>
+                <button type="button" onclick="setLeaveQuickDate(2)" class="py-2 px-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition">Day After</button>
+                <button type="button" onclick="setLeaveQuickDate(3)" class="py-2 px-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">This Week</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Leave Date</label>
+              <input id="leave-date-input" type="date" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Urgent Reason</label>
+              <textarea id="leave-reason-input" rows="2" required placeholder="Explain why you need urgent leave..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+            </div>
+
+            <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
+              Submit Urgent Leave to Boss
+            </button>
+          </form>
+
+          <div class="pt-3 border-t border-slate-100">
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">My Leave History</h4>
+            <div id="staff-leaves-list" class="space-y-2 max-h-56 overflow-y-auto"></div>
+          </div>
+        </div>
+
+        <!-- Advance Salary Request Card -->
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+              <i data-lucide="indian-rupee" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-display font-extrabold text-slate-900 text-lg">Advance Salary Request</h3>
+              <p class="text-xs text-slate-500">Request salary advance directly from JAGDISH BOSS</p>
+            </div>
+          </div>
+
+          <form onsubmit="handleApplyAdvance(event)" class="space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Amount Needed (₹)</label>
+                <input id="advance-amount-input" type="number" min="100" step="100" required placeholder="e.g. 2000" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Required Date</label>
+                <input id="advance-date-input" type="date" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Reason for Advance</label>
+              <textarea id="advance-reason-input" rows="2" required placeholder="Mention reason for advance salary..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow transition">
+              Send Advance Salary Request
+            </button>
+          </form>
+
+          <div class="pt-3 border-t border-slate-100">
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">My Advance Requests</h4>
+            <div id="staff-advances-list" class="space-y-2 max-h-56 overflow-y-auto"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Mobile Bottom Navigation (Staff) -->
+    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 grid grid-cols-4 py-1.5 px-1">
+      <button data-staff-tab="home" onclick="switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+        <i data-lucide="clock" class="w-4 h-4 mb-0.5"></i>
+        <span>Attendance</span>
+      </button>
+      <button data-staff-tab="tasks" onclick="switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+        <i data-lucide="check-square" class="w-4 h-4 mb-0.5"></i>
+        <span>Tasks/Report</span>
+      </button>
+      <button data-staff-tab="incentives" onclick="switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+        <i data-lucide="award" class="w-4 h-4 mb-0.5"></i>
+        <span>Incentive</span>
+      </button>
+      <button data-staff-tab="requests" onclick="switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold">
+        <i data-lucide="calendar-plus" class="w-4 h-4 mb-0.5"></i>
+        <span>Leave/Adv</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- =========================================================
+       3. BOSS COMMAND CENTER (JAGDISH BOSS EXCLUSIVE)
+  ========================================================== -->
+  <div id="boss-portal" class="hidden min-h-screen flex flex-col pb-12">
+    <!-- Boss Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div id="boss-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1"></div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-display font-extrabold text-slate-900 text-base sm:text-lg">JAGDISH BOSS</span>
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-900 text-white">Command Center</span>
+            </div>
+            <p class="text-[11px] text-slate-500">Galaxy Point Live Operations &bull; 18 Staff Members</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span id="boss-live-clock" class="hidden sm:inline-block font-display font-bold text-xs text-blue-900 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100">--:--:--</span>
+          <button onclick="openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition" title="Install App">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+          </button>
+          <button onclick="handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Boss Navigation Tabs -->
+      <div class="border-t border-slate-100 bg-slate-50/80 overflow-x-auto no-scrollbar">
+        <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2 min-w-max">
+          <button data-boss-tab="live" onclick="switchBossTab('live')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="activity" class="w-4 h-4"></i> Live Attendance &amp; GPS
+          </button>
+          <button data-boss-tab="tasks" onclick="switchBossTab('tasks')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="send" class="w-4 h-4"></i> Assign Tasks &amp; Incentives
+          </button>
+          <button data-boss-tab="leaves" onclick="switchBossTab('leaves')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="calendar-check" class="w-4 h-4"></i> Leave Requests
+            <span id="boss-leave-badge" class="hidden px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">0</span>
+          </button>
+          <button data-boss-tab="advances" onclick="switchBossTab('advances')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="wallet" class="w-4 h-4"></i> Advance Salary
+            <span id="boss-advance-badge" class="hidden px-1.5 py-0.2 rounded-full bg-amber-600 text-white text-[10px]">0</span>
+          </button>
+          <button data-boss-tab="history" onclick="switchBossTab('history')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="database" class="w-4 h-4"></i> 6-Month Records &amp; Reports
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Boss Main Content -->
+    <main class="max-w-7xl w-full mx-auto px-4 pt-5 space-y-5">
+
+      <!-- KPI Summary Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Checked In Today</p>
+          <p id="kpi-present" class="font-display text-2xl font-extrabold text-blue-900 mt-1">0 / 18</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Late Arrivals</p>
+          <p id="kpi-late" class="font-display text-2xl font-extrabold text-amber-600 mt-1">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Break Exceeded (&gt;60m)</p>
+          <p id="kpi-break-exceed" class="font-display text-2xl font-extrabold text-red-600 mt-1">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Pending Leaves</p>
+          <p id="kpi-pending-leaves" class="font-display text-2xl font-extrabold text-indigo-700 mt-1">0</p>
+        </div>
+        <div class="col-span-2 sm:col-span-1 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Advance Requests</p>
+          <p id="kpi-pending-advances" class="font-display text-2xl font-extrabold text-emerald-700 mt-1">0</p>
+        </div>
+      </div>
+
+      <!-- BOSS TAB 1: LIVE ATTENDANCE, GPS & BREAK MONITOR -->
+      <section id="boss-view-live" class="space-y-4">
+        <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Live Staff Attendance, Check-In GPS &amp; Break Monitor</h2>
+              <p class="text-xs text-slate-500">Real-time status across all 6 Galaxy Point departments</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <select id="boss-dept-filter" onchange="renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <option value="ALL">All Departments (18)</option>
+                <option value="Salesman">Salesman (6)</option>
+                <option value="Accessories">Accessories (4)</option>
+                <option value="Service Centre">Service Centre (3)</option>
+                <option value="Social Team">Social Team (2)</option>
+                <option value="New Mobile Sale">New Mobile Sale (2)</option>
+                <option value="Accountant">Accountant (1)</option>
+              </select>
+              <button onclick="provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition">
+                <i data-lucide="cloud-cog" class="w-4 h-4"></i>
+                <span>Sync 19 Cloud IDs</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <th class="py-3 px-3">Staff &amp; Dept</th>
+                  <th class="py-3 px-3">Shift</th>
+                  <th class="py-3 px-3">Check-In &amp; GPS Location</th>
+                  <th class="py-3 px-3">Check-Out</th>
+                  <th class="py-3 px-3">Break (60m Limit)</th>
+                  <th class="py-3 px-3">Today's Report</th>
+                </tr>
+              </thead>
+              <tbody id="boss-live-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 2: ASSIGN TASKS & INCENTIVE TRACKER -->
+      <section id="boss-view-tasks" class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Assign Form -->
+        <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs h-fit">
+          <h2 class="font-display text-lg font-extrabold text-slate-900">Assign Task &amp; Optional Incentive</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Sends instant notification to selected staff or whole department</p>
+
+          <form onsubmit="handleBossAssignTask(event)" class="mt-4 space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Assign To (Staff or Department)</label>
+              <select id="boss-task-target" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <optgroup label="Broadcast by Group / Department">
+                  <option value="ALL">All 18 Staff Members</option>
+                  <option value="DEPT:Salesman">Department: Salesman (6)</option>
+                  <option value="DEPT:Accessories">Department: Accessories (4)</option>
+                  <option value="DEPT:Service Centre">Department: Service Centre (3)</option>
+                  <option value="DEPT:Social Team">Department: Social Team (2)</option>
+                  <option value="DEPT:New Mobile Sale">Department: New Mobile Sale (2)</option>
+                  <option value="DEPT:Accountant">Department: Accountant (Vishal)</option>
+                </optgroup>
+                <optgroup label="Individual Staff Member" id="boss-task-individual-options"></optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Task Title / Instruction</label>
+              <input id="boss-task-title" type="text" required placeholder="e.g. Sell 5 iPhone 16 covers today" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Incentive Reward (₹)</label>
+                <input id="boss-task-incentive" type="number" min="0" step="50" value="0" placeholder="0 for none" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-emerald-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Priority</label>
+                <select id="boss-task-priority" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+                  <option value="Normal">Normal</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-sm shadow flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Assign Task &amp; Notify Staff</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Live Tasks & Incentive Claim Status -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-display text-lg font-extrabold text-slate-900">Today's Tasks &amp; Incentive Claim Tracker</h3>
+              <p class="text-xs text-slate-500">Verify completed tasks and whether staff collected their incentive from Vishal</p>
+            </div>
+            <span id="boss-tasks-total-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0</span>
+          </div>
+          <div id="boss-tasks-list" class="space-y-2.5 max-h-[520px] overflow-y-auto pr-1"></div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 3: URGENT LEAVE REQUESTS -->
+      <section id="boss-view-leaves" class="hidden">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Staff Urgent Leave Requests</h2>
+              <p class="text-xs text-slate-500">Approve or reject urgent leave requests for tomorrow, day after, or this week</p>
+            </div>
+          </div>
+          <div id="boss-leaves-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 4: ADVANCE SALARY REQUESTS -->
+      <section id="boss-view-advances" class="hidden">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Advance Salary Requests</h2>
+              <p class="text-xs text-slate-500">Review requested amount, needed date, and approve/mark paid</p>
+            </div>
+          </div>
+          <div id="boss-advances-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 5: 6-MONTH ARCHIVE & REPORTS -->
+      <section id="boss-view-history" class="hidden space-y-4">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">6-Month Historical Attendance &amp; Work Reports</h2>
+              <p class="text-xs text-slate-500">Complete 180-day archive of check-in/out timings, GPS locations, break exceed logs &amp; daily reports</p>
+            </div>
+            <button onclick="exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs flex items-center gap-1.5 shadow">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Export CSV Report</span>
+            </button>
+          </div>
+
+          <!-- Filter Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+            <div>
+              <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Select Staff Member</label>
+              <select id="history-staff-select" onchange="loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800"></select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Date Range</label>
+              <select id="history-range-select" onchange="loadSixMonthHistory()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
+                <option value="30">Last 30 Days</option>
+                <option value="90">Last 3 Months (90 Days)</option>
+                <option value="180" selected>Full 6 Months (180 Days)</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button onclick="loadSixMonthHistory()" class="w-full py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-xs border border-blue-200 transition">
+                Refresh Archive
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto mt-5">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <th class="py-3 px-3">Date</th>
+                  <th class="py-3 px-3">Staff</th>
+                  <th class="py-3 px-3">Check-In &amp; GPS</th>
+                  <th class="py-3 px-3">Check-Out</th>
+                  <th class="py-3 px-3">Break Used</th>
+                  <th class="py-3 px-3">Daily Report &amp; Additional Work</th>
+                </tr>
+              </thead>
+              <tbody id="boss-history-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================
+       4. APPLICATION LOGIC & FIREBASE LIVE CLOUD BACKEND
+  ========================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      updateDoc,
+      addDoc,
+      collection,
+      query,
+      where,
+      onSnapshot,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // Firebase Config (galaxy-point-staff)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDj3UpL9JpHOIxb_cNIcj-bNV4MYzrF-K8",
+      authDomain: "galaxy-point-staff.firebaseapp.com",
+      projectId: "galaxy-point-staff",
+      storageBucket: "galaxy-point-staff.firebasestorage.app",
+      messagingSenderId: "593715005984",
+      appId: "1:593715005984:web:08e527b55bfb5331634a45",
+      measurementId: "G-XQYN844JTM"
+    };
+
+    // Initialize Firebase Safely
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    window._gpAuth = auth;
+    window._gpDb = db;
+
+    // Master Roster (1 Boss + 18 Department Staff)
+    const BOSS_ACCOUNT = {
+      id: "jagdish",
+      name: "JAGDISH BOSS",
+      email: "jagdish@gmail.com",
+      pass: "Jagdish@777s",
+      role: "boss",
+      department: "Management",
+      tag: "Owner / Boss",
+      shiftStart: "09:00",
+      shiftEnd: "23:00"
+    };
+
+    const STAFF_ROSTER = [
+      // Salesman (6)
+      { id: "ashok", name: "ASHOK", email: "ashok@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "zohair", name: "ZOHAIR", email: "zohair@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rutik", name: "RUTIK", email: "rutik@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "abdul", name: "ABDUL", email: "abdul@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "vikas", name: "VIKAS", email: "vikas@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "devendra", name: "DEVENDRA", email: "devendra@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      // Accessories (4)
+      { id: "mahindra", name: "MAHINDRA", email: "mahindra@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "naresh", name: "NARESH", email: "naresh@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "arvind", name: "ARVIND", email: "arvind@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "anas", name: "ANAS", email: "anas@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      // Service Centre (3)
+      { id: "arif", name: "ARIF", email: "arif@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "mohammed", name: "MOHAMMED", email: "mohammed@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "sunil", name: "SUNIL", email: "sunil@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "11:00", shiftEnd: "22:30" },
+      // Social Team (2)
+      { id: "guffran", name: "GUFFRAN", email: "guffran@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
+      { id: "sohail", name: "SOHAIL", email: "sohail@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
+      // Accountant (1)
+      { id: "vishal", name: "VISHAL", email: "vishal@gmail.com", department: "Accountant", tag: "Accountant", shiftStart: "11:00", shiftEnd: "22:30" },
+      // New Mobile Sale (2)
+      { id: "sahab", name: "SAHAB", email: "sahab@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rajni", name: "RAJNI", email: "rajni@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" }
+    ];
+
+    const DEFAULT_STAFF_PASS = "Jio@2022";
+
+    // Global State
+    let currentUserProfile = null;
+    let activeUnsubscribers = [];
+    let todayAttendanceMap = {}; // staffId -> attendance doc
+    let allTasksToday = [];
+    let allLeaves = [];
+    let allAdvances = [];
+    let lastKnownPendingTaskIds = new Set();
+    let historyExportCache = [];
+
+    // Helper: Original GP Monogram SVG
+    function getGpLogoSvg(className = "w-full h-full") {
+      return `
+        <svg viewBox="0 0 240 120" class="${className}" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sweeping Black P Arch -->
+          <path d="M18 68C18 33 45 14 86 14H182C212 14 230 30 230 53C230 76 212 92 182 92H144V112H118V68H180C194 68 202 62 202 53C202 44 194 38 180 38H84C52 38 30 50 18 68Z" fill="#121619"/>
+          <!-- Deep Royal Blue Geometric G -->
+          <path d="M62 48H110V108H66C36 108 18 90 18 68C32 54 47 48 62 48ZM66 64C54 64 46 70 46 78C46 86 54 91 68 91H86V79H66V64Z" fill="#0F4378"/>
+        </svg>
+      `;
+    }
+
+    // Generate PNG App Icons dynamically for iOS & Android PWA
+    function setupAppIconsAndManifest() {
+      const logoTargets = ["login-top-logo", "hero-gp-logo", "install-modal-logo", "staff-header-logo", "boss-header-logo"];
+      logoTargets.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = getGpLogoSvg();
+      });
+
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 0, 512, 512);
+
+      const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="210" viewBox="0 0 240 120">
+        <path d="M18 68C18 33 45 14 86 14H182C212 14 230 30 230 53C230 76 212 92 182 92H144V112H118V68H180C194 68 202 62 202 53C202 44 194 38 180 38H84C52 38 30 50 18 68Z" fill="#121619"/>
+        <path d="M62 48H110V108H66C36 108 18 90 18 68C32 54 47 48 62 48ZM66 64C54 64 46 70 46 78C46 86 54 91 68 91H86V79H66V64Z" fill="#0F4378"/>
+      </svg>`;
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 46, 151, 420, 210);
+        const pngUrl = canvas.toDataURL("image/png");
+        document.getElementById("apple-touch-icon-link").href = pngUrl;
+        document.getElementById("favicon-link").href = pngUrl;
+
+        const manifest = {
+          name: "Galaxy Point Staff & Boss Portal",
+          short_name: "Galaxy Point",
+          start_url: "./",
+          display: "standalone",
+          background_color: "#FFFFFF",
+          theme_color: "#0B4F9F",
+          icons: [{ src: pngUrl, sizes: "512x512", type: "image/png" }]
+        };
+        const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
+        document.getElementById("manifest-link").href = URL.createObjectURL(blob);
+      };
+      img.src = "data:image/svg+xml;base64," + btoa(svgData);
+    }
+
+    // Date & Time Utilities
+    function getTodayKey() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, "0");
+      const d = String(now.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+
+    function format12Hour(hhmm) {
+      if (!hhmm) return "--:--";
+      const [hStr, mStr] = hhmm.split(":");
+      let h = parseInt(hStr, 10);
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      return `${String(h).padStart(2, "0")}:${mStr} ${ampm}`;
+    }
+
+    function formatTimestampTime(ms) {
+      if (!ms) return "--:--";
+      return new Date(ms).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true });
+    }
+
+    function computePunctuality(checkInMs, shiftStartHHMM) {
+      const d = new Date(checkInMs);
+      const [sh, sm] = shiftStartHHMM.split(":").map(Number);
+      const shiftDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), sh, sm, 0);
+      const diffMins = Math.round((d - shiftDate) / 60000);
+      if (diffMins <= 5) {
+        return { label: diffMins < 0 ? `Early (${Math.abs(diffMins)}m)` : "On Time", isLate: false, diffMins };
+      }
+      return { label: `Late by ${diffMins}m`, isLate: true, diffMins };
+    }
+
+    // Toast Notification
+    window.showToast = function(message, type = "info") {
+      const container = document.getElementById("toast-container");
+      const colors = {
+        info: "bg-slate-900 text-white border-slate-700",
+        success: "bg-emerald-700 text-white border-emerald-600",
+        warn: "bg-amber-600 text-white border-amber-500",
+        error: "bg-red-600 text-white border-red-500"
+      };
+      const el = document.createElement("div");
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-bold flex items-center justify-between gap-3 animate-slide-up ${colors[type] || colors.info}`;
+      el.innerHTML = `<span>${message}</span>`;
+      container.appendChild(el);
+      setTimeout(() => el.remove(), 4200);
+    };
+
+    // Audio Chime for New Boss Task Notification
+    function playNotificationChime() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.setValueAtTime(1174.66, ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.45);
+      } catch (e) {}
+    }
+
+    // PWA Install Prompt Handling
+    let deferredPrompt = null;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById("native-install-box").classList.remove("hidden");
+    });
+
+    document.getElementById("trigger-pwa-install")?.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      closeInstallModal();
+    });
+
+    window.openInstallModal = () => {
+      const m = document.getElementById("install-modal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    };
+    window.closeInstallModal = () => {
+      const m = document.getElementById("install-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    };
+
+    // Quick Directory on Login Screen
+    window.toggleQuickDirectory = () => {
+      const panel = document.getElementById("quick-directory-panel");
+      const chev = document.getElementById("dir-chevron");
+      panel.classList.toggle("hidden");
+      chev.classList.toggle("rotate-180");
+      renderQuickDirectory();
+    };
+
+    window.renderQuickDirectory = () => {
+      const q = (document.getElementById("dir-search")?.value || "").toLowerCase();
+      const list = document.getElementById("quick-directory-list");
+      const allAccounts = [BOSS_ACCOUNT, ...STAFF_ROSTER];
+      const filtered = allAccounts.filter(a =>
+        a.name.toLowerCase().includes(q) ||
+        a.email.toLowerCase().includes(q) ||
+        a.department.toLowerCase().includes(q)
+      );
+
+      list.innerHTML = filtered.map(acc => `
+        <button type="button" onclick="fillLoginCredentials('${acc.email}', '${acc.role === 'boss' ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS}')"
+          class="w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition">
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-extrabold text-slate-900">${acc.name}</span>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${acc.role === 'boss' ? 'bg-blue-900 text-white' : 'bg-blue-100 text-blue-800'}">${acc.tag}</span>
+            </div>
+            <p class="text-[11px] text-slate-500">${acc.email}</p>
+          </div>
+          <span class="text-[10px] font-bold text-blue-700">Fill &rarr;</span>
+        </button>
+      `).join("");
+    };
+
+    window.fillLoginCredentials = (email, pass) => {
+      document.getElementById("login-email").value = email;
+      document.getElementById("login-password").value = pass;
+      showToast(`Filled ID for ${email}`, "info");
+    };
+
+    window.togglePasswordVisibility = () => {
+      const inp = document.getElementById("login-password");
+      inp.type = inp.type === "password" ? "text" : "password";
+    };
+
+    // Match Account Profile by Email
+    function resolveAccountByEmail(emailClean) {
+      if (emailClean === BOSS_ACCOUNT.email || emailClean === "boss@gmail.com") {
+        return { ...BOSS_ACCOUNT };
+      }
+      const staff = STAFF_ROSTER.find(s => s.email.toLowerCase() === emailClean);
+      if (staff) return { ...staff, role: "staff" };
+      return null;
+    }
+
+    // Login Handler (Auto-creates Firebase Auth user on first login if valid Galaxy Point ID)
+    window.handleLoginSubmit = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim().toLowerCase();
+      const password = document.getElementById("login-password").value;
+      const errBox = document.getElementById("login-error-box");
+      const errText = document.getElementById("login-error-text");
+      const btn = document.getElementById("login-submit-btn");
+      const btnLabel = document.getElementById("login-btn-label");
+
+      errBox.classList.add("hidden");
+
+      const matched = resolveAccountByEmail(email);
+      if (!matched) {
+        errText.textContent = "This email is not registered in Galaxy Point Staff Directory.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      const expectedPass = matched.role === "boss" ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS;
+      if (password !== expectedPass) {
+        errText.textContent = "Incorrect password. Please check and try again.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      btn.disabled = true;
+      btnLabel.textContent = "Signing In...";
+
+      try {
+        try {
+          await signInWithEmailAndPassword(auth, matched.email, expectedPass);
+        } catch (signInErr) {
+          if (signInErr.code === "auth/user-not-found" || signInErr.code === "auth/invalid-credential") {
+            await createUserWithEmailAndPassword(auth, matched.email, expectedPass);
+          } else {
+            throw signInErr;
+          }
+        }
+
+        // Save/Update profile in Firestore
+        await setDoc(doc(db, "users", matched.id), {
+          id: matched.id,
+          name: matched.name,
+          email: matched.email,
+          role: matched.role,
+          department: matched.department,
+          tag: matched.tag,
+          shiftStart: matched.shiftStart,
+          shiftEnd: matched.shiftEnd,
+          lastLoginAt: Date.now()
+        }, { merge: true });
+
+      } catch (err) {
+        console.error(err);
+        errText.textContent = err.message || "Cloud connection error. Check Firebase Email/Password provider.";
+        errBox.classList.remove("hidden");
+        btn.disabled = false;
+        btnLabel.textContent = "Sign In to Portal";
+      }
+    };
+
+    window.handleLogout = async function() {
+      clearActiveListeners();
+      currentUserProfile = null;
+      await signOut(auth);
+      document.getElementById("staff-portal").classList.add("hidden");
+      document.getElementById("boss-portal").classList.add("hidden");
+      document.getElementById("login-screen").classList.remove("hidden");
+      document.getElementById("login-submit-btn").disabled = false;
+      document.getElementById("login-btn-label").textContent = "Sign In to Portal";
+    };
+
+    function clearActiveListeners() {
+      activeUnsubscribers.forEach(unsub => { try { unsub(); } catch (e) {} });
+      activeUnsubscribers = [];
+    }
+
+    // Auth State Observer
+    onAuthStateChanged(auth, async (user) => {
+      const dot = document.getElementById("cloud-dot");
+      const statusTxt = document.getElementById("cloud-status-text");
+      dot.className = "w-2 h-2 rounded-full bg-emerald-500";
+      statusTxt.textContent = "galaxy-point-staff Live";
+
+      if (!user) return;
+
+      const profile = resolveAccountByEmail(user.email.toLowerCase());
+      if (!profile) return;
+
+      currentUserProfile = profile;
+      document.getElementById("login-screen").classList.add("hidden");
+
+      if (profile.role === "boss") {
+        // Strict Role Separation: Ensure Staff portal is completely hidden
+        document.getElementById("staff-portal").classList.add("hidden");
+        document.getElementById("boss-portal").classList.remove("hidden");
+        initBossPortal();
+      } else {
+        // Strict Role Separation: Ensure Boss portal is completely hidden
+        document.getElementById("boss-portal").classList.add("hidden");
+        document.getElementById("staff-portal").classList.remove("hidden");
+        initStaffPortal(profile);
+      }
+    });
+
+    // =========================================================
+    // STAFF PORTAL LOGIC
+    // =========================================================
+    function initStaffPortal(profile) {
+      clearActiveListeners();
+      lastKnownPendingTaskIds = new Set();
+
+      document.getElementById("staff-nav-name").textContent = profile.name;
+      document.getElementById("staff-nav-dept").textContent = profile.tag;
+      document.getElementById("staff-nav-shift").textContent = `Shift: ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
+      document.getElementById("staff-greeting").textContent = `Welcome, ${profile.name}`;
+      document.getElementById("staff-role-subtitle").textContent = `${profile.department} (${profile.tag}) • Shift ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
+      document.getElementById("staff-today-date").textContent = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+      setLeaveQuickDate(1);
+      document.getElementById("advance-date-input").value = getTodayKey();
+      switchStaffTab("home");
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${profile.id}`;
+
+      // 1. Listen to Today's Attendance & Break
+      const unsubAtt = onSnapshot(doc(db, "attendance", attDocId), (snap) => {
+        const data = snap.exists() ? snap.data() : null;
+        todayAttendanceMap[profile.id] = data;
+        renderStaffAttendanceAndBreak(data);
+        renderStaffAutoReport();
+      });
+      activeUnsubscribers.push(unsubAtt);
+
+      // 2. Listen to Today's Tasks Assigned to this Staff
+      const qTasks = query(
+        collection(db, "tasks"),
+        where("date", "==", todayKey),
+        where("assignedToId", "==", profile.id)
+      );
+      const unsubTasks = onSnapshot(qTasks, (snap) => {
+        const tasks = [];
+        snap.forEach(d => tasks.push({ docId: d.id, ...d.data() }));
+        tasks.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+        // Notify if new pending task arrived from Boss
+        tasks.forEach(t => {
+          if (t.status === "pending" && !lastKnownPendingTaskIds.has(t.docId)) {
+            if (lastKnownPendingTaskIds.size > 0) {
+              playNotificationChime();
+              showToast(`New Task from Boss: ${t.title}`, "info");
+            }
+            lastKnownPendingTaskIds.add(t.docId);
+          }
+        });
+
+        allTasksToday = tasks;
+        renderStaffTasksAndIncentives();
+        renderStaffAutoReport();
+      });
+      activeUnsubscribers.push(unsubTasks);
+
+      // 3. Listen to Staff Leaves
+      const qLeaves = query(collection(db, "leaves"), where("staffId", "==", profile.id));
+      const unsubLeaves = onSnapshot(qLeaves, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        renderStaffLeaves(list);
+      });
+      activeUnsubscribers.push(unsubLeaves);
+
+      // 4. Listen to Staff Advances
+      const qAdv = query(collection(db, "advances"), where("staffId", "==", profile.id));
+      const unsubAdv = onSnapshot(qAdv, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        renderStaffAdvances(list);
+      });
+      activeUnsubscribers.push(unsubAdv);
+    }
+
+    window.switchStaffTab = function(tabName) {
+      const views = ["home", "tasks", "incentives", "requests"];
+      views.forEach(v => {
+        document.getElementById(`staff-view-${v}`).classList.toggle("hidden", v !== tabName);
+      });
+      document.querySelectorAll(".staff-tab-btn").forEach(btn => {
+        const active = btn.dataset.staffTab === tabName;
+        btn.className = active
+          ? "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-blue-700 text-white shadow-xs transition"
+          : "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 text-slate-600 hover:bg-slate-200/70 transition";
+      });
+    };
+
+    // GPS Check-In Handler
+    window.handleStaffCheckIn = async function() {
+      if (!currentUserProfile) return;
+      const btn = document.getElementById("btn-staff-checkin");
+      btn.disabled = true;
+      btn.innerHTML = `<span>Capturing GPS Location...</span>`;
+
+      const getCoords = () => new Promise((resolve) => {
+        if (!navigator.geolocation) return resolve(null);
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+          () => resolve(null),
+          { enableHighAccuracy: true, timeout: 8000 }
+        );
+      });
+
+      const coords = await getCoords();
+      let locationText = "Location permission denied / unavailable";
+      let mapsUrl = "";
+
+      if (coords) {
+        mapsUrl = `https://maps.google.com/?q=${coords.lat},${coords.lng}`;
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`);
+          const geo = await res.json();
+          locationText = geo.display_name ? geo.display_name.split(",").slice(0, 3).join(", ") : `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
+        } catch {
+          locationText = `GPS: ${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
+        }
+      }
+
+      const nowMs = Date.now();
+      const punctuality = computePunctuality(nowMs, currentUserProfile.shiftStart);
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        shiftStart: currentUserProfile.shiftStart,
+        shiftEnd: currentUserProfile.shiftEnd,
+        checkInMs: nowMs,
+        checkInStatus: punctuality.label,
+        isLate: punctuality.isLate,
+        checkInLocation: locationText,
+        checkInMapsUrl: mapsUrl,
+        checkOutMs: null,
+        totalBreakMs: 0,
+        activeBreakStartMs: null,
+        breakSessions: [],
+        additionalWork: []
+      }, { merge: true });
+
+      showToast(`Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
+    };
+
+    // Check-Out Handler (No GPS required)
+    window.handleStaffCheckOut = async function() {
+      if (!currentUserProfile) return;
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      if (!existing || !existing.checkInMs) return;
+
+      const nowMs = Date.now();
+      let extraBreakMs = 0;
+      const sessions = [...(existing.breakSessions || [])];
+
+      // Auto-close active break if running
+      if (existing.activeBreakStartMs) {
+        extraBreakMs = nowMs - existing.activeBreakStartMs;
+        sessions.push({ startMs: existing.activeBreakStartMs, endMs: nowMs, durationMs: extraBreakMs });
+      }
+
+      await updateDoc(doc(db, "attendance", attDocId), {
+        checkOutMs: nowMs,
+        activeBreakStartMs: null,
+        totalBreakMs: (existing.totalBreakMs || 0) + extraBreakMs,
+        breakSessions: sessions
+      });
+
+      showToast(`Checked out at ${formatTimestampTime(nowMs)}. Have a great evening!`, "success");
+    };
+
+    // Unified 60-Min Break Toggle
+    window.handleToggleBreak = async function() {
+      if (!currentUserProfile) return;
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+
+      if (!existing || !existing.checkInMs) {
+        showToast("Please Check In first before starting a break.", "warn");
+        return;
+      }
+      if (existing.checkOutMs) {
+        showToast("You have already checked out for today.", "warn");
+        return;
+      }
+
+      const nowMs = Date.now();
+      if (!existing.activeBreakStartMs) {
+        // Start Break
+        await updateDoc(doc(db, "attendance", attDocId), {
+          activeBreakStartMs: nowMs
+        });
+        showToast("Break started. Tap again when you return.", "info");
+      } else {
+        // End Break
+        const sessionDuration = nowMs - existing.activeBreakStartMs;
+        const newTotalMs = (existing.totalBreakMs || 0) + sessionDuration;
+        const sessions = [...(existing.breakSessions || []), {
+          startMs: existing.activeBreakStartMs,
+          endMs: nowMs,
+          durationMs: sessionDuration
+        }];
+
+        await updateDoc(doc(db, "attendance", attDocId), {
+          activeBreakStartMs: null,
+          totalBreakMs: newTotalMs,
+          breakSessions: sessions
+        });
+
+        const totalMins = Math.round(newTotalMs / 60000);
+        if (totalMins > 60) {
+          showToast(`Break ended (${totalMins}m used — Exceeded 60m limit!)`, "error");
+        } else {
+          showToast(`Break ended (${60 - totalMins}m remaining today)`, "success");
+        }
+      }
+    };
+
+    function renderStaffAttendanceAndBreak(data) {
+      const btnIn = document.getElementById("btn-staff-checkin");
+      const btnOut = document.getElementById("btn-staff-checkout");
+      const badge = document.getElementById("staff-attendance-badge");
+      const inTime = document.getElementById("staff-checkin-time");
+      const inStatus = document.getElementById("staff-checkin-status-tag");
+      const inLoc = document.getElementById("staff-checkin-location");
+      const outTime = document.getElementById("staff-checkout-time");
+      const outStatus = document.getElementById("staff-checkout-status-tag");
+
+      if (!data || !data.checkInMs) {
+        badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600";
+        badge.textContent = "Not Checked In";
+        inTime.textContent = "--:--";
+        inStatus.textContent = "Pending";
+        inStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-600";
+        btnIn.disabled = false;
+        btnIn.innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i><span>Check In Now (with GPS)</span>`;
+        btnOut.disabled = true;
+        outTime.textContent = "--:--";
+        outStatus.textContent = "Waiting";
+      } else {
+        inTime.textContent = formatTimestampTime(data.checkInMs);
+        inStatus.textContent = data.checkInStatus || "Checked In";
+        inStatus.className = data.isLate
+          ? "text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800"
+          : "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
+
+        inLoc.innerHTML = data.checkInMapsUrl
+          ? `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i><a href="${data.checkInMapsUrl}" target="_blank" class="text-blue-700 underline font-medium">${data.checkInLocation}</a>`
+          : `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5"></i><span>${data.checkInLocation || "Checked in"}</span>`;
+
+        btnIn.disabled = true;
+        btnIn.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i><span>Checked In</span>`;
+
+        if (!data.checkOutMs) {
+          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
+          badge.textContent = "On Duty";
+          btnOut.disabled = false;
+          outTime.textContent = "--:--";
+          outStatus.textContent = "Active Shift";
+          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
+        } else {
+          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-white";
+          badge.textContent = "Shift Completed";
+          btnOut.disabled = true;
+          outTime.textContent = formatTimestampTime(data.checkOutMs);
+          outStatus.textContent = "Completed";
+          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
+        }
+      }
+
+      // Break UI
+      updateBreakLiveDisplay(data);
+      lucide.createIcons();
+    }
+
+    function updateBreakLiveDisplay(data) {
+      const savedMs = data?.totalBreakMs || 0;
+      const runningMs = data?.activeBreakStartMs ? (Date.now() - data.activeBreakStartMs) : 0;
+      const totalMs = savedMs + runningMs;
+      const totalMins = Math.floor(totalMs / 60000);
+      const remainingMins = Math.max(0, 60 - totalMins);
+      const pct = Math.min(100, Math.round((totalMs / (60 * 60000)) * 100));
+
+      document.getElementById("break-summary-counter").textContent = `${totalMins}m / 60m`;
+      const bar = document.getElementById("break-progress-bar");
+      bar.style.width = `${pct}%`;
+      bar.className = totalMins > 60
+        ? "h-full rounded-full bg-red-600 transition-all duration-300"
+        : "h-full rounded-full bg-blue-600 transition-all duration-300";
+
+      const remEl = document.getElementById("break-remaining-text");
+      const warnEl = document.getElementById("break-exceed-warning");
+      if (totalMins > 60) {
+        remEl.textContent = `Exceeded by ${totalMins - 60} minutes`;
+        remEl.className = "font-bold text-red-600";
+        warnEl.classList.remove("hidden");
+      } else {
+        remEl.textContent = `${remainingMins} minutes remaining today`;
+        remEl.className = "font-semibold text-emerald-700";
+        warnEl.classList.add("hidden");
+      }
+
+      const activeBox = document.getElementById("active-break-box");
+      const liveBadge = document.getElementById("break-live-badge");
+      const btnToggle = document.getElementById("btn-toggle-break");
+
+      if (data?.activeBreakStartMs) {
+        activeBox.classList.remove("hidden");
+        liveBadge.classList.remove("hidden");
+        const secTotal = Math.floor(runningMs / 1000);
+        const mm = String(Math.floor(secTotal / 60)).padStart(2, "0");
+        const ss = String(secTotal % 60).padStart(2, "0");
+        document.getElementById("active-break-timer").textContent = `${mm}:${ss}`;
+
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-lg transition";
+        btnToggle.innerHTML = `<i data-lucide="stop-circle" class="w-5 h-5"></i><span>End Break &amp; Resume Duty</span>`;
+      } else {
+        activeBox.classList.add("hidden");
+        liveBadge.classList.add("hidden");
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition";
+        btnToggle.innerHTML = `<i data-lucide="play-circle" class="w-5 h-5 text-blue-700"></i><span>Want a Break? Tap Here to Start</span>`;
+      }
+
+      const listEl = document.getElementById("break-sessions-list");
+      const sessions = data?.breakSessions || [];
+      if (sessions.length === 0) {
+        listEl.innerHTML = "";
+      } else {
+        listEl.innerHTML = `<p class="text-[11px] font-bold uppercase text-slate-400 pt-2">Today's Break Splits</p>` +
+          sessions.map((s, idx) => `
+            <div class="flex items-center justify-between text-xs px-3 py-2 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="font-semibold text-slate-700">Break #${idx + 1} (${formatTimestampTime(s.startMs)} – ${formatTimestampTime(s.endMs)})</span>
+              <span class="font-bold text-blue-800">${Math.max(1, Math.round(s.durationMs / 60000))} min</span>
+            </div>
+          `).join("");
+      }
+    }
+
+    // Tasks & Incentives Rendering (Staff)
+    function renderStaffTasksAndIncentives() {
+      const pendingCount = allTasksToday.filter(t => t.status === "pending").length;
+      const badge = document.getElementById("staff-notif-badge");
+      const banner = document.getElementById("staff-boss-alert-banner");
+      document.getElementById("staff-tasks-count-pill").textContent = `${allTasksToday.length} Tasks`;
+
+      if (pendingCount > 0) {
+        badge.textContent = pendingCount;
+        badge.classList.remove("hidden");
+        banner.classList.remove("hidden");
+        document.getElementById("staff-boss-alert-text").textContent = `You have ${pendingCount} pending task(s) assigned by JAGDISH BOSS today.`;
+      } else {
+        badge.classList.add("hidden");
+        banner.classList.add("hidden");
+      }
+
+      const listEl = document.getElementById("staff-tasks-list");
+      if (allTasksToday.length === 0) {
+        listEl.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned by JAGDISH BOSS yet today.</div>`;
+      } else {
+        listEl.innerHTML = allTasksToday.map(t => {
+          const isDone = t.status === "completed";
+          return `
+            <div class="p-4 rounded-2xl border ${isDone ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200'} flex items-start justify-between gap-3 transition">
+              <div class="flex items-start gap-3">
+                <button onclick="toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
+                  class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
+                  ${isDone ? '<i data-lucide="check" class="w-4 h-4"></i>' : ''}
+                </button>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-sm font-bold ${isDone ? 'line-through text-slate-400' : 'text-slate-900'}">${t.title}</span>
+                    ${t.priority === 'Urgent' ? '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">URGENT</span>' : ''}
+                    ${t.incentiveAmount > 0 ? `<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800">Incentive: ₹${t.incentiveAmount}</span>` : ''}
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">
+                    ${isDone ? `Completed at ${formatTimestampTime(t.completedAt)} • Synced to Report` : 'Assigned by JAGDISH BOSS'}
+                  </p>
+                </div>
+              </div>
+              ${isDone && t.incentiveAmount > 0 ? `
+                <button onclick="switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0">
+                  Claim ₹${t.incentiveAmount}
+                </button>
+              ` : ''}
+            </div>
+          `;
+        }).join("");
+      }
+
+      // Render Claim Your Incentive Tab
+      const incTasks = allTasksToday.filter(t => (t.incentiveAmount || 0) > 0);
+      const totalEarned = incTasks.filter(t => t.status === "completed").reduce((s, t) => s + Number(t.incentiveAmount || 0), 0);
+      document.getElementById("staff-total-incentive").textContent = `₹${totalEarned}`;
+
+      const incListEl = document.getElementById("staff-incentives-list");
+      if (incTasks.length === 0) {
+        incListEl.innerHTML = `<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center text-xs text-slate-500">No incentive tasks assigned to you yet. When Boss assigns an incentive task, it will appear here.</div>`;
+      } else {
+        incListEl.innerHTML = incTasks.map(t => {
+          const isDone = t.status === "completed";
+          const isClaimed = !!t.incentiveClaimed;
+          return `
+            <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs">₹${t.incentiveAmount} Reward</span>
+                  <span class="text-xs font-bold ${isDone ? 'text-emerald-700' : 'text-slate-500'}">
+                    ${isDone ? 'Task Completed' : 'Task Pending'}
+                  </span>
+                </div>
+                <h4 class="font-display font-extrabold text-slate-900 text-base mt-2">${t.title}</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  ${!isDone
+                    ? 'Complete this task first to unlock your incentive claim.'
+                    : isClaimed
+                      ? `Claim confirmed on ${formatTimestampTime(t.claimedAt)} (Verified for JAGDISH BOSS)`
+                      : 'Visit VISHAL (Accountant) to collect your ₹' + t.incentiveAmount + ', then tap confirm below.'}
+                </p>
+              </div>
+
+              <div class="shrink-0">
+                ${!isDone
+                  ? `<button onclick="switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Go Complete Task</button>`
+                  : isClaimed
+                    ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs"><i data-lucide="badge-check" class="w-4 h-4"></i> Claimed &amp; Received</span>`
+                    : `<button onclick="handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow flex items-center gap-1.5">
+                        <i data-lucide="hand-coins" class="w-4 h-4"></i>
+                        <span>Did You Claim? Yes, Received</span>
+                      </button>`
+                }
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+      lucide.createIcons();
+    }
+
+    window.toggleCompleteTask = async function(docId, currentStatus, incentiveAmt) {
+      const nextStatus = currentStatus === "completed" ? "pending" : "completed";
+      await updateDoc(doc(db, "tasks", docId), {
+        status: nextStatus,
+        completedAt: nextStatus === "completed" ? Date.now() : null
+      });
+      if (nextStatus === "completed") {
+        showToast(incentiveAmt > 0 ? `Task completed! ₹${incentiveAmt} incentive unlocked!` : "Task completed & added to Daily Report!", "success");
+        if (incentiveAmt > 0) switchStaffTab("incentives");
+      }
+    };
+
+    window.handleConfirmIncentiveClaim = async function(docId) {
+      await updateDoc(doc(db, "tasks", docId), {
+        incentiveClaimed: true,
+        claimedAt: Date.now()
+      });
+      showToast("Incentive claim confirmed! JAGDISH BOSS has been updated.", "success");
+    };
+
+    // Additional Work & Auto Report
+    window.handleAddAdditionalWork = async function(e) {
+      e.preventDefault();
+      if (!currentUserProfile) return;
+      const inp = document.getElementById("additional-work-input");
+      const text = inp.value.trim();
+      if (!text) return;
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = existing?.additionalWork || [];
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        additionalWork: [...currentExtra, { text, timeMs: Date.now() }]
+      }, { merge: true });
+
+      inp.value = "";
+      showToast("Additional work added to today's report!", "success");
+    };
+
+    function renderStaffAutoReport() {
+      const box = document.getElementById("staff-auto-report-items");
+      const completedTasks = allTasksToday.filter(t => t.status === "completed");
+      const extraWork = todayAttendanceMap[currentUserProfile?.id]?.additionalWork || [];
+
+      if (completedTasks.length === 0 && extraWork.length === 0) {
+        box.innerHTML = `<p class="text-slate-400 italic">No completed tasks or additional work logged yet today.</p>`;
+        return;
+      }
+
+      const items = [
+        ...completedTasks.map(t => `<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">TASK DONE</span><span>${t.title}</span></div>`),
+        ...extraWork.map(w => `<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">EXTRA WORK</span><span>${w.text} (${formatTimestampTime(w.timeMs)})</span></div>`)
+      ];
+      box.innerHTML = items.join("");
+    }
+
+    // Urgent Leave & Advance Salary (Staff)
+    window.setLeaveQuickDate = function(daysAhead) {
+      const d = new Date();
+      d.setDate(d.getDate() + daysAhead);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      document.getElementById("leave-date-input").value = `${y}-${m}-${day}`;
+    };
+
+    window.handleApplyLeave = async function(e) {
+      e.preventDefault();
+      if (!currentUserProfile) return;
+      const leaveDate = document.getElementById("leave-date-input").value;
+      const reason = document.getElementById("leave-reason-input").value.trim();
+      if (!leaveDate || !reason) return;
+
+      await addDoc(collection(db, "leaves"), {
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        leaveDate,
+        reason,
+        status: "pending",
+        createdAt: Date.now()
+      });
+
+      document.getElementById("leave-reason-input").value = "";
+      showToast("Urgent leave request sent to JAGDISH BOSS!", "success");
+    };
+
+    function renderStaffLeaves(list) {
+      const el = document.getElementById("staff-leaves-list");
+      if (list.length === 0) {
+        el.innerHTML = `<p class="text-xs text-slate-400">No leave requests submitted.</p>`;
+        return;
+      }
+      el.innerHTML = list.map(l => {
+        const badge = l.status === "approved"
+          ? "bg-emerald-100 text-emerald-800"
+          : l.status === "rejected"
+            ? "bg-red-100 text-red-700"
+            : "bg-amber-100 text-amber-800";
+        return `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
+            <div>
+              <p class="text-xs font-bold text-slate-900">Date: ${l.leaveDate}</p>
+              <p class="text-[11px] text-slate-500">${l.reason}</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${l.status}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.handleApplyAdvance = async function(e) {
+      e.preventDefault();
+      if (!currentUserProfile) return;
+      const amount = Number(document.getElementById("advance-amount-input").value);
+      const neededDate = document.getElementById("advance-date-input").value;
+      const reason = document.getElementById("advance-reason-input").value.trim();
+      if (!amount || !neededDate || !reason) return;
+
+      await addDoc(collection(db, "advances"), {
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        amount,
+        neededDate,
+        reason,
+        status: "pending",
+        createdAt: Date.now()
+      });
+
+      document.getElementById("advance-amount-input").value = "";
+      document.getElementById("advance-reason-input").value = "";
+      showToast(`Advance request of ₹${amount} sent to Boss!`, "success");
+    };
+
+    function renderStaffAdvances(list) {
+      const el = document.getElementById("staff-advances-list");
+      if (list.length === 0) {
+        el.innerHTML = `<p class="text-xs text-slate-400">No advance salary requests yet.</p>`;
+        return;
+      }
+      el.innerHTML = list.map(a => {
+        const badge = a.status === "approved" || a.status === "paid"
+          ? "bg-emerald-100 text-emerald-800"
+          : a.status === "rejected"
+            ? "bg-red-100 text-red-700"
+            : "bg-amber-100 text-amber-800";
+        return `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
+            <div>
+              <p class="text-xs font-extrabold text-slate-900">₹${a.amount} <span class="font-normal text-slate-500">for ${a.neededDate}</span></p>
+              <p class="text-[11px] text-slate-500">${a.reason}</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${a.status}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // =========================================================
+    // BOSS COMMAND CENTER LOGIC (JAGDISH BOSS)
+    // =========================================================
+    function initBossPortal() {
+      clearActiveListeners();
+
+      // Populate Individual Staff Selectors
+      const indivGroup = document.getElementById("boss-task-individual-options");
+      indivGroup.innerHTML = STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} (${s.tag})</option>`).join("");
+
+      const histSel = document.getElementById("history-staff-select");
+      histSel.innerHTML = `<option value="ALL">All 18 Staff Members</option>` +
+        STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} — ${s.department}</option>`).join("");
+
+      switchBossTab("live");
+
+      const todayKey = getTodayKey();
+
+      // 1. Live Today's Attendance across all 18 staff
+      const qAtt = query(collection(db, "attendance"), where("date", "==", todayKey));
+      const unsubAtt = onSnapshot(qAtt, (snap) => {
+        const map = {};
+        snap.forEach(d => {
+          const val = d.data();
+          map[val.staffId] = val;
+        });
+        todayAttendanceMap = map;
+        updateBossKPIs();
+        renderBossLiveTable();
+      });
+      activeUnsubscribers.push(unsubAtt);
+
+      // 2. Live Today's Tasks
+      const qTasks = query(collection(db, "tasks"), where("date", "==", todayKey));
+      const unsubTasks = onSnapshot(qTasks, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allTasksToday = list;
+        renderBossTasksList();
+        renderBossLiveTable();
+      });
+      activeUnsubscribers.push(unsubTasks);
+
+      // 3. Live Leave Requests
+      const unsubLeaves = onSnapshot(collection(db, "leaves"), (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allLeaves = list;
+        updateBossKPIs();
+        renderBossLeavesList();
+      });
+      activeUnsubscribers.push(unsubLeaves);
+
+      // 4. Live Advance Requests
+      const unsubAdv = onSnapshot(collection(db, "advances"), (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allAdvances = list;
+        updateBossKPIs();
+        renderBossAdvancesList();
+      });
+      activeUnsubscribers.push(unsubAdv);
+    }
+
+    window.switchBossTab = function(tabName) {
+      const views = ["live", "tasks", "leaves", "advances", "history"];
+      views.forEach(v => {
+        document.getElementById(`boss-view-${v}`).classList.toggle("hidden", v !== tabName);
+      });
+      document.querySelectorAll(".boss-tab-btn").forEach(btn => {
+        const active = btn.dataset.bossTab === tabName;
+        btn.className = active
+          ? "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 bg-blue-900 text-white shadow-xs transition"
+          : "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-600 hover:bg-slate-200/70 transition";
+      });
+      if (tabName === "history") loadSixMonthHistory();
+    };
+
+    function updateBossKPIs() {
+      let present = 0;
+      let late = 0;
+      let breakExceed = 0;
+
+      STAFF_ROSTER.forEach(s => {
+        const att = todayAttendanceMap[s.id];
+        if (att?.checkInMs) present++;
+        if (att?.isLate) late++;
+        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
+        if (Math.floor(totalBreakMs / 60000) > 60) breakExceed++;
+      });
+
+      const pendingLeaves = allLeaves.filter(l => l.status === "pending").length;
+      const pendingAdv = allAdvances.filter(a => a.status === "pending").length;
+
+      document.getElementById("kpi-present").textContent = `${present} / 18`;
+      document.getElementById("kpi-late").textContent = late;
+      document.getElementById("kpi-break-exceed").textContent = breakExceed;
+      document.getElementById("kpi-pending-leaves").textContent = pendingLeaves;
+      document.getElementById("kpi-pending-advances").textContent = pendingAdv;
+
+      const lBadge = document.getElementById("boss-leave-badge");
+      lBadge.textContent = pendingLeaves;
+      lBadge.classList.toggle("hidden", pendingLeaves === 0);
+
+      const aBadge = document.getElementById("boss-advance-badge");
+      aBadge.textContent = pendingAdv;
+      aBadge.classList.toggle("hidden", pendingAdv === 0);
+    }
+
+    window.renderBossLiveTable = function() {
+      const deptFilter = document.getElementById("boss-dept-filter").value;
+      const tbody = document.getElementById("boss-live-tbody");
+      const list = deptFilter === "ALL" ? STAFF_ROSTER : STAFF_ROSTER.filter(s => s.department === deptFilter);
+
+      tbody.innerHTML = list.map(s => {
+        const att = todayAttendanceMap[s.id];
+        const staffTasksDone = allTasksToday.filter(t => t.assignedToId === s.id && t.status === "completed");
+        const extraWork = att?.additionalWork || [];
+        const totalReportCount = staffTasksDone.length + extraWork.length;
+
+        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
+        const breakMins = Math.floor(totalBreakMs / 60000);
+        const isExceeded = breakMins > 60;
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="py-3.5 px-3">
+              <div class="font-extrabold text-slate-900">${s.name}</div>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800">${s.tag}</span>
+            </td>
+            <td class="py-3.5 px-3 text-slate-600 font-medium whitespace-nowrap">
+              ${format12Hour(s.shiftStart)} – ${format12Hour(s.shiftEnd)}
+            </td>
+            <td class="py-3.5 px-3">
+              ${att?.checkInMs ? `
+                <div class="flex items-center gap-1.5">
+                  <span class="font-extrabold text-slate-900">${formatTimestampTime(att.checkInMs)}</span>
+                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${att.isLate ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${att.checkInStatus}</span>
+                </div>
+                <div class="text-[11px] text-slate-500 mt-0.5 max-w-[210px] truncate">
+                  ${att.checkInMapsUrl ? `<a href="${att.checkInMapsUrl}" target="_blank" class="text-blue-700 underline">${att.checkInLocation}</a>` : (att.checkInLocation || '')}
+                </div>
+              ` : `<span class="text-slate-400 font-medium">Absent / Not Checked In</span>`}
+            </td>
+            <td class="py-3.5 px-3 whitespace-nowrap">
+              ${att?.checkOutMs
+                ? `<span class="font-bold text-slate-800">${formatTimestampTime(att.checkOutMs)}</span>`
+                : att?.checkInMs
+                  ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700">On Duty</span>`
+                  : `<span class="text-slate-300">--</span>`}
+            </td>
+            <td class="py-3.5 px-3 whitespace-nowrap">
+              <div class="flex items-center gap-1.5">
+                <span class="font-extrabold ${isExceeded ? 'text-red-600' : 'text-slate-800'}">${breakMins}m / 60m</span>
+                ${att?.activeBreakStartMs ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>` : ''}
+                ${isExceeded ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">EXCEEDED (+${breakMins - 60}m)</span>` : ''}
+              </div>
+            </td>
+            <td class="py-3.5 px-3">
+              ${totalReportCount > 0 ? `
+                <details class="cursor-pointer">
+                  <summary class="font-bold text-blue-700">${totalReportCount} item(s) logged</summary>
+                  <ul class="mt-1 space-y-0.5 text-[11px] text-slate-600 list-disc list-inside">
+                    ${staffTasksDone.map(t => `<li>[Task] ${t.title}</li>`).join("")}
+                    ${extraWork.map(w => `<li>[Extra] ${w.text}</li>`).join("")}
+                  </ul>
+                </details>
+              ` : `<span class="text-slate-400">No items yet</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    // Boss Assign Task (Individual, Department, or All 18)
+    window.handleBossAssignTask = async function(e) {
+      e.preventDefault();
+      const target = document.getElementById("boss-task-target").value;
+      const title = document.getElementById("boss-task-title").value.trim();
+      const incentiveAmount = Number(document.getElementById("boss-task-incentive").value || 0);
+      const priority = document.getElementById("boss-task-priority").value;
+      if (!title) return;
+
+      let recipients = [];
+      if (target === "ALL") {
+        recipients = [...STAFF_ROSTER];
+      } else if (target.startsWith("DEPT:")) {
+        const dept = target.replace("DEPT:", "");
+        recipients = STAFF_ROSTER.filter(s => s.department === dept);
+      } else {
+        const one = STAFF_ROSTER.find(s => s.id === target);
+        if (one) recipients = [one];
+      }
+
+      const todayKey = getTodayKey();
+      const nowMs = Date.now();
+
+      for (const st of recipients) {
+        await addDoc(collection(db, "tasks"), {
+          date: todayKey,
+          assignedToId: st.id,
+          assignedToName: st.name,
+          department: st.department,
+          title,
+          incentiveAmount,
+          priority,
+          status: "pending",
+          incentiveClaimed: false,
+          createdAt: nowMs
+        });
+      }
+
+      document.getElementById("boss-task-title").value = "";
+      document.getElementById("boss-task-incentive").value = "0";
+      showToast(`Task assigned to ${recipients.length} staff member(s)!`, "success");
+    };
+
+    function renderBossTasksList() {
+      document.getElementById("boss-tasks-total-pill").textContent = `${allTasksToday.length} Tasks`;
+      const el = document.getElementById("boss-tasks-list");
+
+      if (allTasksToday.length === 0) {
+        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned yet today. Use the left panel to assign tasks.</div>`;
+        return;
+      }
+
+      el.innerHTML = allTasksToday.map(t => {
+        const isDone = t.status === "completed";
+        return `
+          <div class="p-3.5 rounded-2xl border ${isDone ? 'bg-emerald-50/40 border-emerald-200' : 'bg-slate-50/70 border-slate-200'} flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-xs font-extrabold text-blue-900">${t.assignedToName}</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200/70 text-slate-700">${t.department}</span>
+                ${t.incentiveAmount > 0 ? `<span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Incentive: ₹${t.incentiveAmount}</span>` : ''}
+              </div>
+              <p class="text-xs font-semibold text-slate-800 mt-1">${t.title}</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${isDone ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                ${isDone ? 'Completed' : 'Pending'}
+              </span>
+              ${t.incentiveAmount > 0 ? (
+                t.incentiveClaimed
+                  ? `<span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-900 text-white">Incentive Claimed ✓</span>`
+                  : `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-200 text-slate-600">Unclaimed</span>`
+              ) : ''}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Boss Leave Approvals
+    function renderBossLeavesList() {
+      const el = document.getElementById("boss-leaves-list");
+      if (allLeaves.length === 0) {
+        el.innerHTML = `<div class="col-span-full p-8 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No urgent leave requests yet.</div>`;
+        return;
+      }
+      el.innerHTML = allLeaves.map(l => `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-sm text-slate-900">${l.staffName} <span class="text-xs font-semibold text-blue-700">(${l.department})</span></span>
+              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${l.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : l.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${l.status}</span>
+            </div>
+            <p class="text-xs font-bold text-blue-900 mt-1.5">Leave Date: ${l.leaveDate}</p>
+            <p class="text-xs text-slate-600 mt-1">${l.reason}</p>
+          </div>
+          ${l.status === "pending" ? `
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
+              <button onclick="updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Leave</button>
+              <button onclick="updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+            </div>
+          ` : ''}
+        </div>
+      `).join("");
+    }
+
+    window.updateLeaveStatus = async function(docId, status) {
+      await updateDoc(doc(db, "leaves", docId), { status, reviewedAt: Date.now() });
+      showToast(`Leave request marked as ${status.toUpperCase()}`, "info");
+    };
+
+    // Boss Advance Salary Approvals
+    function renderBossAdvancesList() {
+      const el = document.getElementById("boss-advances-list");
+      if (allAdvances.length === 0) {
+        el.innerHTML = `<div class="col-span-full p-8 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No advance salary requests yet.</div>`;
+        return;
+      }
+      el.innerHTML = allAdvances.map(a => `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-sm text-slate-900">${a.staffName} <span class="text-xs font-semibold text-blue-700">(${a.department})</span></span>
+              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${a.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : a.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${a.status}</span>
+            </div>
+            <div class="flex items-center gap-3 mt-1.5">
+              <span class="font-display text-lg font-extrabold text-emerald-700">₹${a.amount}</span>
+              <span class="text-xs font-bold text-slate-600">Required Date: ${a.neededDate}</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">${a.reason}</p>
+          </div>
+          ${a.status === "pending" ? `
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
+              <button onclick="updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Approve Advance</button>
+              <button onclick="updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition">Reject</button>
+            </div>
+          ` : ''}
+        </div>
+      `).join("");
+    }
+
+    window.updateAdvanceStatus = async function(docId, status) {
+      await updateDoc(doc(db, "advances", docId), { status, reviewedAt: Date.now() });
+      showToast(`Advance request marked as ${status.toUpperCase()}`, "info");
+    };
+
+    // 6-Month Historical Archive Loader
+    window.loadSixMonthHistory = async function() {
+      const staffFilter = document.getElementById("history-staff-select").value;
+      const daysBack = Number(document.getElementById("history-range-select").value || 180);
+      const tbody = document.getElementById("boss-history-tbody");
+      tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Loading 6-month cloud archive...</td></tr>`;
+
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - daysBack);
+      const cutoffKey = cutoffDate.toISOString().slice(0, 10);
+
+      const attSnap = await getDocs(collection(db, "attendance"));
+      const taskSnap = await getDocs(collection(db, "tasks"));
+
+      const tasksByKey = {};
+      taskSnap.forEach(d => {
+        const t = d.data();
+        if (t.status === "completed") {
+          const k = `${t.date}_${t.assignedToId}`;
+          if (!tasksByKey[k]) tasksByKey[k] = [];
+          tasksByKey[k].push(t.title);
+        }
+      });
+
+      const rows = [];
+      attSnap.forEach(d => {
+        const r = d.data();
+        if (r.date >= cutoffKey && (staffFilter === "ALL" || r.staffId === staffFilter))
