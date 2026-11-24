@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Galaxy Point — Staff &amp; Operations Portal</title>
+  <title>Galaxy Point — Staff Application</title>
   <meta name="theme-color" content="#0B4F9F" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -43,7 +43,7 @@
       background: linear-gradient(145deg, #072F63 0%, #0B4F9F 50%, #1D63DC 100%);
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(226, 232, 240, 0.95);
       box-shadow: 0 24px 55px -12px rgba(11, 79, 159, 0.16);
@@ -70,7 +70,7 @@
 
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-7px); }
     }
     .animate-float { animation: floatSlow 5s ease-in-out infinite; }
 
@@ -94,7 +94,7 @@
           <div id="install-modal-logo" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center p-1.5"></div>
           <div>
             <h3 class="font-bold text-slate-900 text-lg">Install Galaxy Point</h3>
-            <p class="text-xs text-slate-500">Native iPhone &amp; Android App Experience</p>
+            <p class="text-xs text-slate-500">Staff Application for iPhone &amp; Android</p>
           </div>
         </div>
         <button type="button" onclick="window.closeInstallModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 text-sm font-bold">✕</button>
@@ -141,25 +141,22 @@
   </div>
 
   <!-- =========================================================
-       1. LOGIN SCREEN (BOSS ID HIDDEN FROM DIRECTORY)
+       1. HOME & LOGIN SCREEN (GALAXY POINT — STAFF APPLICATION)
   ========================================================== -->
   <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
     <header class="max-w-6xl w-full mx-auto flex items-center justify-between animate-view">
       <div class="flex items-center gap-3">
-        <div id="login-top-logo" class="w-11 h-11 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
+        <div id="login-top-logo" class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
         <div>
-          <div class="flex items-center gap-2">
-            <span class="font-display font-extrabold text-slate-900 text-lg tracking-tight">GALAXY POINT</span>
-            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">Official App</span>
-          </div>
-          <p class="text-xs text-slate-500">Attendance, GPS Check-In &amp; Store Operations</p>
+          <span class="font-display font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight block leading-none">GALAXY POINT</span>
+          <span class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-blue-700 block mt-1">STAFF APPLICATION</span>
         </div>
       </div>
 
       <div class="flex items-center gap-2.5">
         <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-2xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Cloud Sync Active</span>
+          <span>Secure Cloud</span>
         </div>
         <button type="button" onclick="window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-2xs transition tap-scale">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
@@ -170,27 +167,31 @@
 
     <main class="max-w-5xl w-full mx-auto my-6 animate-view">
       <div class="glass-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        <!-- Left Executive Brand & Appreciation Panel -->
         <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
           <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
           <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-400/15 blur-xl pointer-events-none"></div>
 
           <div class="relative z-10">
-            <div class="inline-flex items-center gap-3 bg-white rounded-2xl p-2.5 pr-4 shadow-lg mb-7 animate-float">
+            <div class="inline-flex items-center gap-3.5 bg-white rounded-2xl p-3 pr-5 shadow-xl mb-7 animate-float">
               <div id="hero-gp-logo" class="w-12 h-10 flex items-center justify-center"></div>
               <div>
-                <p class="text-[11px] font-bold uppercase tracking-widest text-blue-700 leading-none">Enterprise Suite</p>
-                <p class="font-display font-extrabold text-slate-900 text-base leading-tight mt-0.5">GALAXY POINT</p>
+                <h1 class="font-display font-extrabold text-slate-900 text-lg leading-none tracking-tight">GALAXY POINT</h1>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-blue-700 mt-1">STAFF APPLICATION</p>
               </div>
             </div>
 
-            <h1 class="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight">
-              Smart Store &amp; Team Management
-            </h1>
-            <p class="text-blue-100/90 text-sm mt-3 leading-relaxed">
-              Verified GPS check-in, unified 60-minute flexible break timer, department performance leaderboards, incentives &amp; leave approvals.
-            </p>
+            <!-- Formal Appreciation Message -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/12 border border-white/20 backdrop-blur-md">
+              <p class="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mb-1.5">Team Appreciation</p>
+              <p class="text-sm sm:text-[15px] font-medium text-white leading-relaxed">
+                &ldquo;Thank you for your service, dedication, and commitment to Galaxy Point. Every customer smile and store milestone is powered by your hard work.&rdquo;
+              </p>
+              <p class="text-[11px] font-bold text-blue-200 mt-2.5">&mdash; Galaxy Point Management</p>
+            </div>
 
-            <div class="mt-6 p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md">
+            <!-- Live Store Clock -->
+            <div class="mt-5 p-4 rounded-2xl bg-slate-950/25 border border-white/10">
               <div class="flex items-center justify-between text-xs text-blue-100">
                 <span class="uppercase tracking-wider font-semibold">Mumbai Store Time</span>
                 <span id="login-live-date" class="font-medium">--</span>
@@ -199,53 +200,56 @@
             </div>
           </div>
 
-          <div class="relative z-10 mt-8 pt-6 border-t border-white/15">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Store Departments (18 Staff)</p>
+          <div class="relative z-10 mt-7 pt-5 border-t border-white/15">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2">Galaxy Point Divisions</p>
             <div class="flex flex-wrap gap-1.5 text-[11px] font-medium">
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Salesman (6)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accessories (4)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Service Centre (3)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Social Team (2)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">New Mobile Sale (2)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accountant (1)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Pre-Owned &amp; Sales</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">New Mobile Sale</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accessories</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Service Centre</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Social Team</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accounts</span>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-7 p-6 sm:p-9 lg:p-10 bg-white flex flex-col justify-center">
+        <!-- Right Private Individual Login Panel (No Directory) -->
+        <div class="lg:col-span-7 p-6 sm:p-9 lg:p-11 bg-white flex flex-col justify-center">
           <div class="max-w-md w-full mx-auto">
             <div class="mb-6">
               <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
-                Secure Portal Login
+                Individual Staff &amp; Admin Sign In
               </span>
-              <h2 class="font-display text-2xl font-extrabold text-slate-900">Welcome Back</h2>
-              <p class="text-sm text-slate-500 mt-0.5">Sign in with your assigned Galaxy Point credentials</p>
+              <h2 class="font-display text-2xl font-extrabold text-slate-900">Sign In to Your Account</h2>
+              <p class="text-sm text-slate-500 mt-1">Use your registered personal Gmail ID and private password</p>
             </div>
 
             <form id="login-form" action="javascript:void(0)" class="space-y-4">
               <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Login ID (Email)</label>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Registered Gmail ID</label>
                 <input
                   id="login-email"
                   type="email"
                   autocomplete="username"
-                  placeholder="Enter your email ID"
-                  class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                  placeholder="Enter your registered Gmail ID"
+                  class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
                 />
               </div>
 
               <div>
                 <div class="flex items-center justify-between mb-1.5">
-                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Password</label>
-                  <span class="text-[11px] text-slate-400">Case-sensitive</span>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Private Password</label>
+                  <button type="button" onclick="window.handlePasswordReset()" class="text-xs font-bold text-blue-700 hover:underline">
+                    Set / Reset Password?
+                  </button>
                 </div>
                 <div class="relative">
                   <input
                     id="login-password"
                     type="password"
                     autocomplete="current-password"
-                    placeholder="Enter your password"
-                    class="w-full pl-4 pr-11 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                    placeholder="Enter your individual password"
+                    class="w-full pl-4 pr-14 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
                   />
                   <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 text-xs font-bold">
                     Show
@@ -258,26 +262,12 @@
               </div>
 
               <button id="login-submit-btn" type="button" class="royal-btn w-full py-3.5 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2">
-                <span id="login-btn-label">Sign In to Portal &rarr;</span>
+                <span id="login-btn-label">Sign In to Galaxy Point &rarr;</span>
               </button>
             </form>
 
-            <!-- Staff-Only Quick Fill Directory (Boss ID Completely Excluded) -->
-            <div class="mt-6 pt-5 border-t border-slate-100">
-              <button type="button" id="toggle-dir-btn" class="w-full flex items-center justify-between text-xs font-bold text-slate-600 hover:text-blue-700 py-2 px-3 rounded-xl bg-slate-50 hover:bg-blue-50/60 transition">
-                <span>Quick-Fill Staff Directory (18 Staff IDs)</span>
-                <span id="dir-chevron" class="transition-transform">&#9662;</span>
-              </button>
-
-              <div id="quick-directory-panel" class="hidden mt-3 space-y-2.5 animate-view">
-                <input
-                  id="dir-search"
-                  type="text"
-                  placeholder="Search staff name or department..."
-                  class="w-full px-3 py-2 text-xs rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <div id="quick-directory-list" class="max-h-48 overflow-y-auto space-y-1.5 pr-1"></div>
-              </div>
+            <div class="mt-6 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-slate-800">First-Time Login / Password Setup:</strong> Enter your registered Gmail ID above and click <strong>"Set / Reset Password?"</strong> to receive a secure password setup link on your Gmail, or use the password assigned by Management.
             </div>
           </div>
         </div>
@@ -285,12 +275,12 @@
     </main>
 
     <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-400">
-      &copy; 2026 Galaxy Point Operations Portal &bull; iOS &amp; Android Ready
+      &copy; 2026 Galaxy Point &bull; Staff Application &bull; Protected by Individual Authentication
     </footer>
   </div>
 
   <!-- =========================================================
-       2. STAFF PORTAL (STRICTLY NO BOSS CONTROLS VISIBLE)
+       2. STAFF PORTAL
   ========================================================== -->
   <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
@@ -343,7 +333,6 @@
     </header>
 
     <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
-      <!-- Live Boss Task Banner -->
       <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-view">
         <div>
           <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200">New Task Assigned by JAGDISH BOSS</p>
@@ -454,7 +443,6 @@
 
       <!-- TAB 2: TASKS, DEPARTMENT METRICS & EDITABLE DAILY REPORT -->
       <section id="staff-view-tasks" class="hidden space-y-5 animate-view">
-        <!-- Boss Assigned Tasks -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex items-center justify-between gap-3 mb-4">
             <div>
@@ -466,7 +454,7 @@
           <div id="staff-tasks-list" class="space-y-3"></div>
         </div>
 
-        <!-- Department Performance Numbers (Feeds Boss Day/Week/Month Leaderboard) -->
+        <!-- Department Performance Numbers -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
           <div class="flex items-center justify-between mb-3">
             <div>
@@ -510,10 +498,8 @@
             </button>
           </form>
 
-          <!-- Editable Additional Work Items -->
           <div id="staff-editable-extra-list" class="mt-4 space-y-2"></div>
 
-          <!-- Compiled Auto Report Preview -->
           <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">
@@ -735,15 +721,12 @@
               <select id="boss-dept-filter" onchange="window.renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
                 <option value="ALL">All Departments (18)</option>
                 <option value="Salesman">Salesman (6)</option>
+                <option value="New Mobile Sale">New Mobile Sale (2)</option>
                 <option value="Accessories">Accessories (4)</option>
                 <option value="Service Centre">Service Centre (3)</option>
                 <option value="Social Team">Social Team (2)</option>
-                <option value="New Mobile Sale">New Mobile Sale (2)</option>
                 <option value="Accountant">Accountant (1)</option>
               </select>
-              <button type="button" onclick="window.provisionAllAccounts()" id="btn-provision-all" class="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold transition tap-scale">
-                Sync 18 Staff Cloud IDs
-              </button>
             </div>
           </div>
 
@@ -751,7 +734,7 @@
             <table class="w-full text-left border-collapse">
               <thead>
                 <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
-                  <th class="py-3 px-3">Staff &amp; Dept</th>
+                  <th class="py-3 px-3">Staff &amp; Role</th>
                   <th class="py-3 px-3">Shift</th>
                   <th class="py-3 px-3">Check-In &amp; Live GPS Pin</th>
                   <th class="py-3 px-3">Check-Out</th>
@@ -807,10 +790,10 @@
                 <optgroup label="Broadcast by Group / Department">
                   <option value="ALL">All 18 Staff Members</option>
                   <option value="DEPT:Salesman">Department: Salesman (6)</option>
+                  <option value="DEPT:New Mobile Sale">Department: New Mobile Sale (2)</option>
                   <option value="DEPT:Accessories">Department: Accessories (4)</option>
                   <option value="DEPT:Service Centre">Department: Service Centre (3)</option>
                   <option value="DEPT:Social Team">Department: Social Team (2)</option>
-                  <option value="DEPT:New Mobile Sale">Department: New Mobile Sale (2)</option>
                   <option value="DEPT:Accountant">Department: Accountant (Vishal)</option>
                 </optgroup>
                 <optgroup label="Individual Staff Member" id="boss-task-individual-options"></optgroup>
@@ -930,14 +913,14 @@
   </div>
 
   <!-- =========================================================
-       CORE APP & FIREBASE CLOUD MODULE
+       CORE APP & INDIVIDUAL FIREBASE AUTH MODULE
   ========================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
       getAuth,
       signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
+      sendPasswordResetEmail,
       signOut,
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -968,12 +951,11 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Private Boss Credentials (Hidden from Quick-Fill Directory)
+    // Master Directory (Verified Individual Real Gmail IDs — Passwords Managed Individually in Firebase Auth)
     const BOSS_ACCOUNT = {
       id: "jagdish",
       name: "JAGDISH BOSS",
       email: "jagdishboss@gmail.com",
-      pass: "Jagdish@221486",
       role: "boss",
       department: "Management",
       tag: "Owner / Boss",
@@ -982,36 +964,35 @@
     };
 
     const STAFF_ROSTER = [
-      { id: "ashok", name: "ASHOK", email: "ashok@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "zohair", name: "ZOHAIR", email: "zohair@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "rutik", name: "RUTIK", email: "rutik@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "abdul", name: "ABDUL", email: "abdul@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "vikas", name: "VIKAS", email: "vikas@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "devendra", name: "DEVENDRA", email: "devendra@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "mahindra", name: "MAHINDRA", email: "mahindra@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "naresh", name: "NARESH", email: "naresh@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "arvind", name: "ARVIND", email: "arvind@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "anas", name: "ANAS", email: "anas@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "arif", name: "ARIF", email: "arif@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
-      { id: "mohammed", name: "MOHAMMED", email: "mohammed@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
-      { id: "sunil", name: "SUNIL", email: "sunil@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "guffran", name: "GUFFRAN", email: "guffran@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
-      { id: "sohail", name: "SOHAIL", email: "sohail@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
-      { id: "vishal", name: "VISHAL", email: "vishal@gmail.com", department: "Accountant", tag: "Accountant", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "sahab", name: "SAHAB", email: "sahab@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "rajni", name: "RAJNI", email: "rajni@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" }
+      { id: "ashok", name: "ASHOK", email: "ashoksundesha17@gmail.com", department: "Salesman", tag: "Sales Manager (Pre-Owned)", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "zohair", name: "ZOHAIR", email: "zohaiz180@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rutik", name: "RUTIK", email: "rutik2214@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "abdul", name: "ABDUL", email: "abbua862@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "vikas", name: "VIKKI (VIKAS)", email: "vsundesha410@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "devendra", name: "DEVENDRA", email: "devendrapalsingh772@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "praveen", name: "PRAVEEN", email: "gehlotpravin7878@gmail.com", department: "New Mobile Sale", tag: "Sales Manager (New Mobile) • All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "sahab", name: "SAHAB", email: "siddiquishahaab@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rajni", name: "RAJNI", email: "rajjumali9898@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "mahindra", name: "MAHINDRA", email: "manishparmar1408@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "naresh", name: "NARESH", email: "nitindahiya8696@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "arvind", name: "ARVIND", email: "praveensolanki683@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "anas", name: "ANAS", email: "synzo464@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "arif", name: "ARIF", email: "mullaarif1972@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "mohammed", name: "MOHAMMED", email: "mdesha03@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "sunil", name: "SUNIL", email: "solankisunil27861@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "guffran", name: "GUFFRAN", email: "gufranquraishi05@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
+      { id: "sohail", name: "SOHAIL", email: "sayyedsohail777s@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
+      { id: "vishal", name: "VISHAL", email: "vishalgehlot1442@gmail.com", department: "Accountant", tag: "Accountant", shiftStart: "11:00", shiftEnd: "22:30" }
     ];
 
     const DEPT_METRIC_CONFIG = {
-      "Salesman": { heading: "Salesman Daily Output", pLabel: "Phones / Units Sold (Qty)", sLabel: "Total Sales Value (₹)" },
+      "Salesman": { heading: "Pre-Owned & Sales Daily Output", pLabel: "Phones / Units Sold (Qty)", sLabel: "Total Sales Value (₹)" },
       "New Mobile Sale": { heading: "New Mobile Sale Output", pLabel: "New Mobiles Sold (Qty)", sLabel: "Total Billing Value (₹)" },
       "Accessories": { heading: "Accessories Daily Output", pLabel: "Accessories Items Sold (Qty)", sLabel: "Accessories Amount (₹)" },
       "Service Centre": { heading: "Service Centre Daily Output", pLabel: "Handsets Repaired / Serviced (Qty)", sLabel: "Service Billing Amount (₹)" },
       "Social Team": { heading: "Social Media Daily Output", pLabel: "Reels / Videos Posted (Qty)", sLabel: "Leads / Enquiries Generated (Qty)" },
       "Accountant": { heading: "Accounts & Billing Daily Output", pLabel: "Bills / Vouchers Processed (Qty)", sLabel: "Total Reconciled Amount (₹)" }
     };
-
-    const DEFAULT_STAFF_PASS = "Jio@2022";
 
     let currentUserProfile = null;
     let activeUnsubscribers = [];
@@ -1057,7 +1038,7 @@
         document.getElementById("favicon-link").href = pngUrl;
 
         const manifest = {
-          name: "Galaxy Point Operations Portal",
+          name: "Galaxy Point — Staff Application",
           short_name: "Galaxy Point",
           start_url: "./",
           display: "standalone",
@@ -1113,7 +1094,7 @@
       el.className = `pointer-events-auto px-4 py-3 rounded-2xl border shadow-xl text-xs font-bold flex items-center justify-between gap-3 animate-view ${colors[type] || colors.info}`;
       el.innerHTML = `<span>${message}</span>`;
       container.appendChild(el);
-      setTimeout(() => el.remove(), 4500);
+      setTimeout(() => el.remove(), 4800);
     };
 
     function playNotificationChime() {
@@ -1159,41 +1140,8 @@
       m.classList.remove("flex");
     };
 
-    // Quick Directory (ONLY 18 STAFF — BOSS COMPLETELY EXCLUDED)
-    function renderQuickDirectory() {
-      const q = (document.getElementById("dir-search")?.value || "").toLowerCase();
-      const list = document.getElementById("quick-directory-list");
-      const filtered = STAFF_ROSTER.filter(a =>
-        a.name.toLowerCase().includes(q) ||
-        a.email.toLowerCase().includes(q) ||
-        a.department.toLowerCase().includes(q)
-      );
-
-      list.innerHTML = filtered.map(acc => `
-        <button type="button" data-fill-email="${acc.email}" data-fill-pass="${DEFAULT_STAFF_PASS}"
-          class="quick-fill-item w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200/70 text-left transition tap-scale">
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="text-xs font-extrabold text-slate-900">${acc.name}</span>
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">${acc.tag}</span>
-            </div>
-            <p class="text-[11px] text-slate-500">${acc.email}</p>
-          </div>
-          <span class="text-[10px] font-bold text-blue-700">Fill &rarr;</span>
-        </button>
-      `).join("");
-
-      list.querySelectorAll(".quick-fill-item").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.getElementById("login-email").value = btn.dataset.fillEmail;
-          document.getElementById("login-password").value = btn.dataset.fillPass;
-          window.showToast(`Filled ID for ${btn.dataset.fillEmail}`, "info");
-        });
-      });
-    }
-
     function resolveAccountByEmail(emailClean) {
-      if (emailClean === BOSS_ACCOUNT.email) {
+      if (emailClean === BOSS_ACCOUNT.email.toLowerCase()) {
         return { ...BOSS_ACCOUNT };
       }
       const staff = STAFF_ROSTER.find(s => s.email.toLowerCase() === emailClean);
@@ -1201,6 +1149,27 @@
       return null;
     }
 
+    // Individual Password Set / Reset via Official Firebase Email Link
+    window.handlePasswordReset = async function() {
+      const email = document.getElementById("login-email").value.trim().toLowerCase();
+      if (!email) {
+        window.showToast("Please type your registered Gmail ID in the email box first.", "warn");
+        return;
+      }
+      const matched = resolveAccountByEmail(email);
+      if (!matched) {
+        window.showToast("This Gmail ID is not registered in Galaxy Point.", "error");
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, matched.email);
+        window.showToast(`Password setup/reset link sent to ${matched.email}! Check Inbox or Spam.`, "success");
+      } catch (err) {
+        window.showToast(err.message || "Make sure this user is added in Firebase Authentication first.", "error");
+      }
+    };
+
+    // Individual Firebase Authentication Login (No Hardcoded Passwords)
     async function performLogin() {
       const email = document.getElementById("login-email").value.trim().toLowerCase();
       const password = document.getElementById("login-password").value;
@@ -1212,42 +1181,23 @@
       errBox.classList.add("hidden");
 
       if (!email || !password) {
-        errText.textContent = "Please enter both your Login ID and Password.";
+        errText.textContent = "Please enter both your registered Gmail ID and your private password.";
         errBox.classList.remove("hidden");
         return;
       }
 
       const matched = resolveAccountByEmail(email);
       if (!matched) {
-        errText.textContent = "Invalid Login ID. Please check your Galaxy Point email.";
-        errBox.classList.remove("hidden");
-        return;
-      }
-
-      const expectedPass = matched.role === "boss" ? BOSS_ACCOUNT.pass : DEFAULT_STAFF_PASS;
-      if (password !== expectedPass) {
-        errText.textContent = "Incorrect password. Please check and try again.";
+        errText.textContent = "This Gmail ID is not authorized for Galaxy Point Staff Application.";
         errBox.classList.remove("hidden");
         return;
       }
 
       btn.disabled = true;
-      btnLabel.textContent = "Signing In...";
+      btnLabel.textContent = "Verifying Credentials...";
 
       try {
-        try {
-          await signInWithEmailAndPassword(auth, matched.email, expectedPass);
-        } catch (signInErr) {
-          if (
-            signInErr.code === "auth/user-not-found" ||
-            signInErr.code === "auth/invalid-credential" ||
-            signInErr.code === "auth/invalid-login-credentials"
-          ) {
-            await createUserWithEmailAndPassword(auth, matched.email, expectedPass);
-          } else {
-            throw signInErr;
-          }
-        }
+        await signInWithEmailAndPassword(auth, matched.email, password);
 
         await setDoc(doc(db, "users", matched.id), {
           id: matched.id,
@@ -1263,16 +1213,18 @@
 
       } catch (err) {
         console.error("Login Error:", err);
-        let friendlyMsg = err.message || "Unable to connect to Firebase Authentication.";
-        if (err.code === "auth/operation-not-allowed") {
-          friendlyMsg = "Firebase Error: Enable Email/Password in Firebase Console -> Authentication -> Sign-in method.";
+        let friendlyMsg = "Incorrect password or account not yet activated in Firebase Authentication.";
+        if (err.code === "auth/wrong-password" || err.code === "auth/invalid-credential" || err.code === "auth/invalid-login-credentials") {
+          friendlyMsg = "Incorrect password or account not added yet. Ask Boss or click 'Set / Reset Password?' above.";
+        } else if (err.code === "auth/too-many-requests") {
+          friendlyMsg = "Too many failed attempts. Please wait a minute or reset your password.";
         } else if (err.code === "auth/unauthorized-domain") {
-          friendlyMsg = "Firebase Error: Add 'galaxypoint555-a11y.github.io' in Firebase Authentication -> Authorized domains.";
+          friendlyMsg = "Domain not authorized in Firebase Console -> Authentication -> Settings.";
         }
         errText.textContent = friendlyMsg;
         errBox.classList.remove("hidden");
         btn.disabled = false;
-        btnLabel.textContent = "Sign In to Portal ->";
+        btnLabel.textContent = "Sign In to Galaxy Point ->";
       }
     }
 
@@ -1285,16 +1237,10 @@
     });
     document.getElementById("toggle-pwd-btn").addEventListener("click", () => {
       const inp = document.getElementById("login-password");
+      const btn = document.getElementById("toggle-pwd-btn");
       inp.type = inp.type === "password" ? "text" : "password";
+      btn.textContent = inp.type === "password" ? "Show" : "Hide";
     });
-    document.getElementById("toggle-dir-btn").addEventListener("click", () => {
-      const panel = document.getElementById("quick-directory-panel");
-      const chev = document.getElementById("dir-chevron");
-      panel.classList.toggle("hidden");
-      chev.classList.toggle("rotate-180");
-      renderQuickDirectory();
-    });
-    document.getElementById("dir-search").addEventListener("input", renderQuickDirectory);
 
     window.handleLogout = async function() {
       clearActiveListeners();
@@ -1304,7 +1250,8 @@
       document.getElementById("boss-portal").classList.add("hidden");
       document.getElementById("login-screen").classList.remove("hidden");
       document.getElementById("login-submit-btn").disabled = false;
-      document.getElementById("login-btn-label").textContent = "Sign In to Portal ->";
+      document.getElementById("login-btn-label").textContent = "Sign In to Galaxy Point ->";
+      document.getElementById("login-password").value = "";
     };
 
     function clearActiveListeners() {
@@ -1315,7 +1262,10 @@
     onAuthStateChanged(auth, async (user) => {
       if (!user) return;
       const profile = resolveAccountByEmail(user.email.toLowerCase());
-      if (!profile) return;
+      if (!profile) {
+        await signOut(auth);
+        return;
+      }
 
       currentUserProfile = profile;
       document.getElementById("login-screen").classList.add("hidden");
@@ -1332,7 +1282,7 @@
     });
 
     // =========================================================
-    // STAFF PORTAL LOGIC (NO AUTO CHECK-IN; STRICT GPS ONLY)
+    // STAFF PORTAL LOGIC (STRICT GPS CHECK-IN ONLY)
     // =========================================================
     function initStaffPortal(profile) {
       clearActiveListeners();
@@ -2120,7 +2070,7 @@
       const pendingLeaves = allLeaves.filter(l => l.status === "pending").length;
       const pendingAdv = allAdvances.filter(a => a.status === "pending").length;
 
-      document.getElementById("kpi-present").textContent = `${present} / 18`;
+      document.getElementById("kpi-present").textContent = `${present} / ${STAFF_ROSTER.length}`;
       document.getElementById("kpi-late").textContent = late;
       document.getElementById("kpi-break-exceed").textContent = breakExceed;
       document.getElementById("kpi-pending-leaves").textContent = pendingLeaves;
@@ -2509,40 +2459,6 @@
       a.href = url;
       a.download = `Galaxy_Point_6Month_Report_${getTodayKey()}.csv`;
       a.click();
-    };
-
-    window.provisionAllAccounts = async function() {
-      const btn = document.getElementById("btn-provision-all");
-      btn.disabled = true;
-      btn.textContent = "Syncing 18 IDs...";
-
-      try {
-        const secApp = initializeApp(firebaseConfig, "ProvisionWorker_" + Date.now());
-        const secAuth = getAuth(secApp);
-
-        for (const acc of STAFF_ROSTER) {
-          try {
-            await createUserWithEmailAndPassword(secAuth, acc.email, DEFAULT_STAFF_PASS);
-          } catch (e) {}
-          await setDoc(doc(db, "users", acc.id), {
-            id: acc.id,
-            name: acc.name,
-            email: acc.email,
-            role: "staff",
-            department: acc.department,
-            tag: acc.tag,
-            shiftStart: acc.shiftStart,
-            shiftEnd: acc.shiftEnd
-          }, { merge: true });
-        }
-        await signOut(secAuth);
-        window.showToast("All 18 Staff Cloud IDs synced successfully!", "success");
-      } catch (err) {
-        window.showToast("Sync note: " + err.message, "warn");
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "Sync 18 Staff Cloud IDs";
-      }
     };
 
     setInterval(() => {
