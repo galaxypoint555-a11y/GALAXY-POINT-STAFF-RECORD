@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Galaxy Point — Staff Application</title>
-  <meta name="theme-color" content="#0B4F9F" />
+  <title>GALAXY POINT — Staff Application</title>
+  <meta name="theme-color" content="#0A3D82" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Galaxy Point" />
@@ -21,7 +21,7 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #F4F7FC;
+      background-color: #F2F6FC;
       color: #0F172A;
       margin: 0;
       padding: 0;
@@ -35,21 +35,23 @@
 
     .login-bg {
       background:
-        radial-gradient(circle at 12% 18%, rgba(29, 99, 220, 0.16) 0%, transparent 44%),
-        radial-gradient(circle at 88% 82%, rgba(11, 79, 159, 0.18) 0%, transparent 46%),
-        linear-gradient(135deg, #EEF4FF 0%, #F8FAFC 48%, #E6EFFD 100%);
+        radial-gradient(circle at 10% 15%, rgba(29, 99, 220, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(10, 61, 130, 0.16) 0%, transparent 45%),
+        linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 52%, #EAF2FF 100%);
     }
     .hero-panel-gradient {
-      background: linear-gradient(145deg, #072F63 0%, #0B4F9F 50%, #1D63DC 100%);
+      background: linear-gradient(150deg, #062552 0%, #0A3D82 48%, #1858C4 100%);
+    }
+    .boss-banner-gradient {
+      background: linear-gradient(135deg, #051E42 0%, #0A3D82 55%, #1552B8 100%);
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(226, 232, 240, 0.95);
-      box-shadow: 0 24px 55px -12px rgba(11, 79, 159, 0.16);
+      background: #FFFFFF;
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      box-shadow: 0 25px 60px -15px rgba(10, 61, 130, 0.16);
     }
     .royal-btn {
-      background: linear-gradient(135deg, #0B4F9F 0%, #1D63DC 100%);
+      background: linear-gradient(135deg, #0A3D82 0%, #1D63DC 100%);
       transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
     }
     .royal-btn:hover:not(:disabled) {
@@ -63,14 +65,14 @@
     .tap-scale:active { transform: scale(0.96); }
 
     @keyframes viewFadeUp {
-      from { opacity: 0; transform: translateY(14px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .animate-view { animation: viewFadeUp 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .animate-view { animation: viewFadeUp 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-7px); }
+      50% { transform: translateY(-6px); }
     }
     .animate-float { animation: floatSlow 5s ease-in-out infinite; }
 
@@ -82,7 +84,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen antialiased selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen antialiased selection:bg-blue-700 selection:text-white">
 
   <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
 
@@ -141,22 +143,22 @@
   </div>
 
   <!-- =========================================================
-       1. HOME & LOGIN SCREEN (GALAXY POINT — STAFF APPLICATION)
+       1. EXECUTIVE HOME & LOGIN SCREEN (NO MUMBAI TIME / NO DIRECTORY)
   ========================================================== -->
   <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
     <header class="max-w-6xl w-full mx-auto flex items-center justify-between animate-view">
-      <div class="flex items-center gap-3">
-        <div id="login-top-logo" class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-200/90 flex items-center justify-center p-1.5"></div>
+      <div class="flex items-center gap-3.5">
+        <div id="login-top-logo" class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-blue-100 flex items-center justify-center p-1.5"></div>
         <div>
           <span class="font-display font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight block leading-none">GALAXY POINT</span>
-          <span class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-blue-700 block mt-1">STAFF APPLICATION</span>
+          <span class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-blue-700 block mt-1">STAFF APPLICATION</span>
         </div>
       </div>
 
       <div class="flex items-center gap-2.5">
-        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 text-slate-600 shadow-2xs">
+        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-blue-100 text-slate-600 shadow-2xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Secure Cloud</span>
+          <span>6-Month Cloud Protected</span>
         </div>
         <button type="button" onclick="window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-2xs transition tap-scale">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
@@ -166,62 +168,52 @@
     </header>
 
     <main class="max-w-5xl w-full mx-auto my-6 animate-view">
-      <div class="glass-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="glass-card rounded-[30px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
         <!-- Left Executive Brand & Appreciation Panel -->
-        <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
-          <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-400/15 blur-xl pointer-events-none"></div>
+        <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-20 w-72 h-72 rounded-full bg-blue-400/15 blur-2xl pointer-events-none"></div>
 
           <div class="relative z-10">
-            <div class="inline-flex items-center gap-3.5 bg-white rounded-2xl p-3 pr-5 shadow-xl mb-7 animate-float">
+            <div class="inline-flex items-center gap-3.5 bg-white rounded-2xl p-3.5 pr-6 shadow-xl mb-8 animate-float">
               <div id="hero-gp-logo" class="w-12 h-10 flex items-center justify-center"></div>
               <div>
-                <h1 class="font-display font-extrabold text-slate-900 text-lg leading-none tracking-tight">GALAXY POINT</h1>
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-blue-700 mt-1">STAFF APPLICATION</p>
+                <h1 class="font-display font-extrabold text-slate-900 text-xl leading-none tracking-tight">GALAXY POINT</h1>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-blue-700 mt-1">STAFF APPLICATION</p>
               </div>
             </div>
 
-            <!-- Formal Appreciation Message -->
-            <div class="p-4 sm:p-5 rounded-2xl bg-white/12 border border-white/20 backdrop-blur-md">
-              <p class="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mb-1.5">Team Appreciation</p>
+            <div class="p-5 rounded-2xl bg-white/12 border border-white/20 backdrop-blur-md shadow-inner">
+              <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-300 mb-2">Thank You For Your Service</p>
               <p class="text-sm sm:text-[15px] font-medium text-white leading-relaxed">
-                &ldquo;Thank you for your service, dedication, and commitment to Galaxy Point. Every customer smile and store milestone is powered by your hard work.&rdquo;
+                &ldquo;Thank you for your service, dedication, and commitment to Galaxy Point. Your daily discipline, teamwork, and customer care build our success every single day. Keep going!&rdquo;
               </p>
-              <p class="text-[11px] font-bold text-blue-200 mt-2.5">&mdash; Galaxy Point Management</p>
-            </div>
-
-            <!-- Live Store Clock -->
-            <div class="mt-5 p-4 rounded-2xl bg-slate-950/25 border border-white/10">
-              <div class="flex items-center justify-between text-xs text-blue-100">
-                <span class="uppercase tracking-wider font-semibold">Mumbai Store Time</span>
-                <span id="login-live-date" class="font-medium">--</span>
-              </div>
-              <div id="login-live-clock" class="font-display text-2xl font-extrabold tracking-tight mt-1">--:--:--</div>
+              <p class="text-[11px] font-bold text-blue-200 mt-3">&mdash; Galaxy Point Management</p>
             </div>
           </div>
 
-          <div class="relative z-10 mt-7 pt-5 border-t border-white/15">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2">Galaxy Point Divisions</p>
-            <div class="flex flex-wrap gap-1.5 text-[11px] font-medium">
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Pre-Owned &amp; Sales</span>
+          <div class="relative z-10 mt-8 pt-5 border-t border-white/15">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Galaxy Point Departments</p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold">
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Pre-Owned Mobile</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">New Mobile Sale</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accessories</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Service Centre</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Social Team</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Social Media</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Accounts</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Private Individual Login Panel (No Directory) -->
-        <div class="lg:col-span-7 p-6 sm:p-9 lg:p-11 bg-white flex flex-col justify-center">
+        <!-- Right Individual Secure Sign-In Panel -->
+        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 bg-white flex flex-col justify-center">
           <div class="max-w-md w-full mx-auto">
-            <div class="mb-6">
-              <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg mb-2">
-                Individual Staff &amp; Admin Sign In
+            <div class="mb-7">
+              <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-lg mb-2.5">
+                Authorized Team Portal
               </span>
-              <h2 class="font-display text-2xl font-extrabold text-slate-900">Sign In to Your Account</h2>
-              <p class="text-sm text-slate-500 mt-1">Use your registered personal Gmail ID and private password</p>
+              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">Sign In to Your Workspace</h2>
+              <p class="text-sm text-slate-500 mt-1">Enter your registered Gmail ID and individual password</p>
             </div>
 
             <form id="login-form" action="javascript:void(0)" class="space-y-4">
@@ -232,7 +224,7 @@
                   type="email"
                   autocomplete="username"
                   placeholder="Enter your registered Gmail ID"
-                  class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                  class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition"
                 />
               </div>
 
@@ -249,7 +241,7 @@
                     type="password"
                     autocomplete="current-password"
                     placeholder="Enter your individual password"
-                    class="w-full pl-4 pr-14 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                    class="w-full pl-4 pr-14 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition"
                   />
                   <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 text-xs font-bold">
                     Show
@@ -266,8 +258,8 @@
               </button>
             </form>
 
-            <div class="mt-6 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 leading-relaxed">
-              <strong class="text-slate-800">First-Time Login / Password Setup:</strong> Enter your registered Gmail ID above and click <strong>"Set / Reset Password?"</strong> to receive a secure password setup link on your Gmail, or use the password assigned by Management.
+            <div class="mt-6 p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-blue-950">Need to set or change your password?</strong> Type your registered Gmail ID above and click <strong>"Set / Reset Password?"</strong> to receive a secure link in your Gmail inbox.
             </div>
           </div>
         </div>
@@ -275,7 +267,7 @@
     </main>
 
     <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-400">
-      &copy; 2026 Galaxy Point &bull; Staff Application &bull; Protected by Individual Authentication
+      &copy; 2026 GALAXY POINT &bull; Staff Application &bull; Encrypted Cloud Workspace
     </footer>
   </div>
 
@@ -283,21 +275,22 @@
        2. STAFF PORTAL
   ========================================================== -->
   <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-blue-100 shadow-2xs">
       <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
-          <div id="staff-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
+          <div id="staff-header-logo" class="w-10 h-10 rounded-xl bg-white border border-blue-100 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
           <div class="min-w-0">
             <div class="flex items-center gap-2">
               <h1 id="staff-nav-name" class="font-display font-extrabold text-slate-900 text-sm sm:text-base truncate">STAFF</h1>
-              <span id="staff-nav-dept" class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-200/70 shrink-0">Dept</span>
+              <span id="staff-nav-dept" class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-50 text-blue-800 border border-blue-200/80 shrink-0">Designation</span>
+              <span id="staff-star-badge" class="hidden px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 shrink-0">★ Best Employee</span>
             </div>
-            <p id="staff-nav-shift" class="text-[11px] text-slate-500 truncate">Shift: 11:00 AM – 10:30 PM</p>
+            <p id="staff-nav-tagline" class="text-[11px] font-semibold text-blue-700 truncate">Keep Going — Excellence Every Day!</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition tap-scale" title="Boss Task Alerts">
+          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition tap-scale" title="Task Alerts">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
             <span id="staff-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">0</span>
           </button>
@@ -314,43 +307,61 @@
       </div>
 
       <!-- Desktop Sub-Nav -->
-      <div class="hidden md:block border-t border-slate-100 bg-slate-50/70">
+      <div class="hidden md:block border-t border-slate-100 bg-slate-50/80">
         <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 py-2">
-          <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <span>Attendance &amp; Break</span>
-          </button>
-          <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <span>Tasks &amp; Daily Report</span>
-          </button>
-          <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <span>Claim Incentive</span>
-          </button>
-          <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-            <span>Urgent Leave &amp; Advance</span>
-          </button>
+          <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Attendance &amp; Calendar</button>
+          <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Tasks &amp; Daily Report</button>
+          <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Incentive &amp; Salary Slip</button>
+          <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Leave &amp; Advance</button>
+          <button type="button" data-staff-tab="chat" onclick="window.switchStaffTab('chat')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Team Group Chat</button>
         </div>
       </div>
     </header>
 
     <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
-      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg flex items-center justify-between gap-3 animate-view">
-        <div>
-          <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200">New Task Assigned by JAGDISH BOSS</p>
-          <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
+      <!-- Live Management Announcement & Best Employee Banner -->
+      <div id="staff-announcement-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 text-white shadow-md border border-blue-700 animate-view">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase tracking-wider">Galaxy Point Announcement</span>
+            <p id="staff-announcement-title" class="font-display font-extrabold text-sm sm:text-base mt-1.5">--</p>
+            <p id="staff-announcement-body" class="text-xs text-blue-100 mt-0.5 leading-relaxed">--</p>
+          </div>
+          <span id="staff-announcement-time" class="text-[10px] text-blue-200 shrink-0">--</span>
         </div>
-        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs shrink-0 hover:bg-blue-50 transition tap-scale">
-          Open Tasks
+      </div>
+
+      <!-- 10:00 AM - 12:00 PM "Are You On Week Off?" Banner -->
+      <div id="weekoff-window-banner" class="hidden p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 flex flex-wrap items-center justify-between gap-3 animate-view">
+        <div>
+          <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-950 text-[10px] font-extrabold uppercase">10:00 AM – 12:00 PM Window</span>
+          <h3 class="font-display font-extrabold text-amber-950 text-sm sm:text-base mt-1">Are you on Week Off today?</h3>
+          <p class="text-xs text-amber-800">If today is your scheduled week off, confirm below before 12:00 PM so it counts as <strong>Paid Week Off</strong> (otherwise no check-in counts as Absent).</p>
+        </div>
+        <button type="button" onclick="window.handleMarkPaidWeekOff()" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs shadow transition tap-scale">
+          Yes, Mark Paid Week Off
         </button>
       </div>
 
-      <!-- TAB 1: STRICT GPS ATTENDANCE & UNIFIED 60-MIN BREAK -->
+      <!-- Boss Task Alert Banner -->
+      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-950 flex items-center justify-between gap-3 animate-view">
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">New Task Assigned by Management</p>
+          <p id="staff-boss-alert-text" class="text-xs sm:text-sm font-bold mt-0.5">You have pending tasks assigned today.</p>
+        </div>
+        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl royal-btn text-white font-bold text-xs shrink-0">
+          View Tasks
+        </button>
+      </div>
+
+      <!-- TAB 1: STRICT GPS ATTENDANCE, 60-MIN BREAK & MONTHLY CALENDAR -->
       <section id="staff-view-home" class="space-y-5 animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-100">
             <div>
               <span id="staff-today-date" class="text-xs font-bold uppercase tracking-wider text-blue-700">--</span>
-              <h2 id="staff-greeting" class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Hello, Staff</h2>
-              <p id="staff-role-subtitle" class="text-xs text-slate-500 mt-0.5">Department &bull; Shift Schedule</p>
+              <h2 id="staff-greeting" class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Welcome</h2>
+              <p id="staff-role-subtitle" class="text-xs text-slate-500 mt-0.5">Designation &bull; Shift Schedule</p>
             </div>
             <div class="text-right">
               <div id="staff-live-clock" class="font-display text-2xl sm:text-3xl font-extrabold text-blue-900">--:--:--</div>
@@ -365,12 +376,12 @@
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Morning / Shift Check-In</span>
-                  <span id="staff-checkin-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800">GPS Required</span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Shift Check-In</span>
+                  <span id="staff-checkin-status-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800">GPS Mandatory</span>
                 </div>
                 <div id="staff-checkin-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
                 <div id="staff-checkin-location" class="mt-2 text-xs text-slate-500">
-                  <span>Live GPS permission is mandatory to check in. No check-in without location.</span>
+                  <span>Live GPS permission is mandatory to check in.</span>
                 </div>
               </div>
 
@@ -388,7 +399,7 @@
                 </div>
                 <div id="staff-checkout-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
                 <p class="mt-2 text-xs text-slate-500">
-                  No GPS required for check-out. Submit your daily report &amp; numbers before leaving.
+                  Submit your daily report before checking out.
                 </p>
               </div>
 
@@ -400,14 +411,14 @@
         </div>
 
         <!-- Unified 60-Minute Break Tracker -->
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
               <div class="flex items-center gap-2">
                 <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
                 <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
               </div>
-              <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; use anytime in splits</p>
+              <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; split anytime</p>
             </div>
 
             <div class="text-right">
@@ -422,7 +433,7 @@
 
           <div class="flex items-center justify-between text-xs mt-2">
             <span id="break-remaining-text" class="font-semibold text-emerald-700">60 minutes remaining today</span>
-            <span id="break-exceed-warning" class="hidden font-bold text-red-600">Break Exceeded! Alert sent to Boss</span>
+            <span id="break-exceed-warning" class="hidden font-bold text-red-600">Break Exceeded! Alert sent to Management</span>
           </div>
 
           <div id="active-break-box" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
@@ -439,58 +450,96 @@
 
           <div id="break-sessions-list" class="mt-4 space-y-1.5"></div>
         </div>
+
+        <!-- Monthly Attendance Summary (Present / Half-Day / Paid Week Off / Holiday / Absent) -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="font-display font-extrabold text-slate-900 text-lg">Monthly Attendance &amp; Holiday Calendar</h3>
+              <p class="text-xs text-slate-500">Live monthly count of Present, Half-Day, Paid Week Off, Holidays &amp; Absent</p>
+            </div>
+            <input id="staff-month-picker" type="month" onchange="window.loadStaffMonthlySummary()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800" />
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-5">
+            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200/70">
+              <p class="text-[10px] font-bold uppercase text-emerald-700">Present</p>
+              <p id="st-cnt-present" class="font-display text-xl font-extrabold text-emerald-900 mt-0.5">0</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200/70">
+              <p class="text-[10px] font-bold uppercase text-amber-700">Half Day</p>
+              <p id="st-cnt-half" class="font-display text-xl font-extrabold text-amber-900 mt-0.5">0</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-blue-50 border border-blue-200/70">
+              <p class="text-[10px] font-bold uppercase text-blue-700">Paid Week Off</p>
+              <p id="st-cnt-weekoff" class="font-display text-xl font-extrabold text-blue-900 mt-0.5">0</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-purple-50 border border-purple-200/70">
+              <p class="text-[10px] font-bold uppercase text-purple-700">Holidays</p>
+              <p id="st-cnt-holiday" class="font-display text-xl font-extrabold text-purple-900 mt-0.5">0</p>
+            </div>
+            <div class="col-span-2 sm:col-span-1 p-3 rounded-2xl bg-red-50 border border-red-200/70">
+              <p class="text-[10px] font-bold uppercase text-red-700">Absent</p>
+              <p id="st-cnt-absent" class="font-display text-xl font-extrabold text-red-900 mt-0.5">0</p>
+            </div>
+          </div>
+
+          <div id="staff-calendar-grid" class="grid grid-cols-7 gap-1.5 text-center text-xs"></div>
+        </div>
       </section>
 
-      <!-- TAB 2: TASKS, DEPARTMENT METRICS & EDITABLE DAILY REPORT -->
+      <!-- TAB 2: TASKS & ROLE-SPECIFIC DAILY REPORT -->
       <section id="staff-view-tasks" class="hidden space-y-5 animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex items-center justify-between gap-3 mb-4">
             <div>
               <h2 class="font-display text-xl font-extrabold text-slate-900">Today's Assigned Tasks</h2>
-              <p class="text-xs text-slate-500">Tick completed tasks &mdash; they automatically sync to your Daily Work Report</p>
+              <p class="text-xs text-slate-500">Tick completed tasks &mdash; they automatically sync to your Daily Report</p>
             </div>
             <span id="staff-tasks-count-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0 Tasks</span>
           </div>
           <div id="staff-tasks-list" class="space-y-3"></div>
         </div>
 
-        <!-- Department Performance Numbers -->
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
-          <div class="flex items-center justify-between mb-3">
-            <div>
-              <h3 id="dept-metric-heading" class="font-display text-lg font-extrabold text-slate-900">Today's Department Performance Numbers</h3>
-              <p class="text-xs text-slate-500">Enter your today's figures for Boss Day / Week / Month comparison</p>
-            </div>
+        <!-- Role-Specific Report Card (Hidden for standard roles like Sohail/Rutik/Mahindra/Vishal) -->
+        <div id="staff-role-metrics-card" class="hidden bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
+          <div class="mb-3">
+            <h3 id="dept-metric-heading" class="font-display text-lg font-extrabold text-slate-900">Today's Performance Report</h3>
+            <p id="dept-metric-sub" class="text-xs text-slate-500">Enter your today's figures for Management Analytics</p>
           </div>
 
-          <form action="javascript:void(0)" onsubmit="window.handleSaveDeptMetrics(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
-            <div>
-              <label id="metric-primary-label" class="block text-xs font-bold text-slate-600 mb-1">Units / Count Today</label>
-              <input id="metric-primary-input" type="number" min="0" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+          <form action="javascript:void(0)" onsubmit="window.handleSaveDeptMetrics(event)" id="dept-metrics-form" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+            <div id="metric-f1-wrap">
+              <label id="metric-f1-label" class="block text-xs font-bold text-slate-600 mb-1">Count</label>
+              <input id="metric-f1-input" type="number" min="0" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
             </div>
-            <div>
-              <label id="metric-secondary-label" class="block text-xs font-bold text-slate-600 mb-1">Total Amount / Leads</label>
-              <input id="metric-secondary-input" type="number" min="0" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <div id="metric-f2-wrap" class="hidden">
+              <label id="metric-f2-label" class="block text-xs font-bold text-slate-600 mb-1">Secondary</label>
+              <input id="metric-f2-input" type="number" min="0" placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+            <div id="metric-f3-wrap" class="hidden">
+              <label id="metric-f3-label" class="block text-xs font-bold text-slate-600 mb-1">Third</label>
+              <input id="metric-f3-input" type="number" min="0" placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
             </div>
             <div class="flex items-end">
               <button type="submit" class="royal-btn w-full py-2.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
-                Save Today's Figures
+                Save Report Figures
               </button>
             </div>
           </form>
         </div>
 
-        <!-- Additional Work (Add, Edit & Delete) & Auto Report -->
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/90 shadow-xs">
+        <!-- Additional Work (Add, Edit & Delete) & Compiled Report -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <h3 class="font-display text-lg font-extrabold text-slate-900">Additional Work &amp; Daily Report</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Add extra work done today &mdash; you can Edit or Delete entries anytime</p>
+          <p class="text-xs text-slate-500 mt-0.5">Add extra work completed today &mdash; you can Edit or Delete entries anytime</p>
 
           <form action="javascript:void(0)" onsubmit="window.handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
             <input
               id="additional-work-input"
               type="text"
               required
-              placeholder="Write extra work completed today..."
+              placeholder="Write work completed today..."
               class="flex-1 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
             <button type="submit" class="royal-btn px-5 py-3 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0">
@@ -503,7 +552,7 @@
           <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">
-                Live Report Synced to JAGDISH BOSS
+                Live Report Synced to Management
               </span>
               <span class="text-[11px] font-semibold text-slate-500">Auto-Updated</span>
             </div>
@@ -512,19 +561,33 @@
         </div>
       </section>
 
-      <!-- TAB 3: CLAIM YOUR INCENTIVE -->
+      <!-- TAB 3: CLAIM INCENTIVE & MONTHLY SALARY SLIP -->
       <section id="staff-view-incentives" class="hidden space-y-5 animate-view">
-        <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
+        <!-- Monthly Salary Slip Card -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-blue-50 text-blue-800 text-[10px] font-extrabold uppercase tracking-wider">Official Payroll Statement</span>
+              <h2 class="font-display text-xl font-extrabold text-slate-900 mt-1">My Monthly Salary Slip</h2>
+            </div>
+            <input id="staff-slip-month" type="month" onchange="window.loadStaffSalarySlip()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800" />
+          </div>
+
+          <div id="staff-salary-slip-box" class="mt-4"></div>
+        </div>
+
+        <!-- Incentive Rewards Section -->
+        <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <div>
               <span class="px-2.5 py-1 rounded-lg bg-white/15 text-[11px] font-bold uppercase tracking-wider">Performance Rewards</span>
               <h2 class="font-display text-2xl font-extrabold mt-2">Claim Your Incentive</h2>
               <p class="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-                Complete incentive tasks assigned by <strong>JAGDISH BOSS</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your reward and confirm below.
+                Complete incentive tasks assigned by <strong>Management</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your reward and confirm below.
               </p>
             </div>
             <div class="bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-right">
-              <p class="text-[11px] uppercase tracking-wider text-blue-200 font-semibold">Total Earned</p>
+              <p class="text-[11px] uppercase tracking-wider text-blue-200 font-semibold">Today's Incentive</p>
               <p id="staff-total-incentive" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">&#8377;0</p>
             </div>
           </div>
@@ -535,7 +598,7 @@
 
       <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY REQUEST -->
       <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs space-y-4">
           <div>
             <h3 class="font-display font-extrabold text-slate-900 text-lg">Urgent Leave Request</h3>
             <p class="text-xs text-slate-500">Apply for Tomorrow, Day After, or This Week</p>
@@ -562,7 +625,7 @@
             </div>
 
             <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
-              Submit Urgent Leave to Boss
+              Submit Urgent Leave Request
             </button>
           </form>
 
@@ -572,10 +635,10 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs space-y-4">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs space-y-4">
           <div>
             <h3 class="font-display font-extrabold text-slate-900 text-lg">Advance Salary Request</h3>
-            <p class="text-xs text-slate-500">Request salary advance directly from JAGDISH BOSS</p>
+            <p class="text-xs text-slate-500">Request salary advance directly from Management</p>
           </div>
 
           <form action="javascript:void(0)" onsubmit="window.handleApplyAdvance(event)" class="space-y-3">
@@ -606,140 +669,178 @@
           </div>
         </div>
       </section>
+
+      <!-- TAB 5: GALAXY POINT TEAM GROUP CHAT (5-DAY AUTO-CLEANUP + APPRECIATION CARDS) -->
+      <section id="staff-view-chat" class="hidden animate-view">
+        <div class="bg-white rounded-3xl border border-blue-100 shadow-xs overflow-hidden flex flex-col h-[72vh] max-h-[640px]">
+          <div class="p-4 sm:p-5 bg-gradient-to-r from-blue-950 to-blue-800 text-white flex items-center justify-between">
+            <div>
+              <h2 class="font-display font-extrabold text-base sm:text-lg">Galaxy Point Team Group</h2>
+              <p class="text-[11px] text-blue-200">All 19 Members &bull; Messages auto-clear after 5 days</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-white/15 text-[10px] font-bold">Live Team Chat</span>
+          </div>
+
+          <div class="px-4 py-2.5 bg-blue-50/70 border-b border-blue-100 flex items-center gap-2 overflow-x-auto no-scrollbar">
+            <span class="text-[10px] font-extrabold uppercase text-blue-800 shrink-0">Appreciate Teammate:</span>
+            <button type="button" onclick="window.sendQuickAppreciation('Great teamwork today! Keep going!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">👏 Great Teamwork!</button>
+            <button type="button" onclick="window.sendQuickAppreciation('Awesome customer handling at the counter!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">⭐ Awesome Service!</button>
+            <button type="button" onclick="window.sendQuickAppreciation('Keep going team, strong energy today!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">🚀 Keep Going!</button>
+          </div>
+
+          <div id="staff-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50"></div>
+
+          <form action="javascript:void(0)" onsubmit="window.handleSendGroupMessage('staff')" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+            <input id="staff-chat-input" type="text" required placeholder="Write a message to Galaxy Point team..." class="flex-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <button type="submit" class="royal-btn px-5 py-2.5 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0">Send</button>
+          </form>
+        </div>
+      </section>
     </main>
 
-    <!-- MOBILE BOTTOM NAVIGATION BAR (WITH PERMANENT SHARP SVG ICONS) -->
-    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 grid grid-cols-4 pt-1.5 px-1.5 mobile-bottom-nav shadow-[0_-4px_20px_rgba(15,23,42,0.06)]">
-      <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+    <!-- MOBILE BOTTOM NAVIGATION BAR (5 TABS WITH PERMANENT SHARP SVG ICONS) -->
+    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-blue-100 grid grid-cols-5 pt-1.5 px-1 mobile-bottom-nav shadow-[0_-4px_20px_rgba(10,61,130,0.07)]">
+      <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-bold tap-scale">
         <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <span>Attendance</span>
       </button>
-      <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+      <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-bold tap-scale">
         <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        <span>Tasks/Report</span>
+        <span>Report</span>
       </button>
-      <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+      <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-bold tap-scale">
         <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-        <span>Incentive</span>
+        <span>Slip/Reward</span>
       </button>
-      <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-bold tap-scale">
+      <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-bold tap-scale">
         <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <span>Leave/Adv</span>
+      </button>
+      <button type="button" data-staff-tab="chat" onclick="window.switchStaffTab('chat')" class="staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-bold tap-scale">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Group</span>
       </button>
     </nav>
   </div>
 
   <!-- =========================================================
-       3. BOSS COMMAND CENTER (JAGDISH BOSS EXCLUSIVE)
+       3. EXECUTIVE BOSS COMMAND CENTER (GALAXY POINT MANAGEMENT)
   ========================================================== -->
-  <div id="boss-portal" class="hidden min-h-screen flex flex-col pb-12">
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
-      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <div id="boss-header-logo" class="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center p-1"></div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-display font-extrabold text-slate-900 text-base sm:text-lg">JAGDISH BOSS</span>
-              <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-900 text-white">Command Center</span>
+  <div id="boss-portal" class="hidden min-h-screen flex flex-col pb-14">
+    <header class="sticky top-0 z-40 shadow-md">
+      <div class="boss-banner-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-5 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div id="boss-header-logo" class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center p-2 shrink-0"></div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-[0.2em] bg-amber-400 text-slate-950">Executive Command</span>
+                <span class="text-xs font-semibold text-blue-200">Galaxy Point Management</span>
+              </div>
+              <h1 class="font-display font-extrabold text-xl sm:text-3xl tracking-tight text-white mt-1">
+                GALAXY POINT MANAGEMENT &bull; JAGDISH BOSS
+              </h1>
+              <p class="text-xs text-blue-100/90 mt-0.5">Live GPS Attendance, Department Performance Graphs, Payroll &amp; Team Operations</p>
             </div>
-            <p class="text-[11px] text-slate-500">Galaxy Point Live Operations &bull; 18 Staff</p>
           </div>
-        </div>
 
-        <div class="flex items-center gap-2">
-          <span id="boss-live-clock" class="hidden sm:inline-block font-display font-bold text-xs text-blue-900 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100">--:--:--</span>
-          <button type="button" onclick="window.openInstallModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 transition tap-scale" title="Install App">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          </button>
-          <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-red-600 text-white transition tap-scale">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-            <span>Logout</span>
-          </button>
+          <div class="flex items-center gap-2.5">
+            <span id="boss-live-clock" class="hidden md:inline-block font-display font-bold text-xs text-white bg-white/12 border border-white/20 px-3.5 py-2 rounded-xl backdrop-blur-md">--:--:--</span>
+            <button type="button" onclick="window.openInstallModal()" class="p-2.5 rounded-xl bg-white/12 hover:bg-white/20 text-white border border-white/15 transition tap-scale" title="Install App">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </button>
+            <button type="button" onclick="window.handleLogout()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-white text-blue-950 hover:bg-red-50 hover:text-red-700 shadow transition tap-scale">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Boss Navigation Tabs -->
-      <div class="border-t border-slate-100 bg-slate-50/80 overflow-x-auto no-scrollbar">
-        <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2 min-w-max">
-          <button type="button" data-boss-tab="live" onclick="window.switchBossTab('live')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>Live Attendance &amp; GPS</span>
+      <div class="bg-white border-b border-blue-100 overflow-x-auto no-scrollbar">
+        <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2.5 min-w-max">
+          <button type="button" data-boss-tab="live" onclick="window.switchBossTab('live')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Live Attendance &amp; GPS</button>
+          <button type="button" data-boss-tab="analytics" onclick="window.switchBossTab('analytics')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Department Graphs &amp; Rewards</button>
+          <button type="button" data-boss-tab="tasks" onclick="window.switchBossTab('tasks')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Tasks, Incentives &amp; Announcements</button>
+          <button type="button" data-boss-tab="attendance_payroll" onclick="window.switchBossTab('attendance_payroll')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Monthly Attendance, Holidays &amp; Salary</button>
+          <button type="button" data-boss-tab="leaves" onclick="window.switchBossTab('leaves')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">
+            Leave &amp; Advance
+            <span id="boss-req-badge" class="hidden ml-1 px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">0</span>
           </button>
-          <button type="button" data-boss-tab="analytics" onclick="window.switchBossTab('analytics')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>Department Leaderboard</span>
-          </button>
-          <button type="button" data-boss-tab="tasks" onclick="window.switchBossTab('tasks')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>Assign Tasks &amp; Incentives</span>
-          </button>
-          <button type="button" data-boss-tab="leaves" onclick="window.switchBossTab('leaves')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>Leave Requests</span>
-            <span id="boss-leave-badge" class="hidden px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[10px]">0</span>
-          </button>
-          <button type="button" data-boss-tab="advances" onclick="window.switchBossTab('advances')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>Advance Salary</span>
-            <span id="boss-advance-badge" class="hidden px-1.5 py-0.2 rounded-full bg-amber-600 text-white text-[10px]">0</span>
-          </button>
-          <button type="button" data-boss-tab="history" onclick="window.switchBossTab('history')" class="boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
-            <span>6-Month Records</span>
-          </button>
+          <button type="button" data-boss-tab="chat" onclick="window.switchBossTab('chat')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Team Group Chat</button>
+          <button type="button" data-boss-tab="history" onclick="window.switchBossTab('history')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">6-Month Archive</button>
         </div>
       </div>
     </header>
 
-    <main class="max-w-7xl w-full mx-auto px-4 pt-5 space-y-5">
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Checked In Today</p>
-          <p id="kpi-present" class="font-display text-2xl font-extrabold text-blue-900 mt-1">0 / 18</p>
+    <main class="max-w-7xl w-full mx-auto px-4 pt-6 space-y-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-blue-100 shadow-2xs flex items-center justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Checked In Today</p>
+            <p id="kpi-present" class="font-display text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">0 / 18</p>
+          </div>
+          <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-extrabold text-sm">GPS</span>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Late Arrivals</p>
-          <p id="kpi-late" class="font-display text-2xl font-extrabold text-amber-600 mt-1">0</p>
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-2xs flex items-center justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Late Arrivals</p>
+            <p id="kpi-late" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-600 mt-1">0</p>
+          </div>
+          <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-extrabold text-sm">TIME</span>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Break Exceeded (&gt;60m)</p>
-          <p id="kpi-break-exceed" class="font-display text-2xl font-extrabold text-red-600 mt-1">0</p>
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-red-100 shadow-2xs flex items-center justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Break Exceeded</p>
+            <p id="kpi-break-exceed" class="font-display text-2xl sm:text-3xl font-extrabold text-red-600 mt-1">0</p>
+          </div>
+          <span class="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center font-extrabold text-sm">&gt;60m</span>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Pending Leaves</p>
-          <p id="kpi-pending-leaves" class="font-display text-2xl font-extrabold text-indigo-700 mt-1">0</p>
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-indigo-100 shadow-2xs flex items-center justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Pending Leaves</p>
+            <p id="kpi-pending-leaves" class="font-display text-2xl sm:text-3xl font-extrabold text-indigo-700 mt-1">0</p>
+          </div>
+          <span class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-extrabold text-sm">LV</span>
         </div>
-        <div class="col-span-2 sm:col-span-1 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Advance Requests</p>
-          <p id="kpi-pending-advances" class="font-display text-2xl font-extrabold text-emerald-700 mt-1">0</p>
+        <div class="col-span-2 sm:col-span-1 bg-white p-4 sm:p-5 rounded-2xl border border-emerald-100 shadow-2xs flex items-center justify-between">
+          <div>
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Advance Requests</p>
+            <p id="kpi-pending-advances" class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-700 mt-1">0</p>
+          </div>
+          <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-extrabold text-sm">&#8377;</span>
         </div>
       </div>
 
       <!-- BOSS TAB 1: LIVE ATTENDANCE & VERIFIED GPS LOCATION -->
       <section id="boss-view-live" class="space-y-4 animate-view">
-        <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
               <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Live Staff Attendance &amp; Verified GPS Location</h2>
-              <p class="text-xs text-slate-500">Every check-in is GPS verified with exact address &amp; Google Maps pin</p>
+              <p class="text-xs text-slate-500">Real-time shift check-in status, exact GPS address, break balance &amp; daily report</p>
             </div>
-            <div class="flex flex-wrap items-center gap-2">
-              <select id="boss-dept-filter" onchange="window.renderBossLiveTable()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                <option value="ALL">All Departments (18)</option>
-                <option value="Salesman">Salesman (6)</option>
-                <option value="New Mobile Sale">New Mobile Sale (2)</option>
-                <option value="Accessories">Accessories (4)</option>
-                <option value="Service Centre">Service Centre (3)</option>
-                <option value="Social Team">Social Team (2)</option>
-                <option value="Accountant">Accountant (1)</option>
-              </select>
-            </div>
+            <select id="boss-dept-filter" onchange="window.renderBossLiveTable()" class="px-3.5 py-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs font-extrabold text-blue-900 focus:outline-none">
+              <option value="ALL">All Departments (18 Staff)</option>
+              <option value="Pre-Owned Mobile">Pre-Owned Mobile (6)</option>
+              <option value="New Mobile Sale">New Mobile Sale (3)</option>
+              <option value="Accessories">Accessories (4)</option>
+              <option value="Service Centre">Service Centre (3)</option>
+              <option value="Social Media">Social Media (2)</option>
+              <option value="Accountant">Accounts (1)</option>
+            </select>
           </div>
 
-          <div class="overflow-x-auto">
+          <div class="overflow-x-auto mt-3">
             <table class="w-full text-left border-collapse">
               <thead>
                 <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
-                  <th class="py-3 px-3">Staff &amp; Role</th>
-                  <th class="py-3 px-3">Shift</th>
-                  <th class="py-3 px-3">Check-In &amp; Live GPS Pin</th>
-                  <th class="py-3 px-3">Check-Out</th>
-                  <th class="py-3 px-3">Break (60m)</th>
-                  <th class="py-3 px-3">Daily Report &amp; Figures</th>
+                  <th class="py-3.5 px-3">Staff &amp; Designation</th>
+                  <th class="py-3.5 px-3">Shift</th>
+                  <th class="py-3.5 px-3">Check-In &amp; GPS Location</th>
+                  <th class="py-3.5 px-3">Check-Out</th>
+                  <th class="py-3.5 px-3">Break (60m)</th>
+                  <th class="py-3.5 px-3">Today's Report</th>
                 </tr>
               </thead>
               <tbody id="boss-live-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
@@ -748,124 +849,260 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 2: DEPARTMENT PERFORMANCE LEADERBOARD (DAY / WEEK / MONTH) -->
-      <section id="boss-view-analytics" class="hidden space-y-4 animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+      <!-- BOSS TAB 2: DEPARTMENT GRAPHS & BEST EMPLOYEE OF THE MONTH -->
+      <section id="boss-view-analytics" class="hidden space-y-5 animate-view">
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
-              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Department Performance &amp; Comparison Leaderboard</h2>
-              <p class="text-xs text-slate-500">Compare who is leading in Salesman, New Mobile Sale, Accessories, Service Centre, Social Team &amp; Accounts</p>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Department Performance Graphs &amp; Score Comparison</h2>
+              <p class="text-xs text-slate-500">Select a department to view visual performance bars, rankings, and growth across timeframes</p>
             </div>
-            <div class="flex flex-wrap items-center gap-2">
-              <select id="analytics-dept-select" onchange="window.loadDepartmentAnalytics()" class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
-                <option value="Salesman">Salesman (6)</option>
-                <option value="New Mobile Sale">New Mobile Sale (2)</option>
-                <option value="Accessories">Accessories (4)</option>
-                <option value="Service Centre">Service Centre (3)</option>
-                <option value="Social Team">Social Team (2)</option>
-                <option value="Accountant">Accountant (1)</option>
-              </select>
-              <div class="inline-flex rounded-xl bg-slate-100 p-1">
-                <button type="button" data-period="day" onclick="window.setAnalyticsPeriod('day')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Today</button>
-                <button type="button" data-period="week" onclick="window.setAnalyticsPeriod('week')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">This Week</button>
-                <button type="button" data-period="month" onclick="window.setAnalyticsPeriod('month')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">This Month</button>
-              </div>
+
+            <div class="inline-flex flex-wrap rounded-xl bg-slate-100 p-1 gap-1">
+              <button type="button" data-period="day" onclick="window.setAnalyticsPeriod('day')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Today</button>
+              <button type="button" data-period="week" onclick="window.setAnalyticsPeriod('week')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">This Week</button>
+              <button type="button" data-period="month" onclick="window.setAnalyticsPeriod('month')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Current Month</button>
+              <button type="button" data-period="30" onclick="window.setAnalyticsPeriod('30')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Last 30 Days</button>
+              <button type="button" data-period="90" onclick="window.setAnalyticsPeriod('90')" class="analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold transition">Last 90 Days</button>
             </div>
           </div>
 
+          <div class="flex flex-wrap gap-2 mt-4">
+            <button type="button" data-adept="Pre-Owned Mobile" onclick="window.selectAnalyticsDept('Pre-Owned Mobile')" class="adept-btn px-4 py-2 rounded-xl text-xs font-extrabold transition">Pre-Owned Mobile (Ashok, Abdu, Zohair, Vikki, Rutik)</button>
+            <button type="button" data-adept="New Mobile Sale" onclick="window.selectAnalyticsDept('New Mobile Sale')" class="adept-btn px-4 py-2 rounded-xl text-xs font-extrabold transition">New Mobile Sale (Praveen, Sahab, Rajni)</button>
+            <button type="button" data-adept="Accessories" onclick="window.selectAnalyticsDept('Accessories')" class="adept-btn px-4 py-2 rounded-xl text-xs font-extrabold transition">Accessories (Mahindra, Anas, Naresh, Arvind)</button>
+            <button type="button" data-adept="Service Centre" onclick="window.selectAnalyticsDept('Service Centre')" class="adept-btn px-4 py-2 rounded-xl text-xs font-extrabold transition">Service Centre (Mohammed, Arif, Sunil)</button>
+          </div>
+
+          <div id="analytics-visual-graph" class="mt-6 p-5 rounded-2xl bg-slate-50 border border-slate-200/80"></div>
           <div id="analytics-leaderboard-container" class="mt-5 space-y-3"></div>
+        </div>
+
+        <!-- Reward & Recognition: Best Employee of the Month -->
+        <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase tracking-wider">Reward &amp; Recognition</span>
+              <h3 class="font-display text-lg sm:text-xl font-extrabold text-slate-900 mt-1">Declare Best Employee of the Month</h3>
+              <p class="text-xs text-slate-500">Award department winners &mdash; automatically broadcasts a celebration announcement &amp; star badge</p>
+            </div>
+          </div>
+
+          <form action="javascript:void(0)" onsubmit="window.handleDeclareBestEmployee(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Department</label>
+              <select id="best-emp-dept" onchange="window.populateBestEmpStaff()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800">
+                <option value="Pre-Owned Mobile">Pre-Owned Mobile</option>
+                <option value="New Mobile Sale">New Mobile Sale</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Service Centre">Service Centre</option>
+                <option value="Social Media">Social Media</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Winner Staff</label>
+              <select id="best-emp-staff" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Recognition Note</label>
+              <input id="best-emp-note" type="text" required value="Outstanding performance & dedication this month!" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium" />
+            </div>
+            <div class="flex items-end">
+              <button type="submit" class="royal-btn w-full py-2.5 px-4 rounded-xl text-white font-bold text-xs shadow">
+                ★ Award &amp; Announce Winner
+              </button>
+            </div>
+          </form>
+
+          <div id="best-employees-showcase" class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"></div>
         </div>
       </section>
 
-      <!-- BOSS TAB 3: ASSIGN TASKS & INCENTIVES -->
-      <section id="boss-view-tasks" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 animate-view">
-        <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs h-fit">
-          <h2 class="font-display text-lg font-extrabold text-slate-900">Assign Task &amp; Optional Incentive</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Sends instant notification to selected staff or whole department</p>
-
-          <form action="javascript:void(0)" onsubmit="window.handleBossAssignTask(event)" class="mt-4 space-y-3.5">
+      <!-- BOSS TAB 3: ASSIGN TASKS, INCENTIVES & STORE ANNOUNCEMENTS -->
+      <section id="boss-view-tasks" class="hidden space-y-5 animate-view">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
+          <div class="flex items-center justify-between mb-3">
             <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Assign To (Staff or Department)</label>
-              <select id="boss-task-target" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
-                <optgroup label="Broadcast by Group / Department">
-                  <option value="ALL">All 18 Staff Members</option>
-                  <option value="DEPT:Salesman">Department: Salesman (6)</option>
-                  <option value="DEPT:New Mobile Sale">Department: New Mobile Sale (2)</option>
-                  <option value="DEPT:Accessories">Department: Accessories (4)</option>
-                  <option value="DEPT:Service Centre">Department: Service Centre (3)</option>
-                  <option value="DEPT:Social Team">Department: Social Team (2)</option>
-                  <option value="DEPT:Accountant">Department: Accountant (Vishal)</option>
-                </optgroup>
-                <optgroup label="Individual Staff Member" id="boss-task-individual-options"></optgroup>
-              </select>
+              <span class="px-2.5 py-0.5 rounded bg-blue-50 text-blue-800 text-[10px] font-extrabold uppercase tracking-wider">Store-Wide Broadcast</span>
+              <h2 class="font-display text-lg font-extrabold text-slate-900 mt-1">Post Announcement to All Staff</h2>
             </div>
+          </div>
 
-            <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Task Title / Instruction</label>
-              <input id="boss-task-title" type="text" required placeholder="e.g. Sell 5 iPhone 16 covers today" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-bold text-slate-600 mb-1">Incentive Reward (&#8377;)</label>
-                <input id="boss-task-incentive" type="number" min="0" step="50" value="0" placeholder="0 for none" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-emerald-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-600 mb-1">Priority</label>
-                <select id="boss-task-priority" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
-                  <option value="Normal">Normal</option>
-                  <option value="Urgent">Urgent</option>
-                </select>
-              </div>
-            </div>
-
-            <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-sm shadow">
-              Assign Task &amp; Notify Staff
+          <form action="javascript:void(0)" onsubmit="window.handlePostAnnouncement(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <input id="ann-title-input" type="text" required placeholder="Announcement Title (e.g. Weekend Target / Store Notice)" class="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-bold" />
+            <input id="ann-body-input" type="text" required placeholder="Write message for all 18 staff members..." class="sm:col-span-2 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm" />
+            <button type="submit" class="royal-btn py-2.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
+              Publish Announcement
             </button>
           </form>
         </div>
 
-        <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="font-display text-lg font-extrabold text-slate-900">Today's Tasks &amp; Incentive Claim Tracker</h3>
-              <p class="text-xs text-slate-500">Verify completed tasks and whether staff collected their incentive from Vishal</p>
-            </div>
-            <span id="boss-tasks-total-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs h-fit">
+            <h2 class="font-display text-lg font-extrabold text-slate-900">Assign Task &amp; Optional Incentive</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Sends instant notification to selected staff or whole department</p>
+
+            <form action="javascript:void(0)" onsubmit="window.handleBossAssignTask(event)" class="mt-4 space-y-3.5">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Assign To (Staff or Department)</label>
+                <select id="boss-task-target" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800">
+                  <optgroup label="Broadcast by Group / Department">
+                    <option value="ALL">All 18 Staff Members</option>
+                    <option value="DEPT:Pre-Owned Mobile">Department: Pre-Owned Mobile (6)</option>
+                    <option value="DEPT:New Mobile Sale">Department: New Mobile Sale (3)</option>
+                    <option value="DEPT:Accessories">Department: Accessories (4)</option>
+                    <option value="DEPT:Service Centre">Department: Service Centre (3)</option>
+                    <option value="DEPT:Social Media">Department: Social Media (2)</option>
+                    <option value="DEPT:Accountant">Department: Accounts (Vishal)</option>
+                  </optgroup>
+                  <optgroup label="Individual Staff Member" id="boss-task-individual-options"></optgroup>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Task Title / Instruction</label>
+                <input id="boss-task-title" type="text" required placeholder="e.g. Close 4 pre-owned deals today" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 mb-1">Incentive Reward (&#8377;)</label>
+                  <input id="boss-task-incentive" type="number" min="0" step="50" value="0" placeholder="0 for none" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-emerald-700" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 mb-1">Priority</label>
+                  <select id="boss-task-priority" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold">
+                    <option value="Normal">Normal</option>
+                    <option value="Urgent">Urgent</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="royal-btn w-full py-3 rounded-xl text-white font-bold text-sm shadow">
+                Assign Task &amp; Notify Staff
+              </button>
+            </form>
           </div>
-          <div id="boss-tasks-list" class="space-y-2.5 max-h-[520px] overflow-y-auto pr-1"></div>
+
+          <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-display text-lg font-extrabold text-slate-900">Today's Tasks &amp; Incentive Claim Tracker</h3>
+                <p class="text-xs text-slate-500">Verify completed tasks and whether staff collected their incentive from Vishal</p>
+              </div>
+              <span id="boss-tasks-total-pill" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800">0</span>
+            </div>
+            <div id="boss-tasks-list" class="space-y-2.5 max-h-[520px] overflow-y-auto pr-1"></div>
+          </div>
         </div>
       </section>
 
-      <!-- BOSS TAB 4: LEAVE REQUESTS -->
-      <section id="boss-view-leaves" class="hidden animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+      <!-- BOSS TAB 4: MONTHLY ATTENDANCE SUMMARY, HOLIDAY CALENDAR & SALARY SLIPS -->
+      <section id="boss-view-attendance_payroll" class="hidden space-y-5 animate-view">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
+          <h3 class="font-display text-lg font-extrabold text-slate-900">Store Holiday Calendar Manager</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Add official store holidays &mdash; automatically reflects in staff attendance &amp; salary calculation</p>
+
+          <form action="javascript:void(0)" onsubmit="window.handleAddStoreHoliday(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+            <input id="holiday-date-input" type="date" required class="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-bold" />
+            <input id="holiday-name-input" type="text" required placeholder="Holiday Name (e.g. Diwali / Republic Day)" class="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm" />
+            <button type="submit" class="royal-btn py-2.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm shadow">
+              + Add Store Holiday
+            </button>
+          </form>
+
+          <div id="boss-holidays-list" class="mt-4 flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+            <div>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Monthly Attendance Count &amp; Staff Salary Slips</h2>
+              <p class="text-xs text-slate-500">Present, Half-Day, Paid Week Off, Absent counts + Base Salary, Incentives &amp; Net Salary Slip</p>
+            </div>
+            <input id="boss-payroll-month" type="month" onchange="window.loadBossMonthlyPayroll()" class="px-3.5 py-2 rounded-xl bg-blue-50 border border-blue-200 text-xs font-extrabold text-blue-900" />
+          </div>
+
+          <div class="overflow-x-auto mt-4">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <th class="py-3 px-3">Staff &amp; Role</th>
+                  <th class="py-3 px-2 text-center">Present</th>
+                  <th class="py-3 px-2 text-center">Half Day</th>
+                  <th class="py-3 px-2 text-center">Week Off</th>
+                  <th class="py-3 px-2 text-center">Absent</th>
+                  <th class="py-3 px-3">Base Salary (&#8377;)</th>
+                  <th class="py-3 px-3">Incentives (+&#8377;)</th>
+                  <th class="py-3 px-3">Advance/Ded (-&#8377;)</th>
+                  <th class="py-3 px-3">Net Payable (&#8377;)</th>
+                </tr>
+              </thead>
+              <tbody id="boss-payroll-tbody" class="divide-y divide-slate-100 text-xs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 5: LEAVE & ADVANCE REQUESTS -->
+      <section id="boss-view-leaves" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
           <div class="mb-4">
-            <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Staff Urgent Leave Requests</h2>
+            <h2 class="font-display text-lg font-extrabold text-slate-900">Urgent Leave Requests</h2>
             <p class="text-xs text-slate-500">Approve or reject urgent leave requests</p>
           </div>
-          <div id="boss-leaves-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+          <div id="boss-leaves-list" class="space-y-3"></div>
         </div>
-      </section>
 
-      <!-- BOSS TAB 5: ADVANCE SALARY REQUESTS -->
-      <section id="boss-view-advances" class="hidden animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
           <div class="mb-4">
-            <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">Advance Salary Requests</h2>
-            <p class="text-xs text-slate-500">Review requested amount, needed date, and approve/reject</p>
+            <h2 class="font-display text-lg font-extrabold text-slate-900">Advance Salary Requests</h2>
+            <p class="text-xs text-slate-500">Approved advances automatically deduct in Monthly Salary Slip</p>
           </div>
-          <div id="boss-advances-list" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+          <div id="boss-advances-list" class="space-y-3"></div>
         </div>
       </section>
 
-      <!-- BOSS TAB 6: 6-MONTH ARCHIVE -->
+      <!-- BOSS TAB 6: TEAM GROUP CHAT -->
+      <section id="boss-view-chat" class="hidden animate-view">
+        <div class="bg-white rounded-3xl border border-blue-100 shadow-xs overflow-hidden flex flex-col h-[72vh] max-h-[640px]">
+          <div class="p-4 sm:p-5 boss-banner-gradient text-white flex items-center justify-between">
+            <div>
+              <h2 class="font-display font-extrabold text-base sm:text-lg">Galaxy Point Management &amp; Staff Group</h2>
+              <p class="text-[11px] text-blue-200">Broadcast appreciation &amp; chat with all 18 staff &bull; Auto-deletes after 5 days</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 text-[10px] font-extrabold">Boss Mode</span>
+          </div>
+
+          <div class="p-3 bg-blue-50 border-b border-blue-100 flex flex-wrap items-center gap-2">
+            <span class="text-[10px] font-extrabold uppercase text-blue-900">Send Appreciation Card:</span>
+            <select id="boss-chat-appreciate-staff" class="px-2.5 py-1.5 rounded-lg bg-white border border-blue-200 text-xs font-bold text-slate-800"></select>
+            <select id="boss-chat-appreciate-template" class="px-2.5 py-1.5 rounded-lg bg-white border border-blue-200 text-xs font-semibold text-slate-700">
+              <option value="Outstanding sales & customer handling today! Keep going!">🌟 Outstanding Performance Today</option>
+              <option value="Great improvement in speed and discipline this week!">📈 Great Improvement This Week</option>
+              <option value="Top dedication at Galaxy Point — proud of your effort!">🏆 Top Dedication Award</option>
+            </select>
+            <button type="button" onclick="window.handleBossSendAppreciation()" class="royal-btn px-3.5 py-1.5 rounded-lg text-white font-bold text-xs">
+              Post Appreciation
+            </button>
+          </div>
+
+          <div id="boss-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50"></div>
+
+          <form action="javascript:void(0)" onsubmit="window.handleSendGroupMessage('boss')" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+            <input id="boss-chat-input" type="text" required placeholder="Message all Galaxy Point staff..." class="flex-1 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <button type="submit" class="royal-btn px-5 py-2.5 rounded-xl text-white font-bold text-xs sm:text-sm shrink-0">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- BOSS TAB 7: 6-MONTH ARCHIVE -->
       <section id="boss-view-history" class="hidden space-y-4 animate-view">
-        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs">
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
               <h2 class="font-display text-lg sm:text-xl font-extrabold text-slate-900">6-Month Historical Attendance &amp; Work Reports</h2>
-              <p class="text-xs text-slate-500">180-day archive of GPS check-ins, break logs &amp; daily reports</p>
+              <p class="text-xs text-slate-500">180-day protected cloud archive of GPS check-ins, break logs &amp; daily reports</p>
             </div>
             <button type="button" onclick="window.exportBossHistoryCSV()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs shadow">
               Export CSV Report
@@ -913,7 +1150,7 @@
   </div>
 
   <!-- =========================================================
-       CORE APP & INDIVIDUAL FIREBASE AUTH MODULE
+       CORE CLOUD & APPLICATION LOGIC (NON-DESTRUCTIVE FIRESTORE)
   ========================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -930,6 +1167,7 @@
       setDoc,
       updateDoc,
       addDoc,
+      deleteDoc,
       collection,
       query,
       where,
@@ -951,48 +1189,44 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Master Directory (Verified Individual Real Gmail IDs — Passwords Managed Individually in Firebase Auth)
     const BOSS_ACCOUNT = {
       id: "jagdish",
       name: "JAGDISH BOSS",
       email: "jagdishboss@gmail.com",
       role: "boss",
       department: "Management",
-      tag: "Owner / Boss",
+      designation: "Owner / Management",
+      tagline: "Leading Galaxy Point to Excellence",
       shiftStart: "09:00",
       shiftEnd: "23:00"
     };
 
     const STAFF_ROSTER = [
-      { id: "ashok", name: "ASHOK", email: "ashoksundesha17@gmail.com", department: "Salesman", tag: "Sales Manager (Pre-Owned)", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "zohair", name: "ZOHAIR", email: "zohaiz180@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "rutik", name: "RUTIK", email: "rutik2214@gmail.com", department: "Salesman", tag: "All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "abdul", name: "ABDUL", email: "abbua862@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "vikas", name: "VIKKI (VIKAS)", email: "vsundesha410@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "devendra", name: "DEVENDRA", email: "devendrapalsingh772@gmail.com", department: "Salesman", tag: "Salesman", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "praveen", name: "PRAVEEN", email: "gehlotpravin7878@gmail.com", department: "New Mobile Sale", tag: "Sales Manager (New Mobile) • All Rounder", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "sahab", name: "SAHAB", email: "siddiquishahaab@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "rajni", name: "RAJNI", email: "rajjumali9898@gmail.com", department: "New Mobile Sale", tag: "New Mobile Sale", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "mahindra", name: "MAHINDRA", email: "manishparmar1408@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "naresh", name: "NARESH", email: "nitindahiya8696@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "arvind", name: "ARVIND", email: "praveensolanki683@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "anas", name: "ANAS", email: "synzo464@gmail.com", department: "Accessories", tag: "Accessories", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "arif", name: "ARIF", email: "mullaarif1972@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
-      { id: "mohammed", name: "MOHAMMED", email: "mdesha03@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "10:00", shiftEnd: "22:00" },
-      { id: "sunil", name: "SUNIL", email: "solankisunil27861@gmail.com", department: "Service Centre", tag: "Service Centre", shiftStart: "11:00", shiftEnd: "22:30" },
-      { id: "guffran", name: "GUFFRAN", email: "gufranquraishi05@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
-      { id: "sohail", name: "SOHAIL", email: "sayyedsohail777s@gmail.com", department: "Social Team", tag: "Social Team", shiftStart: "12:00", shiftEnd: "22:30" },
-      { id: "vishal", name: "VISHAL", email: "vishalgehlot1442@gmail.com", department: "Accountant", tag: "Accountant", shiftStart: "11:00", shiftEnd: "22:30" }
-    ];
+      { id: "ashok", name: "ASHOK", email: "ashoksundesha17@gmail.com", department: "Pre-Owned Mobile", designation: "Pre-Owned Phone Manager", reportMode: "phones", tagline: "Every Conversation Is a New Opportunity — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "zohair", name: "ZOHAIR", email: "zohaiz180@gmail.com", department: "Pre-Owned Mobile", designation: "All Rounder", reportMode: "phones", tagline: "Versatility & Hustle Win Every Deal — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rutik", name: "RUTIK", email: "rutik2214@gmail.com", department: "Pre-Owned Mobile", designation: "All Rounder", reportMode: "standard", tagline: "Ready for Every Challenge — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "abdul", name: "ABDUL", email: "abbua862@gmail.com", department: "Pre-Owned Mobile", designation: "Pre-Owned Sales", reportMode: "phones", tagline: "Trust Builds Loyal Customers — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "vikas", name: "VIKKI", email: "vsundesha410@gmail.com", department: "Pre-Owned Mobile", designation: "Pre-Owned Sales", reportMode: "phones", tagline: "Consistent Effort Drives Big Results — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "devendra", name: "DEVENDRA", email: "devendrapalsingh772@gmail.com", department: "Pre-Owned Mobile", designation: "Pre-Owned Sales", reportMode: "phones", tagline: "Aim Higher Every Single Day — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
 
-    const DEPT_METRIC_CONFIG = {
-      "Salesman": { heading: "Pre-Owned & Sales Daily Output", pLabel: "Phones / Units Sold (Qty)", sLabel: "Total Sales Value (₹)" },
-      "New Mobile Sale": { heading: "New Mobile Sale Output", pLabel: "New Mobiles Sold (Qty)", sLabel: "Total Billing Value (₹)" },
-      "Accessories": { heading: "Accessories Daily Output", pLabel: "Accessories Items Sold (Qty)", sLabel: "Accessories Amount (₹)" },
-      "Service Centre": { heading: "Service Centre Daily Output", pLabel: "Handsets Repaired / Serviced (Qty)", sLabel: "Service Billing Amount (₹)" },
-      "Social Team": { heading: "Social Media Daily Output", pLabel: "Reels / Videos Posted (Qty)", sLabel: "Leads / Enquiries Generated (Qty)" },
-      "Accountant": { heading: "Accounts & Billing Daily Output", pLabel: "Bills / Vouchers Processed (Qty)", sLabel: "Total Reconciled Amount (₹)" }
-    };
+      { id: "praveen", name: "PRAVEEN", email: "gehlotpravin7878@gmail.com", department: "New Mobile Sale", designation: "New Phone Manager", reportMode: "phones", tagline: "Leading Flagship Sales with Excellence — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "sahab", name: "SAHAB", email: "siddiquishahaab@gmail.com", department: "New Mobile Sale", designation: "New Mobile Sales", reportMode: "phones", tagline: "Delivering the Latest Tech with a Smile — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "rajni", name: "RAJNI", email: "rajjumali9898@gmail.com", department: "New Mobile Sale", designation: "New Mobile Sales", reportMode: "phones", tagline: "Energy, Confidence & Customer Care — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+
+      { id: "mahindra", name: "MAHINDRA", email: "manishparmar1408@gmail.com", department: "Accessories", designation: "Accessories", reportMode: "standard", tagline: "Complete Protection, Complete Satisfaction — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "naresh", name: "NARESH", email: "nitindahiya8696@gmail.com", department: "Accessories", designation: "Accessories", reportMode: "accessories", tagline: "Small Add-Ons, Big Value — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "arvind", name: "ARVIND", email: "praveensolanki683@gmail.com", department: "Accessories", designation: "Accessories", reportMode: "accessories", tagline: "Excellence in Every Detail — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+      { id: "anas", name: "ANAS", email: "synzo464@gmail.com", department: "Accessories", designation: "Accessories", reportMode: "accessories", tagline: "Smart Pitching, Strong Numbers — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+
+      { id: "arif", name: "ARIF", email: "mullaarif1972@gmail.com", department: "Service Centre", designation: "Service Engineer", reportMode: "service", tagline: "Precision, Speed & Trust — Bringing Devices Back to Life!", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "mohammed", name: "MOHAMMED", email: "mdesha03@gmail.com", department: "Service Centre", designation: "Service Engineer", reportMode: "service", tagline: "Quality Repairs Every Single Time — Keep Going!", shiftStart: "10:00", shiftEnd: "22:00" },
+      { id: "sunil", name: "SUNIL", email: "solankisunil27861@gmail.com", department: "Service Centre", designation: "Service Engineer", reportMode: "service", tagline: "Fast Turnaround, Happy Customers — Keep Going!", shiftStart: "11:00", shiftEnd: "22:30" },
+
+      { id: "guffran", name: "GUFFRAN", email: "gufranquraishi05@gmail.com", department: "Social Media", designation: "Video Editor", reportMode: "editor", tagline: "Crafting Visuals That Inspire — Keep Going!", shiftStart: "12:00", shiftEnd: "22:30" },
+      { id: "sohail", name: "SOHAIL", email: "sayyedsohail777s@gmail.com", department: "Social Media", designation: "GP Social Media Manager", reportMode: "standard", tagline: "Building the Galaxy Point Brand Every Day — Keep Going!", shiftStart: "12:00", shiftEnd: "22:30" },
+
+      { id: "vishal", name: "VISHAL", email: "vishalgehlot1442@gmail.com", department: "Accountant", designation: "Accountant", reportMode: "standard", tagline: "Accuracy & Integrity — The Backbone of Galaxy Point!", shiftStart: "11:00", shiftEnd: "22:30" }
+    ];
 
     let currentUserProfile = null;
     let activeUnsubscribers = [];
@@ -1000,9 +1234,13 @@
     let allTasksToday = [];
     let allLeaves = [];
     let allAdvances = [];
+    let storeHolidays = [];
+    let bestEmployeesMap = {};
+    let staffSalaryConfigMap = {};
     let lastKnownPendingTaskIds = new Set();
     let historyExportCache = [];
-    let currentAnalyticsPeriod = "day";
+    let currentAnalyticsPeriod = "month";
+    let currentAnalyticsDept = "Pre-Owned Mobile";
 
     function getGpLogoSvg(className = "w-full h-full") {
       return `
@@ -1038,12 +1276,12 @@
         document.getElementById("favicon-link").href = pngUrl;
 
         const manifest = {
-          name: "Galaxy Point — Staff Application",
+          name: "GALAXY POINT — Staff Application",
           short_name: "Galaxy Point",
           start_url: "./",
           display: "standalone",
           background_color: "#FFFFFF",
-          theme_color: "#0B4F9F",
+          theme_color: "#0A3D82",
           icons: [{ src: pngUrl, sizes: "512x512", type: "image/png" }]
         };
         const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
@@ -1055,6 +1293,11 @@
     function getTodayKey() {
       const now = new Date();
       return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    }
+
+    function getCurrentMonthKey() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
     }
 
     function format12Hour(hhmm) {
@@ -1149,11 +1392,10 @@
       return null;
     }
 
-    // Individual Password Set / Reset via Official Firebase Email Link
     window.handlePasswordReset = async function() {
       const email = document.getElementById("login-email").value.trim().toLowerCase();
       if (!email) {
-        window.showToast("Please type your registered Gmail ID in the email box first.", "warn");
+        window.showToast("Please enter your registered Gmail ID in the email field first.", "warn");
         return;
       }
       const matched = resolveAccountByEmail(email);
@@ -1165,11 +1407,10 @@
         await sendPasswordResetEmail(auth, matched.email);
         window.showToast(`Password setup/reset link sent to ${matched.email}! Check Inbox or Spam.`, "success");
       } catch (err) {
-        window.showToast(err.message || "Make sure this user is added in Firebase Authentication first.", "error");
+        window.showToast(err.message || "Make sure this user is added in Firebase Authentication.", "error");
       }
     };
 
-    // Individual Firebase Authentication Login (No Hardcoded Passwords)
     async function performLogin() {
       const email = document.getElementById("login-email").value.trim().toLowerCase();
       const password = document.getElementById("login-password").value;
@@ -1205,21 +1446,18 @@
           email: matched.email,
           role: matched.role,
           department: matched.department,
-          tag: matched.tag,
+          designation: matched.designation,
           shiftStart: matched.shiftStart,
           shiftEnd: matched.shiftEnd,
           lastLoginAt: Date.now()
         }, { merge: true });
 
       } catch (err) {
-        console.error("Login Error:", err);
         let friendlyMsg = "Incorrect password or account not yet activated in Firebase Authentication.";
         if (err.code === "auth/wrong-password" || err.code === "auth/invalid-credential" || err.code === "auth/invalid-login-credentials") {
-          friendlyMsg = "Incorrect password or account not added yet. Ask Boss or click 'Set / Reset Password?' above.";
+          friendlyMsg = "Incorrect password. Check your password or click 'Set / Reset Password?' above.";
         } else if (err.code === "auth/too-many-requests") {
           friendlyMsg = "Too many failed attempts. Please wait a minute or reset your password.";
-        } else if (err.code === "auth/unauthorized-domain") {
-          friendlyMsg = "Domain not authorized in Firebase Console -> Authentication -> Settings.";
         }
         errText.textContent = friendlyMsg;
         errBox.classList.remove("hidden");
@@ -1282,1210 +1520,79 @@
     });
 
     // =========================================================
-    // STAFF PORTAL LOGIC (STRICT GPS CHECK-IN ONLY)
+    // SHARED REALTIME LISTENERS (ANNOUNCEMENTS, HOLIDAYS, CHAT)
     // =========================================================
-    function initStaffPortal(profile) {
-      clearActiveListeners();
-      lastKnownPendingTaskIds = new Set();
-
-      document.getElementById("staff-nav-name").textContent = profile.name;
-      document.getElementById("staff-nav-dept").textContent = profile.tag;
-      document.getElementById("staff-nav-shift").textContent = `Shift: ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
-      document.getElementById("staff-greeting").textContent = `Welcome, ${profile.name}`;
-      document.getElementById("staff-role-subtitle").textContent = `${profile.department} (${profile.tag}) • Shift ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
-      document.getElementById("staff-today-date").textContent = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-
-      const mCfg = DEPT_METRIC_CONFIG[profile.department] || DEPT_METRIC_CONFIG["Salesman"];
-      document.getElementById("dept-metric-heading").textContent = mCfg.heading;
-      document.getElementById("metric-primary-label").textContent = mCfg.pLabel;
-      document.getElementById("metric-secondary-label").textContent = mCfg.sLabel;
-
-      window.setLeaveQuickDate(1);
-      document.getElementById("advance-date-input").value = getTodayKey();
-      window.switchStaffTab("home");
-
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${profile.id}`;
-
-      const unsubAtt = onSnapshot(doc(db, "attendance", attDocId), (snap) => {
-        const data = snap.exists() ? snap.data() : null;
-        todayAttendanceMap[profile.id] = data;
-        renderStaffAttendanceAndBreak(data);
-        renderStaffEditableExtraWork(data);
-        renderStaffAutoReport();
-        if (data?.metrics) {
-          document.getElementById("metric-primary-input").value = data.metrics.primary ?? "";
-          document.getElementById("metric-secondary-input").value = data.metrics.secondary ?? "";
+    function subscribeAnnouncementsAndWinners() {
+      const unsubAnn = onSnapshot(doc(db, "settings", "latestAnnouncement"), (snap) => {
+        const banner = document.getElementById("staff-announcement-banner");
+        if (!banner) return;
+        if (!snap.exists()) {
+          banner.classList.add("hidden");
+          return;
         }
-      });
-      activeUnsubscribers.push(unsubAtt);
-
-      const qTasks = query(
-        collection(db, "tasks"),
-        where("date", "==", todayKey),
-        where("assignedToId", "==", profile.id)
-      );
-      const unsubTasks = onSnapshot(qTasks, (snap) => {
-        const tasks = [];
-        snap.forEach(d => tasks.push({ docId: d.id, ...d.data() }));
-        tasks.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-        tasks.forEach(t => {
-          if (t.status === "pending" && !lastKnownPendingTaskIds.has(t.docId)) {
-            if (lastKnownPendingTaskIds.size > 0) {
-              playNotificationChime();
-              window.showToast(`New Task from Boss: ${t.title}`, "info");
-            }
-            lastKnownPendingTaskIds.add(t.docId);
-          }
-        });
-
-        allTasksToday = tasks;
-        renderStaffTasksAndIncentives();
-        renderStaffAutoReport();
-      });
-      activeUnsubscribers.push(unsubTasks);
-
-      const qLeaves = query(collection(db, "leaves"), where("staffId", "==", profile.id));
-      const unsubLeaves = onSnapshot(qLeaves, (snap) => {
-        const list = [];
-        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
-        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        renderStaffLeaves(list);
-      });
-      activeUnsubscribers.push(unsubLeaves);
-
-      const qAdv = query(collection(db, "advances"), where("staffId", "==", profile.id));
-      const unsubAdv = onSnapshot(qAdv, (snap) => {
-        const list = [];
-        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
-        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        renderStaffAdvances(list);
-      });
-      activeUnsubscribers.push(unsubAdv);
-    }
-
-    window.switchStaffTab = function(tabName) {
-      ["home", "tasks", "incentives", "requests"].forEach(v => {
-        document.getElementById(`staff-view-${v}`).classList.toggle("hidden", v !== tabName);
-      });
-      document.querySelectorAll(".staff-tab-btn").forEach(btn => {
-        const active = btn.dataset.staffTab === tabName;
-        if (btn.closest("nav")) {
-          btn.className = active
-            ? "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-extrabold text-blue-700 bg-blue-50/90 tap-scale"
-            : "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[11px] font-semibold text-slate-500 hover:text-slate-800 tap-scale";
-        } else {
-          btn.className = active
-            ? "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-blue-700 text-white shadow-xs transition"
-            : "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 text-slate-600 hover:bg-slate-200/70 transition";
-        }
-      });
-    };
-
-    // STRICT MANDATORY GPS CHECK-IN (BLOCKS CHECK-IN IF LOCATION DENIED/OFF)
-    window.handleStaffCheckIn = async function() {
-      if (!currentUserProfile) return;
-      const btn = document.getElementById("btn-staff-checkin");
-
-      if (!navigator.geolocation) {
-        window.showToast("GPS is not supported on this browser. Check-in blocked.", "error");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerHTML = `<span>Verifying Live GPS...</span>`;
-
-      const getStrictCoords = () => new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => resolve({
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude,
-            accuracy: Math.round(pos.coords.accuracy || 0)
-          }),
-          (err) => reject(err),
-          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-        );
-      });
-
-      let coords;
-      try {
-        coords = await getStrictCoords();
-      } catch (geoErr) {
-        btn.disabled = false;
-        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
-        window.showToast("Check-In BLOCKED: Please turn ON Location/GPS and allow permission in your browser settings.", "error");
-        return;
-      }
-
-      if (!coords || typeof coords.lat !== "number" || typeof coords.lng !== "number") {
-        btn.disabled = false;
-        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
-        window.showToast("Unable to verify GPS coordinates. Check-in blocked.", "error");
-        return;
-      }
-
-      const mapsUrl = `https://maps.google.com/?q=${coords.lat},${coords.lng}`;
-      let locationText = `GPS (${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)})`;
-
-      try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`);
-        const geo = await res.json();
-        if (geo && geo.display_name) {
-          locationText = geo.display_name.split(",").slice(0, 3).join(", ");
-        }
-      } catch (e) {}
-
-      const nowMs = Date.now();
-      const punctuality = computePunctuality(nowMs, currentUserProfile.shiftStart);
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-
-      await setDoc(doc(db, "attendance", attDocId), {
-        date: todayKey,
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        shiftStart: currentUserProfile.shiftStart,
-        shiftEnd: currentUserProfile.shiftEnd,
-        checkInMs: nowMs,
-        checkInStatus: punctuality.label,
-        isLate: punctuality.isLate,
-        checkInLocation: locationText,
-        checkInMapsUrl: mapsUrl,
-        gpsLat: coords.lat,
-        gpsLng: coords.lng,
-        gpsVerified: true,
-        checkOutMs: null,
-        totalBreakMs: 0,
-        activeBreakStartMs: null,
-        breakSessions: [],
-        additionalWork: []
-      }, { merge: true });
-
-      window.showToast(`GPS Verified! Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
-    };
-
-    window.handleStaffCheckOut = async function() {
-      if (!currentUserProfile) return;
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-      if (!existing || !existing.checkInMs) return;
-
-      const nowMs = Date.now();
-      let extraBreakMs = 0;
-      const sessions = [...(existing.breakSessions || [])];
-
-      if (existing.activeBreakStartMs) {
-        extraBreakMs = nowMs - existing.activeBreakStartMs;
-        sessions.push({ startMs: existing.activeBreakStartMs, endMs: nowMs, durationMs: extraBreakMs });
-      }
-
-      await updateDoc(doc(db, "attendance", attDocId), {
-        checkOutMs: nowMs,
-        activeBreakStartMs: null,
-        totalBreakMs: (existing.totalBreakMs || 0) + extraBreakMs,
-        breakSessions: sessions
-      });
-
-      window.showToast(`Checked out at ${formatTimestampTime(nowMs)}.`, "success");
-    };
-
-    window.handleToggleBreak = async function() {
-      if (!currentUserProfile) return;
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-
-      if (!existing || !existing.checkInMs) {
-        window.showToast("Please complete GPS Check-In first before starting a break.", "warn");
-        return;
-      }
-      if (existing.checkOutMs) {
-        window.showToast("You have already checked out for today.", "warn");
-        return;
-      }
-
-      const nowMs = Date.now();
-      if (!existing.activeBreakStartMs) {
-        await updateDoc(doc(db, "attendance", attDocId), { activeBreakStartMs: nowMs });
-        window.showToast("Break started. Tap again when you return.", "info");
-      } else {
-        const sessionDuration = nowMs - existing.activeBreakStartMs;
-        const newTotalMs = (existing.totalBreakMs || 0) + sessionDuration;
-        const sessions = [...(existing.breakSessions || []), {
-          startMs: existing.activeBreakStartMs,
-          endMs: nowMs,
-          durationMs: sessionDuration
-        }];
-
-        await updateDoc(doc(db, "attendance", attDocId), {
-          activeBreakStartMs: null,
-          totalBreakMs: newTotalMs,
-          breakSessions: sessions
-        });
-
-        const totalMins = Math.round(newTotalMs / 60000);
-        if (totalMins > 60) {
-          window.showToast(`Break ended (${totalMins}m used — Exceeded 60m limit!)`, "error");
-        } else {
-          window.showToast(`Break ended (${60 - totalMins}m remaining today)`, "success");
-        }
-      }
-    };
-
-    function renderStaffAttendanceAndBreak(data) {
-      const btnIn = document.getElementById("btn-staff-checkin");
-      const btnOut = document.getElementById("btn-staff-checkout");
-      const badge = document.getElementById("staff-attendance-badge");
-      const inTime = document.getElementById("staff-checkin-time");
-      const inStatus = document.getElementById("staff-checkin-status-tag");
-      const inLoc = document.getElementById("staff-checkin-location");
-      const outTime = document.getElementById("staff-checkout-time");
-      const outStatus = document.getElementById("staff-checkout-status-tag");
-
-      if (!data || !data.checkInMs) {
-        badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600";
-        badge.textContent = "Not Checked In";
-        inTime.textContent = "--:--";
-        inStatus.textContent = "GPS Required";
-        inStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
-        btnIn.disabled = false;
-        btnIn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
-        btnOut.disabled = true;
-        outTime.textContent = "--:--";
-        outStatus.textContent = "Waiting";
-      } else {
-        inTime.textContent = formatTimestampTime(data.checkInMs);
-        inStatus.textContent = data.checkInStatus || "Checked In";
-        inStatus.className = data.isLate
-          ? "text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800"
-          : "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
-
-        inLoc.innerHTML = data.checkInMapsUrl
-          ? `<a href="${data.checkInMapsUrl}" target="_blank" class="text-blue-700 underline font-semibold">${data.checkInLocation} (View Map)</a>`
-          : `<span>${data.checkInLocation || "GPS Verified"}</span>`;
-
-        btnIn.disabled = true;
-        btnIn.innerHTML = `<span>GPS Checked In &#10003;</span>`;
-
-        if (!data.checkOutMs) {
-          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
-          badge.textContent = "On Duty";
-          btnOut.disabled = false;
-          outTime.textContent = "--:--";
-          outStatus.textContent = "Active Shift";
-          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
-        } else {
-          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-white";
-          badge.textContent = "Shift Completed";
-          btnOut.disabled = true;
-          outTime.textContent = formatTimestampTime(data.checkOutMs);
-          outStatus.textContent = "Completed";
-          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
-        }
-      }
-
-      updateBreakLiveDisplay(data);
-    }
-
-    function updateBreakLiveDisplay(data) {
-      const savedMs = data?.totalBreakMs || 0;
-      const runningMs = data?.activeBreakStartMs ? (Date.now() - data.activeBreakStartMs) : 0;
-      const totalMs = savedMs + runningMs;
-      const totalMins = Math.floor(totalMs / 60000);
-      const remainingMins = Math.max(0, 60 - totalMins);
-      const pct = Math.min(100, Math.round((totalMs / (60 * 60000)) * 100));
-
-      document.getElementById("break-summary-counter").textContent = `${totalMins}m / 60m`;
-      const bar = document.getElementById("break-progress-bar");
-      bar.style.width = `${pct}%`;
-      bar.className = totalMins > 60
-        ? "h-full rounded-full bg-red-600 transition-all duration-300"
-        : "h-full rounded-full bg-blue-600 transition-all duration-300";
-
-      const remEl = document.getElementById("break-remaining-text");
-      const warnEl = document.getElementById("break-exceed-warning");
-      if (totalMins > 60) {
-        remEl.textContent = `Exceeded by ${totalMins - 60} minutes`;
-        remEl.className = "font-bold text-red-600";
-        warnEl.classList.remove("hidden");
-      } else {
-        remEl.textContent = `${remainingMins} minutes remaining today`;
-        remEl.className = "font-semibold text-emerald-700";
-        warnEl.classList.add("hidden");
-      }
-
-      const activeBox = document.getElementById("active-break-box");
-      const liveBadge = document.getElementById("break-live-badge");
-      const btnToggle = document.getElementById("btn-toggle-break");
-
-      if (data?.activeBreakStartMs) {
-        activeBox.classList.remove("hidden");
-        liveBadge.classList.remove("hidden");
-        const secTotal = Math.floor(runningMs / 1000);
-        const mm = String(Math.floor(secTotal / 60)).padStart(2, "0");
-        const ss = String(secTotal % 60).padStart(2, "0");
-        document.getElementById("active-break-timer").textContent = `${mm}:${ss}`;
-
-        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-lg transition tap-scale";
-        btnToggle.innerHTML = `<span>End Break &amp; Resume Duty</span>`;
-      } else {
-        activeBox.classList.add("hidden");
-        liveBadge.classList.add("hidden");
-        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition tap-scale";
-        btnToggle.innerHTML = `<span>Want a Break? Tap Here to Start</span>`;
-      }
-
-      const listEl = document.getElementById("break-sessions-list");
-      const sessions = data?.breakSessions || [];
-      if (sessions.length === 0) {
-        listEl.innerHTML = "";
-      } else {
-        listEl.innerHTML = `<p class="text-[11px] font-bold uppercase text-slate-400 pt-2">Today's Break Splits</p>` +
-          sessions.map((s, idx) => `
-            <div class="flex items-center justify-between text-xs px-3 py-2 rounded-xl bg-slate-50 border border-slate-100">
-              <span class="font-semibold text-slate-700">Break #${idx + 1} (${formatTimestampTime(s.startMs)} – ${formatTimestampTime(s.endMs)})</span>
-              <span class="font-bold text-blue-800">${Math.max(1, Math.round(s.durationMs / 60000))} min</span>
-            </div>
-          `).join("");
-      }
-    }
-
-    // Department Daily Metrics Save
-    window.handleSaveDeptMetrics = async function(e) {
-      if (e) e.preventDefault();
-      if (!currentUserProfile) return;
-      const primary = Number(document.getElementById("metric-primary-input").value || 0);
-      const secondary = Number(document.getElementById("metric-secondary-input").value || 0);
-
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-
-      await setDoc(doc(db, "attendance", attDocId), {
-        date: todayKey,
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        metrics: { primary, secondary, updatedAt: Date.now() }
-      }, { merge: true });
-
-      window.showToast("Today's performance numbers updated for Boss leaderboard!", "success");
-    };
-
-    // Additional Work Add, Edit & Delete
-    window.handleAddAdditionalWork = async function(e) {
-      if (e) e.preventDefault();
-      if (!currentUserProfile) return;
-      const inp = document.getElementById("additional-work-input");
-      const text = inp.value.trim();
-      if (!text) return;
-
-      const todayKey = getTodayKey();
-      const attDocId = `${todayKey}_${currentUserProfile.id}`;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-      const currentExtra = existing?.additionalWork || [];
-
-      await setDoc(doc(db, "attendance", attDocId), {
-        date: todayKey,
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        additionalWork: [...currentExtra, { text, timeMs: Date.now() }]
-      }, { merge: true });
-
-      inp.value = "";
-      window.showToast("Added to report!", "success");
-    };
-
-    window.handleEditAdditionalWork = async function(idx) {
-      if (!currentUserProfile) return;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-      const currentExtra = [...(existing?.additionalWork || [])];
-      if (!currentExtra[idx]) return;
-
-      const updatedText = prompt("Edit your report entry:", currentExtra[idx].text);
-      if (updatedText === null || !updatedText.trim()) return;
-
-      currentExtra[idx] = { ...currentExtra[idx], text: updatedText.trim(), editedAt: Date.now() };
-      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
-      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
-      window.showToast("Report entry updated!", "success");
-    };
-
-    window.handleDeleteAdditionalWork = async function(idx) {
-      if (!currentUserProfile) return;
-      const existing = todayAttendanceMap[currentUserProfile.id];
-      const currentExtra = [...(existing?.additionalWork || [])];
-      currentExtra.splice(idx, 1);
-
-      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
-      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
-      window.showToast("Report entry deleted.", "info");
-    };
-
-    function renderStaffEditableExtraWork(data) {
-      const container = document.getElementById("staff-editable-extra-list");
-      const list = data?.additionalWork || [];
-      if (list.length === 0) {
-        container.innerHTML = "";
-        return;
-      }
-      container.innerHTML = list.map((item, idx) => `
-        <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-xs">
-          <div class="min-w-0">
-            <p class="font-semibold text-slate-900 break-words">${item.text}</p>
-            <span class="text-[10px] text-slate-500">${formatTimestampTime(item.timeMs)} ${item.editedAt ? '(Edited)' : ''}</span>
-          </div>
-          <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="window.handleEditAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-blue-600 text-blue-700 hover:text-white border border-blue-200 font-bold text-[11px] transition tap-scale">
-              Edit
-            </button>
-            <button type="button" onclick="window.handleDeleteAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-red-600 text-red-600 hover:text-white border border-red-200 font-bold text-[11px] transition tap-scale">
-              Delete
-            </button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function renderStaffTasksAndIncentives() {
-      const pendingCount = allTasksToday.filter(t => t.status === "pending").length;
-      const badge = document.getElementById("staff-notif-badge");
-      const banner = document.getElementById("staff-boss-alert-banner");
-      document.getElementById("staff-tasks-count-pill").textContent = `${allTasksToday.length} Tasks`;
-
-      if (pendingCount > 0) {
-        badge.textContent = pendingCount;
-        badge.classList.remove("hidden");
+        const d = snap.data();
         banner.classList.remove("hidden");
-        document.getElementById("staff-boss-alert-text").textContent = `You have ${pendingCount} pending task(s) assigned by JAGDISH BOSS today.`;
-      } else {
-        badge.classList.add("hidden");
-        banner.classList.add("hidden");
-      }
-
-      const listEl = document.getElementById("staff-tasks-list");
-      if (allTasksToday.length === 0) {
-        listEl.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned by JAGDISH BOSS yet today.</div>`;
-      } else {
-        listEl.innerHTML = allTasksToday.map(t => {
-          const isDone = t.status === "completed";
-          return `
-            <div class="p-4 rounded-2xl border ${isDone ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200'} flex items-start justify-between gap-3 transition">
-              <div class="flex items-start gap-3">
-                <button type="button" onclick="window.toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
-                  class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition tap-scale ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
-                  ${isDone ? '&#10003;' : ''}
-                </button>
-                <div>
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-sm font-bold ${isDone ? 'line-through text-slate-400' : 'text-slate-900'}">${t.title}</span>
-                    ${t.priority === 'Urgent' ? '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">URGENT</span>' : ''}
-                    ${t.incentiveAmount > 0 ? `<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
-                  </div>
-                  <p class="text-[11px] text-slate-500 mt-1">
-                    ${isDone ? `Completed at ${formatTimestampTime(t.completedAt)} • Synced to Report` : 'Assigned by JAGDISH BOSS'}
-                  </p>
-                </div>
-              </div>
-              ${isDone && t.incentiveAmount > 0 ? `
-                <button type="button" onclick="window.switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0 tap-scale">
-                  Claim &#8377;${t.incentiveAmount}
-                </button>
-              ` : ''}
-            </div>
-          `;
-        }).join("");
-      }
-
-      const incTasks = allTasksToday.filter(t => (t.incentiveAmount || 0) > 0);
-      const totalEarned = incTasks.filter(t => t.status === "completed").reduce((s, t) => s + Number(t.incentiveAmount || 0), 0);
-      document.getElementById("staff-total-incentive").textContent = `\u20B9${totalEarned}`;
-
-      const incListEl = document.getElementById("staff-incentives-list");
-      if (incTasks.length === 0) {
-        incListEl.innerHTML = `<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center text-xs text-slate-500">No incentive tasks assigned to you yet.</div>`;
-      } else {
-        incListEl.innerHTML = incTasks.map(t => {
-          const isDone = t.status === "completed";
-          const isClaimed = !!t.incentiveClaimed;
-          return `
-            <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs">&#8377;${t.incentiveAmount} Reward</span>
-                  <span class="text-xs font-bold ${isDone ? 'text-emerald-700' : 'text-slate-500'}">
-                    ${isDone ? 'Task Completed' : 'Task Pending'}
-                  </span>
-                </div>
-                <h4 class="font-display font-extrabold text-slate-900 text-base mt-2">${t.title}</h4>
-                <p class="text-xs text-slate-500 mt-1">
-                  ${!isDone
-                    ? 'Complete this task first to unlock your incentive claim.'
-                    : isClaimed
-                      ? `Claim confirmed on ${formatTimestampTime(t.claimedAt)} (Verified for JAGDISH BOSS)`
-                      : 'Visit VISHAL (Accountant) to collect your \u20B9' + t.incentiveAmount + ', then tap confirm below.'}
-                </p>
-              </div>
-
-              <div class="shrink-0">
-                ${!isDone
-                  ? `<button type="button" onclick="window.switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs tap-scale">Go Complete Task</button>`
-                  : isClaimed
-                    ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs">Claimed &amp; Received &#10003;</span>`
-                    : `<button type="button" onclick="window.handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow">
-                        Did You Claim? Yes, Received
-                      </button>`
-                }
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-    }
-
-    window.toggleCompleteTask = async function(docId, currentStatus, incentiveAmt) {
-      const nextStatus = currentStatus === "completed" ? "pending" : "completed";
-      await updateDoc(doc(db, "tasks", docId), {
-        status: nextStatus,
-        completedAt: nextStatus === "completed" ? Date.now() : null
+        document.getElementById("staff-announcement-title").textContent = d.title || "Store Notice";
+        document.getElementById("staff-announcement-body").textContent = d.body || "";
+        document.getElementById("staff-announcement-time").textContent = d.createdAt ? formatTimestampTime(d.createdAt) : "";
       });
-      if (nextStatus === "completed") {
-        window.showToast(incentiveAmt > 0 ? `Task completed! \u20B9${incentiveAmt} incentive unlocked!` : "Task completed & synced to Daily Report!", "success");
-        if (incentiveAmt > 0) window.switchStaffTab("incentives");
-      }
-    };
+      activeUnsubscribers.push(unsubAnn);
 
-    window.handleConfirmIncentiveClaim = async function(docId) {
-      await updateDoc(doc(db, "tasks", docId), {
-        incentiveClaimed: true,
-        claimedAt: Date.now()
+      const unsubBest = onSnapshot(doc(db, "settings", "bestEmployees"), (snap) => {
+        bestEmployeesMap = snap.exists() ? snap.data() : {};
+        if (currentUserProfile?.role === "staff") {
+          const isWinner = Object.values(bestEmployeesMap).some(w => w.staffId === currentUserProfile.id);
+          document.getElementById("staff-star-badge").classList.toggle("hidden", !isWinner);
+        }
+        if (currentUserProfile?.role === "boss") {
+          renderBestEmployeesShowcase();
+        }
       });
-      window.showToast("Incentive claim confirmed! JAGDISH BOSS has been updated.", "success");
-    };
+      activeUnsubscribers.push(unsubBest);
 
-    function renderStaffAutoReport() {
-      const box = document.getElementById("staff-auto-report-items");
-      const att = todayAttendanceMap[currentUserProfile?.id];
-      const completedTasks = allTasksToday.filter(t => t.status === "completed");
-      const extraWork = att?.additionalWork || [];
-      const metrics = att?.metrics;
-
-      const items = [];
-      if (metrics && (metrics.primary > 0 || metrics.secondary > 0)) {
-        const cfg = DEPT_METRIC_CONFIG[currentUserProfile.department] || DEPT_METRIC_CONFIG["Salesman"];
-        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">FIGURES</span><span>${cfg.pLabel}: <strong>${metrics.primary}</strong> | ${cfg.sLabel}: <strong>${metrics.secondary}</strong></span></div>`);
-      }
-      completedTasks.forEach(t => {
-        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">TASK DONE</span><span>${t.title}</span></div>`);
+      const unsubHol = onSnapshot(collection(db, "holidays"), (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+        storeHolidays = list;
+        if (currentUserProfile?.role === "staff") window.loadStaffMonthlySummary();
+        if (currentUserProfile?.role === "boss") {
+          renderBossHolidaysList();
+          window.loadBossMonthlyPayroll();
+        }
       });
-      extraWork.forEach(w => {
-        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">EXTRA WORK</span><span>${w.text}</span></div>`);
-      });
+      activeUnsubscribers.push(unsubHol);
 
-      box.innerHTML = items.length ? items.join("") : `<p class="text-slate-400 italic">No report items logged yet today.</p>`;
-    }
-
-    window.setLeaveQuickDate = function(daysAhead) {
-      const d = new Date();
-      d.setDate(d.getDate() + daysAhead);
-      document.getElementById("leave-date-input").value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-    };
-
-    window.handleApplyLeave = async function(e) {
-      if (e) e.preventDefault();
-      if (!currentUserProfile) return;
-      const leaveDate = document.getElementById("leave-date-input").value;
-      const reason = document.getElementById("leave-reason-input").value.trim();
-      if (!leaveDate || !reason) return;
-
-      await addDoc(collection(db, "leaves"), {
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        leaveDate,
-        reason,
-        status: "pending",
-        createdAt: Date.now()
-      });
-
-      document.getElementById("leave-reason-input").value = "";
-      window.showToast("Urgent leave request sent to JAGDISH BOSS!", "success");
-    };
-
-    function renderStaffLeaves(list) {
-      const el = document.getElementById("staff-leaves-list");
-      if (list.length === 0) {
-        el.innerHTML = `<p class="text-xs text-slate-400">No leave requests submitted.</p>`;
-        return;
-      }
-      el.innerHTML = list.map(l => {
-        const badge = l.status === "approved" ? "bg-emerald-100 text-emerald-800" : l.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
-        return `
-          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
-            <div>
-              <p class="text-xs font-bold text-slate-900">Date: ${l.leaveDate}</p>
-              <p class="text-[11px] text-slate-500">${l.reason}</p>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${l.status}</span>
-          </div>
-        `;
-      }).join("");
-    }
-
-    window.handleApplyAdvance = async function(e) {
-      if (e) e.preventDefault();
-      if (!currentUserProfile) return;
-      const amount = Number(document.getElementById("advance-amount-input").value);
-      const neededDate = document.getElementById("advance-date-input").value;
-      const reason = document.getElementById("advance-reason-input").value.trim();
-      if (!amount || !neededDate || !reason) return;
-
-      await addDoc(collection(db, "advances"), {
-        staffId: currentUserProfile.id,
-        staffName: currentUserProfile.name,
-        department: currentUserProfile.department,
-        amount,
-        neededDate,
-        reason,
-        status: "pending",
-        createdAt: Date.now()
-      });
-
-      document.getElementById("advance-amount-input").value = "";
-      document.getElementById("advance-reason-input").value = "";
-      window.showToast(`Advance request of \u20B9${amount} sent to Boss!`, "success");
-    };
-
-    function renderStaffAdvances(list) {
-      const el = document.getElementById("staff-advances-list");
-      if (list.length === 0) {
-        el.innerHTML = `<p class="text-xs text-slate-400">No advance salary requests yet.</p>`;
-        return;
-      }
-      el.innerHTML = list.map(a => {
-        const badge = a.status === "approved" || a.status === "paid" ? "bg-emerald-100 text-emerald-800" : a.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
-        return `
-          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
-            <div>
-              <p class="text-xs font-extrabold text-slate-900">&#8377;${a.amount} <span class="font-normal text-slate-500">for ${a.neededDate}</span></p>
-              <p class="text-[11px] text-slate-500">${a.reason}</p>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${a.status}</span>
-          </div>
-        `;
-      }).join("");
-    }
-
-    // =========================================================
-    // BOSS COMMAND CENTER LOGIC (JAGDISH BOSS)
-    // =========================================================
-    function initBossPortal() {
-      clearActiveListeners();
-
-      const indivGroup = document.getElementById("boss-task-individual-options");
-      indivGroup.innerHTML = STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} (${s.tag})</option>`).join("");
-
-      const histSel = document.getElementById("history-staff-select");
-      histSel.innerHTML = `<option value="ALL">All 18 Staff Members</option>` +
-        STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} — ${s.department}</option>`).join("");
-
-      window.switchBossTab("live");
-      const todayKey = getTodayKey();
-
-      const qAtt = query(collection(db, "attendance"), where("date", "==", todayKey));
-      const unsubAtt = onSnapshot(qAtt, (snap) => {
+      const unsubSal = onSnapshot(collection(db, "salaryConfig"), (snap) => {
         const map = {};
+        snap.forEach(d => { map[d.id] = d.data(); });
+        staffSalaryConfigMap = map;
+        if (currentUserProfile?.role === "staff") window.loadStaffSalarySlip();
+        if (currentUserProfile?.role === "boss") window.loadBossMonthlyPayroll();
+      });
+      activeUnsubscribers.push(unsubSal);
+    }
+
+    function subscribeGroupChat(containerId) {
+      const fiveDaysAgoMs = Date.now() - (5 * 24 * 60 * 60 * 1000);
+      const unsubChat = onSnapshot(collection(db, "groupChat"), (snap) => {
+        const msgs = [];
         snap.forEach(d => {
-          const val = d.data();
-          map[val.staffId] = val;
-        });
-        todayAttendanceMap = map;
-        updateBossKPIs();
-        window.renderBossLiveTable();
-      });
-      activeUnsubscribers.push(unsubAtt);
-
-      const qTasks = query(collection(db, "tasks"), where("date", "==", todayKey));
-      const unsubTasks = onSnapshot(qTasks, (snap) => {
-        const list = [];
-        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
-        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        allTasksToday = list;
-        renderBossTasksList();
-        window.renderBossLiveTable();
-      });
-      activeUnsubscribers.push(unsubTasks);
-
-      const unsubLeaves = onSnapshot(collection(db, "leaves"), (snap) => {
-        const list = [];
-        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
-        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        allLeaves = list;
-        updateBossKPIs();
-        renderBossLeavesList();
-      });
-      activeUnsubscribers.push(unsubLeaves);
-
-      const unsubAdv = onSnapshot(collection(db, "advances"), (snap) => {
-        const list = [];
-        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
-        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-        allAdvances = list;
-        updateBossKPIs();
-        renderBossAdvancesList();
-      });
-      activeUnsubscribers.push(unsubAdv);
-    }
-
-    window.switchBossTab = function(tabName) {
-      ["live", "analytics", "tasks", "leaves", "advances", "history"].forEach(v => {
-        document.getElementById(`boss-view-${v}`).classList.toggle("hidden", v !== tabName);
-      });
-      document.querySelectorAll(".boss-tab-btn").forEach(btn => {
-        const active = btn.dataset.bossTab === tabName;
-        btn.className = active
-          ? "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 bg-blue-900 text-white shadow-xs transition"
-          : "boss-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-600 hover:bg-slate-200/70 transition";
-      });
-      if (tabName === "history") window.loadSixMonthHistory();
-      if (tabName === "analytics") window.setAnalyticsPeriod(currentAnalyticsPeriod);
-    };
-
-    function updateBossKPIs() {
-      let present = 0;
-      let late = 0;
-      let breakExceed = 0;
-
-      STAFF_ROSTER.forEach(s => {
-        const att = todayAttendanceMap[s.id];
-        if (att?.checkInMs) present++;
-        if (att?.isLate) late++;
-        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
-        if (Math.floor(totalBreakMs / 60000) > 60) breakExceed++;
-      });
-
-      const pendingLeaves = allLeaves.filter(l => l.status === "pending").length;
-      const pendingAdv = allAdvances.filter(a => a.status === "pending").length;
-
-      document.getElementById("kpi-present").textContent = `${present} / ${STAFF_ROSTER.length}`;
-      document.getElementById("kpi-late").textContent = late;
-      document.getElementById("kpi-break-exceed").textContent = breakExceed;
-      document.getElementById("kpi-pending-leaves").textContent = pendingLeaves;
-      document.getElementById("kpi-pending-advances").textContent = pendingAdv;
-
-      const lBadge = document.getElementById("boss-leave-badge");
-      lBadge.textContent = pendingLeaves;
-      lBadge.classList.toggle("hidden", pendingLeaves === 0);
-
-      const aBadge = document.getElementById("boss-advance-badge");
-      aBadge.textContent = pendingAdv;
-      aBadge.classList.toggle("hidden", pendingAdv === 0);
-    }
-
-    window.renderBossLiveTable = function() {
-      const deptFilter = document.getElementById("boss-dept-filter").value;
-      const tbody = document.getElementById("boss-live-tbody");
-      const list = deptFilter === "ALL" ? STAFF_ROSTER : STAFF_ROSTER.filter(s => s.department === deptFilter);
-
-      tbody.innerHTML = list.map(s => {
-        const att = todayAttendanceMap[s.id];
-        const staffTasksDone = allTasksToday.filter(t => t.assignedToId === s.id && t.status === "completed");
-        const extraWork = att?.additionalWork || [];
-        const metrics = att?.metrics;
-        const totalReportCount = staffTasksDone.length + extraWork.length + (metrics ? 1 : 0);
-
-        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
-        const breakMins = Math.floor(totalBreakMs / 60000);
-        const isExceeded = breakMins > 60;
-
-        return `
-          <tr class="hover:bg-slate-50/80 transition">
-            <td class="py-3.5 px-3">
-              <div class="font-extrabold text-slate-900">${s.name}</div>
-              <span class="inline-block mt-0.5 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800">${s.tag}</span>
-            </td>
-            <td class="py-3.5 px-3 text-slate-600 font-medium whitespace-nowrap">
-              ${format12Hour(s.shiftStart)} – ${format12Hour(s.shiftEnd)}
-            </td>
-            <td class="py-3.5 px-3">
-              ${att?.checkInMs ? `
-                <div class="flex items-center gap-1.5">
-                  <span class="font-extrabold text-slate-900">${formatTimestampTime(att.checkInMs)}</span>
-                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${att.isLate ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${att.checkInStatus}</span>
-                </div>
-                <div class="text-[11px] text-slate-600 mt-1 flex items-center gap-1.5">
-                  <span class="max-w-[180px] truncate">${att.checkInLocation || 'GPS Verified'}</span>
-                  ${att.checkInMapsUrl ? `<a href="${att.checkInMapsUrl}" target="_blank" class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px] shrink-0 hover:bg-blue-700">Open Map</a>` : ''}
-                </div>
-              ` : `<span class="text-slate-400 font-medium">Not Checked In</span>`}
-            </td>
-            <td class="py-3.5 px-3 whitespace-nowrap">
-              ${att?.checkOutMs
-                ? `<span class="font-bold text-slate-800">${formatTimestampTime(att.checkOutMs)}</span>`
-                : att?.checkInMs
-                  ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700">On Duty</span>`
-                  : `<span class="text-slate-300">--</span>`}
-            </td>
-            <td class="py-3.5 px-3 whitespace-nowrap">
-              <div class="flex items-center gap-1.5">
-                <span class="font-extrabold ${isExceeded ? 'text-red-600' : 'text-slate-800'}">${breakMins}m / 60m</span>
-                ${att?.activeBreakStartMs ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>` : ''}
-                ${isExceeded ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">EXCEEDED (+${breakMins - 60}m)</span>` : ''}
-              </div>
-            </td>
-            <td class="py-3.5 px-3">
-              ${totalReportCount > 0 ? `
-                <details class="cursor-pointer">
-                  <summary class="font-bold text-blue-700">${totalReportCount} update(s)</summary>
-                  <ul class="mt-1 space-y-0.5 text-[11px] text-slate-600 list-disc list-inside">
-                    ${metrics ? `<li><strong>Qty: ${metrics.primary} | Val: ${metrics.secondary}</strong></li>` : ''}
-                    ${staffTasksDone.map(t => `<li>[Task] ${t.title}</li>`).join("")}
-                    ${extraWork.map(w => `<li>[Extra] ${w.text}</li>`).join("")}
-                  </ul>
-                </details>
-              ` : `<span class="text-slate-400">No items yet</span>`}
-            </td>
-          </tr>
-        `;
-      }).join("");
-    };
-
-    // Department Performance Leaderboard (Day / Week / Month)
-    window.setAnalyticsPeriod = function(period) {
-      currentAnalyticsPeriod = period;
-      document.querySelectorAll(".analytics-period-btn").forEach(btn => {
-        const active = btn.dataset.period === period;
-        btn.className = active
-          ? "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-extrabold bg-blue-900 text-white shadow-2xs transition"
-          : "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition";
-      });
-      window.loadDepartmentAnalytics();
-    };
-
-    window.loadDepartmentAnalytics = async function() {
-      const dept = document.getElementById("analytics-dept-select").value;
-      const container = document.getElementById("analytics-leaderboard-container");
-      container.innerHTML = `<p class="text-xs text-slate-400 py-6 text-center">Calculating ${dept} performance rankings...</p>`;
-
-      const days = currentAnalyticsPeriod === "day" ? 0 : currentAnalyticsPeriod === "week" ? 7 : 30;
-      const cutoff = new Date();
-      cutoff.setDate(cutoff.getDate() - days);
-      const cutoffKey = `${cutoff.getFullYear()}-${String(cutoff.getMonth() + 1).padStart(2, "0")}-${String(cutoff.getDate()).padStart(2, "0")}`;
-
-      const deptStaff = STAFF_ROSTER.filter(s => s.department === dept);
-      const stats = {};
-      deptStaff.forEach(s => {
-        stats[s.id] = { ...s, primaryTotal: 0, secondaryTotal: 0, daysActive: 0 };
-      });
-
-      const attSnap = await getDocs(collection(db, "attendance"));
-      attSnap.forEach(d => {
-        const r = d.data();
-        if (r.date >= cutoffKey && stats[r.staffId]) {
-          if (r.checkInMs) stats[r.staffId].daysActive++;
-          if (r.metrics) {
-            stats[r.staffId].primaryTotal += Number(r.metrics.primary || 0);
-            stats[r.staffId].secondaryTotal += Number(r.metrics.secondary || 0);
+          const m = { docId: d.id, ...d.data() };
+          if ((m.createdAt || 0) < fiveDaysAgoMs) {
+            deleteDoc(doc(db, "groupChat", d.id)).catch(() => {});
+          } else {
+            msgs.push(m);
           }
-        }
-      });
-
-      const ranked = Object.values(stats).sort((a, b) => (b.secondaryTotal - a.secondaryTotal) || (b.primaryTotal - a.primaryTotal));
-      const maxVal = Math.max(1, ...ranked.map(r => r.secondaryTotal || r.primaryTotal || 1));
-      const cfg = DEPT_METRIC_CONFIG[dept] || DEPT_METRIC_CONFIG["Salesman"];
-
-      container.innerHTML = ranked.map((item, idx) => {
-        const pct = Math.min(100, Math.round(((item.secondaryTotal || item.primaryTotal) / maxVal) * 100));
-        const rankColors = ["bg-amber-400 text-slate-950", "bg-slate-200 text-slate-800", "bg-amber-700/20 text-amber-900"];
-        const badgeCls = rankColors[idx] || "bg-blue-50 text-blue-800";
-
-        return `
-          <div class="p-4 rounded-2xl border ${idx === 0 ? 'border-blue-300 bg-blue-50/40' : 'border-slate-200 bg-white'}">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <div class="flex items-center gap-2.5">
-                <span class="w-7 h-7 rounded-xl font-display font-extrabold text-xs flex items-center justify-center ${badgeCls}">#${idx + 1}</span>
-                <div>
-                  <span class="font-extrabold text-sm text-slate-900">${item.name}</span>
-                  <span class="ml-1.5 text-[11px] font-semibold text-slate-500">(${item.tag} &bull; ${item.daysActive} active day(s))</span>
-                </div>
-              </div>
-              <div class="text-right text-xs">
-                <span class="font-bold text-slate-600">${cfg.pLabel}: <strong class="text-slate-900">${item.primaryTotal}</strong></span>
-                <span class="mx-2 text-slate-300">|</span>
-                <span class="font-bold text-slate-600">${cfg.sLabel}: <strong class="text-emerald-700">${item.secondaryTotal}</strong></span>
-              </div>
-            </div>
-            <div class="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
-              <div class="h-full rounded-full ${idx === 0 ? 'bg-blue-700' : 'bg-blue-400'} transition-all duration-500" style="width: ${pct}%"></div>
-            </div>
-          </div>
-        `;
-      }).join("");
-    };
-
-    window.handleBossAssignTask = async function(e) {
-      if (e) e.preventDefault();
-      const target = document.getElementById("boss-task-target").value;
-      const title = document.getElementById("boss-task-title").value.trim();
-      const incentiveAmount = Number(document.getElementById("boss-task-incentive").value || 0);
-      const priority = document.getElementById("boss-task-priority").value;
-      if (!title) return;
-
-      let recipients = [];
-      if (target === "ALL") {
-        recipients = [...STAFF_ROSTER];
-      } else if (target.startsWith("DEPT:")) {
-        const dept = target.replace("DEPT:", "");
-        recipients = STAFF_ROSTER.filter(s => s.department === dept);
-      } else {
-        const one = STAFF_ROSTER.find(s => s.id === target);
-        if (one) recipients = [one];
-      }
-
-      const todayKey = getTodayKey();
-      const nowMs = Date.now();
-
-      for (const st of recipients) {
-        await addDoc(collection(db, "tasks"), {
-          date: todayKey,
-          assignedToId: st.id,
-          assignedToName: st.name,
-          department: st.department,
-          title,
-          incentiveAmount,
-          priority,
-          status: "pending",
-          incentiveClaimed: false,
-          createdAt: nowMs
         });
-      }
+        msgs.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
 
-      document.getElementById("boss-task-title").value = "";
-      document.getElementById("boss-task-incentive").value = "0";
-      window.showToast(`Task assigned to ${recipients.length} staff member(s)!`, "success");
-    };
-
-    function renderBossTasksList() {
-      document.getElementById("boss-tasks-total-pill").textContent = `${allTasksToday.length} Tasks`;
-      const el = document.getElementById("boss-tasks-list");
-
-      if (allTasksToday.length === 0) {
-        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned yet today.</div>`;
-        return;
-      }
-
-      el.innerHTML = allTasksToday.map(t => {
-        const isDone = t.status === "completed";
-        return `
-          <div class="p-3.5 rounded-2xl border ${isDone ? 'bg-emerald-50/40 border-emerald-200' : 'bg-slate-50/70 border-slate-200'} flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <div class="flex flex-wrap items-center gap-1.5">
-                <span class="text-xs font-extrabold text-blue-900">${t.assignedToName}</span>
-                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200/70 text-slate-700">${t.department}</span>
-                ${t.incentiveAmount > 0 ? `<span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
-              </div>
-              <p class="text-xs font-semibold text-slate-800 mt-1">${t.title}</p>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${isDone ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                ${isDone ? 'Completed' : 'Pending'}
-              </span>
-              ${t.incentiveAmount > 0 ? (
-                t.incentiveClaimed
-                  ? `<span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-900 text-white">Incentive Claimed &#10003;</span>`
-                  : `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-200 text-slate-600">Unclaimed</span>`
-              ) : ''}
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderBossLeavesList() {
-      const el = document.getElementById("boss-leaves-list");
-      if (allLeaves.length === 0) {
-        el.innerHTML = `<div class="col-span-full p-8 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No urgent leave requests yet.</div>`;
-        return;
-      }
-      el.innerHTML = allLeaves.map(l => `
-        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="font-extrabold text-sm text-slate-900">${l.staffName} <span class="text-xs font-semibold text-blue-700">(${l.department})</span></span>
-              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${l.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : l.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${l.status}</span>
-            </div>
-            <p class="text-xs font-bold text-blue-900 mt-1.5">Leave Date: ${l.leaveDate}</p>
-            <p class="text-xs text-slate-600 mt-1">${l.reason}</p>
-          </div>
-          ${l.status === "pending" ? `
-            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve Leave</button>
-              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
-            </div>
-          ` : ''}
-        </div>
-      `).join("");
-    }
-
-    window.updateLeaveStatus = async function(docId, status) {
-      await updateDoc(doc(db, "leaves", docId), { status, reviewedAt: Date.now() });
-      window.showToast(`Leave marked as ${status.toUpperCase()}`, "info");
-    };
-
-    function renderBossAdvancesList() {
-      const el = document.getElementById("boss-advances-list");
-      if (allAdvances.length === 0) {
-        el.innerHTML = `<div class="col-span-full p-8 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No advance salary requests yet.</div>`;
-        return;
-      }
-      el.innerHTML = allAdvances.map(a => `
-        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="font-extrabold text-sm text-slate-900">${a.staffName} <span class="text-xs font-semibold text-blue-700">(${a.department})</span></span>
-              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${a.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : a.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${a.status}</span>
-            </div>
-            <div class="flex items-center gap-3 mt-1.5">
-              <span class="font-display text-lg font-extrabold text-emerald-700">&#8377;${a.amount}</span>
-              <span class="text-xs font-bold text-slate-600">Required Date: ${a.neededDate}</span>
-            </div>
-            <p class="text-xs text-slate-600 mt-1">${a.reason}</p>
-          </div>
-          ${a.status === "pending" ? `
-            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
-              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve Advance</button>
-              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
-            </div>
-          ` : ''}
-        </div>
-      `).join("");
-    }
-
-    window.updateAdvanceStatus = async function(docId, status) {
-      await updateDoc(doc(db, "advances", docId), { status, reviewedAt: Date.now() });
-      window.showToast(`Advance request marked as ${status.toUpperCase()}`, "info");
-    };
-
-    window.loadSixMonthHistory = async function() {
-      const staffFilter = document.getElementById("history-staff-select").value;
-      const daysBack = Number(document.getElementById("history-range-select").value || 180);
-      const tbody = document.getElementById("boss-history-tbody");
-      tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Loading 6-month cloud archive...</td></tr>`;
-
-      const cutoffDate = new Date();
-      cutoffDate.setDate(cutoffDate.getDate() - daysBack);
-      const cutoffKey = cutoffDate.toISOString().slice(0, 10);
-
-      const attSnap = await getDocs(collection(db, "attendance"));
-      const taskSnap = await getDocs(collection(db, "tasks"));
-
-      const tasksByKey = {};
-      taskSnap.forEach(d => {
-        const t = d.data();
-        if (t.status === "completed") {
-          const k = `${t.date}_${t.assignedToId}`;
-          if (!tasksByKey[k]) tasksByKey[k] = [];
-          tasksByKey[k].push(t.title);
+        const box = document.getElementById(containerId);
+        if (!box) return;
+        if (msgs.length === 0) {
+          box.innerHTML = `<div class="text-center text-xs text-slate-400 py-10">No messages in the last 5 days. Say hello or appreciate a teammate!</div>`;
+          return;
         }
-      });
 
-      const rows = [];
-      attSnap.forEach(d => {
-        const r = d.data();
-        if (r.date >= cutoffKey && (staffFilter === "ALL" || r.staffId === staffFilter)) {
-          const k = `${r.date}_${r.staffId}`;
-          const doneTasks = tasksByKey[k] || [];
-          const extra = (r.additionalWork || []).map(w => w.text);
-          const metricStr = r.metrics ? [`Qty: ${r.metrics.primary} | Val: ${r.metrics.secondary}`] : [];
-          rows.push({ ...r, combinedReport: [...metricStr, ...doneTasks, ...extra] });
-        }
-      });
-
-      rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-      historyExportCache = rows;
-
-      if (rows.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">No historical records found in this date range yet.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = rows.map(r => {
-        const breakMins = Math.floor((r.totalBreakMs || 0) / 60000);
-        return `
-          <tr class="hover:bg-slate-50">
-            <td class="py-3 px-3 font-bold text-slate-800 whitespace-nowrap">${r.date}</td>
-            <td class="py-3 px-3 font-extrabold text-blue-900">${r.staffName} <span class="block text-[10px] font-normal text-slate-500">${r.department || ''}</span></td>
-            <td class="py-3 px-3">
-              <span class="font-bold">${formatTimestampTime(r.checkInMs)}</span>
-              <span class="ml-1 text-[10px] font-bold ${r.isLate ? 'text-amber-700' : 'text-emerald-700'}">(${r.checkInStatus || 'OK'})</span>
-              <div class="text-[11px] text-slate-500 max-w-[200px] truncate">${r.checkInLocation || ''}</div>
-            </td>
-            <td class="py-3 px-3 font-semibold">${formatTimestampTime(r.checkOutMs)}</td>
-            <td class="py-3 px-3 font-bold ${breakMins > 60 ? 'text-red-600' : 'text-slate-700'}">${breakMins}m / 60m</td>
-            <td class="py-3 px-3 text-slate-700">${r.combinedReport.length ? r.combinedReport.join(" • ") : '<span class="text-slate-400">—</span>'}</td>
-          </tr>
-        `;
-      }).join("");
-    };
-
-    window.exportBossHistoryCSV = function() {
-      if (!historyExportCache.length) {
-        window.showToast("No records available to export.", "warn");
-        return;
-      }
-      const headers = ["Date", "Staff Name", "Department", "Check-In Time", "Status", "Check-In Location", "Check-Out Time", "Break Minutes", "Work Report"];
-      const csvLines = [headers.join(",")];
-      historyExportCache.forEach(r => {
-        const line = [
-          r.date,
-          `"${r.staffName}"`,
-          `"${r.department || ''}"`,
-          `"${formatTimestampTime(r.checkInMs)}"`,
-          `"${r.checkInStatus || ''}"`,
-          `"${(r.checkInLocation || '').replace(/"/g, "'")}"`,
-          `"${formatTimestampTime(r.checkOutMs)}"`,
-          Math.floor((r.totalBreakMs || 0) / 60000),
-          `"${(r.combinedReport || []).join(" | ").replace(/"/g, "'")}"`
-        ];
-        csvLines.push(line.join(","));
-      });
-      const blob = new Blob([csvLines.join("\n")], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `Galaxy_Point_6Month_Report_${getTodayKey()}.csv`;
-      a.click();
-    };
-
-    setInterval(() => {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
-      const dateStr = now.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
-
-      const lClock = document.getElementById("login-live-clock");
-      const lDate = document.getElementById("login-live-date");
-      if (lClock) lClock.textContent = timeStr;
-      if (lDate) lDate.textContent = dateStr;
-
-      const sClock = document.getElementById("staff-live-clock");
-      if (sClock) sClock.textContent = timeStr;
-
-      const bClock = document.getElementById("boss-live-clock");
-      if (bClock) bClock.textContent = `${dateStr} • ${timeStr}`;
-
-      if (currentUserProfile?.role === "staff") {
-        const myAtt = todayAttendanceMap[currentUserProfile.id];
-        if (myAtt?.activeBreakStartMs) {
-          updateBreakLiveDisplay(myAtt);
-        }
-      }
-    }, 1000);
-
-    setupAppIconsAndManifest();
-  </script>
-</body>
-</html>
+        box.innerHTML = msgs.map(m => {
+          const isMe
