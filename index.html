@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>GALAXY POINT — Staff Application</title>
+  <title>Galaxy Point — Staff Application</title>
   <meta name="theme-color" content="#0A3D82" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -21,60 +21,55 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #F2F6FC;
+      background-color: #F3F7FD;
       color: #0F172A;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top);
     }
-    h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: #F1F5F9; }
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
 
-    .login-bg {
+    .exec-login-bg {
       background:
-        radial-gradient(circle at 10% 15%, rgba(29, 99, 220, 0.14) 0%, transparent 45%),
-        radial-gradient(circle at 90% 85%, rgba(10, 61, 130, 0.16) 0%, transparent 45%),
-        linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 52%, #EAF2FF 100%);
+        radial-gradient(circle at 8% 15%, rgba(10, 61, 130, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 92% 85%, rgba(25, 98, 196, 0.14) 0%, transparent 45%),
+        linear-gradient(135deg, #F8FAFF 0%, #EEF4FC 55%, #E3EEFC 100%);
     }
-    .hero-panel-gradient {
-      background: linear-gradient(150deg, #062552 0%, #0A3D82 48%, #1858C4 100%);
+    .exec-blue-panel {
+      background: linear-gradient(155deg, #062552 0%, #0A3D82 52%, #1558B0 100%);
     }
     .boss-banner-gradient {
-      background: linear-gradient(135deg, #051E42 0%, #0A3D82 55%, #1552B8 100%);
+      background: linear-gradient(125deg, #062552 0%, #0A3D82 55%, #165BB8 100%);
     }
-    .glass-card {
+    .exec-card {
       background: #FFFFFF;
-      border: 1px solid rgba(203, 213, 225, 0.85);
-      box-shadow: 0 25px 60px -15px rgba(10, 61, 130, 0.16);
+      border: 1px solid rgba(203, 213, 225, 0.72);
+      box-shadow: 0 22px 55px -15px rgba(10, 61, 130, 0.15);
     }
     .royal-btn {
-      background: linear-gradient(135deg, #0A3D82 0%, #1D63DC 100%);
-      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+      background: linear-gradient(135deg, #0A3D82 0%, #1962C4 100%);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
     .royal-btn:hover:not(:disabled) {
       transform: translateY(-1px);
-      box-shadow: 0 12px 26px -6px rgba(29, 99, 220, 0.45);
+      box-shadow: 0 12px 24px -6px rgba(10, 61, 130, 0.42);
+      filter: brightness(1.03);
     }
-    .royal-btn:active:not(:disabled) { transform: scale(0.98); }
+    .royal-btn:active:not(:disabled) { transform: scale(0.985); }
     .royal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .tap-scale { transition: transform 0.14s ease; }
     .tap-scale:active { transform: scale(0.96); }
 
     @keyframes viewFadeUp {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-view { animation: viewFadeUp 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-    }
-    .animate-float { animation: floatSlow 5s ease-in-out infinite; }
 
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -89,7 +84,7 @@
   <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-[calc(100%-2rem)] pointer-events-none"></div>
 
   <!-- Install App Modal -->
-  <div id="install-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-900/65 backdrop-blur-sm p-4">
+  <div id="install-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/65 backdrop-blur-sm p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 animate-view">
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-3">
@@ -123,9 +118,9 @@
           </ol>
         </div>
 
-        <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100">
+        <div class="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100">
           <div class="flex items-center gap-2 font-bold text-blue-950 mb-1.5">
-            <span class="px-2 py-0.5 text-[11px] rounded-md bg-blue-700 text-white">Android</span>
+            <span class="px-2 py-0.5 text-[11px] rounded-md bg-blue-800 text-white">Android</span>
             <span>Chrome Browser</span>
           </div>
           <ol class="text-xs text-slate-700 space-y-1 list-decimal list-inside">
@@ -143,24 +138,24 @@
   </div>
 
   <!-- =========================================================
-       1. EXECUTIVE HOME & LOGIN SCREEN (NO MUMBAI TIME / NO DIRECTORY)
+       1. EXECUTIVE LOGIN PAGE (NO MUMBAI TIME BOX, WITH GP LOGO)
   ========================================================== -->
-  <div id="login-screen" class="login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
+  <div id="login-screen" class="exec-login-bg min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8">
     <header class="max-w-6xl w-full mx-auto flex items-center justify-between animate-view">
-      <div class="flex items-center gap-3.5">
+      <div class="flex items-center gap-3">
         <div id="login-top-logo" class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-blue-100 flex items-center justify-center p-1.5"></div>
         <div>
           <span class="font-display font-extrabold text-slate-900 text-lg sm:text-xl tracking-tight block leading-none">GALAXY POINT</span>
-          <span class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-blue-700 block mt-1">STAFF APPLICATION</span>
+          <span class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-blue-800 block mt-1">STAFF APPLICATION</span>
         </div>
       </div>
 
       <div class="flex items-center gap-2.5">
-        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-blue-100 text-slate-600 shadow-2xs">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-blue-100 text-blue-900 shadow-2xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span>6-Month Cloud Protected</span>
-        </div>
-        <button type="button" onclick="window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 shadow-2xs transition tap-scale">
+        </span>
+        <button type="button" onclick="window.openInstallModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-white hover:bg-blue-50 text-blue-900 border border-blue-200 shadow-2xs transition tap-scale">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           <span>Install App</span>
         </button>
@@ -168,32 +163,32 @@
     </header>
 
     <main class="max-w-5xl w-full mx-auto my-6 animate-view">
-      <div class="glass-card rounded-[30px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Executive Brand & Appreciation Panel -->
-        <div class="hero-panel-gradient lg:col-span-5 p-7 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
-          <div class="absolute -bottom-24 -left-20 w-72 h-72 rounded-full bg-blue-400/15 blur-2xl pointer-events-none"></div>
+      <div class="exec-card rounded-[28px] overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        <!-- Left Executive Brand & Appreciation Column -->
+        <div class="exec-blue-panel lg:col-span-5 p-7 sm:p-9 text-white flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-300/15 blur-xl pointer-events-none"></div>
 
           <div class="relative z-10">
-            <div class="inline-flex items-center gap-3.5 bg-white rounded-2xl p-3.5 pr-6 shadow-xl mb-8 animate-float">
+            <div class="inline-flex items-center gap-3.5 bg-white rounded-2xl p-3.5 pr-5 shadow-xl mb-7">
               <div id="hero-gp-logo" class="w-12 h-10 flex items-center justify-center"></div>
               <div>
-                <h1 class="font-display font-extrabold text-slate-900 text-xl leading-none tracking-tight">GALAXY POINT</h1>
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-blue-700 mt-1">STAFF APPLICATION</p>
+                <h1 class="font-display font-extrabold text-slate-900 text-lg leading-none tracking-tight">GALAXY POINT</h1>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-blue-800 mt-1">STAFF APPLICATION</p>
               </div>
             </div>
 
-            <div class="p-5 rounded-2xl bg-white/12 border border-white/20 backdrop-blur-md shadow-inner">
-              <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-300 mb-2">Thank You For Your Service</p>
+            <div class="p-5 rounded-2xl bg-white/12 border border-white/20 backdrop-blur-md">
+              <p class="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 mb-2">Appreciation &amp; Gratitude</p>
               <p class="text-sm sm:text-[15px] font-medium text-white leading-relaxed">
-                &ldquo;Thank you for your service, dedication, and commitment to Galaxy Point. Your daily discipline, teamwork, and customer care build our success every single day. Keep going!&rdquo;
+                &ldquo;Thank you for your service, dedication, and daily commitment to Galaxy Point. Your hard work sets the benchmark in every department.&rdquo;
               </p>
-              <p class="text-[11px] font-bold text-blue-200 mt-3">&mdash; Galaxy Point Management</p>
+              <p class="text-xs font-bold text-blue-200 mt-3">&mdash; Galaxy Point Management</p>
             </div>
           </div>
 
           <div class="relative z-10 mt-8 pt-5 border-t border-white/15">
-            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Galaxy Point Departments</p>
+            <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-2.5">Active Store Divisions</p>
             <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold">
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">Pre-Owned Mobile</span>
               <span class="px-2.5 py-1 rounded-lg bg-white/12 border border-white/10">New Mobile Sale</span>
@@ -205,14 +200,14 @@
           </div>
         </div>
 
-        <!-- Right Individual Secure Sign-In Panel -->
-        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 bg-white flex flex-col justify-center">
+        <!-- Right Individual Sign-In Form -->
+        <div class="lg:col-span-7 p-6 sm:p-9 lg:p-11 bg-white flex flex-col justify-center">
           <div class="max-w-md w-full mx-auto">
-            <div class="mb-7">
-              <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-lg mb-2.5">
-                Authorized Team Portal
+            <div class="mb-6">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-blue-800 bg-blue-50 border border-blue-100 px-3 py-1 rounded-lg mb-2.5">
+                Authorized Member Portal
               </span>
-              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">Sign In to Your Workspace</h2>
+              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Sign In</h2>
               <p class="text-sm text-slate-500 mt-1">Enter your registered Gmail ID and individual password</p>
             </div>
 
@@ -223,15 +218,15 @@
                   id="login-email"
                   type="email"
                   autocomplete="username"
-                  placeholder="Enter your registered Gmail ID"
+                  placeholder="name@gmail.com"
                   class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition"
                 />
               </div>
 
               <div>
                 <div class="flex items-center justify-between mb-1.5">
-                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Private Password</label>
-                  <button type="button" onclick="window.handlePasswordReset()" class="text-xs font-bold text-blue-700 hover:underline">
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Individual Password</label>
+                  <button type="button" onclick="window.handlePasswordReset()" class="text-xs font-bold text-blue-800 hover:underline">
                     Set / Reset Password?
                   </button>
                 </div>
@@ -240,16 +235,16 @@
                     id="login-password"
                     type="password"
                     autocomplete="current-password"
-                    placeholder="Enter your individual password"
+                    placeholder="Enter your password"
                     class="w-full pl-4 pr-14 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition"
                   />
-                  <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 text-xs font-bold">
+                  <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 p-1 text-xs font-bold">
                     Show
                   </button>
                 </div>
               </div>
 
-              <div id="login-error-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
+              <div id="login-error-box" class="hidden p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
                 <span id="login-error-text">Invalid credentials</span>
               </div>
 
@@ -259,7 +254,7 @@
             </form>
 
             <div class="mt-6 p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100 text-xs text-slate-600 leading-relaxed">
-              <strong class="text-blue-950">Need to set or change your password?</strong> Type your registered Gmail ID above and click <strong>"Set / Reset Password?"</strong> to receive a secure link in your Gmail inbox.
+              <strong class="text-blue-950">Need a password link?</strong> Type your registered Gmail ID above and click <strong>&ldquo;Set / Reset Password?&rdquo;</strong> to get a reset link in your inbox.
             </div>
           </div>
         </div>
@@ -267,7 +262,7 @@
     </main>
 
     <footer class="max-w-6xl w-full mx-auto text-center text-xs text-slate-400">
-      &copy; 2026 GALAXY POINT &bull; Staff Application &bull; Encrypted Cloud Workspace
+      &copy; 2026 Galaxy Point &bull; Staff Application
     </footer>
   </div>
 
@@ -276,26 +271,26 @@
   ========================================================== -->
   <div id="staff-portal" class="hidden min-h-screen flex flex-col pb-24 md:pb-10">
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-blue-100 shadow-2xs">
-      <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <div class="max-w-5xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
-          <div id="staff-header-logo" class="w-10 h-10 rounded-xl bg-white border border-blue-100 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
+          <div id="staff-header-logo" class="w-11 h-11 rounded-xl bg-white border border-blue-100 shadow-2xs flex items-center justify-center p-1 shrink-0"></div>
           <div class="min-w-0">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
               <h1 id="staff-nav-name" class="font-display font-extrabold text-slate-900 text-sm sm:text-base truncate">STAFF</h1>
-              <span id="staff-nav-dept" class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-50 text-blue-800 border border-blue-200/80 shrink-0">Designation</span>
+              <span id="staff-nav-dept" class="px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-50 text-blue-800 border border-blue-200/70 shrink-0">Designation</span>
               <span id="staff-star-badge" class="hidden px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 shrink-0">★ Best Employee</span>
             </div>
-            <p id="staff-nav-tagline" class="text-[11px] font-semibold text-blue-700 truncate">Keep Going — Excellence Every Day!</p>
+            <p id="staff-nav-tagline" class="text-[11px] font-medium text-blue-700 truncate mt-0.5">Keep going &amp; shine bright!</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200/80 transition tap-scale" title="Task Alerts">
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" onclick="window.switchStaffTab('tasks')" class="relative p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-800 border border-slate-200/80 transition tap-scale" title="Task Alerts">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
             <span id="staff-notif-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">0</span>
           </button>
 
-          <button type="button" onclick="window.openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 transition tap-scale">
+          <button type="button" onclick="window.openInstallModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-900 transition tap-scale">
             <span>Install App</span>
           </button>
 
@@ -307,64 +302,62 @@
       </div>
 
       <!-- Desktop Sub-Nav -->
-      <div class="hidden md:block border-t border-slate-100 bg-slate-50/80">
+      <div class="hidden md:block border-t border-slate-100 bg-slate-50/75">
         <div class="max-w-5xl mx-auto px-4 flex items-center gap-2 py-2">
-          <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Attendance &amp; Calendar</button>
+          <button type="button" data-staff-tab="home" onclick="window.switchStaffTab('home')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Attendance &amp; Break</button>
           <button type="button" data-staff-tab="tasks" onclick="window.switchStaffTab('tasks')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Tasks &amp; Daily Report</button>
-          <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Incentive &amp; Salary Slip</button>
-          <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Leave &amp; Advance</button>
+          <button type="button" data-staff-tab="incentives" onclick="window.switchStaffTab('incentives')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Salary Slip &amp; Incentive</button>
+          <button type="button" data-staff-tab="requests" onclick="window.switchStaffTab('requests')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Urgent Leave &amp; Advance</button>
           <button type="button" data-staff-tab="chat" onclick="window.switchStaffTab('chat')" class="staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Team Group Chat</button>
         </div>
       </div>
     </header>
 
     <main class="max-w-5xl w-full mx-auto px-4 pt-5 flex-1 space-y-5">
-      <!-- Live Management Announcement & Best Employee Banner -->
-      <div id="staff-announcement-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 text-white shadow-md border border-blue-700 animate-view">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <span class="px-2 py-0.5 rounded bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase tracking-wider">Galaxy Point Announcement</span>
-            <p id="staff-announcement-title" class="font-display font-extrabold text-sm sm:text-base mt-1.5">--</p>
-            <p id="staff-announcement-body" class="text-xs text-blue-100 mt-0.5 leading-relaxed">--</p>
-          </div>
-          <span id="staff-announcement-time" class="text-[10px] text-blue-200 shrink-0">--</span>
+      <!-- Store Announcement Banner -->
+      <div id="staff-announcement-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-blue-950 via-blue-900 to-blue-700 text-white shadow-md border border-blue-500/30 animate-view">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-300">Store Announcement</span>
+          <span id="staff-announcement-time" class="text-[11px] text-blue-200"></span>
         </div>
+        <h3 id="staff-announcement-title" class="font-display font-extrabold text-sm sm:text-base mt-1">--</h3>
+        <p id="staff-announcement-body" class="text-xs text-blue-100 mt-0.5">--</p>
       </div>
 
-      <!-- 10:00 AM - 12:00 PM "Are You On Week Off?" Banner -->
-      <div id="weekoff-window-banner" class="hidden p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 flex flex-wrap items-center justify-between gap-3 animate-view">
+      <!-- 10:00 AM - 12:00 PM "Are You on Week Off?" Window -->
+      <div id="weekoff-window-banner" class="hidden p-4 rounded-2xl bg-blue-50 border-2 border-blue-300 flex flex-wrap items-center justify-between gap-3 animate-view">
         <div>
-          <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-950 text-[10px] font-extrabold uppercase">10:00 AM – 12:00 PM Window</span>
-          <h3 class="font-display font-extrabold text-amber-950 text-sm sm:text-base mt-1">Are you on Week Off today?</h3>
-          <p class="text-xs text-amber-800">If today is your scheduled week off, confirm below before 12:00 PM so it counts as <strong>Paid Week Off</strong> (otherwise no check-in counts as Absent).</p>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-blue-800">10:00 AM – 12:00 PM Window</p>
+          <p class="text-sm font-extrabold text-slate-900 mt-0.5">Are you on Week Off today?</p>
+          <p class="text-xs text-slate-600">If you are on your scheduled week off today, mark it as Paid Week Off below.</p>
         </div>
-        <button type="button" onclick="window.handleMarkPaidWeekOff()" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs shadow transition tap-scale">
+        <button type="button" onclick="window.handleMarkPaidWeekOff()" class="royal-btn px-4 py-2.5 rounded-xl text-white font-bold text-xs shadow tap-scale">
           Yes, Mark Paid Week Off
         </button>
       </div>
 
-      <!-- Boss Task Alert Banner -->
-      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-950 flex items-center justify-between gap-3 animate-view">
+      <!-- Task Notification Banner -->
+      <div id="staff-boss-alert-banner" class="hidden p-4 rounded-2xl bg-blue-900 text-white shadow-md flex items-center justify-between gap-3 animate-view">
         <div>
-          <p class="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">New Task Assigned by Management</p>
-          <p id="staff-boss-alert-text" class="text-xs sm:text-sm font-bold mt-0.5">You have pending tasks assigned today.</p>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-blue-200">New Task Assigned</p>
+          <p id="staff-boss-alert-text" class="text-sm font-semibold mt-0.5">You have pending tasks assigned today.</p>
         </div>
-        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl royal-btn text-white font-bold text-xs shrink-0">
-          View Tasks
+        <button type="button" onclick="window.switchStaffTab('tasks')" class="px-3.5 py-2 rounded-xl bg-white text-blue-950 font-bold text-xs shrink-0 hover:bg-blue-50 transition tap-scale">
+          Open Tasks
         </button>
       </div>
 
-      <!-- TAB 1: STRICT GPS ATTENDANCE, 60-MIN BREAK & MONTHLY CALENDAR -->
+      <!-- TAB 1: STRICT GPS ATTENDANCE, BREAK & MONTHLY CALENDAR -->
       <section id="staff-view-home" class="space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-100">
             <div>
-              <span id="staff-today-date" class="text-xs font-bold uppercase tracking-wider text-blue-700">--</span>
-              <h2 id="staff-greeting" class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Welcome</h2>
+              <span id="staff-today-date" class="text-xs font-bold uppercase tracking-wider text-blue-800">--</span>
+              <h2 id="staff-greeting" class="font-display text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Hello, Staff</h2>
               <p id="staff-role-subtitle" class="text-xs text-slate-500 mt-0.5">Designation &bull; Shift Schedule</p>
             </div>
             <div class="text-right">
-              <div id="staff-live-clock" class="font-display text-2xl sm:text-3xl font-extrabold text-blue-900">--:--:--</div>
+              <div id="staff-live-clock" class="font-display text-2xl sm:text-3xl font-extrabold text-blue-950">--:--:--</div>
               <span id="staff-attendance-badge" class="inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600">
                 Not Checked In
               </span>
@@ -399,7 +392,7 @@
                 </div>
                 <div id="staff-checkout-time" class="font-display text-2xl font-extrabold text-slate-900 mt-2">--:--</div>
                 <p class="mt-2 text-xs text-slate-500">
-                  Submit your daily report before checking out.
+                  Submit your daily report before leaving for the day.
                 </p>
               </div>
 
@@ -418,7 +411,7 @@
                 <h3 class="font-display font-extrabold text-slate-900 text-lg">Flexible Break Tracker</h3>
                 <span id="break-live-badge" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>
               </div>
-              <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; split anytime</p>
+              <p class="text-xs text-slate-500">Total <strong>60 minutes</strong> daily allowance &mdash; use anytime in splits</p>
             </div>
 
             <div class="text-right">
@@ -433,7 +426,7 @@
 
           <div class="flex items-center justify-between text-xs mt-2">
             <span id="break-remaining-text" class="font-semibold text-emerald-700">60 minutes remaining today</span>
-            <span id="break-exceed-warning" class="hidden font-bold text-red-600">Break Exceeded! Alert sent to Management</span>
+            <span id="break-exceed-warning" class="hidden font-bold text-red-600">Break Exceeded (&gt;60m)!</span>
           </div>
 
           <div id="active-break-box" class="hidden mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
@@ -451,12 +444,12 @@
           <div id="break-sessions-list" class="mt-4 space-y-1.5"></div>
         </div>
 
-        <!-- Monthly Attendance Summary (Present / Half-Day / Paid Week Off / Holiday / Absent) -->
+        <!-- Monthly Attendance Summary & Holiday Calendar -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
               <h3 class="font-display font-extrabold text-slate-900 text-lg">Monthly Attendance &amp; Holiday Calendar</h3>
-              <p class="text-xs text-slate-500">Live monthly count of Present, Half-Day, Paid Week Off, Holidays &amp; Absent</p>
+              <p class="text-xs text-slate-500">Present, Half Day, Paid Week Off, Holidays &amp; Absent count</p>
             </div>
             <input id="staff-month-picker" type="month" onchange="window.loadStaffMonthlySummary()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800" />
           </div>
@@ -501,11 +494,10 @@
           <div id="staff-tasks-list" class="space-y-3"></div>
         </div>
 
-        <!-- Role-Specific Report Card (Hidden for standard roles like Sohail/Rutik/Mahindra/Vishal) -->
         <div id="staff-role-metrics-card" class="hidden bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="mb-3">
             <h3 id="dept-metric-heading" class="font-display text-lg font-extrabold text-slate-900">Today's Performance Report</h3>
-            <p id="dept-metric-sub" class="text-xs text-slate-500">Enter your today's figures for Management Analytics</p>
+            <p id="dept-metric-sub" class="text-xs text-slate-500">Enter your today's figures</p>
           </div>
 
           <form action="javascript:void(0)" onsubmit="window.handleSaveDeptMetrics(event)" id="dept-metrics-form" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
@@ -529,10 +521,9 @@
           </form>
         </div>
 
-        <!-- Additional Work (Add, Edit & Delete) & Compiled Report -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <h3 class="font-display text-lg font-extrabold text-slate-900">Additional Work &amp; Daily Report</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Add extra work completed today &mdash; you can Edit or Delete entries anytime</p>
+          <p class="text-xs text-slate-500 mt-0.5">Add extra work completed today &mdash; Edit or Delete anytime</p>
 
           <form action="javascript:void(0)" onsubmit="window.handleAddAdditionalWork(event)" class="mt-4 flex flex-col sm:flex-row gap-2.5">
             <input
@@ -551,9 +542,7 @@
 
           <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">
-                Live Report Synced to Management
-              </span>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">Live Report Synced</span>
               <span class="text-[11px] font-semibold text-slate-500">Auto-Updated</span>
             </div>
             <div id="staff-auto-report-items" class="space-y-2 text-xs text-slate-700"></div>
@@ -561,13 +550,12 @@
         </div>
       </section>
 
-      <!-- TAB 3: CLAIM INCENTIVE & MONTHLY SALARY SLIP -->
+      <!-- TAB 3: SALARY SLIP & INCENTIVE -->
       <section id="staff-view-incentives" class="hidden space-y-5 animate-view">
-        <!-- Monthly Salary Slip Card -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
-              <span class="px-2.5 py-0.5 rounded bg-blue-50 text-blue-800 text-[10px] font-extrabold uppercase tracking-wider">Official Payroll Statement</span>
+              <span class="px-2.5 py-0.5 rounded bg-blue-50 text-blue-800 text-[10px] font-extrabold uppercase tracking-wider">Monthly Payroll</span>
               <h2 class="font-display text-xl font-extrabold text-slate-900 mt-1">My Monthly Salary Slip</h2>
             </div>
             <input id="staff-slip-month" type="month" onchange="window.loadStaffSalarySlip()" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800" />
@@ -576,14 +564,13 @@
           <div id="staff-salary-slip-box" class="mt-4"></div>
         </div>
 
-        <!-- Incentive Rewards Section -->
         <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <div>
               <span class="px-2.5 py-1 rounded-lg bg-white/15 text-[11px] font-bold uppercase tracking-wider">Performance Rewards</span>
               <h2 class="font-display text-2xl font-extrabold mt-2">Claim Your Incentive</h2>
               <p class="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-                Complete incentive tasks assigned by <strong>Management</strong>, then visit <strong>VISHAL (Accountant)</strong> to collect your reward and confirm below.
+                Complete incentive tasks, collect from <strong>VISHAL (Accountant)</strong>, and confirm below.
               </p>
             </div>
             <div class="bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-right">
@@ -596,7 +583,7 @@
         <div id="staff-incentives-list" class="space-y-3"></div>
       </section>
 
-      <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY REQUEST -->
+      <!-- TAB 4: URGENT LEAVE & ADVANCE SALARY -->
       <section id="staff-view-requests" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs space-y-4">
           <div>
@@ -638,7 +625,7 @@
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs space-y-4">
           <div>
             <h3 class="font-display font-extrabold text-slate-900 text-lg">Advance Salary Request</h3>
-            <p class="text-xs text-slate-500">Request salary advance directly from Management</p>
+            <p class="text-xs text-slate-500">Request salary advance directly</p>
           </div>
 
           <form action="javascript:void(0)" onsubmit="window.handleApplyAdvance(event)" class="space-y-3">
@@ -670,22 +657,22 @@
         </div>
       </section>
 
-      <!-- TAB 5: GALAXY POINT TEAM GROUP CHAT (5-DAY AUTO-CLEANUP + APPRECIATION CARDS) -->
+      <!-- TAB 5: TEAM GROUP CHAT (5-DAY AUTO-CLEANUP + APPRECIATION CARDS) -->
       <section id="staff-view-chat" class="hidden animate-view">
         <div class="bg-white rounded-3xl border border-blue-100 shadow-xs overflow-hidden flex flex-col h-[72vh] max-h-[640px]">
           <div class="p-4 sm:p-5 bg-gradient-to-r from-blue-950 to-blue-800 text-white flex items-center justify-between">
             <div>
               <h2 class="font-display font-extrabold text-base sm:text-lg">Galaxy Point Team Group</h2>
-              <p class="text-[11px] text-blue-200">All 19 Members &bull; Messages auto-clear after 5 days</p>
+              <p class="text-[11px] text-blue-200">All 19 Members &bull; Auto-deletes after 5 days</p>
             </div>
-            <span class="px-2.5 py-1 rounded-full bg-white/15 text-[10px] font-bold">Live Team Chat</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/15 text-[10px] font-bold">Live Chat</span>
           </div>
 
           <div class="px-4 py-2.5 bg-blue-50/70 border-b border-blue-100 flex items-center gap-2 overflow-x-auto no-scrollbar">
-            <span class="text-[10px] font-extrabold uppercase text-blue-800 shrink-0">Appreciate Teammate:</span>
-            <button type="button" onclick="window.sendQuickAppreciation('Great teamwork today! Keep going!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">👏 Great Teamwork!</button>
-            <button type="button" onclick="window.sendQuickAppreciation('Awesome customer handling at the counter!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">⭐ Awesome Service!</button>
-            <button type="button" onclick="window.sendQuickAppreciation('Keep going team, strong energy today!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-600 hover:text-white transition">🚀 Keep Going!</button>
+            <span class="text-[10px] font-extrabold uppercase text-blue-800 shrink-0">Appreciate:</span>
+            <button type="button" onclick="window.sendQuickAppreciation('Great teamwork today! Keep going!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-700 hover:text-white transition">👏 Great Teamwork!</button>
+            <button type="button" onclick="window.sendQuickAppreciation('Awesome customer handling at the counter!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-700 hover:text-white transition">⭐ Awesome Service!</button>
+            <button type="button" onclick="window.sendQuickAppreciation('Keep going team, strong energy today!')" class="px-2.5 py-1 rounded-lg bg-white border border-blue-200 text-[11px] font-bold text-blue-900 shrink-0 hover:bg-blue-700 hover:text-white transition">🚀 Keep Going!</button>
           </div>
 
           <div id="staff-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50"></div>
@@ -731,7 +718,7 @@
       <div class="boss-banner-gradient text-white">
         <div class="max-w-7xl mx-auto px-4 py-4 sm:py-5 flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-4">
-            <div id="boss-header-logo" class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center p-2 shrink-0"></div>
+            <div id="boss-header-logo" class="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center p-2 shrink-0"></div>
             <div>
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-[0.2em] bg-amber-400 text-slate-950">Executive Command</span>
@@ -757,6 +744,7 @@
         </div>
       </div>
 
+      <!-- Executive Navigation Tabs -->
       <div class="bg-white border-b border-blue-100 overflow-x-auto no-scrollbar">
         <div class="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2.5 min-w-max">
           <button type="button" data-boss-tab="live" onclick="window.switchBossTab('live')" class="boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition">Live Attendance &amp; GPS</button>
@@ -849,7 +837,7 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 2: DEPARTMENT GRAPHS & BEST EMPLOYEE OF THE MONTH -->
+      <!-- BOSS TAB 2: DEPARTMENT GRAPHS & REWARDS -->
       <section id="boss-view-analytics" class="hidden space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
@@ -878,7 +866,6 @@
           <div id="analytics-leaderboard-container" class="mt-5 space-y-3"></div>
         </div>
 
-        <!-- Reward & Recognition: Best Employee of the Month -->
         <div class="bg-white rounded-3xl p-5 sm:p-7 border border-blue-100 shadow-xs">
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
@@ -918,7 +905,7 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 3: ASSIGN TASKS, INCENTIVES & STORE ANNOUNCEMENTS -->
+      <!-- BOSS TAB 3: ASSIGN TASKS, INCENTIVES & ANNOUNCEMENTS -->
       <section id="boss-view-tasks" class="hidden space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
           <div class="flex items-center justify-between mb-3">
@@ -997,7 +984,7 @@
         </div>
       </section>
 
-      <!-- BOSS TAB 4: MONTHLY ATTENDANCE SUMMARY, HOLIDAY CALENDAR & SALARY SLIPS -->
+      <!-- BOSS TAB 4: MONTHLY ATTENDANCE SUMMARY, HOLIDAYS & SALARY -->
       <section id="boss-view-attendance_payroll" class="hidden space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-xs">
           <h3 class="font-display text-lg font-extrabold text-slate-900">Store Holiday Calendar Manager</h3>
@@ -1034,7 +1021,7 @@
                   <th class="py-3 px-2 text-center">Absent</th>
                   <th class="py-3 px-3">Base Salary (&#8377;)</th>
                   <th class="py-3 px-3">Incentives (+&#8377;)</th>
-                  <th class="py-3 px-3">Advance/Ded (-&#8377;)</th>
+                  <th class="py-3 px-3">Advance (-&#8377;)</th>
                   <th class="py-3 px-3">Net Payable (&#8377;)</th>
                 </tr>
               </thead>
@@ -1148,7 +1135,6 @@
       </section>
     </main>
   </div>
-
   <!-- =========================================================
        CORE CLOUD & APPLICATION LOGIC (NON-DESTRUCTIVE FIRESTORE)
   ========================================================== -->
@@ -1422,7 +1408,7 @@
       errBox.classList.add("hidden");
 
       if (!email || !password) {
-        errText.textContent = "Please enter both your registered Gmail ID and your private password.";
+        errText.textContent = "Please enter both your registered Gmail ID and your individual password.";
         errBox.classList.remove("hidden");
         return;
       }
@@ -1519,9 +1505,6 @@
       }
     });
 
-    // =========================================================
-    // SHARED REALTIME LISTENERS (ANNOUNCEMENTS, HOLIDAYS, CHAT)
-    // =========================================================
     function subscribeAnnouncementsAndWinners() {
       const unsubAnn = onSnapshot(doc(db, "settings", "latestAnnouncement"), (snap) => {
         const banner = document.getElementById("staff-announcement-banner");
@@ -1595,4 +1578,1724 @@
         }
 
         box.innerHTML = msgs.map(m => {
-          const isMe
+          const isMe = m.senderId === currentUserProfile?.id;
+          const isAppreciation = m.type === "appreciation";
+          if (isAppreciation) {
+            return `
+              <div class="p-3.5 rounded-2xl bg-gradient-to-r from-amber-50 to-blue-50 border border-amber-300 shadow-2xs">
+                <div class="flex items-center justify-between text-[10px] font-extrabold uppercase tracking-wider text-amber-800">
+                  <span>★ Team Appreciation from ${m.senderName}</span>
+                  <span>${formatTimestampTime(m.createdAt)}</span>
+                </div>
+                <p class="text-xs sm:text-sm font-bold text-slate-900 mt-1">${m.text}</p>
+              </div>
+            `;
+          }
+          return `
+            <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+              <span class="text-[10px] font-bold text-slate-500 mb-0.5 px-1">${m.senderName} (${m.senderDesignation || ''}) &bull; ${formatTimestampTime(m.createdAt)}</span>
+              <div class="max-w-[82%] px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm ${isMe ? 'bg-blue-700 text-white rounded-br-sm' : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm'} shadow-2xs">
+                ${m.text}
+              </div>
+            </div>
+          `;
+        }).join("");
+        box.scrollTop = box.scrollHeight;
+      });
+      activeUnsubscribers.push(unsubChat);
+    }
+
+    window.handleSendGroupMessage = async function(mode) {
+      if (!currentUserProfile) return;
+      const inp = document.getElementById(mode === "boss" ? "boss-chat-input" : "staff-chat-input");
+      const text = inp.value.trim();
+      if (!text) return;
+
+      await addDoc(collection(db, "groupChat"), {
+        senderId: currentUserProfile.id,
+        senderName: currentUserProfile.name,
+        senderDesignation: currentUserProfile.designation,
+        text,
+        type: "chat",
+        createdAt: Date.now()
+      });
+      inp.value = "";
+    };
+
+    window.sendQuickAppreciation = async function(msg) {
+      if (!currentUserProfile) return;
+      await addDoc(collection(db, "groupChat"), {
+        senderId: currentUserProfile.id,
+        senderName: currentUserProfile.name,
+        senderDesignation: currentUserProfile.designation,
+        text: msg,
+        type: "appreciation",
+        createdAt: Date.now()
+      });
+      window.showToast("Appreciation posted to Group Chat!", "success");
+    };
+
+    function configureStaffReportCard(profile) {
+      const card = document.getElementById("staff-role-metrics-card");
+      const f2Wrap = document.getElementById("metric-f2-wrap");
+      const f3Wrap = document.getElementById("metric-f3-wrap");
+      const f1Lbl = document.getElementById("metric-f1-label");
+      const f2Lbl = document.getElementById("metric-f2-label");
+      const f3Lbl = document.getElementById("metric-f3-label");
+
+      f2Wrap.classList.add("hidden");
+      f3Wrap.classList.add("hidden");
+
+      if (profile.reportMode === "phones") {
+        card.classList.remove("hidden");
+        document.getElementById("dept-metric-heading").textContent = "Daily Mobile Sales Count";
+        document.getElementById("dept-metric-sub").textContent = "Enter total number of phones sold today";
+        f1Lbl.textContent = "Number of Phones Sold (Qty)";
+      } else if (profile.reportMode === "service") {
+        card.classList.remove("hidden");
+        document.getElementById("dept-metric-heading").textContent = "Service Centre Daily Repair Report";
+        document.getElementById("dept-metric-sub").textContent = "Enter total repairing, completed, and pending handsets";
+        f1Lbl.textContent = "Total Repairing (Qty)";
+        f2Lbl.textContent = "Completed Repair (Qty)";
+        f3Lbl.textContent = "Pending Repair (Qty)";
+        f2Wrap.classList.remove("hidden");
+        f3Wrap.classList.remove("hidden");
+      } else if (profile.reportMode === "accessories") {
+        card.classList.remove("hidden");
+        document.getElementById("dept-metric-heading").textContent = "Accessories Daily Sales Report";
+        document.getElementById("dept-metric-sub").textContent = "Enter total accessories sold and sales amount";
+        f1Lbl.textContent = "Total Accessories Sold (Qty)";
+        f2Lbl.textContent = "Sales Amount (₹)";
+        f2Wrap.classList.remove("hidden");
+      } else if (profile.reportMode === "editor") {
+        card.classList.remove("hidden");
+        document.getElementById("dept-metric-heading").textContent = "Video Editor Daily Output";
+        document.getElementById("dept-metric-sub").textContent = "Enter total edits and total posts completed today";
+        f1Lbl.textContent = "Total Edit (Qty)";
+        f2Lbl.textContent = "Total Post (Qty)";
+        f2Wrap.classList.remove("hidden");
+      } else {
+        card.classList.add("hidden");
+      }
+    }
+
+    function initStaffPortal(profile) {
+      clearActiveListeners();
+      lastKnownPendingTaskIds = new Set();
+
+      document.getElementById("staff-nav-name").textContent = profile.name;
+      document.getElementById("staff-nav-dept").textContent = profile.designation;
+      document.getElementById("staff-nav-tagline").textContent = profile.tagline;
+      document.getElementById("staff-greeting").textContent = `Welcome, ${profile.name}`;
+      document.getElementById("staff-role-subtitle").textContent = `${profile.designation} (${profile.department}) • Shift ${format12Hour(profile.shiftStart)} – ${format12Hour(profile.shiftEnd)}`;
+      document.getElementById("staff-today-date").textContent = new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+      configureStaffReportCard(profile);
+
+      const curMonth = getCurrentMonthKey();
+      document.getElementById("staff-month-picker").value = curMonth;
+      document.getElementById("staff-slip-month").value = curMonth;
+
+      window.setLeaveQuickDate(1);
+      document.getElementById("advance-date-input").value = getTodayKey();
+      window.switchStaffTab("home");
+
+      subscribeAnnouncementsAndWinners();
+      subscribeGroupChat("staff-chat-messages");
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${profile.id}`;
+
+      const unsubAtt = onSnapshot(doc(db, "attendance", attDocId), (snap) => {
+        const data = snap.exists() ? snap.data() : null;
+        todayAttendanceMap[profile.id] = data;
+        renderStaffAttendanceAndBreak(data);
+        renderStaffEditableExtraWork(data);
+        renderStaffAutoReport();
+        checkWeekOffWindowVisibility(data);
+        window.loadStaffMonthlySummary();
+
+        if (data?.metrics) {
+          document.getElementById("metric-f1-input").value = data.metrics.f1 ?? "";
+          document.getElementById("metric-f2-input").value = data.metrics.f2 ?? "";
+          document.getElementById("metric-f3-input").value = data.metrics.f3 ?? "";
+        }
+      });
+      activeUnsubscribers.push(unsubAtt);
+
+      const qTasks = query(
+        collection(db, "tasks"),
+        where("date", "==", todayKey),
+        where("assignedToId", "==", profile.id)
+      );
+      const unsubTasks = onSnapshot(qTasks, (snap) => {
+        const tasks = [];
+        snap.forEach(d => tasks.push({ docId: d.id, ...d.data() }));
+        tasks.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+        tasks.forEach(t => {
+          if (t.status === "pending" && !lastKnownPendingTaskIds.has(t.docId)) {
+            if (lastKnownPendingTaskIds.size > 0) {
+              playNotificationChime();
+              window.showToast(`New Task from Management: ${t.title}`, "info");
+            }
+            lastKnownPendingTaskIds.add(t.docId);
+          }
+        });
+
+        allTasksToday = tasks;
+        renderStaffTasksAndIncentives();
+        renderStaffAutoReport();
+      });
+      activeUnsubscribers.push(unsubTasks);
+
+      const qLeaves = query(collection(db, "leaves"), where("staffId", "==", profile.id));
+      const unsubLeaves = onSnapshot(qLeaves, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        renderStaffLeaves(list);
+      });
+      activeUnsubscribers.push(unsubLeaves);
+
+      const qAdv = query(collection(db, "advances"), where("staffId", "==", profile.id));
+      const unsubAdv = onSnapshot(qAdv, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        renderStaffAdvances(list);
+        window.loadStaffSalarySlip();
+      });
+      activeUnsubscribers.push(unsubAdv);
+    }
+
+    function checkWeekOffWindowVisibility(todayData) {
+      const banner = document.getElementById("weekoff-window-banner");
+      if (!banner) return;
+      const now = new Date();
+      const hour = now.getHours();
+      const inWindow = hour >= 10 && hour < 12;
+      const alreadyMarked = !!(todayData?.checkInMs || todayData?.dayType === "weekoff");
+      banner.classList.toggle("hidden", !(inWindow && !alreadyMarked));
+    }
+
+    window.handleMarkPaidWeekOff = async function() {
+      if (!currentUserProfile) return;
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        dayType: "weekoff",
+        markedAt: Date.now()
+      }, { merge: true });
+      window.showToast("Today marked as Paid Week Off!", "success");
+    };
+
+    window.switchStaffTab = function(tabName) {
+      ["home", "tasks", "incentives", "requests", "chat"].forEach(v => {
+        document.getElementById(`staff-view-${v}`).classList.toggle("hidden", v !== tabName);
+      });
+      document.querySelectorAll(".staff-tab-btn").forEach(btn => {
+        const active = btn.dataset.staffTab === tabName;
+        if (btn.closest("nav")) {
+          btn.className = active
+            ? "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-extrabold text-blue-700 bg-blue-50/95 tap-scale"
+            : "staff-tab-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-[10px] font-semibold text-slate-500 hover:text-slate-800 tap-scale";
+        } else {
+          btn.className = active
+            ? "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-800 text-white shadow-xs transition"
+            : "staff-tab-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-200/70 transition";
+        }
+      });
+      if (tabName === "incentives") window.loadStaffSalarySlip();
+    };
+
+    window.handleStaffCheckIn = async function() {
+      if (!currentUserProfile) return;
+      const btn = document.getElementById("btn-staff-checkin");
+
+      if (!navigator.geolocation) {
+        window.showToast("GPS is not supported on this browser. Check-in blocked.", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>Verifying Live GPS...</span>`;
+
+      const getStrictCoords = () => new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+          (err) => reject(err),
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      });
+
+      let coords;
+      try {
+        coords = await getStrictCoords();
+      } catch (geoErr) {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
+        window.showToast("Check-In BLOCKED: Please enable Location/GPS permission first.", "error");
+        return;
+      }
+
+      if (!coords || typeof coords.lat !== "number" || typeof coords.lng !== "number") {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
+        window.showToast("Unable to verify GPS coordinates. Check-in blocked.", "error");
+        return;
+      }
+
+      const mapsUrl = `https://maps.google.com/?q=${coords.lat},${coords.lng}`;
+      let locationText = `GPS (${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)})`;
+
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`);
+        const geo = await res.json();
+        if (geo && geo.display_name) {
+          locationText = geo.display_name.split(",").slice(0, 3).join(", ");
+        }
+      } catch (e) {}
+
+      const nowMs = Date.now();
+      const punctuality = computePunctuality(nowMs, currentUserProfile.shiftStart);
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        designation: currentUserProfile.designation,
+        shiftStart: currentUserProfile.shiftStart,
+        shiftEnd: currentUserProfile.shiftEnd,
+        dayType: "present",
+        checkInMs: nowMs,
+        checkInStatus: punctuality.label,
+        isLate: punctuality.isLate,
+        checkInLocation: locationText,
+        checkInMapsUrl: mapsUrl,
+        gpsLat: coords.lat,
+        gpsLng: coords.lng,
+        gpsVerified: true
+      }, { merge: true });
+
+      window.showToast(`GPS Verified! Checked in at ${formatTimestampTime(nowMs)} (${punctuality.label})`, "success");
+    };
+
+    window.handleStaffCheckOut = async function() {
+      if (!currentUserProfile) return;
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      if (!existing || !existing.checkInMs) return;
+
+      const nowMs = Date.now();
+      let extraBreakMs = 0;
+      const sessions = [...(existing.breakSessions || [])];
+
+      if (existing.activeBreakStartMs) {
+        extraBreakMs = nowMs - existing.activeBreakStartMs;
+        sessions.push({ startMs: existing.activeBreakStartMs, endMs: nowMs, durationMs: extraBreakMs });
+      }
+
+      const workedHours = (nowMs - existing.checkInMs) / (1000 * 60 * 60);
+      const dayType = workedHours < 5.5 ? "halfday" : "present";
+
+      await updateDoc(doc(db, "attendance", attDocId), {
+        checkOutMs: nowMs,
+        dayType,
+        activeBreakStartMs: null,
+        totalBreakMs: (existing.totalBreakMs || 0) + extraBreakMs,
+        breakSessions: sessions
+      });
+
+      window.showToast(`Checked out at ${formatTimestampTime(nowMs)}.`, "success");
+    };
+
+    window.handleToggleBreak = async function() {
+      if (!currentUserProfile) return;
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+
+      if (!existing || !existing.checkInMs) {
+        window.showToast("Please complete GPS Check-In first before starting a break.", "warn");
+        return;
+      }
+      if (existing.checkOutMs) {
+        window.showToast("You have already checked out for today.", "warn");
+        return;
+      }
+
+      const nowMs = Date.now();
+      if (!existing.activeBreakStartMs) {
+        await updateDoc(doc(db, "attendance", attDocId), { activeBreakStartMs: nowMs });
+        window.showToast("Break started. Tap again when you return.", "info");
+      } else {
+        const sessionDuration = nowMs - existing.activeBreakStartMs;
+        const newTotalMs = (existing.totalBreakMs || 0) + sessionDuration;
+        const sessions = [...(existing.breakSessions || []), {
+          startMs: existing.activeBreakStartMs,
+          endMs: nowMs,
+          durationMs: sessionDuration
+        }];
+
+        await updateDoc(doc(db, "attendance", attDocId), {
+          activeBreakStartMs: null,
+          totalBreakMs: newTotalMs,
+          breakSessions: sessions
+        });
+
+        const totalMins = Math.round(newTotalMs / 60000);
+        if (totalMins > 60) {
+          window.showToast(`Break ended (${totalMins}m used — Exceeded 60m limit!)`, "error");
+        } else {
+          window.showToast(`Break ended (${60 - totalMins}m remaining today)`, "success");
+        }
+      }
+    };
+
+    function renderStaffAttendanceAndBreak(data) {
+      const btnIn = document.getElementById("btn-staff-checkin");
+      const btnOut = document.getElementById("btn-staff-checkout");
+      const badge = document.getElementById("staff-attendance-badge");
+      const inTime = document.getElementById("staff-checkin-time");
+      const inStatus = document.getElementById("staff-checkin-status-tag");
+      const inLoc = document.getElementById("staff-checkin-location");
+      const outTime = document.getElementById("staff-checkout-time");
+      const outStatus = document.getElementById("staff-checkout-status-tag");
+
+      if (data?.dayType === "weekoff" && !data?.checkInMs) {
+        badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800";
+        badge.textContent = "Paid Week Off";
+        inTime.textContent = "WEEK OFF";
+        inStatus.textContent = "Paid Off";
+        btnIn.disabled = true;
+        btnOut.disabled = true;
+        return;
+      }
+
+      if (!data || !data.checkInMs) {
+        badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600";
+        badge.textContent = "Not Checked In";
+        inTime.textContent = "--:--";
+        inStatus.textContent = "GPS Mandatory";
+        inStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
+        btnIn.disabled = false;
+        btnIn.innerHTML = `<span>Check In Now (GPS Required)</span>`;
+        btnOut.disabled = true;
+        outTime.textContent = "--:--";
+        outStatus.textContent = "Waiting";
+      } else {
+        inTime.textContent = formatTimestampTime(data.checkInMs);
+        inStatus.textContent = data.checkInStatus || "Checked In";
+        inStatus.className = data.isLate
+          ? "text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800"
+          : "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
+
+        inLoc.innerHTML = data.checkInMapsUrl
+          ? `<a href="${data.checkInMapsUrl}" target="_blank" class="text-blue-700 underline font-semibold">${data.checkInLocation} (Open Map)</a>`
+          : `<span>${data.checkInLocation || "GPS Verified"}</span>`;
+
+        btnIn.disabled = true;
+        btnIn.innerHTML = `<span>GPS Checked In &#10003;</span>`;
+
+        if (!data.checkOutMs) {
+          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
+          badge.textContent = "On Duty";
+          btnOut.disabled = false;
+          outTime.textContent = "--:--";
+          outStatus.textContent = "Active Shift";
+          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800";
+        } else {
+          badge.className = "inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-white";
+          badge.textContent = data.dayType === "halfday" ? "Half Day Completed" : "Shift Completed";
+          btnOut.disabled = true;
+          outTime.textContent = formatTimestampTime(data.checkOutMs);
+          outStatus.textContent = "Completed";
+          outStatus.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
+        }
+      }
+
+      updateBreakLiveDisplay(data);
+    }
+
+    function updateBreakLiveDisplay(data) {
+      const savedMs = data?.totalBreakMs || 0;
+      const runningMs = data?.activeBreakStartMs ? (Date.now() - data.activeBreakStartMs) : 0;
+      const totalMs = savedMs + runningMs;
+      const totalMins = Math.floor(totalMs / 60000);
+      const remainingMins = Math.max(0, 60 - totalMins);
+      const pct = Math.min(100, Math.round((totalMs / (60 * 60000)) * 100));
+
+      document.getElementById("break-summary-counter").textContent = `${totalMins}m / 60m`;
+      const bar = document.getElementById("break-progress-bar");
+      bar.style.width = `${pct}%`;
+      bar.className = totalMins > 60
+        ? "h-full rounded-full bg-red-600 transition-all duration-300"
+        : "h-full rounded-full bg-blue-600 transition-all duration-300";
+
+      const remEl = document.getElementById("break-remaining-text");
+      const warnEl = document.getElementById("break-exceed-warning");
+      if (totalMins > 60) {
+        remEl.textContent = `Exceeded by ${totalMins - 60} minutes`;
+        remEl.className = "font-bold text-red-600";
+        warnEl.classList.remove("hidden");
+      } else {
+        remEl.textContent = `${remainingMins} minutes remaining today`;
+        remEl.className = "font-semibold text-emerald-700";
+        warnEl.classList.add("hidden");
+      }
+
+      const activeBox = document.getElementById("active-break-box");
+      const liveBadge = document.getElementById("break-live-badge");
+      const btnToggle = document.getElementById("btn-toggle-break");
+
+      if (data?.activeBreakStartMs) {
+        activeBox.classList.remove("hidden");
+        liveBadge.classList.remove("hidden");
+        const secTotal = Math.floor(runningMs / 1000);
+        const mm = String(Math.floor(secTotal / 60)).padStart(2, "0");
+        const ss = String(secTotal % 60).padStart(2, "0");
+        document.getElementById("active-break-timer").textContent = `${mm}:${ss}`;
+
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-lg transition tap-scale";
+        btnToggle.innerHTML = `<span>End Break &amp; Resume Duty</span>`;
+      } else {
+        activeBox.classList.add("hidden");
+        liveBadge.classList.add("hidden");
+        btnToggle.className = "mt-5 w-full py-3.5 px-5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-200 font-extrabold text-sm flex items-center justify-center gap-2.5 transition tap-scale";
+        btnToggle.innerHTML = `<span>Want a Break? Tap Here to Start</span>`;
+      }
+
+      const listEl = document.getElementById("break-sessions-list");
+      const sessions = data?.breakSessions || [];
+      if (sessions.length === 0) {
+        listEl.innerHTML = "";
+      } else {
+        listEl.innerHTML = `<p class="text-[11px] font-bold uppercase text-slate-400 pt-2">Today's Break Splits</p>` +
+          sessions.map((s, idx) => `
+            <div class="flex items-center justify-between text-xs px-3 py-2 rounded-xl bg-slate-50 border border-slate-100">
+              <span class="font-semibold text-slate-700">Break #${idx + 1} (${formatTimestampTime(s.startMs)} – ${formatTimestampTime(s.endMs)})</span>
+              <span class="font-bold text-blue-800">${Math.max(1, Math.round(s.durationMs / 60000))} min</span>
+            </div>
+          `).join("");
+      }
+    }
+
+    function computeMonthBreakdown(staffId, monthKey, attRecords) {
+      const [yStr, mStr] = monthKey.split("-");
+      const year = Number(yStr);
+      const month = Number(mStr);
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const todayKey = getTodayKey();
+
+      const recByDate = {};
+      attRecords.forEach(r => {
+        if (r.staffId === staffId && (r.date || "").startsWith(monthKey)) {
+          recByDate[r.date] = r;
+        }
+      });
+
+      const holidaySet = new Set(storeHolidays.filter(h => (h.date || "").startsWith(monthKey)).map(h => h.date));
+
+      let present = 0, halfDay = 0, weekOff = 0, holidays = 0, absent = 0;
+      const calendarDays = [];
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = `${monthKey}-${String(d).padStart(2, "0")}`;
+        const rec = recByDate[dateStr];
+        let status = "upcoming";
+
+        if (rec?.dayType === "halfday") {
+          status = "halfday";
+          halfDay++;
+        } else if (rec?.dayType === "present" || rec?.checkInMs) {
+          status = "present";
+          present++;
+        } else if (rec?.dayType === "weekoff") {
+          status = "weekoff";
+          weekOff++;
+        } else if (holidaySet.has(dateStr)) {
+          status = "holiday";
+          holidays++;
+        } else if (dateStr < todayKey) {
+          status = "absent";
+          absent++;
+        } else if (dateStr === todayKey) {
+          const nowHr = new Date().getHours();
+          if (nowHr >= 23) {
+            status = "absent";
+            absent++;
+          } else {
+            status = "today";
+          }
+        }
+        calendarDays.push({ day: d, dateStr, status });
+      }
+
+      return { present, halfDay, weekOff, holidays, absent, calendarDays };
+    }
+
+    window.loadStaffMonthlySummary = async function() {
+      if (!currentUserProfile) return;
+      const monthKey = document.getElementById("staff-month-picker").value || getCurrentMonthKey();
+      const qAtt = query(collection(db, "attendance"), where("staffId", "==", currentUserProfile.id));
+      const snap = await getDocs(qAtt);
+      const recs = [];
+      snap.forEach(d => recs.push(d.data()));
+
+      const res = computeMonthBreakdown(currentUserProfile.id, monthKey, recs);
+      document.getElementById("st-cnt-present").textContent = res.present;
+      document.getElementById("st-cnt-half").textContent = res.halfDay;
+      document.getElementById("st-cnt-weekoff").textContent = res.weekOff;
+      document.getElementById("st-cnt-holiday").textContent = res.holidays;
+      document.getElementById("st-cnt-absent").textContent = res.absent;
+
+      const badgeColors = {
+        present: "bg-emerald-100 text-emerald-900 border-emerald-300",
+        halfday: "bg-amber-100 text-amber-900 border-amber-300",
+        weekoff: "bg-blue-100 text-blue-900 border-blue-300",
+        holiday: "bg-purple-100 text-purple-900 border-purple-300",
+        absent: "bg-red-100 text-red-900 border-red-300",
+        today: "bg-blue-600 text-white border-blue-700",
+        upcoming: "bg-slate-50 text-slate-400 border-slate-100"
+      };
+      const shortLbl = { present: "P", halfday: "HD", weekoff: "WO", holiday: "H", absent: "A", today: "NOW", upcoming: "-" };
+
+      document.getElementById("staff-calendar-grid").innerHTML = res.calendarDays.map(c => `
+        <div class="p-2 rounded-xl border ${badgeColors[c.status]} flex flex-col items-center justify-center">
+          <span class="font-extrabold text-xs">${c.day}</span>
+          <span class="text-[9px] font-extrabold mt-0.5">${shortLbl[c.status]}</span>
+        </div>
+      `).join("");
+    };
+
+    window.loadStaffSalarySlip = async function() {
+      if (!currentUserProfile) return;
+      const monthKey = document.getElementById("staff-slip-month").value || getCurrentMonthKey();
+
+      const attSnap = await getDocs(query(collection(db, "attendance"), where("staffId", "==", currentUserProfile.id)));
+      const recs = [];
+      attSnap.forEach(d => recs.push(d.data()));
+      const attSummary = computeMonthBreakdown(currentUserProfile.id, monthKey, recs);
+
+      const taskSnap = await getDocs(query(collection(db, "tasks"), where("assignedToId", "==", currentUserProfile.id)));
+      let monthlyIncentive = 0;
+      taskSnap.forEach(d => {
+        const t = d.data();
+        if ((t.date || "").startsWith(monthKey) && t.status === "completed") {
+          monthlyIncentive += Number(t.incentiveAmount || 0);
+        }
+      });
+
+      const advSnap = await getDocs(query(collection(db, "advances"), where("staffId", "==", currentUserProfile.id)));
+      let monthlyAdvance = 0;
+      advSnap.forEach(d => {
+        const a = d.data();
+        if ((a.neededDate || "").startsWith(monthKey) && a.status === "approved") {
+          monthlyAdvance += Number(a.amount || 0);
+        }
+      });
+
+      const baseSalary = Number(staffSalaryConfigMap[currentUserProfile.id]?.baseSalary || 0);
+      const perDay = baseSalary > 0 ? baseSalary / 30 : 0;
+      const absentDeduction = Math.round(attSummary.absent * perDay + attSummary.halfDay * (perDay * 0.5));
+      const netPayable = Math.max(0, Math.round(baseSalary - absentDeduction + monthlyIncentive - monthlyAdvance));
+
+      document.getElementById("staff-salary-slip-box").innerHTML = `
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <p class="text-slate-500 font-semibold">Base Monthly Salary</p>
+            <p class="font-display text-lg font-extrabold text-slate-900 mt-1">&#8377;${baseSalary.toLocaleString('en-IN')}</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/80">
+            <p class="text-emerald-700 font-semibold">Incentives Earned (+)</p>
+            <p class="font-display text-lg font-extrabold text-emerald-800 mt-1">+ &#8377;${monthlyIncentive.toLocaleString('en-IN')}</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/80">
+            <p class="text-amber-700 font-semibold">Advance &amp; Deductions (-)</p>
+            <p class="font-display text-lg font-extrabold text-amber-800 mt-1">- &#8377;${(monthlyAdvance + absentDeduction).toLocaleString('en-IN')}</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-blue-900 text-white shadow">
+            <p class="text-blue-200 font-semibold">Net Salary Slip Total</p>
+            <p class="font-display text-xl font-extrabold text-amber-300 mt-1">&#8377;${netPayable.toLocaleString('en-IN')}</p>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-3">
+          Attendance Breakdown (${monthKey}): <strong>${attSummary.present} Present</strong> &bull; <strong>${attSummary.halfDay} Half Day</strong> &bull; <strong>${attSummary.weekOff} Paid Week Off</strong> &bull; <strong>${attSummary.holidays} Holidays</strong> &bull; <strong>${attSummary.absent} Absent</strong>
+        </p>
+      `;
+    };
+
+    window.handleSaveDeptMetrics = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const f1 = Number(document.getElementById("metric-f1-input").value || 0);
+      const f2 = Number(document.getElementById("metric-f2-input").value || 0);
+      const f3 = Number(document.getElementById("metric-f3-input").value || 0);
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        metrics: { f1, f2, f3, updatedAt: Date.now() }
+      }, { merge: true });
+
+      window.showToast("Today's report figures saved for Management!", "success");
+    };
+
+    window.handleAddAdditionalWork = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const inp = document.getElementById("additional-work-input");
+      const text = inp.value.trim();
+      if (!text) return;
+
+      const todayKey = getTodayKey();
+      const attDocId = `${todayKey}_${currentUserProfile.id}`;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = existing?.additionalWork || [];
+
+      await setDoc(doc(db, "attendance", attDocId), {
+        date: todayKey,
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        additionalWork: [...currentExtra, { text, timeMs: Date.now() }]
+      }, { merge: true });
+
+      inp.value = "";
+      window.showToast("Added to report!", "success");
+    };
+
+    window.handleEditAdditionalWork = async function(idx) {
+      if (!currentUserProfile) return;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = [...(existing?.additionalWork || [])];
+      if (!currentExtra[idx]) return;
+
+      const updatedText = prompt("Edit your report entry:", currentExtra[idx].text);
+      if (updatedText === null || !updatedText.trim()) return;
+
+      currentExtra[idx] = { ...currentExtra[idx], text: updatedText.trim(), editedAt: Date.now() };
+      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
+      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
+      window.showToast("Report entry updated!", "success");
+    };
+
+    window.handleDeleteAdditionalWork = async function(idx) {
+      if (!currentUserProfile) return;
+      const existing = todayAttendanceMap[currentUserProfile.id];
+      const currentExtra = [...(existing?.additionalWork || [])];
+      currentExtra.splice(idx, 1);
+
+      const attDocId = `${getTodayKey()}_${currentUserProfile.id}`;
+      await updateDoc(doc(db, "attendance", attDocId), { additionalWork: currentExtra });
+      window.showToast("Report entry deleted.", "info");
+    };
+
+    function renderStaffEditableExtraWork(data) {
+      const container = document.getElementById("staff-editable-extra-list");
+      const list = data?.additionalWork || [];
+      if (list.length === 0) {
+        container.innerHTML = "";
+        return;
+      }
+      container.innerHTML = list.map((item, idx) => `
+        <div class="flex items-center justify-between gap-2 p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-xs">
+          <div class="min-w-0">
+            <p class="font-semibold text-slate-900 break-words">${item.text}</p>
+            <span class="text-[10px] text-slate-500">${formatTimestampTime(item.timeMs)} ${item.editedAt ? '(Edited)' : ''}</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="window.handleEditAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-blue-700 text-blue-800 hover:text-white border border-blue-200 font-bold text-[11px] transition tap-scale">Edit</button>
+            <button type="button" onclick="window.handleDeleteAdditionalWork(${idx})" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-red-600 text-red-600 hover:text-white border border-red-200 font-bold text-[11px] transition tap-scale">Delete</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function formatMetricsSummary(profile, m) {
+      if (!m) return "";
+      if (profile.reportMode === "phones") return `Phones Sold: ${m.f1 || 0}`;
+      if (profile.reportMode === "service") return `Total Repairing: ${m.f1 || 0} | Completed: ${m.f2 || 0} | Pending: ${m.f3 || 0}`;
+      if (profile.reportMode === "accessories") return `Accessories Sold: ${m.f1 || 0} | Sales Amount: ₹${m.f2 || 0}`;
+      if (profile.reportMode === "editor") return `Total Edit: ${m.f1 || 0} | Total Post: ${m.f2 || 0}`;
+      return "";
+    }
+
+    function renderStaffTasksAndIncentives() {
+      const pendingCount = allTasksToday.filter(t => t.status === "pending").length;
+      const badge = document.getElementById("staff-notif-badge");
+      const banner = document.getElementById("staff-boss-alert-banner");
+      document.getElementById("staff-tasks-count-pill").textContent = `${allTasksToday.length} Tasks`;
+
+      if (pendingCount > 0) {
+        badge.textContent = pendingCount;
+        badge.classList.remove("hidden");
+        banner.classList.remove("hidden");
+        document.getElementById("staff-boss-alert-text").textContent = `You have ${pendingCount} pending task(s) assigned by Management today.`;
+      } else {
+        badge.classList.add("hidden");
+        banner.classList.add("hidden");
+      }
+
+      const listEl = document.getElementById("staff-tasks-list");
+      if (allTasksToday.length === 0) {
+        listEl.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned by Management yet today.</div>`;
+      } else {
+        listEl.innerHTML = allTasksToday.map(t => {
+          const isDone = t.status === "completed";
+          return `
+            <div class="p-4 rounded-2xl border ${isDone ? 'bg-emerald-50/50 border-emerald-200' : 'bg-white border-slate-200'} flex items-start justify-between gap-3 transition">
+              <div class="flex items-start gap-3">
+                <button type="button" onclick="window.toggleCompleteTask('${t.docId}', '${t.status}', ${t.incentiveAmount || 0})"
+                  class="mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition tap-scale ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-blue-600'}">
+                  ${isDone ? '&#10003;' : ''}
+                </button>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-sm font-bold ${isDone ? 'line-through text-slate-400' : 'text-slate-900'}">${t.title}</span>
+                    ${t.priority === 'Urgent' ? '<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">URGENT</span>' : ''}
+                    ${t.incentiveAmount > 0 ? `<span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">
+                    ${isDone ? `Completed at ${formatTimestampTime(t.completedAt)} • Synced to Report` : 'Assigned by Management'}
+                  </p>
+                </div>
+              </div>
+              ${isDone && t.incentiveAmount > 0 ? `
+                <button type="button" onclick="window.switchStaffTab('incentives')" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-extrabold shrink-0 tap-scale">
+                  Claim &#8377;${t.incentiveAmount}
+                </button>
+              ` : ''}
+            </div>
+          `;
+        }).join("");
+      }
+
+      const incTasks = allTasksToday.filter(t => (t.incentiveAmount || 0) > 0);
+      const totalEarned = incTasks.filter(t => t.status === "completed").reduce((s, t) => s + Number(t.incentiveAmount || 0), 0);
+      document.getElementById("staff-total-incentive").textContent = `\u20B9${totalEarned}`;
+
+      const incListEl = document.getElementById("staff-incentives-list");
+      if (incTasks.length === 0) {
+        incListEl.innerHTML = `<div class="bg-white p-8 rounded-3xl border border-slate-200 text-center text-xs text-slate-500">No incentive tasks assigned to you today.</div>`;
+      } else {
+        incListEl.innerHTML = incTasks.map(t => {
+          const isDone = t.status === "completed";
+          const isClaimed = !!t.incentiveClaimed;
+          return `
+            <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs">&#8377;${t.incentiveAmount} Reward</span>
+                  <span class="text-xs font-bold ${isDone ? 'text-emerald-700' : 'text-slate-500'}">
+                    ${isDone ? 'Task Completed' : 'Task Pending'}
+                  </span>
+                </div>
+                <h4 class="font-display font-extrabold text-slate-900 text-base mt-2">${t.title}</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  ${!isDone
+                    ? 'Complete this task first to unlock your incentive claim.'
+                    : isClaimed
+                      ? `Claim confirmed on ${formatTimestampTime(t.claimedAt)}`
+                      : 'Visit VISHAL (Accountant) to collect your \u20B9' + t.incentiveAmount + ', then tap confirm below.'}
+                </p>
+              </div>
+
+              <div class="shrink-0">
+                ${!isDone
+                  ? `<button type="button" onclick="window.switchStaffTab('tasks')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs tap-scale">Go Complete Task</button>`
+                  : isClaimed
+                    ? `<span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold text-xs">Claimed &amp; Received &#10003;</span>`
+                    : `<button type="button" onclick="window.handleConfirmIncentiveClaim('${t.docId}')" class="royal-btn px-4 py-3 rounded-xl text-white font-extrabold text-xs shadow">
+                        Did You Claim? Yes, Received
+                      </button>`
+                }
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    window.toggleCompleteTask = async function(docId, currentStatus, incentiveAmt) {
+      const nextStatus = currentStatus === "completed" ? "pending" : "completed";
+      await updateDoc(doc(db, "tasks", docId), {
+        status: nextStatus,
+        completedAt: nextStatus === "completed" ? Date.now() : null
+      });
+      if (nextStatus === "completed") {
+        window.showToast(incentiveAmt > 0 ? `Task completed! \u20B9${incentiveAmt} incentive unlocked!` : "Task completed & synced to Daily Report!", "success");
+        if (incentiveAmt > 0) window.switchStaffTab("incentives");
+      }
+    };
+
+    window.handleConfirmIncentiveClaim = async function(docId) {
+      await updateDoc(doc(db, "tasks", docId), {
+        incentiveClaimed: true,
+        claimedAt: Date.now()
+      });
+      window.showToast("Incentive claim confirmed!", "success");
+    };
+
+    function renderStaffAutoReport() {
+      const box = document.getElementById("staff-auto-report-items");
+      const att = todayAttendanceMap[currentUserProfile?.id];
+      const completedTasks = allTasksToday.filter(t => t.status === "completed");
+      const extraWork = att?.additionalWork || [];
+      const metricSummary = formatMetricsSummary(currentUserProfile, att?.metrics);
+
+      const items = [];
+      if (metricSummary) {
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">FIGURES</span><strong>${metricSummary}</strong></div>`);
+      }
+      completedTasks.forEach(t => {
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">TASK DONE</span><span>${t.title}</span></div>`);
+      });
+      extraWork.forEach(w => {
+        items.push(`<div class="flex items-center gap-2"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">EXTRA WORK</span><span>${w.text}</span></div>`);
+      });
+
+      box.innerHTML = items.length ? items.join("") : `<p class="text-slate-400 italic">No report items logged yet today.</p>`;
+    }
+
+    window.setLeaveQuickDate = function(daysAhead) {
+      const d = new Date();
+      d.setDate(d.getDate() + daysAhead);
+      document.getElementById("leave-date-input").value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    };
+
+    window.handleApplyLeave = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const leaveDate = document.getElementById("leave-date-input").value;
+      const reason = document.getElementById("leave-reason-input").value.trim();
+      if (!leaveDate || !reason) return;
+
+      await addDoc(collection(db, "leaves"), {
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        leaveDate,
+        reason,
+        status: "pending",
+        createdAt: Date.now()
+      });
+
+      document.getElementById("leave-reason-input").value = "";
+      window.showToast("Urgent leave request sent to Management!", "success");
+    };
+
+    function renderStaffLeaves(list) {
+      const el = document.getElementById("staff-leaves-list");
+      if (list.length === 0) {
+        el.innerHTML = `<p class="text-xs text-slate-400">No leave requests submitted.</p>`;
+        return;
+      }
+      el.innerHTML = list.map(l => {
+        const badge = l.status === "approved" ? "bg-emerald-100 text-emerald-800" : l.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
+        return `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
+            <div>
+              <p class="text-xs font-bold text-slate-900">Date: ${l.leaveDate}</p>
+              <p class="text-[11px] text-slate-500">${l.reason}</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${l.status}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.handleApplyAdvance = async function(e) {
+      if (e) e.preventDefault();
+      if (!currentUserProfile) return;
+      const amount = Number(document.getElementById("advance-amount-input").value);
+      const neededDate = document.getElementById("advance-date-input").value;
+      const reason = document.getElementById("advance-reason-input").value.trim();
+      if (!amount || !neededDate || !reason) return;
+
+      await addDoc(collection(db, "advances"), {
+        staffId: currentUserProfile.id,
+        staffName: currentUserProfile.name,
+        department: currentUserProfile.department,
+        amount,
+        neededDate,
+        reason,
+        status: "pending",
+        createdAt: Date.now()
+      });
+
+      document.getElementById("advance-amount-input").value = "";
+      document.getElementById("advance-reason-input").value = "";
+      window.showToast(`Advance request of \u20B9${amount} sent!`, "success");
+    };
+
+    function renderStaffAdvances(list) {
+      const el = document.getElementById("staff-advances-list");
+      if (list.length === 0) {
+        el.innerHTML = `<p class="text-xs text-slate-400">No advance salary requests yet.</p>`;
+        return;
+      }
+      el.innerHTML = list.map(a => {
+        const badge = a.status === "approved" ? "bg-emerald-100 text-emerald-800" : a.status === "rejected" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-800";
+        return `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-2">
+            <div>
+              <p class="text-xs font-extrabold text-slate-900">&#8377;${a.amount} <span class="font-normal text-slate-500">for ${a.neededDate}</span></p>
+              <p class="text-[11px] text-slate-500">${a.reason}</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${badge}">${a.status}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function initBossPortal() {
+      clearActiveListeners();
+
+      const indivGroup = document.getElementById("boss-task-individual-options");
+      indivGroup.innerHTML = STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} (${s.designation})</option>`).join("");
+
+      const histSel = document.getElementById("history-staff-select");
+      histSel.innerHTML = `<option value="ALL">All 18 Staff Members</option>` +
+        STAFF_ROSTER.map(s => `<option value="${s.id}">${s.name} — ${s.designation}</option>`).join("");
+
+      const chatAppSel = document.getElementById("boss-chat-appreciate-staff");
+      chatAppSel.innerHTML = `<option value="All Galaxy Point Team">All Galaxy Point Team</option>` +
+        STAFF_ROSTER.map(s => `<option value="${s.name} (${s.designation})">${s.name} — ${s.designation}</option>`).join("");
+
+      document.getElementById("boss-payroll-month").value = getCurrentMonthKey();
+      window.populateBestEmpStaff();
+
+      subscribeAnnouncementsAndWinners();
+      subscribeGroupChat("boss-chat-messages");
+
+      window.switchBossTab("live");
+      const todayKey = getTodayKey();
+
+      const qAtt = query(collection(db, "attendance"), where("date", "==", todayKey));
+      const unsubAtt = onSnapshot(qAtt, (snap) => {
+        const map = {};
+        snap.forEach(d => {
+          const val = d.data();
+          map[val.staffId] = val;
+        });
+        todayAttendanceMap = map;
+        updateBossKPIs();
+        window.renderBossLiveTable();
+      });
+      activeUnsubscribers.push(unsubAtt);
+
+      const qTasks = query(collection(db, "tasks"), where("date", "==", todayKey));
+      const unsubTasks = onSnapshot(qTasks, (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allTasksToday = list;
+        renderBossTasksList();
+        window.renderBossLiveTable();
+      });
+      activeUnsubscribers.push(unsubTasks);
+
+      const unsubLeaves = onSnapshot(collection(db, "leaves"), (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allLeaves = list;
+        updateBossKPIs();
+        renderBossLeavesList();
+      });
+      activeUnsubscribers.push(unsubLeaves);
+
+      const unsubAdv = onSnapshot(collection(db, "advances"), (snap) => {
+        const list = [];
+        snap.forEach(d => list.push({ docId: d.id, ...d.data() }));
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allAdvances = list;
+        updateBossKPIs();
+        renderBossAdvancesList();
+      });
+      activeUnsubscribers.push(unsubAdv);
+    }
+
+    window.switchBossTab = function(tabName) {
+      ["live", "analytics", "tasks", "attendance_payroll", "leaves", "chat", "history"].forEach(v => {
+        document.getElementById(`boss-view-${v}`).classList.toggle("hidden", v !== tabName);
+      });
+      document.querySelectorAll(".boss-tab-btn").forEach(btn => {
+        const active = btn.dataset.bossTab === tabName;
+        btn.className = active
+          ? "boss-tab-btn px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-900 text-white shadow-xs transition"
+          : "boss-tab-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-blue-50 hover:text-blue-900 transition";
+      });
+      if (tabName === "history") window.loadSixMonthHistory();
+      if (tabName === "analytics") window.setAnalyticsPeriod(currentAnalyticsPeriod);
+      if (tabName === "attendance_payroll") window.loadBossMonthlyPayroll();
+    };
+
+    function updateBossKPIs() {
+      let present = 0;
+      let late = 0;
+      let breakExceed = 0;
+
+      STAFF_ROSTER.forEach(s => {
+        const att = todayAttendanceMap[s.id];
+        if (att?.checkInMs) present++;
+        if (att?.isLate) late++;
+        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
+        if (Math.floor(totalBreakMs / 60000) > 60) breakExceed++;
+      });
+
+      const pendingLeaves = allLeaves.filter(l => l.status === "pending").length;
+      const pendingAdv = allAdvances.filter(a => a.status === "pending").length;
+      const totalReq = pendingLeaves + pendingAdv;
+
+      document.getElementById("kpi-present").textContent = `${present} / ${STAFF_ROSTER.length}`;
+      document.getElementById("kpi-late").textContent = late;
+      document.getElementById("kpi-break-exceed").textContent = breakExceed;
+      document.getElementById("kpi-pending-leaves").textContent = pendingLeaves;
+      document.getElementById("kpi-pending-advances").textContent = pendingAdv;
+
+      const rBadge = document.getElementById("boss-req-badge");
+      rBadge.textContent = totalReq;
+      rBadge.classList.toggle("hidden", totalReq === 0);
+    }
+
+    window.renderBossLiveTable = function() {
+      const deptFilter = document.getElementById("boss-dept-filter").value;
+      const tbody = document.getElementById("boss-live-tbody");
+      const list = deptFilter === "ALL" ? STAFF_ROSTER : STAFF_ROSTER.filter(s => s.department === deptFilter);
+
+      tbody.innerHTML = list.map(s => {
+        const att = todayAttendanceMap[s.id];
+        const staffTasksDone = allTasksToday.filter(t => t.assignedToId === s.id && t.status === "completed");
+        const extraWork = att?.additionalWork || [];
+        const metricSummary = formatMetricsSummary(s, att?.metrics);
+        const totalReportCount = staffTasksDone.length + extraWork.length + (metricSummary ? 1 : 0);
+
+        const totalBreakMs = (att?.totalBreakMs || 0) + (att?.activeBreakStartMs ? (Date.now() - att.activeBreakStartMs) : 0);
+        const breakMins = Math.floor(totalBreakMs / 60000);
+        const isExceeded = breakMins > 60;
+
+        return `
+          <tr class="hover:bg-blue-50/40 transition">
+            <td class="py-3.5 px-3">
+              <div class="font-extrabold text-slate-900 text-sm">${s.name}</div>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-100">${s.designation}</span>
+            </td>
+            <td class="py-3.5 px-3 text-slate-600 font-medium whitespace-nowrap">
+              ${format12Hour(s.shiftStart)} – ${format12Hour(s.shiftEnd)}
+            </td>
+            <td class="py-3.5 px-3">
+              ${att?.dayType === "weekoff" && !att?.checkInMs ? `
+                <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-100 text-blue-800">PAID WEEK OFF</span>
+              ` : att?.checkInMs ? `
+                <div class="flex items-center gap-1.5">
+                  <span class="font-extrabold text-slate-900">${formatTimestampTime(att.checkInMs)}</span>
+                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${att.isLate ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${att.checkInStatus}</span>
+                </div>
+                <div class="text-[11px] text-slate-600 mt-1 flex items-center gap-1.5">
+                  <span class="max-w-[180px] truncate">${att.checkInLocation || 'GPS Verified'}</span>
+                  ${att.checkInMapsUrl ? `<a href="${att.checkInMapsUrl}" target="_blank" class="px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] shrink-0 hover:bg-blue-800">Open Map</a>` : ''}
+                </div>
+              ` : `<span class="text-slate-400 font-medium">Not Checked In</span>`}
+            </td>
+            <td class="py-3.5 px-3 whitespace-nowrap">
+              ${att?.checkOutMs
+                ? `<span class="font-bold text-slate-800">${formatTimestampTime(att.checkOutMs)}</span>`
+                : att?.checkInMs
+                  ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">On Duty</span>`
+                  : `<span class="text-slate-300">--</span>`}
+            </td>
+            <td class="py-3.5 px-3 whitespace-nowrap">
+              <div class="flex items-center gap-1.5">
+                <span class="font-extrabold ${isExceeded ? 'text-red-600' : 'text-slate-800'}">${breakMins}m / 60m</span>
+                ${att?.activeBreakStartMs ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 animate-pulse">ON BREAK</span>` : ''}
+                ${isExceeded ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-red-100 text-red-700">EXCEEDED</span>` : ''}
+              </div>
+            </td>
+            <td class="py-3.5 px-3">
+              ${totalReportCount > 0 ? `
+                <details class="cursor-pointer">
+                  <summary class="font-bold text-blue-700">${totalReportCount} update(s)</summary>
+                  <ul class="mt-1 space-y-0.5 text-[11px] text-slate-600 list-disc list-inside">
+                    ${metricSummary ? `<li><strong>${metricSummary}</strong></li>` : ''}
+                    ${staffTasksDone.map(t => `<li>[Task] ${t.title}</li>`).join("")}
+                    ${extraWork.map(w => `<li>[Extra] ${w.text}</li>`).join("")}
+                  </ul>
+                </details>
+              ` : `<span class="text-slate-400">No items yet</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.selectAnalyticsDept = function(dept) {
+      currentAnalyticsDept = dept;
+      document.querySelectorAll(".adept-btn").forEach(btn => {
+        const active = btn.dataset.adept === dept;
+        btn.className = active
+          ? "adept-btn px-4 py-2 rounded-xl text-xs font-extrabold bg-blue-800 text-white shadow-xs transition"
+          : "adept-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-50 text-blue-900 hover:bg-blue-100 transition";
+      });
+      window.loadDepartmentAnalytics();
+    };
+
+    window.setAnalyticsPeriod = function(period) {
+      currentAnalyticsPeriod = period;
+      document.querySelectorAll(".analytics-period-btn").forEach(btn => {
+        const active = btn.dataset.period === period;
+        btn.className = active
+          ? "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-extrabold bg-blue-900 text-white shadow-2xs transition"
+          : "analytics-period-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition";
+      });
+      window.selectAnalyticsDept(currentAnalyticsDept);
+    };
+
+    window.loadDepartmentAnalytics = async function() {
+      const dept = currentAnalyticsDept;
+      const graphBox = document.getElementById("analytics-visual-graph");
+      const listBox = document.getElementById("analytics-leaderboard-container");
+      graphBox.innerHTML = `<p class="text-xs text-slate-400 py-8 text-center">Generating ${dept} visual performance graph...</p>`;
+
+      let cutoffKey = getTodayKey();
+      if (currentAnalyticsPeriod === "month") {
+        cutoffKey = `${getCurrentMonthKey()}-01`;
+      } else if (currentAnalyticsPeriod !== "day") {
+        const days = currentAnalyticsPeriod === "week" ? 7 : Number(currentAnalyticsPeriod);
+        const d = new Date();
+        d.setDate(d.getDate() - days);
+        cutoffKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      }
+
+      const deptStaff = STAFF_ROSTER.filter(s => s.department === dept);
+      const stats = {};
+      deptStaff.forEach(s => {
+        stats[s.id] = { ...s, f1Total: 0, f2Total: 0, f3Total: 0, daysActive: 0 };
+      });
+
+      const attSnap = await getDocs(collection(db, "attendance"));
+      attSnap.forEach(d => {
+        const r = d.data();
+        if (r.date >= cutoffKey && stats[r.staffId]) {
+          if (r.checkInMs) stats[r.staffId].daysActive++;
+          if (r.metrics) {
+            stats[r.staffId].f1Total += Number(r.metrics.f1 || 0);
+            stats[r.staffId].f2Total += Number(r.metrics.f2 || 0);
+            stats[r.staffId].f3Total += Number(r.metrics.f3 || 0);
+          }
+        }
+      });
+
+      const ranked = Object.values(stats).sort((a, b) => {
+        if (dept === "Accessories") return (b.f2Total - a.f2Total) || (b.f1Total - a.f1Total);
+        if (dept === "Service Centre") return (b.f2Total - a.f2Total) || (b.f1Total - a.f1Total);
+        return b.f1Total - a.f1Total;
+      });
+
+      const getScore = (item) => {
+        if (dept === "Accessories") return item.f2Total || item.f1Total;
+        if (dept === "Service Centre") return item.f2Total || item.f1Total;
+        return item.f1Total;
+      };
+      const maxScore = Math.max(1, ...ranked.map(getScore));
+
+      graphBox.innerHTML = `
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-900">${dept} — Visual Score Graph</span>
+          <span class="text-[11px] font-semibold text-slate-500">From ${cutoffKey} to Today</span>
+        </div>
+        <div class="grid gap-3 items-end h-44 pt-6 px-2 border-b border-slate-200" style="grid-template-columns: repeat(${ranked.length}, minmax(0, 1fr));">
+          ${ranked.map((item, idx) => {
+            const sc = getScore(item);
+            const hPct = Math.max(12, Math.round((sc / maxScore) * 100));
+            const labelVal = dept === "Accessories" ? `₹${item.f2Total} (${item.f1Total})` : dept === "Service Centre" ? `${item.f2Total}/${item.f1Total}` : `${item.f1Total}`;
+            return `
+              <div class="flex flex-col items-center justify-end h-full">
+                <span class="text-[11px] font-extrabold text-blue-950 mb-1.5 text-center">${labelVal}</span>
+                <div class="w-full max-w-[54px] rounded-t-xl ${idx === 0 ? 'bg-gradient-to-t from-blue-900 to-blue-500 shadow-md' : 'bg-blue-300'} transition-all duration-500" style="height: ${hPct}%"></div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <div class="grid gap-3 pt-2 px-2 text-center" style="grid-template-columns: repeat(${ranked.length}, minmax(0, 1fr));">
+          ${ranked.map((item, idx) => `
+            <div>
+              <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-extrabold ${idx === 0 ? 'bg-amber-400 text-slate-950' : 'bg-slate-200 text-slate-700'}">#${idx + 1}</span>
+              <p class="text-xs font-extrabold text-slate-900 mt-0.5 truncate">${item.name}</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+
+      listBox.innerHTML = ranked.map((item, idx) => {
+        let metricText = `Phones Sold: <strong>${item.f1Total}</strong>`;
+        if (dept === "Accessories") metricText = `Items Sold: <strong>${item.f1Total}</strong> &bull; Sales Amount: <strong class="text-emerald-700">₹${item.f2Total.toLocaleString('en-IN')}</strong>`;
+        if (dept === "Service Centre") metricText = `Total Repairing: <strong>${item.f1Total}</strong> &bull; Completed: <strong class="text-emerald-700">${item.f2Total}</strong> &bull; Pending: <strong class="text-amber-700">${item.f3Total}</strong>`;
+
+        return `
+          <div class="p-4 rounded-2xl border ${idx === 0 ? 'border-blue-300 bg-blue-50/40' : 'border-slate-200 bg-white'} flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl font-display font-extrabold text-xs flex items-center justify-center ${idx === 0 ? 'bg-amber-400 text-slate-950' : 'bg-blue-50 text-blue-900'}">#${idx + 1}</span>
+              <div>
+                <span class="font-extrabold text-sm text-slate-900">${item.name}</span>
+                <span class="ml-1.5 text-[11px] font-semibold text-slate-500">(${item.designation} &bull; ${item.daysActive} active day(s))</span>
+              </div>
+            </div>
+            <div class="text-xs text-slate-700">${metricText}</div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    window.populateBestEmpStaff = function() {
+      const dept = document.getElementById("best-emp-dept").value;
+      const sel = document.getElementById("best-emp-staff");
+      const list = STAFF_ROSTER.filter(s => s.department === dept);
+      sel.innerHTML = list.map(s => `<option value="${s.id}">${s.name} (${s.designation})</option>`).join("");
+    };
+
+    window.handleDeclareBestEmployee = async function(e) {
+      if (e) e.preventDefault();
+      const dept = document.getElementById("best-emp-dept").value;
+      const staffId = document.getElementById("best-emp-staff").value;
+      const note = document.getElementById("best-emp-note").value.trim();
+      const st = STAFF_ROSTER.find(s => s.id === staffId);
+      if (!st) return;
+
+      const updatedWinners = {
+        ...bestEmployeesMap,
+        [dept]: {
+          staffId: st.id,
+          staffName: st.name,
+          designation: st.designation,
+          department: dept,
+          note,
+          awardedAt: Date.now()
+        }
+      };
+
+      await setDoc(doc(db, "settings", "bestEmployees"), updatedWinners, { merge: true });
+      await setDoc(doc(db, "settings", "latestAnnouncement"), {
+        title: `★ Best Employee of the Month (${dept}): ${st.name}!`,
+        body: `Congratulations to ${st.name} (${st.designation}) for winning Best Employee of the Month in ${dept}! ${note}`,
+        createdAt: Date.now()
+      });
+
+      window.showToast(`${st.name} awarded & announced to all staff!`, "success");
+    };
+
+    function renderBestEmployeesShowcase() {
+      const box = document.getElementById("best-employees-showcase");
+      const entries = Object.values(bestEmployeesMap);
+      if (entries.length === 0) {
+        box.innerHTML = `<p class="col-span-full text-xs text-slate-400">No Best Employee of the Month awarded yet.</p>`;
+        return;
+      }
+      box.innerHTML = entries.map(w => `
+        <div class="p-3.5 rounded-2xl bg-gradient-to-br from-amber-50 to-blue-50 border border-amber-200">
+          <span class="text-[10px] font-extrabold uppercase text-amber-800">★ ${w.department}</span>
+          <p class="font-display font-extrabold text-sm text-slate-900 mt-1">${w.staffName}</p>
+          <p class="text-[11px] text-slate-600 mt-0.5">${w.designation}</p>
+        </div>
+      `).join("");
+    }
+
+    window.handlePostAnnouncement = async function(e) {
+      if (e) e.preventDefault();
+      const title = document.getElementById("ann-title-input").value.trim();
+      const body = document.getElementById("ann-body-input").value.trim();
+      if (!title || !body) return;
+
+      await setDoc(doc(db, "settings", "latestAnnouncement"), {
+        title,
+        body,
+        createdAt: Date.now()
+      });
+
+      document.getElementById("ann-title-input").value = "";
+      document.getElementById("ann-body-input").value = "";
+      window.showToast("Announcement published live to all staff!", "success");
+    };
+
+    window.handleBossAssignTask = async function(e) {
+      if (e) e.preventDefault();
+      const target = document.getElementById("boss-task-target").value;
+      const title = document.getElementById("boss-task-title").value.trim();
+      const incentiveAmount = Number(document.getElementById("boss-task-incentive").value || 0);
+      const priority = document.getElementById("boss-task-priority").value;
+      if (!title) return;
+
+      let recipients = [];
+      if (target === "ALL") {
+        recipients = [...STAFF_ROSTER];
+      } else if (target.startsWith("DEPT:")) {
+        const dept = target.replace("DEPT:", "");
+        recipients = STAFF_ROSTER.filter(s => s.department === dept);
+      } else {
+        const one = STAFF_ROSTER.find(s => s.id === target);
+        if (one) recipients = [one];
+      }
+
+      const todayKey = getTodayKey();
+      const nowMs = Date.now();
+
+      for (const st of recipients) {
+        await addDoc(collection(db, "tasks"), {
+          date: todayKey,
+          assignedToId: st.id,
+          assignedToName: st.name,
+          department: st.department,
+          title,
+          incentiveAmount,
+          priority,
+          status: "pending",
+          incentiveClaimed: false,
+          createdAt: nowMs
+        });
+      }
+
+      document.getElementById("boss-task-title").value = "";
+      document.getElementById("boss-task-incentive").value = "0";
+      window.showToast(`Task assigned to ${recipients.length} staff member(s)!`, "success");
+    };
+
+    function renderBossTasksList() {
+      document.getElementById("boss-tasks-total-pill").textContent = `${allTasksToday.length} Tasks`;
+      const el = document.getElementById("boss-tasks-list");
+
+      if (allTasksToday.length === 0) {
+        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-200 text-xs text-slate-500">No tasks assigned yet today.</div>`;
+        return;
+      }
+
+      el.innerHTML = allTasksToday.map(t => {
+        const isDone = t.status === "completed";
+        return `
+          <div class="p-3.5 rounded-2xl border ${isDone ? 'bg-emerald-50/40 border-emerald-200' : 'bg-slate-50/70 border-slate-200'} flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-xs font-extrabold text-blue-900">${t.assignedToName}</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200/70 text-slate-700">${t.department}</span>
+                ${t.incentiveAmount > 0 ? `<span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Incentive: &#8377;${t.incentiveAmount}</span>` : ''}
+              </div>
+              <p class="text-xs font-semibold text-slate-800 mt-1">${t.title}</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase ${isDone ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                ${isDone ? 'Completed' : 'Pending'}
+              </span>
+              ${t.incentiveAmount > 0 ? (
+                t.incentiveClaimed
+                  ? `<span class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-900 text-white">Incentive Claimed &#10003;</span>`
+                  : `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-200 text-slate-600">Unclaimed</span>`
+              ) : ''}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.handleAddStoreHoliday = async function(e) {
+      if (e) e.preventDefault();
+      const date = document.getElementById("holiday-date-input").value;
+      const name = document.getElementById("holiday-name-input").value.trim();
+      if (!date || !name) return;
+
+      await setDoc(doc(db, "holidays", date), { date, name, createdAt: Date.now() }, { merge: true });
+      document.getElementById("holiday-name-input").value = "";
+      window.showToast(`Store holiday "${name}" added!`, "success");
+    };
+
+    window.handleDeleteHoliday = async function(date) {
+      await deleteDoc(doc(db, "holidays", date));
+      window.showToast("Holiday removed.", "info");
+    };
+
+    function renderBossHolidaysList() {
+      const box = document.getElementById("boss-holidays-list");
+      if (!box) return;
+      if (storeHolidays.length === 0) {
+        box.innerHTML = `<span class="text-xs text-slate-400">No store holidays added yet.</span>`;
+        return;
+      }
+      box.innerHTML = storeHolidays.map(h => `
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 text-xs font-bold text-purple-900">
+          <span>${h.date}: ${h.name}</span>
+          <button type="button" onclick="window.handleDeleteHoliday('${h.date}')" class="text-red-600 font-extrabold">✕</button>
+        </span>
+      `).join("");
+    }
+
+    window.saveStaffBaseSalary = async function(staffId, val) {
+      const baseSalary = Number(val || 0);
+      await setDoc(doc(db, "salaryConfig", staffId), { baseSalary, updatedAt: Date.now() }, { merge: true });
+      window.showToast("Base salary updated!", "success");
+    };
+
+    window.loadBossMonthlyPayroll = async function() {
+      const tbody = document.getElementById("boss-payroll-tbody");
+      if (!tbody) return;
+      const monthKey = document.getElementById("boss-payroll-month").value || getCurrentMonthKey();
+
+      const attSnap = await getDocs(collection(db, "attendance"));
+      const allAtt = [];
+      attSnap.forEach(d => allAtt.push(d.data()));
+
+      const taskSnap = await getDocs(collection(db, "tasks"));
+      const incByStaff = {};
+      taskSnap.forEach(d => {
+        const t = d.data();
+        if ((t.date || "").startsWith(monthKey) && t.status === "completed") {
+          incByStaff[t.assignedToId] = (incByStaff[t.assignedToId] || 0) + Number(t.incentiveAmount || 0);
+        }
+      });
+
+      const advByStaff = {};
+      allAdvances.forEach(a => {
+        if ((a.neededDate || "").startsWith(monthKey) && a.status === "approved") {
+          advByStaff[a.staffId] = (advByStaff[a.staffId] || 0) + Number(a.amount || 0);
+        }
+      });
+
+      tbody.innerHTML = STAFF_ROSTER.map(s => {
+        const sum = computeMonthBreakdown(s.id, monthKey, allAtt);
+        const base = Number(staffSalaryConfigMap[s.id]?.baseSalary || 0);
+        const inc = incByStaff[s.id] || 0;
+        const adv = advByStaff[s.id] || 0;
+        const perDay = base > 0 ? base / 30 : 0;
+        const ded = Math.round(sum.absent * perDay + sum.halfDay * (perDay * 0.5));
+        const net = Math.max(0, Math.round(base - ded + inc - adv));
+
+        return `
+          <tr class="hover:bg-blue-50/40">
+            <td class="py-3 px-3">
+              <div class="font-extrabold text-slate-900">${s.name}</div>
+              <span class="text-[10px] text-blue-700 font-bold">${s.designation}</span>
+            </td>
+            <td class="py-3 px-2 text-center font-extrabold text-emerald-700">${sum.present}</td>
+            <td class="py-3 px-2 text-center font-bold text-amber-700">${sum.halfDay}</td>
+            <td class="py-3 px-2 text-center font-bold text-blue-700">${sum.weekOff + sum.holidays}</td>
+            <td class="py-3 px-2 text-center font-extrabold text-red-600">${sum.absent}</td>
+            <td class="py-3 px-3">
+              <input type="number" min="0" step="500" value="${base}" onchange="window.saveStaffBaseSalary('${s.id}', this.value)"
+                class="w-24 px-2 py-1 rounded-lg bg-slate-50 border border-slate-200 font-bold text-slate-900 text-xs" />
+            </td>
+            <td class="py-3 px-3 font-bold text-emerald-700">+&#8377;${inc}</td>
+            <td class="py-3 px-3 font-bold text-amber-700">-&#8377;${adv + ded}</td>
+            <td class="py-3 px-3 font-display font-extrabold text-blue-950 text-sm">&#8377;${net.toLocaleString('en-IN')}</td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    function renderBossLeavesList() {
+      const el = document.getElementById("boss-leaves-list");
+      if (allLeaves.length === 0) {
+        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No urgent leave requests yet.</div>`;
+        return;
+      }
+      el.innerHTML = allLeaves.map(l => `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-sm text-slate-900">${l.staffName} <span class="text-xs font-semibold text-blue-700">(${l.department})</span></span>
+              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${l.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : l.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${l.status}</span>
+            </div>
+            <p class="text-xs font-bold text-blue-900 mt-1.5">Leave Date: ${l.leaveDate}</p>
+            <p class="text-xs text-slate-600 mt-1">${l.reason}</p>
+          </div>
+          ${l.status === "pending" ? `
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve</button>
+              <button type="button" onclick="window.updateLeaveStatus('${l.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
+            </div>
+          ` : ''}
+        </div>
+      `).join("");
+    }
+
+    window.updateLeaveStatus = async function(docId, status) {
+      await updateDoc(doc(db, "leaves", docId), { status, reviewedAt: Date.now() });
+      window.showToast(`Leave marked as ${status.toUpperCase()}`, "info");
+    };
+
+    function renderBossAdvancesList() {
+      const el = document.getElementById("boss-advances-list");
+      if (allAdvances.length === 0) {
+        el.innerHTML = `<div class="p-6 text-center rounded-2xl bg-slate-50 text-xs text-slate-500">No advance salary requests yet.</div>`;
+        return;
+      }
+      el.innerHTML = allAdvances.map(a => `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between gap-3">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-sm text-slate-900">${a.staffName} <span class="text-xs font-semibold text-blue-700">(${a.department})</span></span>
+              <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase ${a.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : a.status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-800'}">${a.status}</span>
+            </div>
+            <div class="flex items-center gap-3 mt-1.5">
+              <span class="font-display text-lg font-extrabold text-emerald-700">&#8377;${a.amount}</span>
+              <span class="text-xs font-bold text-slate-600">Required Date: ${a.neededDate}</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-1">${a.reason}</p>
+          </div>
+          ${a.status === "pending" ? `
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'approved')" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition tap-scale">Approve</button>
+              <button type="button" onclick="window.updateAdvanceStatus('${a.docId}', 'rejected')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition tap-scale">Reject</button>
+            </div>
+          ` : ''}
+        </div>
+      `).join("");
+    }
+
+    window.updateAdvanceStatus = async function(docId, status) {
+      await updateDoc(doc(db, "advances", docId), { status, reviewedAt: Date.now() });
+      window.showToast(`Advance request marked as ${status.toUpperCase()}`, "info");
+    };
+
+    window.handleBossSendAppreciation = async function() {
+      const target = document.getElementById("boss-chat-appreciate-staff").value;
+      const tpl = document.getElementById("boss-chat-appreciate-template").value;
+      await addDoc(collection(db, "groupChat"), {
+        senderId: BOSS_ACCOUNT.id,
+        senderName: BOSS_ACCOUNT.name,
+        senderDesignation: BOSS_ACCOUNT.designation,
+        text: `Shoutout to ${target}: ${tpl}`,
+        type: "appreciation",
+        createdAt: Date.now()
+      });
+      window.showToast("Appreciation card posted to Group Chat!", "success");
+    };
+
+    window.loadSixMonthHistory = async function() {
+      const staffFilter = document.getElementById("history-staff-select").value;
+      const daysBack = Number(document.getElementById("history-range-select").value || 180);
+      const tbody = document.getElementById("boss-history-tbody");
+      tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Loading 6-month cloud archive...</td></tr>`;
+
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - daysBack);
+      const cutoffKey = cutoffDate.toISOString().slice(0, 10);
+
+      const attSnap = await getDocs(collection(db, "attendance"));
+      const taskSnap = await getDocs(collection(db, "tasks"));
+
+      const tasksByKey = {};
+      taskSnap.forEach(d => {
+        const t = d.data();
+        if (t.status === "completed") {
+          const k = `${t.date}_${t.assignedToId}`;
+          if (!tasksByKey[k]) tasksByKey[k] = [];
+          tasksByKey[k].push(t.title);
+        }
+      });
+
+      const rows = [];
+      attSnap.forEach(d => {
+        const r = d.data();
+        if (r.date >= cutoffKey && (staffFilter === "ALL" || r.staffId === staffFilter)) {
+          const stObj = STAFF_ROSTER.find(s => s.id === r.staffId);
+          const k = `${r.date}_${r.staffId}`;
+          const doneTasks = tasksByKey[k] || [];
+          const extra = (r.additionalWork || []).map(w => w.text);
+          const metricStr = stObj ? formatMetricsSummary(stObj, r.metrics) : "";
+          rows.push({ ...r, combinedReport: [...(metricStr ? [metricStr] : []), ...doneTasks, ...extra] });
+        }
+      });
+
+      rows.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      historyExportCache = rows;
+
+      if (rows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">No historical records found in this date range yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = rows.map(r => {
+        const breakMins = Math.floor((r.totalBreakMs || 0) / 60000);
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="py-3 px-3 font-bold text-slate-800 whitespace-nowrap">${r.date}</td>
+            <td class="py-3 px-3 font-extrabold text-blue-900">${r.staffName} <span class="block text-[10px] font-normal text-slate-500">${r.designation || r.department || ''}</span></td>
+            <td class="py-3 px-3">
+              <span class="font-bold">${formatTimestampTime(r.checkInMs)}</span>
+              <span class="ml-1 text-[10px] font-bold ${r.isLate ? 'text-amber-700' : 'text-emerald-700'}">(${r.checkInStatus || r.dayType || 'OK'})</span>
+              <div class="text-[11px] text-slate-500 max-w-[200px] truncate">${r.checkInLocation || ''}</div>
+            </td>
+            <td class="py-3 px-3 font-semibold">${formatTimestampTime(r.checkOutMs)}</td>
+            <td class="py-3 px-3 font-bold ${breakMins > 60 ? 'text-red-600' : 'text-slate-700'}">${breakMins}m / 60m</td>
+            <td class="py-3 px-3 text-slate-700">${r.combinedReport.length ? r.combinedReport.join(" • ") : '<span class="text-slate-400">—</span>'}</td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.exportBossHistoryCSV = function() {
+      if (!historyExportCache.length) {
+        window.showToast("No records available to export.", "warn");
+        return;
+      }
+      const headers = ["Date", "Staff Name", "Department", "Check-In Time", "Status", "Check-In Location", "Check-Out Time", "Break Minutes", "Work Report"];
+      const csvLines = [headers.join(",")];
+      historyExportCache.forEach(r => {
+        const line = [
+          r.date,
+          `"${r.staffName}"`,
+          `"${r.department || ''}"`,
+          `"${formatTimestampTime(r.checkInMs)}"`,
+          `"${r.checkInStatus || r.dayType || ''}"`,
+          `"${(r.checkInLocation || '').replace(/"/g, "'")}"`,
+          `"${formatTimestampTime(r.checkOutMs)}"`,
+          Math.floor((r.totalBreakMs || 0) / 60000),
+          `"${(r.combinedReport || []).join(" | ").replace(/"/g, "'")}"`
+        ];
+        csvLines.push(line.join(","));
+      });
+      const blob = new Blob([csvLines.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Galaxy_Point_6Month_Report_${getTodayKey()}.csv`;
+      a.click();
+    };
+
+    setInterval(() => {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+      const dateStr = now.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+
+      const sClock = document.getElementById("staff-live-clock");
+      if (sClock) sClock.textContent = timeStr;
+
+      const bClock = document.getElementById("boss-live-clock");
+      if (bClock) bClock.textContent = `${dateStr} • ${timeStr}`;
+
+      if (currentUserProfile?.role === "staff") {
+        const myAtt = todayAttendanceMap[currentUserProfile.id];
+        if (myAtt?.activeBreakStartMs) {
+          updateBreakLiveDisplay(myAtt);
+        }
+        checkWeekOffWindowVisibility(myAtt);
+      }
+    }, 1000);
+
+    setupAppIconsAndManifest();
+  </script>
+</body>
+</html>
