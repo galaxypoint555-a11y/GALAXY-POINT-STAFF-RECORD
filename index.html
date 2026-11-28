@@ -187,7 +187,7 @@
 
   <!-- ==================== 2. STAFF PORTAL VIEW (LARGE 5-TAB BOTTOM BAR) ==================== -->
   <section id="staff-portal-view" class="hidden min-h-screen flex flex-col bg-gp-ice pb-24">
-    <!-- Top Header: Staff Name on Top + Light "Galaxy Point" & Employee ID Beside/Below -->
+    <!-- Top Header: Staff Name on Top + Light "Galaxy Point" & Matching Employee ID -->
     <header class="gp-exec-banner text-white shadow-md sticky top-0 z-40">
       <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
@@ -257,7 +257,6 @@
           </div>
         </div>
 
-        <!-- Greeting (Time-Based + First Name Only) Directly Above Timer -->
         <div class="bg-white rounded-3xl p-5 border border-blue-100 shadow-2xs flex flex-wrap items-center justify-between gap-3">
           <div>
             <p id="staff-greeting-first-name" class="text-sm font-bold text-gp-royal">Good Afternoon, Sohail 👋</p>
@@ -475,15 +474,15 @@
               <p id="slip-base-salary" class="font-bold text-lg text-slate-900 mt-1 tabular-nums">₹0</p>
             </div>
             <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
-              <p class="text-xs font-semibold text-emerald-700">Approved Incentives</p>
+              <p class="text-xs font-semibold text-emerald-700">Loyalty &amp; Incentives</p>
               <p id="slip-incentives" class="font-bold text-lg text-emerald-900 mt-1 tabular-nums">₹0</p>
             </div>
             <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200">
-              <p class="text-xs font-semibold text-amber-700">Advances / Cuts</p>
+              <p class="text-xs font-semibold text-amber-700">Advances / Paid</p>
               <p id="slip-deductions" class="font-bold text-lg text-amber-900 mt-1 tabular-nums">₹0</p>
             </div>
             <div class="p-4 rounded-2xl bg-gp-navy text-white">
-              <p class="text-xs font-semibold text-blue-200">Net Payable</p>
+              <p class="text-xs font-semibold text-blue-200">Net / Pending Payable</p>
               <p id="slip-net-payable" class="font-bold text-xl text-amber-300 mt-1 tabular-nums">₹0</p>
             </div>
           </div>
@@ -671,7 +670,7 @@
       </div>
     </nav>
   </section>
-  <!-- ==================== 3. JAGDISH BOSS EXECUTIVE COMMAND CENTER ==================== -->
+  -- ==================== 3. JAGDISH BOSS EXECUTIVE COMMAND CENTER ==================== -->
   <section id="boss-portal-view" class="hidden min-h-screen bg-gp-ice text-slate-900">
     <div class="flex min-h-screen">
       <!-- Single Clean Left Sidebar (No Duplicate Top Tabs) -->
@@ -721,6 +720,9 @@
             </button>
             <button type="button" data-boss-nav="analytics" onclick="window.switchBossTab('analytics'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>📊</span><span>Dept Graphs &amp; Rewards</span></span>
+            </button>
+            <button type="button" data-boss-nav="directory" onclick="window.switchBossTab('directory'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
+              <span class="flex items-center gap-3"><span>👥</span><span>Add / Delete Staff</span></span>
             </button>
             <button type="button" data-boss-nav="personal" onclick="window.switchBossTab('personal'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>👤</span><span>Staff Personal Info</span></span>
@@ -821,7 +823,7 @@
               <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">⏰</div>
             </div>
 
-            <div class="bg-white rounded-2xl p-4 border border-red-100 shadow-2xs flex items-center justify-between">
+            <div onclick="window.switchBossTab('breaks')" class="cursor-pointer bg-white rounded-2xl p-4 border border-red-100 hover:border-red-300 shadow-2xs flex items-center justify-between transition">
               <div>
                 <p class="text-xs font-semibold text-slate-500">Break Exceeded</p>
                 <p id="kpi-break-exceeded" class="font-bold text-2xl text-red-600 mt-0.5 tabular-nums">0</p>
@@ -849,16 +851,16 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 1: DASHBOARD LIVE ATTENDANCE & GPS -->
+          <!-- BOSS VIEW 1: DASHBOARD LIVE ATTENDANCE, GPS & REPORT SUBMISSION STATUS -->
           <div id="boss-view-live" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h3 class="font-bold text-base sm:text-lg text-slate-900">📍 Live Staff Attendance &amp; Verified GPS Location</h3>
-                <p class="text-xs text-slate-500">Real-time shift check-in status, store geofence tag, Tea/Coffee break balance &amp; daily report</p>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">📍 Live Staff Attendance, Verified GPS &amp; Daily Reports</h3>
+                <p id="boss-report-summary-line" class="text-xs text-slate-500">Real-time shift check-in status, store geofence tag, Tea/Coffee break balance &amp; report status</p>
               </div>
               <div class="flex items-center gap-2">
                 <select id="boss-live-dept-filter" onchange="window.renderBossLiveTable()" class="px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800">
-                  <option value="ALL">All Departments (18 Staff)</option>
+                  <option value="ALL">All Departments</option>
                   <option value="Pre-Owned Mobile">Pre-Owned Mobile</option>
                   <option value="New Mobile Sale">New Mobile Sale</option>
                   <option value="Accessories">Accessories</option>
@@ -894,7 +896,7 @@
                 <div class="w-11 h-11 rounded-2xl bg-blue-100 text-gp-blue flex items-center justify-center text-xl">📣</div>
                 <div>
                   <h3 class="font-bold text-base sm:text-lg text-slate-900">Store-Wide Broadcast</h3>
-                  <p class="text-xs text-slate-500">Post official announcement to all 18 staff members immediately</p>
+                  <p class="text-xs text-slate-500">Post official announcement to all staff members immediately</p>
                 </div>
               </div>
 
@@ -967,7 +969,6 @@
 
           <!-- BOSS VIEW 3: ATTENDANCE OVERRIDE + DEDICATED STAFF FULL-MONTH CALENDAR EDITOR PAGE -->
           <div id="boss-view-override" class="hidden space-y-5 animate-view">
-            <!-- Staff List with Edit Button -->
             <div id="boss-override-staff-list-card" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -980,7 +981,6 @@
               <div id="boss-override-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
             </div>
 
-            <!-- Dedicated Full-Month Calendar Editor Page for Selected Staff -->
             <div id="boss-staff-month-calendar-page" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-200 shadow-md space-y-4">
               <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
                 <div>
@@ -993,7 +993,6 @@
               </div>
 
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <!-- Left 7 Cols: Full Month Grid -->
                 <div class="lg:col-span-7 space-y-2">
                   <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold text-slate-400">
                     <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
@@ -1001,7 +1000,6 @@
                   <div id="boss-staff-month-calendar-grid" class="grid grid-cols-7 gap-1.5 text-center"></div>
                 </div>
 
-                <!-- Right 5 Cols: Selected Day Editor (Present, Absent, Paid Half Day, Paid Leave, Unpaid Leave, Week Off, Holiday) -->
                 <div class="lg:col-span-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs">
                   <p class="font-bold text-sm text-slate-900">Edit Selected Date</p>
                   <div>
@@ -1047,7 +1045,7 @@
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 class="font-bold text-base sm:text-lg text-slate-900">☕ Check Live Break Status</h3>
-                <p class="text-xs text-slate-500">Real-time view of who is currently on break, who is not on break, count &amp; elapsed break minutes</p>
+                <p class="text-xs text-slate-500">Real-time view of who is currently on break, who is not on break, count &amp; minutes so far</p>
               </div>
               <span id="break-page-summary-pill" class="px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-950 text-xs font-bold tabular-nums">
                 0 On Break Right Now
@@ -1059,7 +1057,6 @@
 
           <!-- BOSS VIEW 5: EDITABLE SALARY & HOLIDAYS + DEDICATED AUTO-CALCULATED STAFF SALARY PAGE -->
           <div id="boss-view-monthly" class="hidden space-y-5 animate-view">
-            <!-- Staff Salary List with Edit Button -->
             <div id="boss-salary-list-card" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -1076,7 +1073,6 @@
               <div id="boss-salary-table-wrap" class="overflow-x-auto"></div>
             </div>
 
-            <!-- Dedicated Staff Salary Edit & Auto-Calculation Page -->
             <div id="boss-staff-salary-edit-page" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-200 shadow-md space-y-5">
               <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
                 <div>
@@ -1090,7 +1086,6 @@
 
               <input type="hidden" id="sal-edit-staff-id" />
 
-              <!-- 4 Auto-Calculated Cards -->
               <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
                 <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200">
                   <p class="text-xs font-bold text-gp-royal">Total In-Hand Salary</p>
@@ -1110,7 +1105,6 @@
                 </div>
               </div>
 
-              <!-- Editable Inputs (Live Auto-Recalculate) -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                 <div>
                   <label class="block font-bold text-slate-700 mb-1">Monthly Base Salary (₹)</label>
@@ -1218,7 +1212,68 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 9: STAFF PERSONAL INFO -->
+          <!-- BOSS VIEW 9: ADD / DELETE STAFF DIRECTORY -->
+          <div id="boss-view-directory" class="hidden space-y-5 animate-view">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">➕ Add Staff Member</h3>
+                <p class="text-xs text-slate-500 mb-4">Add profile &amp; Employee ID here; add login ID &amp; password in Firebase Auth</p>
+                <form onsubmit="window.addNewStaffMember(event)" class="space-y-3 text-xs">
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Full Name *</label>
+                      <input id="new-staff-name" type="text" required placeholder="e.g. RAHUL SHARMA" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold" />
+                    </div>
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Employee ID *</label>
+                      <input id="new-staff-empid" type="text" required placeholder="e.g. GP-019" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block font-bold text-slate-700 mb-1">Registered Gmail ID *</label>
+                    <input id="new-staff-email" type="email" required placeholder="rahul@galaxypoint.com" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold" />
+                  </div>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Department *</label>
+                      <select id="new-staff-dept" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold">
+                        <option value="Pre-Owned Mobile">Pre-Owned Mobile</option>
+                        <option value="New Mobile Sale">New Mobile Sale</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Service Centre">Service Centre</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Accounts">Accounts</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Designation *</label>
+                      <input id="new-staff-desig" type="text" required placeholder="Sales Executive" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-semibold" />
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Shift Timing</label>
+                      <input id="new-staff-shift" type="text" value="11:00 AM - 10:30 PM" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200" />
+                    </div>
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Base Salary (₹)</label>
+                      <input id="new-staff-salary" type="number" min="0" value="18000" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold" />
+                    </div>
+                  </div>
+                  <button type="submit" class="w-full py-3 rounded-2xl bg-gp-blue hover:bg-gp-royal text-white font-bold text-sm">
+                    + Add Staff Profile
+                  </button>
+                </form>
+              </div>
+
+              <div class="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-3">
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">📋 Active Staff Roster</h3>
+                <div id="boss-staff-directory-list" class="space-y-2.5 max-h-[480px] overflow-y-auto text-xs"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOSS VIEW 10: STAFF PERSONAL INFO -->
           <div id="boss-view-personal" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div>
               <h3 class="font-bold text-base sm:text-lg text-slate-900">👤 Staff Personal Information Records</h3>
@@ -1227,7 +1282,7 @@
             <div id="boss-personal-info-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
           </div>
 
-          <!-- BOSS VIEW 10: TEAM GROUP CHAT -->
+          <!-- BOSS VIEW 11: TEAM GROUP CHAT -->
           <div id="boss-view-chat" class="hidden animate-view">
             <div class="bg-white rounded-3xl border border-blue-100 shadow-2xs overflow-hidden flex flex-col h-[520px]">
               <div class="px-4 py-3.5 bg-gp-navy text-white flex items-center justify-between">
@@ -1244,7 +1299,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 11: 6-MONTH / 1-YR ARCHIVE -->
+          <!-- BOSS VIEW 12: 6-MONTH / 1-YR ARCHIVE -->
           <div id="boss-view-archive" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -1359,7 +1414,7 @@
     const STORE_COORDS = { lat: 19.0473, lng: 73.0699, radiusMeters: 350 };
     const BOSS_EMAIL = "jagdishboss@galaxypoint.com";
 
-    const STAFF_DIRECTORY = [
+    const DEFAULT_STAFF_DIRECTORY = [
       { id: "ashok", empId: "GP-001", name: "ASHOK", firstName: "Ashok", email: "ashok@galaxypoint.com", dept: "Pre-Owned Mobile", designation: "Pre-Owned Phone Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
       { id: "abdul", empId: "GP-002", name: "ABDUL", firstName: "Abdul", email: "abdul@galaxypoint.com", dept: "Pre-Owned Mobile", designation: "Pre-Owned Sales Executive", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
       { id: "zohair", empId: "GP-003", name: "ZOHAIR", firstName: "Zoher", email: "zohair@galaxypoint.com", dept: "Pre-Owned Mobile", designation: "All Rounder Executive", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
@@ -1384,9 +1439,11 @@
       user: null,
       role: null,
       profile: null,
+      staffList: [...DEFAULT_STAFF_DIRECTORY],
       personalInfoMap: {},
       todayAttendance: {},
       allTodayAttendance: {},
+      allTodayAttendanceList: [],
       tasks: [],
       leaves: [],
       advances: [],
@@ -1396,8 +1453,11 @@
       learningLogs: [],
       chatMessages: [],
       seenTaskIds: new Set(),
+      notifiedBreakStaff: new Set(),
+      notifiedReportStaff: new Set(),
       lastKnownChatCount: 0,
       firstTaskSnapshotDone: false,
+      firstAttendanceSnapshotDone: false,
       firstChatSnapshotDone: false,
       activeBreakTimerInterval: null,
       deptChartInstance: null,
@@ -1453,21 +1513,74 @@
       return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
     }
 
+    function resolveStaffProfileForUser(user) {
+      const emailLower = (user.email || "").toLowerCase().trim();
+      const prefix = emailLower.split("@")[0];
+      const found = state.staffList.find(
+        s => (s.email || "").toLowerCase() === emailLower ||
+             (s.id || "").toLowerCase() === prefix ||
+             prefix.startsWith((s.id || "").toLowerCase())
+      );
+      if (found) return { ...found };
+
+      const cleanFirst = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+      return {
+        id: prefix,
+        empId: "GP-019",
+        name: cleanFirst.toUpperCase(),
+        firstName: cleanFirst,
+        email: emailLower,
+        dept: "Social Media",
+        designation: "Social Media Manager",
+        shift: "11:00 AM - 10:30 PM",
+        baseSalary: 20000
+      };
+    }
+
+    function findAttendanceRecordForStaff(staff) {
+      if (!staff) return {};
+      const keys = [
+        (staff.id || "").toLowerCase(),
+        (staff.empId || "").toLowerCase(),
+        (staff.email || "").toLowerCase(),
+        ((staff.email || "").split("@")[0] || "").toLowerCase(),
+        (staff.name || "").toLowerCase()
+      ].filter(Boolean);
+
+      for (const k of keys) {
+        if (state.allTodayAttendance[k]) return state.allTodayAttendance[k];
+      }
+
+      const foundDoc = state.allTodayAttendanceList.find(rec => {
+        const recKeys = [
+          (rec.staffId || "").toLowerCase(),
+          (rec.empId || "").toLowerCase(),
+          (rec.email || "").toLowerCase(),
+          (rec.staffName || "").toLowerCase()
+        ].filter(Boolean);
+        return recKeys.some(rk => keys.includes(rk));
+      });
+
+      return foundDoc || {};
+    }
+
     function doesTaskMatchStaff(task, profile) {
       if (!task || !profile) return false;
       const rawTargets = [
         task.targetId,
         task.targetStaffId,
+        task.targetEmpId,
         task.targetDept,
         task.targetEmail,
         task.targetName
       ].filter(Boolean).map(v => String(v).trim().toLowerCase());
 
       if (rawTargets.length === 0) return false;
-      if (rawTargets.includes("all") || rawTargets.includes("all 18 staff members")) return true;
+      if (rawTargets.includes("all") || rawTargets.includes("all staff members")) return true;
 
       const candidateKeys = [
         profile.id,
+        profile.empId,
         profile.dept,
         profile.email,
         (profile.email || "").split("@")[0],
@@ -1530,14 +1643,14 @@
       if (showFeedback) {
         if (perm === "granted") {
           playNotificationChime();
-          window.showToast("Alerts & Sound Active 🔔", "You will receive sound & notification alerts for assigned tasks.", "success");
+          window.showToast("Alerts & Sound Active 🔔", "You will receive sound & notification alerts.", "success");
         } else {
           window.showToast("Permission Needed", "Allow Notifications in browser/phone settings for alerts.", "warn");
         }
       }
     };
 
-    function triggerTaskAlert(title, body) {
+    function triggerAlertNotification(title, body, tag = "gp-alert") {
       playNotificationChime();
       window.showToast(title, body, "info");
       if ("Notification" in window && Notification.permission === "granted") {
@@ -1547,14 +1660,14 @@
               reg.showNotification(title, {
                 body,
                 vibrate: [250, 100, 250],
-                tag: "gp-task-alert",
+                tag,
                 renotify: true
               }).catch(() => {
-                new Notification(title, { body, tag: "gp-task-alert", renotify: true });
+                new Notification(title, { body, tag, renotify: true });
               });
             });
           } else {
-            new Notification(title, { body, tag: "gp-task-alert", renotify: true });
+            new Notification(title, { body, tag, renotify: true });
           }
         } catch (e) {}
       }
@@ -1595,6 +1708,8 @@
       const emailLower = (user.email || "").toLowerCase().trim();
       const isBoss = emailLower === BOSS_EMAIL || emailLower.includes("jagdish");
 
+      subscribeCommonRealtimeData();
+
       document.getElementById("login-view").classList.add("hidden");
       bootEl.classList.add("hidden");
 
@@ -1605,22 +1720,7 @@
         initBossPortal();
       } else {
         state.role = "staff";
-        const prefix = emailLower.split("@")[0];
-        const found = STAFF_DIRECTORY.find(
-          s => s.email.toLowerCase() === emailLower || s.id.toLowerCase() === prefix || prefix.startsWith(s.id.toLowerCase())
-        );
-        const cleanFirst = prefix.charAt(0).toUpperCase() + prefix.slice(1);
-        state.profile = found || {
-          id: prefix,
-          empId: "GP-019",
-          name: cleanFirst.toUpperCase(),
-          firstName: cleanFirst,
-          email: emailLower,
-          dept: "Social Media",
-          designation: "Social Media Manager",
-          shift: "11:00 AM - 10:30 PM",
-          baseSalary: 20000
-        };
+        state.profile = resolveStaffProfileForUser(user);
         document.getElementById("boss-portal-view").classList.add("hidden");
         document.getElementById("staff-portal-view").classList.remove("hidden");
         initStaffPortal();
@@ -1684,8 +1784,9 @@
     };
 
     // ==================== STAFF PORTAL LOGIC ====================
-    function initStaffPortal() {
+    function syncStaffHeaderAndProfile() {
       const p = state.profile;
+      if (!p) return;
       document.getElementById("staff-header-name").textContent = p.name;
       document.getElementById("staff-header-empid").textContent = p.empId;
       document.getElementById("staff-avatar-initials").textContent = p.firstName.slice(0, 2).toUpperCase();
@@ -1693,6 +1794,10 @@
       document.getElementById("dropdown-staff-meta").textContent = `${p.empId} • ${p.designation}`;
       document.getElementById("dropdown-staff-shift").textContent = `Shift: ${p.shift}`;
       document.getElementById("staff-greeting-first-name").textContent = `${getTimeGreeting()}, ${p.firstName} 👋`;
+    }
+
+    function initStaffPortal() {
+      syncStaffHeaderAndProfile();
       document.getElementById("staff-today-date-label").textContent = new Date().toDateString();
       document.getElementById("staff-calendar-month-picker").value = getCurrentMonthISO();
       document.getElementById("staff-slip-month-picker").value = getCurrentMonthISO();
@@ -1700,7 +1805,6 @@
       populatePersonalInfoForm();
       renderAutoDeptMetricInputs();
       startLiveClocks();
-      subscribeCommonRealtimeData();
       subscribeStaffSpecificData();
       renderStaffTasksList();
     }
@@ -1987,6 +2091,7 @@
           month: getCurrentMonthISO(),
           staffId: state.profile.id,
           empId: state.profile.empId,
+          email: state.profile.email,
           staffName: state.profile.name,
           dept: state.profile.dept,
           designation: state.profile.designation,
@@ -2028,6 +2133,7 @@
           month: getCurrentMonthISO(),
           staffId: state.profile.id,
           empId: state.profile.empId,
+          email: state.profile.email,
           staffName: state.profile.name,
           dept: state.profile.dept,
           onBreakNow: false,
@@ -2043,6 +2149,7 @@
           month: getCurrentMonthISO(),
           staffId: state.profile.id,
           empId: state.profile.empId,
+          email: state.profile.email,
           staffName: state.profile.name,
           dept: state.profile.dept,
           onBreakNow: true,
@@ -2084,6 +2191,13 @@
       const finalStatus = workedHours < 5 ? "Half-Day" : "Present";
 
       await setDoc(docRef, {
+        date: today,
+        month: getCurrentMonthISO(),
+        staffId: state.profile.id,
+        empId: state.profile.empId,
+        email: state.profile.email,
+        staffName: state.profile.name,
+        dept: state.profile.dept,
         checkOutTime: formatTime12(),
         checkOutMs: nowMs,
         workedHours,
@@ -2111,6 +2225,7 @@
         month: getCurrentMonthISO(),
         staffId: state.profile.id,
         empId: state.profile.empId,
+        email: state.profile.email,
         staffName: state.profile.name,
         dept: state.profile.dept,
         primaryMetricLabel,
@@ -2119,6 +2234,8 @@
         autoBossTasks,
         dailyReport,
         reportSubmitted: true,
+        reportSubmittedAt: formatTime12(),
+        reportSubmittedMs: Date.now(),
         updatedAt: serverTimestamp()
       }, { merge: true });
 
@@ -2164,7 +2281,7 @@
       window.showToast("Learning Verified 🎓✓", isAutoVerified ? "Verified & saved." : "Submitted for Boss review.", "success");
     };
 
-    // ==================== FULL MONTH CALENDAR + INCENTIVE & SLIP ====================
+    // ==================== FULL MONTH CALENDAR + LEAVE/ADVANCE WITH APPLY DATE & TIME + SALARY SLIP ====================
     window.renderStaffMonthlyCalendar = async function () {
       const monthStr = document.getElementById("staff-calendar-month-picker").value || getCurrentMonthISO();
       const qAtt = query(collection(db, "attendance"), where("staffId", "==", state.profile.id), where("month", "==", monthStr));
@@ -2234,6 +2351,9 @@
         }
       }
 
+      const appliedDate = getTodayISO();
+      const appliedTime = formatTime12();
+
       await addDoc(collection(db, "leaves"), {
         staffId: state.profile.id,
         empId: state.profile.empId,
@@ -2242,17 +2362,22 @@
         type,
         date,
         reason,
+        appliedDate,
+        appliedTime,
         status: "Pending",
         createdAt: serverTimestamp()
       });
       e.target.reset();
-      window.showToast("Leave Submitted", "Sent to Jagdish Boss for approval.", "success");
+      window.showToast("Leave Submitted", `Applied on ${appliedDate} at ${appliedTime}.`, "success");
     };
 
     window.submitStaffAdvance = async function (e) {
       e.preventDefault();
       const amount = Number(document.getElementById("advance-amount-input").value);
       const reason = document.getElementById("advance-reason-input").value.trim();
+      const appliedDate = getTodayISO();
+      const appliedTime = formatTime12();
+
       await addDoc(collection(db, "advances"), {
         staffId: state.profile.id,
         empId: state.profile.empId,
@@ -2261,13 +2386,16 @@
         amount,
         reason,
         month: getCurrentMonthISO(),
+        appliedDate,
+        appliedTime,
         status: "Pending",
         createdAt: serverTimestamp()
       });
       e.target.reset();
-      window.showToast("Advance Requested", "Sent to Jagdish Boss for approval.", "success");
+      window.showToast("Advance Requested", `Applied on ${appliedDate} at ${appliedTime}.`, "success");
     };
 
+    // Staff Monthly Salary Slip matches exact values saved in Boss Salary Edit page
     window.renderStaffSalarySlip = function () {
       const p = state.profile;
       if (!p) return;
@@ -2304,47 +2432,63 @@
 
       const base = Number(customSal.baseSalary ?? p.baseSalary ?? 18000);
       const loyaltyBonus = Number(customSal.loyaltyBonus ?? 0);
-      const extraDeduction = Number(customSal.paidAmount ?? 0);
-
-      const approvedIncentives = state.tasks
-        .filter(t => doesTaskMatchStaff(t, p) && t.bossApproved)
-        .reduce((sum, t) => sum + Number(t.incentive || 0), 0) + loyaltyBonus;
+      const paidAmount = Number(customSal.paidAmount ?? 0);
 
       const approvedAdvances = state.advances
-        .filter(a => a.staffId === p.id && a.month === monthStr && a.status === "Approved")
+        .filter(a => a.staffId === p.id && a.status === "Approved")
         .reduce((sum, a) => sum + Number(a.amount || 0), 0);
 
-      const net = Math.max(0, base + approvedIncentives - approvedAdvances - extraDeduction);
+      const pendingPayable = Math.max(0, base + loyaltyBonus - approvedAdvances - paidAmount);
+
       document.getElementById("slip-base-salary").textContent = `₹${base.toLocaleString('en-IN')}`;
-      document.getElementById("slip-incentives").textContent = `+ ₹${approvedIncentives.toLocaleString('en-IN')}`;
-      document.getElementById("slip-deductions").textContent = `- ₹${(approvedAdvances + extraDeduction).toLocaleString('en-IN')}`;
-      document.getElementById("slip-net-payable").textContent = `₹${net.toLocaleString('en-IN')}`;
+      document.getElementById("slip-incentives").textContent = `+ ₹${loyaltyBonus.toLocaleString('en-IN')}`;
+      document.getElementById("slip-deductions").textContent = `- ₹${(approvedAdvances + paidAmount).toLocaleString('en-IN')}`;
+      document.getElementById("slip-net-payable").textContent = `₹${pendingPayable.toLocaleString('en-IN')}`;
     };
 
     // ==================== BOSS PORTAL LOGIC ====================
+    function rebuildBossSelectors() {
+      const targetSelect = document.getElementById("boss-task-target");
+      const eotmSelect = document.getElementById("boss-eotm-select");
+      const deptFilter = document.getElementById("boss-live-dept-filter");
+      if (!targetSelect || !eotmSelect) return;
+
+      const prevTarget = targetSelect.value;
+      const prevEotm = eotmSelect.value;
+
+      targetSelect.innerHTML = `
+        <option value="ALL">All Staff Members (${state.staffList.length})</option>
+        <option value="Pre-Owned Mobile">Dept: Pre-Owned Mobile</option>
+        <option value="New Mobile Sale">Dept: New Mobile Sale</option>
+        <option value="Accessories">Dept: Accessories</option>
+        <option value="Service Centre">Dept: Service Centre</option>
+        <option value="Social Media">Dept: Social Media</option>
+        <option value="Accounts">Dept: Accounts</option>
+        ${state.staffList.map(s => `<option value="${s.id}">${s.name} — ${s.designation} (${s.empId})</option>`).join("")}
+      `;
+      if (prevTarget) targetSelect.value = prevTarget;
+
+      eotmSelect.innerHTML = state.staffList.map(s => `<option value="${s.name} (${s.dept})">${s.name} — ${s.designation}</option>`).join("");
+      if (prevEotm) eotmSelect.value = prevEotm;
+
+      if (deptFilter) {
+        const allOpt = deptFilter.querySelector('option[value="ALL"]');
+        if (allOpt) allOpt.textContent = `All Departments (${state.staffList.length} Staff)`;
+      }
+    }
+
     function initBossPortal() {
       document.getElementById("boss-att-calendar-month").value = getCurrentMonthISO();
 
       if (!state.bossDropdownBuilt) {
-        const targetSelect = document.getElementById("boss-task-target");
-        const eotmSelect = document.getElementById("boss-eotm-select");
-        targetSelect.innerHTML = `
-          <option value="ALL">All 18 Staff Members</option>
-          <option value="Pre-Owned Mobile">Dept: Pre-Owned Mobile</option>
-          <option value="New Mobile Sale">Dept: New Mobile Sale</option>
-          <option value="Accessories">Dept: Accessories</option>
-          <option value="Service Centre">Dept: Service Centre</option>
-          <option value="Social Media">Dept: Social Media</option>
-          <option value="Accounts">Dept: Accounts</option>
-          ${STAFF_DIRECTORY.map(s => `<option value="${s.id}">${s.name} — ${s.designation} (${s.empId})</option>`).join("")}
-        `;
-        eotmSelect.innerHTML = STAFF_DIRECTORY.map(s => `<option value="${s.name} (${s.dept})">${s.name} — ${s.designation}</option>`).join("");
+        rebuildBossSelectors();
         state.bossDropdownBuilt = true;
       }
 
       startLiveClocks();
       subscribeCommonRealtimeData();
       subscribeBossLiveAttendance();
+      renderBossStaffDirectoryList();
     }
 
     window.toggleBossSidebar = function () {
@@ -2358,7 +2502,7 @@
 
     window.switchBossTab = function (tabName) {
       sessionStorage.setItem("gp_active_tab_boss", tabName);
-      ["live", "tasks", "override", "breaks", "monthly", "leaves", "learning", "analytics", "personal", "chat", "archive"].forEach(t => {
+      ["live", "tasks", "override", "breaks", "monthly", "leaves", "learning", "analytics", "directory", "personal", "chat", "archive"].forEach(t => {
         const el = document.getElementById(`boss-view-${t}`);
         if (el) el.classList.toggle("hidden", t !== tabName);
       });
@@ -2376,6 +2520,7 @@
       if (tabName === "breaks") renderBossLiveBreakStatus();
       if (tabName === "analytics") renderBossAnalyticsChart();
       if (tabName === "monthly") renderBossSalaryConfigTable();
+      if (tabName === "directory") renderBossStaffDirectoryList();
       if (tabName === "personal") renderBossPersonalInfoDirectory();
       if (tabName === "archive") window.loadArchiveRecords();
       if (tabName === "chat") {
@@ -2390,19 +2535,68 @@
       const today = getTodayISO();
       onSnapshot(query(collection(db, "attendance"), where("date", "==", today)), (snap) => {
         const map = {};
+        const docsList = [];
         snap.forEach(d => {
           const rec = d.data();
-          const key = (rec.staffId || d.id.split("_")[1] || "").toLowerCase();
-          map[key] = rec;
+          docsList.push(rec);
+          const keys = [
+            (rec.staffId || "").toLowerCase(),
+            (d.id.split("_")[1] || "").toLowerCase(),
+            (rec.empId || "").toLowerCase(),
+            (rec.email || "").toLowerCase()
+          ].filter(Boolean);
+          keys.forEach(k => { map[k] = rec; });
         });
         state.allTodayAttendance = map;
+        state.allTodayAttendanceList = docsList;
+
+        // Real-time Boss notifications when a staff starts a break or submits daily report
+        if (state.role === "boss" && state.firstAttendanceSnapshotDone) {
+          docsList.forEach(rec => {
+            const label = `${rec.staffName || "Staff"} (${rec.empId || rec.staffId || ""})`;
+            const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
+            const isOnBreak = Boolean(rec.onBreakNow || sessions.some(s => !s.endMs));
+            const breakKey = `${rec.staffId}_${sessions.length}`;
+
+            if (isOnBreak && !state.notifiedBreakStaff.has(breakKey)) {
+              state.notifiedBreakStaff.add(breakKey);
+              triggerAlertNotification(
+                "☕ Staff On Break",
+                `${label} has started a break.`,
+                `gp-break-${rec.staffId}`
+              );
+            }
+
+            const repKey = `${rec.staffId}_report`;
+            if (rec.reportSubmitted && !state.notifiedReportStaff.has(repKey)) {
+              state.notifiedReportStaff.add(repKey);
+              triggerAlertNotification(
+                "📝 Daily Report Submitted",
+                `${label} submitted today's report (${rec.primaryMetricLabel || "Report"}: ${rec.primaryMetricValue ?? 0}).`,
+                `gp-report-${rec.staffId}`
+              );
+            }
+          });
+        }
+
+        // Seed already-present break/report keys on first snapshot so old records don't re-pop on load
+        docsList.forEach(rec => {
+          const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
+          if (rec.onBreakNow || sessions.some(s => !s.endMs)) {
+            state.notifiedBreakStaff.add(`${rec.staffId}_${sessions.length}`);
+          }
+          if (rec.reportSubmitted) {
+            state.notifiedReportStaff.add(`${rec.staffId}_report`);
+          }
+        });
+        state.firstAttendanceSnapshotDone = true;
+
         window.renderBossLiveTable();
         renderBossLiveBreakStatus();
         updateBossKpiCards();
       });
     }
 
-    // Real-time break status for all staff (who is on break, who is not, count & minutes so far)
     function renderBossLiveBreakStatus() {
       const grid = document.getElementById("boss-break-status-grid");
       const summaryPill = document.getElementById("break-page-summary-pill");
@@ -2410,12 +2604,12 @@
       if (!grid) return;
 
       let onBreakCount = 0;
-      const onBreakNames = [];
+      const onBreakLabels = [];
 
-      const cardsHtml = STAFF_DIRECTORY.map(s => {
-        const rec = state.allTodayAttendance[s.id] || {};
+      const cardsHtml = state.staffList.map(s => {
+        const rec = findAttendanceRecordForStaff(s);
         const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
-        const open = sessions.find(sess => !sess.endMs);
+        const open = sessions.find(sess => !sess.endMs) || (rec.onBreakNow ? { startMs: rec.updatedAt?.toMillis?.() || Date.now() } : null);
         const priorSec = rec.totalBreakSeconds || ((rec.totalBreakMinutes || 0) * 60);
         const elapsedSec = open ? Math.max(0, Math.floor((Date.now() - open.startMs) / 1000)) : 0;
         const totalSec = priorSec + elapsedSec;
@@ -2424,7 +2618,7 @@
 
         if (open) {
           onBreakCount++;
-          onBreakNames.push(s.firstName);
+          onBreakLabels.push(`${s.name} (${s.empId})`);
         }
 
         return `
@@ -2447,7 +2641,7 @@
       grid.innerHTML = cardsHtml;
       if (summaryPill) {
         summaryPill.textContent = onBreakCount > 0
-          ? `${onBreakCount} On Break (${onBreakNames.join(", ")})`
+          ? `${onBreakCount} On Break: ${onBreakLabels.join(", ")}`
           : "0 On Break Right Now";
       }
       if (sideBadge) {
@@ -2459,8 +2653,8 @@
       const checkedInList = [];
       const pendingList = [];
 
-      STAFF_DIRECTORY.forEach(s => {
-        const rec = state.allTodayAttendance[s.id] || {};
+      state.staffList.forEach(s => {
+        const rec = findAttendanceRecordForStaff(s);
         if (rec.checkInTime || rec.status === "Present") {
           checkedInList.push({ staff: s, rec });
         } else {
@@ -2505,28 +2699,41 @@
     };
 
     function updateBossKpiCards() {
-      const records = Object.values(state.allTodayAttendance);
-      const checkedIn = records.filter(r => r.checkInTime || r.status === "Present").length;
-      const lateCount = records.filter(r => (r.lateMinutes || 0) > 0).length;
-      const breakExceeded = records.filter(r => (r.totalBreakMinutes || 0) > 60).length;
+      const checkedIn = state.staffList.filter(s => {
+        const rec = findAttendanceRecordForStaff(s);
+        return Boolean(rec.checkInTime || rec.status === "Present");
+      }).length;
+
+      const lateCount = state.allTodayAttendanceList.filter(r => (r.lateMinutes || 0) > 0).length;
+      const breakExceeded = state.allTodayAttendanceList.filter(r => (r.totalBreakMinutes || 0) > 60).length;
       const pendingLeaves = state.leaves.filter(l => l.status === "Pending").length;
       const pendingAdvances = state.advances.filter(a => a.status === "Pending").length;
 
-      document.getElementById("kpi-checked-in").textContent = `${checkedIn} / ${STAFF_DIRECTORY.length}`;
+      document.getElementById("kpi-checked-in").textContent = `${checkedIn} / ${state.staffList.length}`;
       document.getElementById("kpi-late-arrivals").textContent = lateCount;
       document.getElementById("kpi-break-exceeded").textContent = breakExceeded;
       document.getElementById("kpi-pending-leaves").textContent = pendingLeaves;
       document.getElementById("kpi-pending-advances").textContent = pendingAdvances;
     }
 
-    // Dashboard Table (No Personal Info or Edit buttons on Dashboard)
     window.renderBossLiveTable = function () {
       const filterDept = document.getElementById("boss-live-dept-filter").value;
-      const list = filterDept === "ALL" ? STAFF_DIRECTORY : STAFF_DIRECTORY.filter(s => s.dept === filterDept);
+      const list = filterDept === "ALL" ? state.staffList : state.staffList.filter(s => s.dept === filterDept);
       const tbody = document.getElementById("boss-live-table-body");
 
+      const submittedStaff = state.staffList
+        .filter(s => Boolean(findAttendanceRecordForStaff(s).reportSubmitted))
+        .map(s => `${s.name} (${s.empId})`);
+
+      const summaryLine = document.getElementById("boss-report-summary-line");
+      if (summaryLine) {
+        summaryLine.textContent = submittedStaff.length > 0
+          ? `Reports Submitted (${submittedStaff.length}): ${submittedStaff.join(", ")}`
+          : "Real-time shift check-in status, store geofence tag, Tea/Coffee break balance & report status";
+      }
+
       tbody.innerHTML = list.map(s => {
-        const rec = state.allTodayAttendance[s.id] || {};
+        const rec = findAttendanceRecordForStaff(s);
         const breakMins = rec.totalBreakMinutes || 0;
         const isBreakOver = breakMins > 60;
         const rowBg = isBreakOver ? "bg-red-50/70" : "hover:bg-blue-50/30";
@@ -2574,8 +2781,8 @@
       document.getElementById("boss-override-staff-list-card").classList.remove("hidden");
       document.getElementById("boss-staff-month-calendar-page").classList.add("hidden");
 
-      document.getElementById("boss-override-list").innerHTML = STAFF_DIRECTORY.map(s => {
-        const rec = state.allTodayAttendance[s.id] || {};
+      document.getElementById("boss-override-list").innerHTML = state.staffList.map(s => {
+        const rec = findAttendanceRecordForStaff(s);
         return `
           <div class="p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-3">
             <div>
@@ -2592,7 +2799,7 @@
 
     window.openBossStaffMonthCalendar = async function (staffId) {
       state.selectedCalStaffId = staffId;
-      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const staff = state.staffList.find(s => s.id === staffId);
       const monthStr = document.getElementById("boss-att-calendar-month").value || getCurrentMonthISO();
 
       document.getElementById("boss-override-staff-list-card").classList.add("hidden");
@@ -2600,8 +2807,7 @@
       document.getElementById("boss-cal-editor-title").textContent = `📅 ${staff.name} (${staff.empId}) — Full-Month Calendar`;
       document.getElementById("boss-cal-editor-sub").textContent = `${staff.designation} • ${staff.dept}`;
 
-      const defaultDayIso = `${monthStr}-01`;
-      document.getElementById("cal-edit-date").value = defaultDayIso;
+      document.getElementById("cal-edit-date").value = `${monthStr}-01`;
       await window.renderBossStaffMonthCalendar();
     };
 
@@ -2664,7 +2870,7 @@
 
     window.saveBossCalendarDayEntry = async function () {
       const staffId = state.selectedCalStaffId;
-      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const staff = state.staffList.find(s => s.id === staffId);
       const targetDate = document.getElementById("cal-edit-date").value;
       const status = document.getElementById("cal-edit-status").value;
       const checkInTime = document.getElementById("cal-edit-checkin").value.trim();
@@ -2677,6 +2883,7 @@
         month: targetDate.slice(0, 7),
         staffId: staff.id,
         empId: staff.empId,
+        email: staff.email,
         staffName: staff.name,
         dept: staff.dept,
         designation: staff.designation,
@@ -2709,7 +2916,7 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">
-            ${STAFF_DIRECTORY.map(s => {
+            ${state.staffList.map(s => {
               const ov = state.salaryOverrides[s.id] || {};
               return `
                 <tr>
@@ -2734,7 +2941,7 @@
     }
 
     window.openBossStaffSalaryPage = function (staffId) {
-      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const staff = state.staffList.find(s => s.id === staffId);
       const ov = state.salaryOverrides[staffId] || {};
       document.getElementById("boss-salary-list-card").classList.add("hidden");
       document.getElementById("boss-staff-salary-edit-page").classList.remove("hidden");
@@ -2789,9 +2996,64 @@
       window.showToast("Salary Saved 💰✓", "Auto-calculated salary & bonus updated.", "success");
     };
 
+    // ==================== ADD / DELETE STAFF DIRECTORY ====================
+    function renderBossStaffDirectoryList() {
+      const box = document.getElementById("boss-staff-directory-list");
+      if (!box) return;
+      box.innerHTML = state.staffList.map(s => `
+        <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 flex items-center justify-between gap-2">
+          <div>
+            <p class="font-bold text-sm text-slate-900">${s.name} <span class="text-xs font-bold text-gp-royal">(${s.empId})</span></p>
+            <p class="text-[11px] text-slate-600">${s.designation} • ${s.dept} • ${s.email}</p>
+          </div>
+          <button type="button" onclick="window.deleteStaffMember('${s.id}')" class="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 font-bold">
+            Delete
+          </button>
+        </div>
+      `).join("");
+    }
+
+    window.addNewStaffMember = async function (e) {
+      e.preventDefault();
+      const rawName = document.getElementById("new-staff-name").value.trim();
+      const empId = document.getElementById("new-staff-empid").value.trim().toUpperCase();
+      const email = document.getElementById("new-staff-email").value.trim().toLowerCase();
+      const dept = document.getElementById("new-staff-dept").value;
+      const designation = document.getElementById("new-staff-desig").value.trim();
+      const shift = document.getElementById("new-staff-shift").value.trim() || "11:00 AM - 10:30 PM";
+      const baseSalary = Number(document.getElementById("new-staff-salary").value || 18000);
+
+      const baseSlug = (email.split("@")[0] || rawName.split(" ")[0] || empId)
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+      const docId = baseSlug || empId.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const firstName = rawName.split(/\s+/)[0] || rawName;
+
+      await setDoc(doc(db, "staffDirectory", docId), {
+        id: docId,
+        empId,
+        name: rawName.toUpperCase(),
+        firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase(),
+        email,
+        dept,
+        designation,
+        shift,
+        baseSalary,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+
+      e.target.reset();
+      window.showToast("Staff Profile Added ✓", `${rawName.toUpperCase()} (${empId}) added. Add login ID/pass in Firebase Auth.`, "success");
+    };
+
+    window.deleteStaffMember = async function (staffId) {
+      await setDoc(doc(db, "staffDirectory", staffId), { deleted: true, updatedAt: serverTimestamp() }, { merge: true });
+      window.showToast("Staff Removed", `${staffId.toUpperCase()} removed from active staff roster.`, "info");
+    };
+
     // ==================== PERSONAL INFO & TASK / INCENTIVE APPROVAL ====================
     function renderBossPersonalInfoDirectory() {
-      document.getElementById("boss-personal-info-grid").innerHTML = STAFF_DIRECTORY.map(s => {
+      document.getElementById("boss-personal-info-grid").innerHTML = state.staffList.map(s => {
         const info = state.personalInfoMap[s.id] || {};
         return `
           <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 space-y-1 text-xs">
@@ -2829,11 +3091,12 @@
       const title = document.getElementById("boss-task-title").value.trim();
       const incentive = Number(document.getElementById("boss-task-incentive").value || 0);
       const priority = document.getElementById("boss-task-priority").value;
-      const matchedStaff = STAFF_DIRECTORY.find(s => s.id === targetId);
+      const matchedStaff = state.staffList.find(s => s.id === targetId);
 
       await addDoc(collection(db, "tasks"), {
         targetId,
         targetStaffId: matchedStaff ? matchedStaff.id : "",
+        targetEmpId: matchedStaff ? matchedStaff.empId : "",
         targetDept: matchedStaff ? matchedStaff.dept : (targetId !== "ALL" ? targetId : ""),
         targetEmail: matchedStaff ? matchedStaff.email : "",
         targetName: matchedStaff ? matchedStaff.name : targetId,
@@ -2932,6 +3195,38 @@
       if (state.commonListenersAttached) return;
       state.commonListenersAttached = true;
 
+      onSnapshot(collection(db, "staffDirectory"), (snap) => {
+        const mergedMap = {};
+        DEFAULT_STAFF_DIRECTORY.forEach(s => { mergedMap[s.id] = { ...s }; });
+        snap.forEach(d => {
+          const item = d.data();
+          if (item.deleted) {
+            delete mergedMap[d.id];
+          } else {
+            mergedMap[d.id] = { ...(mergedMap[d.id] || {}), ...item, id: item.id || d.id };
+          }
+        });
+        state.staffList = Object.values(mergedMap);
+
+        if (state.role === "staff" && state.user) {
+          state.profile = resolveStaffProfileForUser(state.user);
+          syncStaffHeaderAndProfile();
+          populatePersonalInfoForm();
+          renderAutoDeptMetricInputs();
+          renderStaffTasksList();
+          window.renderStaffSalarySlip();
+        }
+        if (state.role === "boss") {
+          rebuildBossSelectors();
+          window.renderBossLiveTable();
+          renderBossLiveBreakStatus();
+          updateBossKpiCards();
+          renderBossStaffDirectoryList();
+          renderBossPersonalInfoDirectory();
+          renderBossSalaryConfigTable();
+        }
+      });
+
       onSnapshot(doc(db, "announcements", "latest"), (snap) => {
         const banner = document.getElementById("staff-announcement-banner");
         if (!banner) return;
@@ -2968,9 +3263,10 @@
           if (state.firstTaskSnapshotDone) {
             myTasks.forEach(t => {
               if (!state.seenTaskIds.has(t.id) && t.status !== "Completed") {
-                triggerTaskAlert(
+                triggerAlertNotification(
                   "🎯 New Task From Jagdish Boss",
-                  `${t.title}${Number(t.incentive) > 0 ? ` • Incentive: ₹${t.incentive}` : ""}`
+                  `${t.title}${Number(t.incentive) > 0 ? ` • Incentive: ₹${t.incentive}` : ""}`,
+                  `gp-task-${t.id}`
                 );
               }
             });
@@ -3016,7 +3312,7 @@
             window.recalculateBossSalaryPage();
           }
         }
-        if (state.role === "staff" && document.getElementById("staff-view-salary") && !document.getElementById("staff-view-salary").classList.contains("hidden")) {
+        if (state.role === "staff" && state.profile) {
           window.renderStaffSalarySlip();
         }
       });
@@ -3066,6 +3362,9 @@
           if (document.getElementById("boss-staff-salary-edit-page") && !document.getElementById("boss-staff-salary-edit-page").classList.contains("hidden")) {
             window.recalculateBossSalaryPage();
           }
+        }
+        if (state.role === "staff" && state.profile) {
+          window.renderStaffSalarySlip();
         }
       });
 
@@ -3140,16 +3439,22 @@
       if (state.role === "staff" && state.profile) {
         const myLeaves = state.leaves.filter(l => l.staffId === state.profile.id);
         document.getElementById("staff-leave-history").innerHTML = myLeaves.slice(0, 5).map(l => `
-          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
-            <span><strong>${l.type}</strong> (${l.date})</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <p class="font-bold text-slate-900">${l.type} (${l.date})</p>
+              <p class="text-[11px] text-slate-500">Applied: ${l.appliedDate || ''} ${l.appliedTime ? `• ${l.appliedTime}` : ''}</p>
+            </div>
             <span class="font-bold ${l.status === 'Approved' ? 'text-emerald-700' : l.status === 'Rejected' ? 'text-red-600' : 'text-amber-700'}">${l.status}</span>
           </div>
         `).join("");
 
         const myAdv = state.advances.filter(a => a.staffId === state.profile.id);
         document.getElementById("staff-advance-history").innerHTML = myAdv.slice(0, 5).map(a => `
-          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
-            <span><strong>₹${a.amount}</strong> — ${a.reason}</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+            <div>
+              <p class="font-bold text-slate-900">₹${a.amount} — ${a.reason}</p>
+              <p class="text-[11px] text-slate-500">Applied: ${a.appliedDate || ''} ${a.appliedTime ? `• ${a.appliedTime}` : ''}</p>
+            </div>
             <span class="font-bold ${a.status === 'Approved' ? 'text-emerald-700' : a.status === 'Rejected' ? 'text-red-600' : 'text-amber-700'}">${a.status}</span>
           </div>
         `).join("");
@@ -3161,8 +3466,9 @@
           : state.leaves.map(l => `
             <div class="p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between gap-2 text-xs">
               <div>
-                <p class="font-bold text-slate-900">${l.staffName} • ${l.type} (${l.date})</p>
+                <p class="font-bold text-slate-900">${l.staffName} (${l.empId || ''}) • ${l.type} (${l.date})</p>
                 <p class="text-slate-500">${l.reason}</p>
+                <p class="text-[11px] text-gp-royal font-semibold mt-0.5">Applied on: ${l.appliedDate || '--'} at ${l.appliedTime || '--'}</p>
               </div>
               ${l.status === "Pending" ? `
                 <div class="flex gap-1.5">
@@ -3177,8 +3483,9 @@
           : state.advances.map(a => `
             <div class="p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between gap-2 text-xs">
               <div>
-                <p class="font-bold text-slate-900">${a.staffName} • ₹${a.amount}</p>
+                <p class="font-bold text-slate-900">${a.staffName} (${a.empId || ''}) • ₹${a.amount}</p>
                 <p class="text-slate-500">${a.reason}</p>
+                <p class="text-[11px] text-gp-royal font-semibold mt-0.5">Applied on: ${a.appliedDate || '--'} at ${a.appliedTime || '--'}</p>
               </div>
               ${a.status === "Pending" ? `
                 <div class="flex gap-1.5">
@@ -3254,8 +3561,11 @@
     function renderBossAnalyticsChart() {
       const depts = ["Pre-Owned Mobile", "New Mobile Sale", "Accessories", "Service Centre", "Social Media", "Accounts"];
       const scores = depts.map(dept => {
-        const deptStaff = STAFF_DIRECTORY.filter(s => s.dept === dept);
-        const present = deptStaff.filter(s => state.allTodayAttendance[s.id]?.checkInTime || state.allTodayAttendance[s.id]?.status === "Present").length;
+        const deptStaff = state.staffList.filter(s => s.dept === dept);
+        const present = deptStaff.filter(s => {
+          const rec = findAttendanceRecordForStaff(s);
+          return Boolean(rec.checkInTime || rec.status === "Present");
+        }).length;
         return Math.round((present / Math.max(1, deptStaff.length)) * 100);
       });
 
@@ -3353,8 +3663,8 @@
 
     window.exportLiveTodayCSV = function () {
       const rows = [["EmpID", "Name", "Department", "Designation", "Status", "CheckIn", "CheckOut", "BreakMins", "Report"]];
-      STAFF_DIRECTORY.forEach(s => {
-        const r = state.allTodayAttendance[s.id] || {};
+      state.staffList.forEach(s => {
+        const r = findAttendanceRecordForStaff(s);
         rows.push([s.empId, s.name, s.dept, s.designation, r.status || "Pending", r.checkInTime || "", r.checkOutTime || "", r.totalBreakMinutes || 0, (r.dailyReport || "").replace(/,/g, " ")]);
       });
       downloadCSV(rows, `GalaxyPoint_Live_${getTodayISO()}.csv`);
