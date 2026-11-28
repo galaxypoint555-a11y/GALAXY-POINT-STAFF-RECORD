@@ -1451,7 +1451,7 @@
       </div>
     </div>
   </div>
-  <script type="module">
+ <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
       getAuth,
@@ -1496,27 +1496,27 @@
     const STORE_COORDS = { lat: 19.0473, lng: 73.0699, radiusMeters: 350 };
     const BOSS_EMAIL = "jagdishboss@galaxypoint.com";
 
-    // ==================== LOCKED 19-MEMBER GALAXY POINT ROSTER ====================
+    // ==================== LOCKED 19-MEMBER GALAXY POINT ROSTER (WITH EXACT LOGIN GMAIL IDS) ====================
     const DEFAULT_STAFF_DIRECTORY = [
-      { id: "sahab", empId: "GP-001", name: "SAHAB", firstName: "Sahab", email: "sahab@galaxypoint.com", aliases: ["sahab", "sahib"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "rajni", empId: "GP-002", name: "RAJNI", firstName: "Rajni", email: "rajni@galaxypoint.com", aliases: ["rajni"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "pravin", empId: "GP-003", name: "PRAVIN", firstName: "Pravin", email: "pravin@galaxypoint.com", aliases: ["pravin", "praveen"], dept: "New Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
-      { id: "ashok", empId: "GP-004", name: "ASHOK", firstName: "Ashok", email: "ashok@galaxypoint.com", aliases: ["ashok"], dept: "Pre-Owned Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
-      { id: "zohair", empId: "GP-005", name: "ZOHAIR", firstName: "Zohair", email: "zohair@galaxypoint.com", aliases: ["zohair", "zoher", "zuhair"], dept: "Pre-Owned Department", designation: "Stock Managing - Label Managing", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
-      { id: "abdul", empId: "GP-006", name: "ABDUL", firstName: "Abdul", email: "abdul@galaxypoint.com", aliases: ["abdul"], dept: "Pre-Owned Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "vikas", empId: "GP-007", name: "VIKAS", firstName: "Vikas", email: "vikas@galaxypoint.com", aliases: ["vikas", "vikash"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "devendra", empId: "GP-008", name: "DEVENDRA", firstName: "Devendra", email: "devendra@galaxypoint.com", aliases: ["devendra"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "sahab", empId: "GP-001", name: "SAHAB", firstName: "Sahab", email: "siddiquishahaab@gmail.com", aliases: ["sahab", "sahib", "siddiquishahaab"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "rajni", empId: "GP-002", name: "RAJNI", firstName: "Rajni", email: "rajjumali9898@gmail.com", aliases: ["rajni", "rajjumali"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "pravin", empId: "GP-003", name: "PRAVIN", firstName: "Pravin", email: "gehlotpravin7878@gmail.com", aliases: ["pravin", "praveen", "gehlotpravin"], dept: "New Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
+      { id: "ashok", empId: "GP-004", name: "ASHOK", firstName: "Ashok", email: "ashoksundesha17@gmail.com", aliases: ["ashok", "ashoksundesha"], dept: "Pre-Owned Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
+      { id: "zohair", empId: "GP-005", name: "ZOHAIR", firstName: "Zohair", email: "zohaiz180@gmail.com", aliases: ["zohair", "zoher", "zuhair", "zohaiz"], dept: "Pre-Owned Department", designation: "Stock Managing - Label Managing", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
+      { id: "abdul", empId: "GP-006", name: "ABDUL", firstName: "Abdul", email: "abbua862@gmail.com", aliases: ["abdul", "abbua"], dept: "Pre-Owned Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "vikas", empId: "GP-007", name: "VIKAS", firstName: "Vikas", email: "vsundesha410@gmail.com", aliases: ["vikas", "vikash", "vikki", "vsundesha"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "devendra", empId: "GP-008", name: "DEVENDRA", firstName: "Devendra", email: "devendrapalsingh772@gmail.com", aliases: ["devendra", "devendrapalsingh"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
       { id: "mohammed", empId: "GP-009", name: "MOHAMMED", firstName: "Mohammed", email: "mohammed@galaxypoint.com", aliases: ["mohammed", "mohammad", "muhammad"], dept: "Service Center", designation: "Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
-      { id: "arif", empId: "GP-010", name: "ARIF", firstName: "Arif", email: "arif@galaxypoint.com", aliases: ["arif"], dept: "Service Center", designation: "Co Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
-      { id: "sunil", empId: "GP-011", name: "SUNIL", firstName: "Sunil", email: "sunil@galaxypoint.com", aliases: ["sunil"], dept: "Service Center", designation: "Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 20000 },
+      { id: "arif", empId: "GP-010", name: "ARIF", firstName: "Arif", email: "mullaarif1972@gmail.com", aliases: ["arif", "mullaarif"], dept: "Service Center", designation: "Co Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
+      { id: "sunil", empId: "GP-011", name: "SUNIL", firstName: "Sunil", email: "solankisunil27861@gmail.com", aliases: ["sunil", "solankisunil"], dept: "Service Center", designation: "Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 20000 },
       { id: "sohail", empId: "GP-012", name: "SAYEYD SOHAIL", firstName: "Sohail", email: "sayyedsohail777s@gmail.com", aliases: ["sohail", "sayyedsohail", "sayeydsohail"], dept: "Social Department", designation: "Social Media Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 22000 },
-      { id: "guffran", empId: "GP-013", name: "GUFFRAN", firstName: "Guffran", email: "guffran@galaxypoint.com", aliases: ["guffran", "gufran"], dept: "Social Department", designation: "Video Editor", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "vishal", empId: "GP-014", name: "VISHAL", firstName: "Vishal", email: "vishal@galaxypoint.com", aliases: ["vishal"], dept: "Accountant", designation: "Accountant", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
-      { id: "rutik", empId: "GP-015", name: "RUTIK", firstName: "Rutik", email: "rutik@galaxypoint.com", aliases: ["rutik", "hrithik", "ritik"], dept: "Backend", designation: "All Rounder", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "naresh", empId: "GP-016", name: "NARESH", firstName: "Naresh", email: "naresh@galaxypoint.com", aliases: ["naresh"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
-      { id: "mahindra", empId: "GP-017", name: "MAHINDRA", firstName: "Mahindra", email: "mahindra@galaxypoint.com", aliases: ["mahindra", "mahendra"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "arvind", empId: "GP-018", name: "ARVIND", firstName: "Arvind", email: "arvind@galaxypoint.com", aliases: ["arvind"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
-      { id: "anas", empId: "GP-019", name: "ANAS", firstName: "Anas", email: "anas@galaxypoint.com", aliases: ["anas"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 }
+      { id: "guffran", empId: "GP-013", name: "GUFFRAN", firstName: "Guffran", email: "gufranquiraishi05@gmail.com", aliases: ["guffran", "gufran", "gufranquiraishi"], dept: "Social Department", designation: "Video Editor", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "vishal", empId: "GP-014", name: "VISHAL", firstName: "Vishal", email: "vishalgehlot1442@gmail.com", aliases: ["vishal", "vishalgehlot"], dept: "Accountant", designation: "Accountant", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
+      { id: "rutik", empId: "GP-015", name: "RUTIK", firstName: "Rutik", email: "rutik555@gmail.com", aliases: ["rutik", "hrithik", "ritik", "rutik555"], dept: "Backend", designation: "All Rounder", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "naresh", empId: "GP-016", name: "NARESH", firstName: "Naresh", email: "nitindahiya8696@gmail.com", aliases: ["naresh", "nitindahiya"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
+      { id: "mahindra", empId: "GP-017", name: "MAHINDRA", firstName: "Mahindra", email: "manishparmar1408@gmail.com", aliases: ["mahindra", "mahendra", "manishparmar"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "arvind", empId: "GP-018", name: "ARVIND", firstName: "Arvind", email: "praveensolanki683@gmail.com", aliases: ["arvind", "praveensolanki"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
+      { id: "anas", empId: "GP-019", name: "ANAS", firstName: "Anas", email: "synzo464@gmail.com", aliases: ["anas", "synzo"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 }
     ];
 
     const state = {
@@ -1608,7 +1608,7 @@
       const emailLower = (user.email || "").toLowerCase().trim();
       const prefix = emailLower.split("@")[0].replace(/[^a-z0-9]/g, "");
 
-      // 1. Exact email match
+      // 1. Exact email match against locked 19-member directory
       let found = state.staffList.find(s => (s.email || "").toLowerCase().trim() === emailLower);
 
       // 2. Exact staff id match
@@ -1616,7 +1616,7 @@
         found = state.staffList.find(s => (s.id || "").toLowerCase() === prefix);
       }
 
-      // 3. Alias / substring match (handles sayyedsohail777s@gmail.com, zohair..., zoher..., mahendra..., sahib..., etc.)
+      // 3. Alias / substring match
       if (!found) {
         found = state.staffList.find(s => {
           const aliases = Array.isArray(s.aliases) ? s.aliases : [s.id, s.firstName];
@@ -1643,7 +1643,6 @@
       };
     }
 
-    // Strict canonical staffId matching so old Employee ID test records never mix between staff
     function findAttendanceRecordForStaff(staff) {
       if (!staff) return {};
       const sid = (staff.id || "").toLowerCase().trim();
@@ -2790,7 +2789,6 @@
       });
     }
 
-    // One-click button for Boss to clear any leftover test breaks across all staff
     window.resetAllActiveBreaksToday = async function () {
       const today = getTodayISO();
       const snap = await getDocs(query(collection(db, "attendance"), where("date", "==", today)));
@@ -3538,7 +3536,13 @@
           if (item.deleted) {
             delete mergedMap[d.id];
           } else {
-            mergedMap[d.id] = { ...(mergedMap[d.id] || {}), ...item, id: item.id || d.id };
+            const base = mergedMap[d.id] || {};
+            mergedMap[d.id] = {
+              ...base,
+              ...item,
+              id: item.id || d.id,
+              email: base.email || item.email
+            };
           }
         });
         state.staffList = Object.values(mergedMap);
@@ -3925,7 +3929,6 @@
 
     // ==================== 3-DIVISION EMPLOYEE LEADERBOARD GRAPHS (SALES, ACCESSORIES, SERVICE) ====================
     function renderBossAnalyticsChart() {
-      // 1. Salesmen (New Department + Pre-Owned Department excluding Stock/Label Manager Zohair)
       const salesRanking = state.staffList
         .filter(s => (s.dept === "New Department" || s.dept === "Pre-Owned Department") && s.id !== "zohair")
         .map(s => {
@@ -3938,7 +3941,6 @@
         })
         .sort((a, b) => b.val - a.val);
 
-      // 2. Accessories Department (Ranked by Total Accessories Amount)
       const accessoriesRanking = state.staffList
         .filter(s => s.dept === "Accessories Department")
         .map(s => {
@@ -3951,7 +3953,6 @@
         })
         .sort((a, b) => b.val - a.val);
 
-      // 3. Service Center (Ranked by Total Phones Serviced)
       const serviceRanking = state.staffList
         .filter(s => s.dept === "Service Center")
         .map(s => {
