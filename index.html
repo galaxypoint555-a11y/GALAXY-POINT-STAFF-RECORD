@@ -262,7 +262,7 @@
 
         <div class="bg-white rounded-3xl p-5 border border-blue-100 shadow-2xs flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p id="staff-greeting-first-name" class="text-sm font-bold text-gp-royal">Good Afternoon, Sohail 👋</p>
+            <p id="staff-greeting-first-name" class="text-sm font-bold text-gp-royal">Good Evening, Sohail 👋</p>
             <div id="staff-live-clock" class="font-bold text-2xl sm:text-3xl text-slate-900 mt-0.5 tabular-nums">--:--:--</div>
             <p id="staff-today-date-label" class="text-xs text-slate-500 font-medium"></p>
           </div>
@@ -1070,7 +1070,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 4: DEDICATED STAFF REPORT SEARCH SECTION (FULL MONTH CHECK-IN, CHECK-OUT & REPORT) -->
+          <!-- BOSS VIEW 4: DEDICATED STAFF REPORT SEARCH SECTION -->
           <div id="boss-view-staffreport" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -1094,17 +1094,22 @@
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 class="font-bold text-base sm:text-lg text-slate-900">☕ Check Live Break Status</h3>
-                <p class="text-xs text-slate-500">Real-time view matched by Name &amp; Employee ID — who is on break, who is not, count &amp; minutes so far</p>
+                <p class="text-xs text-slate-500">Real-time view matched by exact Staff ID &amp; Name — who is on break, who is not, count &amp; minutes so far</p>
               </div>
-              <span id="break-page-summary-pill" class="px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-950 text-xs font-bold tabular-nums">
-                0 On Break Right Now
-              </span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="break-page-summary-pill" class="px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-950 text-xs font-bold tabular-nums">
+                  0 On Break Right Now
+                </span>
+                <button type="button" onclick="window.resetAllActiveBreaksToday()" class="px-3.5 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-bold transition">
+                  🔄 Reset All Active Breaks
+                </button>
+              </div>
             </div>
 
             <div id="boss-break-status-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
           </div>
 
-          <!-- BOSS VIEW 6: EDITABLE SALARY & HOLIDAYS (WITH CLAIMED INCENTIVE TILL NOW BESIDE LOYALTY BONUS) -->
+          <!-- BOSS VIEW 6: EDITABLE SALARY & HOLIDAYS -->
           <div id="boss-view-monthly" class="hidden space-y-5 animate-view">
             <div id="boss-salary-list-card" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
               <div class="flex flex-wrap items-center justify-between gap-3">
@@ -1238,16 +1243,44 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 9: DEPT GRAPHS & REWARDS -->
+          <!-- BOSS VIEW 9: DEPT GRAPHS & REWARDS (SALES, ACCESSORIES & SERVICE RANKING WITH EMPLOYEE NAME + DEPT) -->
           <div id="boss-view-analytics" class="hidden space-y-5 animate-view">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-              <div class="lg:col-span-8 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
-                <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-1">📊 Department Performance &amp; Target Progress</h3>
-                <p class="text-xs text-slate-500 mb-4">Live comparison across all Galaxy Point divisions</p>
-                <div class="h-64">
-                  <canvas id="boss-dept-chart"></canvas>
+              <div class="lg:col-span-8 space-y-5">
+                <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900">📊 Sales Leaderboard (New &amp; Pre-Owned Salesmen)</h3>
+                    <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-gp-royal text-[11px] font-bold">Ranked by Total Sale</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mb-4">Higher total sale ranks higher • Shows Employee Name + ID &amp; Department</p>
+                  <div class="h-64">
+                    <canvas id="boss-sales-chart"></canvas>
+                  </div>
                 </div>
-                <div id="boss-dept-target-bars" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div class="bg-white rounded-3xl p-5 border border-blue-100 shadow-2xs">
+                    <div class="flex items-center justify-between gap-2 mb-1">
+                      <h3 class="font-bold text-sm sm:text-base text-slate-900">🎧 Accessories Ranking</h3>
+                      <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">Total Amount</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mb-3">Ranked by Total Accessories Amount</p>
+                    <div class="h-52">
+                      <canvas id="boss-accessories-chart"></canvas>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded-3xl p-5 border border-blue-100 shadow-2xs">
+                    <div class="flex items-center justify-between gap-2 mb-1">
+                      <h3 class="font-bold text-sm sm:text-base text-slate-900">🛠️ Service Center Ranking</h3>
+                      <span class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 text-[10px] font-bold">Total Phones</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mb-3">Ranked by Total Phones Serviced</p>
+                    <div class="h-52">
+                      <canvas id="boss-service-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="lg:col-span-4 bg-gradient-to-br from-[#081838] to-[#1444A8] text-white rounded-3xl p-5 sm:p-6 shadow-md flex flex-col justify-between">
@@ -1465,25 +1498,25 @@
 
     // ==================== LOCKED 19-MEMBER GALAXY POINT ROSTER ====================
     const DEFAULT_STAFF_DIRECTORY = [
-      { id: "sahab", empId: "GP-001", name: "SAHAB", firstName: "Sahab", email: "sahab@galaxypoint.com", dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "rajni", empId: "GP-002", name: "RAJNI", firstName: "Rajni", email: "rajni@galaxypoint.com", dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "pravin", empId: "GP-003", name: "PRAVIN", firstName: "Pravin", email: "pravin@galaxypoint.com", dept: "New Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
-      { id: "ashok", empId: "GP-004", name: "ASHOK", firstName: "Ashok", email: "ashok@galaxypoint.com", dept: "Pre-Owned Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
-      { id: "zohair", empId: "GP-005", name: "ZOHAIR", firstName: "Zohair", email: "zohair@galaxypoint.com", dept: "Pre-Owned Department", designation: "Stock Managing - Label Managing", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
-      { id: "abdul", empId: "GP-006", name: "ABDUL", firstName: "Abdul", email: "abdul@galaxypoint.com", dept: "Pre-Owned Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "vikas", empId: "GP-007", name: "VIKAS", firstName: "Vikas", email: "vikas@galaxypoint.com", dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "devendra", empId: "GP-008", name: "DEVENDRA", firstName: "Devendra", email: "devendra@galaxypoint.com", dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "mohammed", empId: "GP-009", name: "MOHAMMED", firstName: "Mohammed", email: "mohammed@galaxypoint.com", dept: "Service Center", designation: "Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
-      { id: "arif", empId: "GP-010", name: "ARIF", firstName: "Arif", email: "arif@galaxypoint.com", dept: "Service Center", designation: "Co Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
-      { id: "sunil", empId: "GP-011", name: "SUNIL", firstName: "Sunil", email: "sunil@galaxypoint.com", dept: "Service Center", designation: "Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 20000 },
-      { id: "sohail", empId: "GP-012", name: "SAYEYD SOHAIL", firstName: "Sohail", email: "sohail@galaxypoint.com", dept: "Social Department", designation: "Social Media Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 22000 },
-      { id: "guffran", empId: "GP-013", name: "GUFFRAN", firstName: "Guffran", email: "guffran@galaxypoint.com", dept: "Social Department", designation: "Video Editor", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "vishal", empId: "GP-014", name: "VISHAL", firstName: "Vishal", email: "vishal@galaxypoint.com", dept: "Accountant", designation: "Accountant", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
-      { id: "rutik", empId: "GP-015", name: "RUTIK", firstName: "Rutik", email: "rutik@galaxypoint.com", dept: "Backend", designation: "All Rounder", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "naresh", empId: "GP-016", name: "NARESH", firstName: "Naresh", email: "naresh@galaxypoint.com", dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
-      { id: "mahindra", empId: "GP-017", name: "MAHINDRA", firstName: "Mahindra", email: "mahindra@galaxypoint.com", dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
-      { id: "arvind", empId: "GP-018", name: "ARVIND", firstName: "Arvind", email: "arvind@galaxypoint.com", dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
-      { id: "anas", empId: "GP-019", name: "ANAS", firstName: "Anas", email: "anas@galaxypoint.com", dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 }
+      { id: "sahab", empId: "GP-001", name: "SAHAB", firstName: "Sahab", email: "sahab@galaxypoint.com", aliases: ["sahab", "sahib"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "rajni", empId: "GP-002", name: "RAJNI", firstName: "Rajni", email: "rajni@galaxypoint.com", aliases: ["rajni"], dept: "New Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "pravin", empId: "GP-003", name: "PRAVIN", firstName: "Pravin", email: "pravin@galaxypoint.com", aliases: ["pravin", "praveen"], dept: "New Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
+      { id: "ashok", empId: "GP-004", name: "ASHOK", firstName: "Ashok", email: "ashok@galaxypoint.com", aliases: ["ashok"], dept: "Pre-Owned Department", designation: "Sales Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
+      { id: "zohair", empId: "GP-005", name: "ZOHAIR", firstName: "Zohair", email: "zohair@galaxypoint.com", aliases: ["zohair", "zoher", "zuhair"], dept: "Pre-Owned Department", designation: "Stock Managing - Label Managing", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
+      { id: "abdul", empId: "GP-006", name: "ABDUL", firstName: "Abdul", email: "abdul@galaxypoint.com", aliases: ["abdul"], dept: "Pre-Owned Department", designation: "Sales Man", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "vikas", empId: "GP-007", name: "VIKAS", firstName: "Vikas", email: "vikas@galaxypoint.com", aliases: ["vikas", "vikash"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "devendra", empId: "GP-008", name: "DEVENDRA", firstName: "Devendra", email: "devendra@galaxypoint.com", aliases: ["devendra"], dept: "Pre-Owned Department", designation: "Salesman", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "mohammed", empId: "GP-009", name: "MOHAMMED", firstName: "Mohammed", email: "mohammed@galaxypoint.com", aliases: ["mohammed", "mohammad", "muhammad"], dept: "Service Center", designation: "Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 25000 },
+      { id: "arif", empId: "GP-010", name: "ARIF", firstName: "Arif", email: "arif@galaxypoint.com", aliases: ["arif"], dept: "Service Center", designation: "Co Service Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 19000 },
+      { id: "sunil", empId: "GP-011", name: "SUNIL", firstName: "Sunil", email: "sunil@galaxypoint.com", aliases: ["sunil"], dept: "Service Center", designation: "Technician", shift: "11:00 AM - 10:30 PM", baseSalary: 20000 },
+      { id: "sohail", empId: "GP-012", name: "SAYEYD SOHAIL", firstName: "Sohail", email: "sayyedsohail777s@gmail.com", aliases: ["sohail", "sayyedsohail", "sayeydsohail"], dept: "Social Department", designation: "Social Media Manager", shift: "11:00 AM - 10:30 PM", baseSalary: 22000 },
+      { id: "guffran", empId: "GP-013", name: "GUFFRAN", firstName: "Guffran", email: "guffran@galaxypoint.com", aliases: ["guffran", "gufran"], dept: "Social Department", designation: "Video Editor", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "vishal", empId: "GP-014", name: "VISHAL", firstName: "Vishal", email: "vishal@galaxypoint.com", aliases: ["vishal"], dept: "Accountant", designation: "Accountant", shift: "11:00 AM - 10:30 PM", baseSalary: 24000 },
+      { id: "rutik", empId: "GP-015", name: "RUTIK", firstName: "Rutik", email: "rutik@galaxypoint.com", aliases: ["rutik", "hrithik", "ritik"], dept: "Backend", designation: "All Rounder", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "naresh", empId: "GP-016", name: "NARESH", firstName: "Naresh", email: "naresh@galaxypoint.com", aliases: ["naresh"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
+      { id: "mahindra", empId: "GP-017", name: "MAHINDRA", firstName: "Mahindra", email: "mahindra@galaxypoint.com", aliases: ["mahindra", "mahendra"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 18000 },
+      { id: "arvind", empId: "GP-018", name: "ARVIND", firstName: "Arvind", email: "arvind@galaxypoint.com", aliases: ["arvind"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 },
+      { id: "anas", empId: "GP-019", name: "ANAS", firstName: "Anas", email: "anas@galaxypoint.com", aliases: ["anas"], dept: "Accessories Department", designation: "Accessories", shift: "11:00 AM - 10:30 PM", baseSalary: 16000 }
     ];
 
     const state = {
@@ -1516,7 +1549,9 @@
       firstAttendanceSnapshotDone: false,
       firstChatSnapshotDone: false,
       activeBreakTimerInterval: null,
-      deptChartInstance: null,
+      salesChartInstance: null,
+      accessoriesChartInstance: null,
+      serviceChartInstance: null,
       bossDropdownBuilt: false,
       archive90Rows: [],
       staffReportMonthRows: [],
@@ -1542,7 +1577,7 @@
       navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
     }
 
-    // ==================== DATE, TIME & STAFF MATCHING HELPERS ====================
+    // ==================== DATE, TIME & SMART STAFF MATCHING HELPERS ====================
     function getTodayISO() {
       const d = new Date();
       return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -1571,12 +1606,27 @@
 
     function resolveStaffProfileForUser(user) {
       const emailLower = (user.email || "").toLowerCase().trim();
-      const prefix = emailLower.split("@")[0];
-      const found = state.staffList.find(
-        s => (s.email || "").toLowerCase() === emailLower ||
-             (s.id || "").toLowerCase() === prefix ||
-             prefix.startsWith((s.id || "").toLowerCase())
-      );
+      const prefix = emailLower.split("@")[0].replace(/[^a-z0-9]/g, "");
+
+      // 1. Exact email match
+      let found = state.staffList.find(s => (s.email || "").toLowerCase().trim() === emailLower);
+
+      // 2. Exact staff id match
+      if (!found) {
+        found = state.staffList.find(s => (s.id || "").toLowerCase() === prefix);
+      }
+
+      // 3. Alias / substring match (handles sayyedsohail777s@gmail.com, zohair..., zoher..., mahendra..., sahib..., etc.)
+      if (!found) {
+        found = state.staffList.find(s => {
+          const aliases = Array.isArray(s.aliases) ? s.aliases : [s.id, s.firstName];
+          return aliases.some(al => {
+            const cleanAl = String(al || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+            return cleanAl.length >= 4 && prefix.includes(cleanAl);
+          });
+        });
+      }
+
       if (found) return { ...found };
 
       const cleanFirst = prefix.charAt(0).toUpperCase() + prefix.slice(1);
@@ -1593,30 +1643,16 @@
       };
     }
 
+    // Strict canonical staffId matching so old Employee ID test records never mix between staff
     function findAttendanceRecordForStaff(staff) {
       if (!staff) return {};
-      const keys = [
-        (staff.id || "").toLowerCase(),
-        (staff.empId || "").toLowerCase(),
-        (staff.email || "").toLowerCase(),
-        ((staff.email || "").split("@")[0] || "").toLowerCase(),
-        (staff.name || "").toLowerCase()
-      ].filter(Boolean);
-
-      for (const k of keys) {
-        if (state.allTodayAttendance[k]) return state.allTodayAttendance[k];
+      const sid = (staff.id || "").toLowerCase().trim();
+      if (sid && state.allTodayAttendance[sid]) {
+        return state.allTodayAttendance[sid];
       }
-
-      const foundDoc = state.allTodayAttendanceList.find(rec => {
-        const recKeys = [
-          (rec.staffId || "").toLowerCase(),
-          (rec.empId || "").toLowerCase(),
-          (rec.email || "").toLowerCase(),
-          (rec.staffName || "").toLowerCase()
-        ].filter(Boolean);
-        return recKeys.some(rk => keys.includes(rk));
-      });
-
+      const foundDoc = state.allTodayAttendanceList.find(
+        rec => (rec.staffId || "").toLowerCase().trim() === sid
+      );
       return foundDoc || {};
     }
 
@@ -1646,12 +1682,11 @@
         profile.empId,
         profile.dept,
         profile.email,
-        (profile.email || "").split("@")[0],
         profile.name,
         profile.firstName
       ].filter(Boolean).map(v => String(v).trim().toLowerCase());
 
-      return rawTargets.some(t => candidateKeys.some(k => t === k || t.includes(k)));
+      return rawTargets.some(t => candidateKeys.some(k => t === k));
     }
 
     // ==================== CHIME, TOASTS & 30-SEC BOSS ALERTS ====================
@@ -1697,18 +1732,11 @@
       setTimeout(() => el.remove(), 5500);
     };
 
-    // 30-second Boss Dashboard Alert Banner with instant Cross (✕) Dismiss
     function pushBoss30SecAlert(title, message, tone = "amber") {
       if (state.role !== "boss") return;
       const stack = document.getElementById("boss-30s-alerts-stack");
       if (!stack) return;
 
-      const styles = {
-        amber: "bg-amber-50 border-amber-400 text-amber-950 bar-bg:bg-amber-500",
-        red: "bg-red-50 border-red-400 text-red-950 bar-bg:bg-red-600",
-        blue: "bg-blue-50 border-blue-400 text-blue-950 bar-bg:bg-gp-blue",
-        emerald: "bg-emerald-50 border-emerald-400 text-emerald-950 bar-bg:bg-emerald-600"
-      };
       const cardTone = tone === "red"
         ? "bg-red-50 border-red-400 text-red-950"
         : tone === "blue"
@@ -2001,16 +2029,16 @@
       const box = document.getElementById("staff-dept-metric-fields");
       const subEl = document.getElementById("staff-auto-dept-subtitle");
 
-      let metricLabel = "Total Sale";
+      let metricLabel = "Total Sale (₹)";
       let metricKey = "totalSale";
       if (dept === "Social Department") {
         metricLabel = "Total Video";
         metricKey = "totalVideo";
       } else if (dept === "Accessories Department") {
-        metricLabel = "Total Accessories";
+        metricLabel = "Total Accessories Amount (₹)";
         metricKey = "totalAccessories";
       } else if (dept === "Service Center") {
-        metricLabel = "Total Service";
+        metricLabel = "Total Phones Serviced";
         metricKey = "totalService";
       }
 
@@ -2096,7 +2124,6 @@
       document.getElementById("card-gps-address").textContent = d.gpsAddress || "Tap Check-In for GPS";
       document.getElementById("card-geofence-tag").textContent = d.geofenceTag || "Store Geofence Ready";
 
-      // Check-In button vs non-clickable green badge
       const checkInBtn = document.getElementById("btn-staff-checkin");
       const checkInDonePill = document.getElementById("staff-checkin-done-pill");
       const isCheckedIn = Boolean(d.checkInTime);
@@ -2108,7 +2135,6 @@
         checkInDonePill.classList.add("hidden");
       }
 
-      // Check-Out button vs non-clickable green badge
       const checkOutBtn = document.getElementById("btn-staff-checkout");
       const checkOutDonePill = document.getElementById("staff-checkout-done-pill");
       const isCheckedOut = Boolean(d.checkOutTime);
@@ -2688,14 +2714,8 @@
         snap.forEach(d => {
           const rec = d.data();
           docsList.push(rec);
-          const keys = [
-            (rec.staffId || "").toLowerCase(),
-            (d.id.split("_")[1] || "").toLowerCase(),
-            (rec.empId || "").toLowerCase(),
-            (rec.email || "").toLowerCase(),
-            (rec.staffName || "").toLowerCase()
-          ].filter(Boolean);
-          keys.forEach(k => { map[k] = rec; });
+          const sid = (rec.staffId || d.id.split("_")[1] || "").toLowerCase().trim();
+          if (sid) map[sid] = rec;
         });
         state.allTodayAttendance = map;
         state.allTodayAttendanceList = docsList;
@@ -2704,44 +2724,42 @@
         if (state.role === "boss" && state.firstAttendanceSnapshotDone) {
           docsList.forEach(rec => {
             const matchedStaff = state.staffList.find(
-              s => (s.id || "").toLowerCase() === (rec.staffId || "").toLowerCase() ||
-                   (s.empId || "").toLowerCase() === (rec.empId || "").toLowerCase()
+              s => (s.id || "").toLowerCase() === (rec.staffId || "").toLowerCase()
             );
-            const displayName = matchedStaff ? matchedStaff.name : (rec.staffName || "Staff");
-            const displayId = matchedStaff ? matchedStaff.empId : (rec.empId || "");
-            const label = `${displayName} (${displayId})`;
+            if (!matchedStaff) return;
 
+            const label = `${matchedStaff.name} (${matchedStaff.empId})`;
             const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
             const isOnBreak = Boolean(rec.onBreakNow || sessions.some(s => !s.endMs));
-            const breakKey = `${rec.staffId}_${sessions.length}`;
+            const breakKey = `${matchedStaff.id}_${sessions.length}`;
 
             if (isOnBreak && !state.notifiedBreakStaff.has(breakKey)) {
               state.notifiedBreakStaff.add(breakKey);
               triggerAlertNotification(
                 "☕ Break Alert — Staff On Break",
                 `${label} has just taken a Tea/Coffee break.`,
-                `gp-break-${rec.staffId}`,
+                `gp-break-${matchedStaff.id}`,
                 "amber"
               );
             }
 
-            if ((rec.totalBreakMinutes || 0) > 60 && !state.notifiedBreakOverStaff.has(rec.staffId)) {
-              state.notifiedBreakOverStaff.add(rec.staffId);
+            if ((rec.totalBreakMinutes || 0) > 60 && !state.notifiedBreakOverStaff.has(matchedStaff.id)) {
+              state.notifiedBreakOverStaff.add(matchedStaff.id);
               triggerAlertNotification(
                 "⚠️ Break Exceeded (>60m)",
                 `${label} has exceeded the 60-minute daily break limit (${rec.totalBreakMinutes}m).`,
-                `gp-breakover-${rec.staffId}`,
+                `gp-breakover-${matchedStaff.id}`,
                 "red"
               );
             }
 
-            const repKey = `${rec.staffId}_report`;
+            const repKey = `${matchedStaff.id}_report`;
             if (rec.reportSubmitted && !state.notifiedReportStaff.has(repKey)) {
               state.notifiedReportStaff.add(repKey);
               triggerAlertNotification(
                 "📝 Daily Report Submitted",
                 `${label} submitted today's report (${rec.primaryMetricLabel || "Report"}: ${rec.primaryMetricValue ?? 0}).`,
-                `gp-report-${rec.staffId}`,
+                `gp-report-${matchedStaff.id}`,
                 "blue"
               );
             }
@@ -2749,15 +2767,16 @@
         }
 
         docsList.forEach(rec => {
+          const sid = (rec.staffId || "").toLowerCase();
           const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
           if (rec.onBreakNow || sessions.some(s => !s.endMs)) {
-            state.notifiedBreakStaff.add(`${rec.staffId}_${sessions.length}`);
+            state.notifiedBreakStaff.add(`${sid}_${sessions.length}`);
           }
           if ((rec.totalBreakMinutes || 0) > 60) {
-            state.notifiedBreakOverStaff.add(rec.staffId);
+            state.notifiedBreakOverStaff.add(sid);
           }
           if (rec.reportSubmitted) {
-            state.notifiedReportStaff.add(`${rec.staffId}_report`);
+            state.notifiedReportStaff.add(`${sid}_report`);
           }
         });
         state.firstAttendanceSnapshotDone = true;
@@ -2765,8 +2784,33 @@
         window.renderBossLiveTable();
         renderBossLiveBreakStatus();
         updateBossKpiCards();
+        if (document.getElementById("boss-view-analytics") && !document.getElementById("boss-view-analytics").classList.contains("hidden")) {
+          renderBossAnalyticsChart();
+        }
       });
     }
+
+    // One-click button for Boss to clear any leftover test breaks across all staff
+    window.resetAllActiveBreaksToday = async function () {
+      const today = getTodayISO();
+      const snap = await getDocs(query(collection(db, "attendance"), where("date", "==", today)));
+      const updates = [];
+      snap.forEach(d => {
+        const rec = d.data();
+        const sessions = Array.isArray(rec.breakSessions)
+          ? rec.breakSessions.map(s => s.endMs ? s : { ...s, endMs: Date.now(), endTime: formatTime12(), durationSec: 0 })
+          : [];
+        updates.push(
+          setDoc(doc(db, "attendance", d.id), {
+            onBreakNow: false,
+            breakSessions: sessions,
+            updatedAt: serverTimestamp()
+          }, { merge: true })
+        );
+      });
+      await Promise.all(updates);
+      window.showToast("All Breaks Reset 🔄", "Active break count is now 0 across all staff.", "success");
+    };
 
     function renderBossLiveBreakStatus() {
       const grid = document.getElementById("boss-break-status-grid");
@@ -3043,7 +3087,6 @@
       document.getElementById("cal-edit-remark").value = rec.bossRemark || "";
     };
 
-    // Undo / Refresh accidental Check-In & Check-Out so staff's screen resets to blank immediately
     window.refreshBossStaffCheckInOut = async function () {
       const staffId = state.selectedCalStaffId;
       const staff = state.staffList.find(s => s.id === staffId);
@@ -3320,6 +3363,7 @@
         name: rawName.toUpperCase(),
         firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase(),
         email,
+        aliases: [docId, firstName.toLowerCase()],
         dept,
         designation,
         shift,
@@ -3879,52 +3923,115 @@
       state.firstChatSnapshotDone = true;
     }
 
-    // ==================== ANALYTICS, HOLIDAYS & ARCHIVE ====================
+    // ==================== 3-DIVISION EMPLOYEE LEADERBOARD GRAPHS (SALES, ACCESSORIES, SERVICE) ====================
     function renderBossAnalyticsChart() {
-      const depts = [
-        "New Department",
-        "Pre-Owned Department",
-        "Service Center",
-        "Social Department",
-        "Accountant",
-        "Backend",
-        "Accessories Department"
-      ];
-      const scores = depts.map(dept => {
-        const deptStaff = state.staffList.filter(s => s.dept === dept);
-        const present = deptStaff.filter(s => {
+      // 1. Salesmen (New Department + Pre-Owned Department excluding Stock/Label Manager Zohair)
+      const salesRanking = state.staffList
+        .filter(s => (s.dept === "New Department" || s.dept === "Pre-Owned Department") && s.id !== "zohair")
+        .map(s => {
           const rec = findAttendanceRecordForStaff(s);
-          return Boolean(rec.checkInTime || rec.status === "Present");
-        }).length;
-        return Math.round((present / Math.max(1, deptStaff.length)) * 100);
-      });
+          const val = Number(rec.primaryMetricValue || 0);
+          return {
+            label: `${s.name} (${s.empId}) • ${s.dept.replace(" Department", "")}`,
+            val
+          };
+        })
+        .sort((a, b) => b.val - a.val);
 
-      const ctx = document.getElementById("boss-dept-chart");
-      if (state.deptChartInstance) state.deptChartInstance.destroy();
-      state.deptChartInstance = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: depts,
-          datasets: [{
-            label: "Active Attendance & Readiness %",
-            data: scores,
-            backgroundColor: ["#0B2249", "#1444A8", "#1D5BFF", "#2563EB", "#3B82F6", "#0284C7", "#0EA5E9"],
-            borderRadius: 10
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 100 } } }
-      });
+      // 2. Accessories Department (Ranked by Total Accessories Amount)
+      const accessoriesRanking = state.staffList
+        .filter(s => s.dept === "Accessories Department")
+        .map(s => {
+          const rec = findAttendanceRecordForStaff(s);
+          const val = Number(rec.primaryMetricValue || 0);
+          return {
+            label: `${s.name} (${s.empId}) • Accessories`,
+            val
+          };
+        })
+        .sort((a, b) => b.val - a.val);
 
-      document.getElementById("boss-dept-target-bars").innerHTML = depts.map((dept, i) => `
-        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-          <div class="flex justify-between text-xs font-bold mb-1">
-            <span>${dept}</span><span class="text-gp-royal">${scores[i]}%</span>
-          </div>
-          <div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
-            <div class="h-full bg-gp-blue rounded-full" style="width:${scores[i]}%"></div>
-          </div>
-        </div>
-      `).join("");
+      // 3. Service Center (Ranked by Total Phones Serviced)
+      const serviceRanking = state.staffList
+        .filter(s => s.dept === "Service Center")
+        .map(s => {
+          const rec = findAttendanceRecordForStaff(s);
+          const val = Number(rec.primaryMetricValue || 0);
+          return {
+            label: `${s.name} (${s.empId}) • Service`,
+            val
+          };
+        })
+        .sort((a, b) => b.val - a.val);
+
+      const salesCanvas = document.getElementById("boss-sales-chart");
+      if (salesCanvas) {
+        if (state.salesChartInstance) state.salesChartInstance.destroy();
+        state.salesChartInstance = new Chart(salesCanvas, {
+          type: "bar",
+          data: {
+            labels: salesRanking.map(r => r.label),
+            datasets: [{
+              label: "Total Sale (₹)",
+              data: salesRanking.map(r => r.val),
+              backgroundColor: "#1444A8",
+              borderRadius: 8
+            }]
+          },
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { x: { beginAtZero: true } }
+          }
+        });
+      }
+
+      const accCanvas = document.getElementById("boss-accessories-chart");
+      if (accCanvas) {
+        if (state.accessoriesChartInstance) state.accessoriesChartInstance.destroy();
+        state.accessoriesChartInstance = new Chart(accCanvas, {
+          type: "bar",
+          data: {
+            labels: accessoriesRanking.map(r => r.label),
+            datasets: [{
+              label: "Accessories Amount (₹)",
+              data: accessoriesRanking.map(r => r.val),
+              backgroundColor: "#059669",
+              borderRadius: 8
+            }]
+          },
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { x: { beginAtZero: true } }
+          }
+        });
+      }
+
+      const srvCanvas = document.getElementById("boss-service-chart");
+      if (srvCanvas) {
+        if (state.serviceChartInstance) state.serviceChartInstance.destroy();
+        state.serviceChartInstance = new Chart(srvCanvas, {
+          type: "bar",
+          data: {
+            labels: serviceRanking.map(r => r.label),
+            datasets: [{
+              label: "Total Phones Serviced",
+              data: serviceRanking.map(r => r.val),
+              backgroundColor: "#D97706",
+              borderRadius: 8
+            }]
+          },
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { x: { beginAtZero: true } }
+          }
+        });
+      }
     }
 
     window.saveEmployeeOfTheMonth = async function () {
