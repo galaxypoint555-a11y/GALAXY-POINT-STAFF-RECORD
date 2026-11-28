@@ -71,7 +71,7 @@
   <!-- Toast / Alert Container -->
   <div id="gp-toast-container" class="fixed top-4 right-4 z-[9999] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-3 sm:px-0"></div>
 
-  <!-- Session Boot Loader (Keeps User Logged In Across Refresh) -->
+  <!-- Session Boot Loader -->
   <div id="session-boot-screen" class="fixed inset-0 z-[9500] bg-gradient-to-br from-gp-navy via-gp-dark to-gp-royal flex flex-col items-center justify-center text-white p-6">
     <div class="px-5 py-3 rounded-3xl bg-white shadow-xl mb-4">
       <svg viewBox="0 0 180 76" class="h-11 w-auto" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,6 @@
     </div>
 
     <div class="max-w-md w-full mx-auto my-auto py-4 animate-view">
-      <!-- Original Blue & Black GP Logo & Title -->
       <div class="text-center mb-4">
         <div class="inline-flex items-center justify-center px-5 py-2.5 rounded-3xl bg-white shadow-xl border border-blue-100 mb-2">
           <svg viewBox="0 0 180 76" class="h-12 w-auto" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +109,6 @@
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-100 mt-0.5">— STAFF APPLICATION —</p>
       </div>
 
-      <!-- Appreciation & Gratitude Banner -->
       <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#081838]/95 via-[#0E2F73]/95 to-[#1444A8]/95 text-white shadow-xl border border-white/25 mb-4">
         <div class="grid grid-cols-12 gap-3 items-center">
           <div class="col-span-8 border-r border-white/20 pr-3">
@@ -131,7 +129,6 @@
         </div>
       </div>
 
-      <!-- Sign In Box -->
       <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-2xl border border-blue-100">
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-gp-royal text-[11px] font-bold uppercase tracking-wide mb-2">
           <span>🛡️</span>
@@ -179,7 +176,6 @@
       </div>
     </div>
 
-    <!-- Bottom Footer Line -->
     <div class="max-w-md w-full mx-auto pt-3 pb-1 text-center">
       <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-2xl bg-white/90 text-slate-800 text-xs font-semibold shadow-sm border border-white">
         <span>✅ Secure • Reliable • Trusted</span>
@@ -247,7 +243,6 @@
 
       <!-- TAB 1: ATTENDANCE -->
       <div id="staff-view-home" class="space-y-5 animate-view">
-        <!-- Executive Store Announcement Banner -->
         <div id="staff-announcement-banner" class="hidden p-5 rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white shadow-lg border border-blue-400/35">
           <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/15">
             <div class="flex items-center gap-2">
@@ -279,7 +274,7 @@
           </div>
         </div>
 
-        <!-- Two Separate Classic Blocks: Shift Check-In & Shift Check-Out -->
+        <!-- Two Separate Blocks: Shift Check-In & Shift Check-Out -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="bg-white rounded-3xl p-5 border border-blue-100 shadow-2xs flex flex-col justify-between">
             <div>
@@ -294,7 +289,6 @@
               </p>
               <p id="card-geofence-tag" class="text-xs font-semibold text-gp-royal mt-1">Store Geofence Ready</p>
             </div>
-            <!-- Once Checked In, Check-In button disappears & shows Check-In Done -->
             <div id="staff-checkin-action-wrap" class="mt-4">
               <button type="button" id="btn-staff-checkin" onclick="window.handleStaffCheckIn()"
                 class="w-full py-3 px-4 rounded-2xl bg-gp-blue hover:bg-gp-royal text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 transition tap-scale">
@@ -364,7 +358,7 @@
         </div>
       </div>
 
-      <!-- TAB 2: REPORT (ASSIGNED TASKS WITH INCENTIVE HIGHLIGHT + AUTO-DEPARTMENT REPORT + LEARNING) -->
+      <!-- TAB 2: REPORT -->
       <div id="staff-view-tasks" class="hidden space-y-5 animate-view">
         <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
           <div class="flex items-center justify-between mb-3">
@@ -701,28 +695,32 @@
             <button type="button" onclick="window.toggleBossSidebar()" class="lg:hidden text-blue-200 hover:text-white text-lg">✕</button>
           </div>
 
-          <!-- Sidebar Navigation Links -->
+          <!-- Sidebar Navigation Links (Dashboard -> Task -> Attendance Order) -->
           <div class="p-3 space-y-1 text-xs font-semibold overflow-y-auto max-h-[calc(100vh-210px)]">
             <button type="button" data-boss-nav="live" onclick="window.switchBossTab('live'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-gp-blue text-white font-bold text-left">
               <span class="flex items-center gap-3"><span>🏠</span><span>Dashboard &amp; Live GPS</span></span>
             </button>
-            <button type="button" data-boss-nav="override" onclick="window.switchBossTab('override'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
-              <span class="flex items-center gap-3"><span>🛡️</span><span>Attendance Override</span></span>
-            </button>
             <button type="button" data-boss-nav="tasks" onclick="window.switchBossTab('tasks'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>🎯</span><span>Tasks, Incentives &amp; Broadcast</span></span>
             </button>
-            <button type="button" data-boss-nav="learning" onclick="window.switchBossTab('learning'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
-              <span class="flex items-center gap-3"><span>🎓</span><span>Learning Videos &amp; Scores</span></span>
+            <button type="button" data-boss-nav="override" onclick="window.switchBossTab('override'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
+              <span class="flex items-center gap-3"><span>🛡️</span><span>Attendance Override</span></span>
             </button>
-            <button type="button" data-boss-nav="analytics" onclick="window.switchBossTab('analytics'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
-              <span class="flex items-center gap-3"><span>📊</span><span>Dept Graphs &amp; Rewards</span></span>
+            <button type="button" data-boss-nav="breaks" onclick="window.switchBossTab('breaks'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
+              <span class="flex items-center gap-3"><span>☕</span><span>Check Live Break Status</span></span>
+              <span id="badge-boss-onbreak" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-bold">0</span>
             </button>
             <button type="button" data-boss-nav="monthly" onclick="window.switchBossTab('monthly'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>💰</span><span>Editable Salary &amp; Holidays</span></span>
             </button>
             <button type="button" data-boss-nav="leaves" onclick="window.switchBossTab('leaves'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>🍃</span><span>Leave &amp; Advance</span></span>
+            </button>
+            <button type="button" data-boss-nav="learning" onclick="window.switchBossTab('learning'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
+              <span class="flex items-center gap-3"><span>🎓</span><span>Learning Videos &amp; Scores</span></span>
+            </button>
+            <button type="button" data-boss-nav="analytics" onclick="window.switchBossTab('analytics'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
+              <span class="flex items-center gap-3"><span>📊</span><span>Dept Graphs &amp; Rewards</span></span>
             </button>
             <button type="button" data-boss-nav="personal" onclick="window.switchBossTab('personal'); window.closeBossSidebarMobile();" class="boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition">
               <span class="flex items-center gap-3"><span>👤</span><span>Staff Personal Info</span></span>
@@ -803,64 +801,51 @@
         <!-- Boss Main Body -->
         <main class="p-4 sm:p-6 space-y-5 flex-1">
 
-          <!-- DASHBOARD-ONLY KPI CARDS & LIVE BREAK STATUS (HIDDEN IN OTHER BOSS SECTIONS) -->
-          <div id="boss-dashboard-widgets" class="space-y-4">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
-              <div onclick="window.openCheckedInTodayModal()" class="cursor-pointer bg-white rounded-2xl p-4 border border-blue-200 hover:border-gp-blue shadow-2xs flex items-center justify-between transition">
-                <div>
-                  <p class="text-xs font-semibold text-slate-500">Checked In Today</p>
-                  <p id="kpi-checked-in" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0 / 18</p>
-                  <span class="text-[11px] font-semibold text-gp-blue">Tap to View List →</span>
-                </div>
-                <div class="w-11 h-11 rounded-2xl bg-blue-100 text-gp-blue flex items-center justify-center text-xl">👥</div>
+          <!-- DASHBOARD-ONLY 5 KPI CARDS (HIDDEN IN OTHER BOSS SECTIONS) -->
+          <div id="boss-dashboard-widgets" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+            <div onclick="window.openCheckedInTodayModal()" class="cursor-pointer bg-white rounded-2xl p-4 border border-blue-200 hover:border-gp-blue shadow-2xs flex items-center justify-between transition">
+              <div>
+                <p class="text-xs font-semibold text-slate-500">Checked In Today</p>
+                <p id="kpi-checked-in" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0 / 18</p>
+                <span class="text-[11px] font-semibold text-gp-blue">Tap to View List →</span>
               </div>
-
-              <div class="bg-white rounded-2xl p-4 border border-blue-100 shadow-2xs flex items-center justify-between">
-                <div>
-                  <p class="text-xs font-semibold text-slate-500">Late Arrivals</p>
-                  <p id="kpi-late-arrivals" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
-                  <span class="text-[11px] font-semibold text-emerald-600">Today</span>
-                </div>
-                <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">⏰</div>
-              </div>
-
-              <div class="bg-white rounded-2xl p-4 border border-red-100 shadow-2xs flex items-center justify-between">
-                <div>
-                  <p class="text-xs font-semibold text-slate-500">Break Exceeded</p>
-                  <p id="kpi-break-exceeded" class="font-bold text-2xl text-red-600 mt-0.5 tabular-nums">0</p>
-                  <span class="px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[11px] font-bold">&gt;60m Alert</span>
-                </div>
-                <div class="w-11 h-11 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-xl">☕</div>
-              </div>
-
-              <div onclick="window.switchBossTab('leaves')" class="cursor-pointer bg-white rounded-2xl p-4 border border-purple-100 shadow-2xs flex items-center justify-between hover:border-purple-300 transition">
-                <div>
-                  <p class="text-xs font-semibold text-slate-500">Pending Leaves</p>
-                  <p id="kpi-pending-leaves" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
-                  <span class="text-[11px] font-semibold text-purple-600">Click to View →</span>
-                </div>
-                <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl">🍃</div>
-              </div>
-
-              <div onclick="window.switchBossTab('leaves')" class="cursor-pointer bg-white rounded-2xl p-4 border border-emerald-100 shadow-2xs flex items-center justify-between hover:border-emerald-300 transition col-span-2 sm:col-span-1">
-                <div>
-                  <p class="text-xs font-semibold text-slate-500">Advance Requests</p>
-                  <p id="kpi-pending-advances" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
-                  <span class="text-[11px] font-semibold text-emerald-600">Click to View →</span>
-                </div>
-                <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">₹</div>
-              </div>
+              <div class="w-11 h-11 rounded-2xl bg-blue-100 text-gp-blue flex items-center justify-center text-xl">👥</div>
             </div>
 
-            <!-- Live Break Status Card (Shows Who Is Currently On Break) -->
-            <div class="bg-white rounded-2xl p-4 border border-amber-200 shadow-2xs">
-              <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-sm text-slate-900">☕ Live Break Status — Currently On Break</h4>
-                <span id="boss-on-break-count" class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold tabular-nums">0 Active</span>
+            <div class="bg-white rounded-2xl p-4 border border-blue-100 shadow-2xs flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-500">Late Arrivals</p>
+                <p id="kpi-late-arrivals" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
+                <span class="text-[11px] font-semibold text-emerald-600">Today</span>
               </div>
-              <div id="boss-live-on-break-list" class="flex flex-wrap gap-2 text-xs">
-                <span class="text-slate-400">No staff member is on a break right now.</span>
+              <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">⏰</div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 border border-red-100 shadow-2xs flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-500">Break Exceeded</p>
+                <p id="kpi-break-exceeded" class="font-bold text-2xl text-red-600 mt-0.5 tabular-nums">0</p>
+                <span class="px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[11px] font-bold">&gt;60m Alert</span>
               </div>
+              <div class="w-11 h-11 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-xl">☕</div>
+            </div>
+
+            <div onclick="window.switchBossTab('leaves')" class="cursor-pointer bg-white rounded-2xl p-4 border border-purple-100 shadow-2xs flex items-center justify-between hover:border-purple-300 transition">
+              <div>
+                <p class="text-xs font-semibold text-slate-500">Pending Leaves</p>
+                <p id="kpi-pending-leaves" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
+                <span class="text-[11px] font-semibold text-purple-600">Click to View →</span>
+              </div>
+              <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl">🍃</div>
+            </div>
+
+            <div onclick="window.switchBossTab('leaves')" class="cursor-pointer bg-white rounded-2xl p-4 border border-emerald-100 shadow-2xs flex items-center justify-between hover:border-emerald-300 transition col-span-2 sm:col-span-1">
+              <div>
+                <p class="text-xs font-semibold text-slate-500">Advance Requests</p>
+                <p id="kpi-pending-advances" class="font-bold text-2xl text-slate-900 mt-0.5 tabular-nums">0</p>
+                <span class="text-[11px] font-semibold text-emerald-600">Click to View →</span>
+              </div>
+              <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">₹</div>
             </div>
           </div>
 
@@ -902,19 +887,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 2: ATTENDANCE OVERRIDE -->
-          <div id="boss-view-override" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 class="font-bold text-base sm:text-lg text-slate-900">🛡️ Boss Attendance Control &amp; Override</h3>
-                <p class="text-xs text-slate-500">Mark any staff Present, Half-Day, Paid Week Off, Holiday, or Absent for any date &amp; edit Check-In/Out times</p>
-              </div>
-              <input type="date" id="boss-override-date" onchange="window.renderBossOverrideList()" class="px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold" />
-            </div>
-            <div id="boss-override-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-          </div>
-
-          <!-- BOSS VIEW 3: TASKS, INCENTIVE APPROVAL & STORE BROADCAST -->
+          <!-- BOSS VIEW 2: TASKS, INCENTIVE APPROVAL & STORE BROADCAST -->
           <div id="boss-view-tasks" class="hidden space-y-5 animate-view">
             <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
               <div class="flex items-center gap-3 mb-4">
@@ -992,7 +965,186 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 4: LEARNING VIDEOS -->
+          <!-- BOSS VIEW 3: ATTENDANCE OVERRIDE + DEDICATED STAFF FULL-MONTH CALENDAR EDITOR PAGE -->
+          <div id="boss-view-override" class="hidden space-y-5 animate-view">
+            <!-- Staff List with Edit Button -->
+            <div id="boss-override-staff-list-card" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 class="font-bold text-base sm:text-lg text-slate-900">🛡️ Boss Attendance Control &amp; Full-Month Editor</h3>
+                  <p class="text-xs text-slate-500">Tap Edit next to any staff member to open their Full-Month Attendance Calendar</p>
+                </div>
+                <input type="month" id="boss-att-calendar-month" onchange="window.renderBossStaffMonthCalendar()"
+                  class="px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold" />
+              </div>
+              <div id="boss-override-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            </div>
+
+            <!-- Dedicated Full-Month Calendar Editor Page for Selected Staff -->
+            <div id="boss-staff-month-calendar-page" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-200 shadow-md space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                <div>
+                  <h3 id="boss-cal-editor-title" class="font-bold text-lg text-slate-900">📅 Full-Month Attendance Editor</h3>
+                  <p id="boss-cal-editor-sub" class="text-xs text-gp-royal font-semibold">--</p>
+                </div>
+                <button type="button" onclick="window.closeBossStaffMonthCalendar()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-800">
+                  ← Back to Staff List
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                <!-- Left 7 Cols: Full Month Grid -->
+                <div class="lg:col-span-7 space-y-2">
+                  <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold text-slate-400">
+                    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                  </div>
+                  <div id="boss-staff-month-calendar-grid" class="grid grid-cols-7 gap-1.5 text-center"></div>
+                </div>
+
+                <!-- Right 5 Cols: Selected Day Editor (Present, Absent, Paid Half Day, Paid Leave, Unpaid Leave, Week Off, Holiday) -->
+                <div class="lg:col-span-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs">
+                  <p class="font-bold text-sm text-slate-900">Edit Selected Date</p>
+                  <div>
+                    <label class="block font-bold text-slate-700 mb-1">Selected Date</label>
+                    <input id="cal-edit-date" type="date" onchange="window.onBossCalDatePicked()" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 font-bold" />
+                  </div>
+                  <div>
+                    <label class="block font-bold text-slate-700 mb-1">Attendance Status</label>
+                    <select id="cal-edit-status" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 font-bold">
+                      <option value="Present">Present</option>
+                      <option value="Absent">Absent</option>
+                      <option value="Paid Half Day">Paid Half Day</option>
+                      <option value="Paid Leave">Paid Leave</option>
+                      <option value="Unpaid Leave">Unpaid Leave</option>
+                      <option value="Week Off">Week Off</option>
+                      <option value="Holiday">Holiday</option>
+                    </select>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Check-In</label>
+                      <input id="cal-edit-checkin" type="text" placeholder="11:00 AM" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 font-semibold" />
+                    </div>
+                    <div>
+                      <label class="block font-bold text-slate-700 mb-1">Check-Out</label>
+                      <input id="cal-edit-checkout" type="text" placeholder="10:30 PM" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 font-semibold" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block font-bold text-slate-700 mb-1">Boss Remark</label>
+                    <input id="cal-edit-remark" type="text" placeholder="Optional note..." class="w-full p-2.5 rounded-xl bg-white border border-slate-200" />
+                  </div>
+                  <button type="button" onclick="window.saveBossCalendarDayEntry()" class="w-full py-3 rounded-2xl bg-gp-blue hover:bg-gp-royal text-white font-bold text-xs shadow-sm">
+                    💾 Save Day Attendance
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOSS VIEW 4: DEDICATED 'CHECK LIVE BREAK STATUS' PAGE -->
+          <div id="boss-view-breaks" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900">☕ Check Live Break Status</h3>
+                <p class="text-xs text-slate-500">Real-time view of who is currently on break, who is not on break, count &amp; elapsed break minutes</p>
+              </div>
+              <span id="break-page-summary-pill" class="px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-950 text-xs font-bold tabular-nums">
+                0 On Break Right Now
+              </span>
+            </div>
+
+            <div id="boss-break-status-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+          </div>
+
+          <!-- BOSS VIEW 5: EDITABLE SALARY & HOLIDAYS + DEDICATED AUTO-CALCULATED STAFF SALARY PAGE -->
+          <div id="boss-view-monthly" class="hidden space-y-5 animate-view">
+            <!-- Staff Salary List with Edit Button -->
+            <div id="boss-salary-list-card" class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 class="font-bold text-base sm:text-lg text-slate-900">💰 Editable Staff Salary Setup &amp; Paid Holidays</h3>
+                  <p class="text-xs text-slate-500">Tap Edit on any staff member to open their auto-calculated Salary, Loyalty Bonus, Advance &amp; Pending page</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <input type="date" id="boss-holiday-date" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold" />
+                  <input type="text" id="boss-holiday-name" placeholder="Holiday Name (e.g. Diwali)" class="px-3 py-2 rounded-xl border border-slate-200 text-xs" />
+                  <button type="button" onclick="window.addPaidHoliday()" class="px-3.5 py-2 rounded-xl bg-gp-royal text-white text-xs font-bold">+ Paid Holiday</button>
+                </div>
+              </div>
+              <div id="boss-holidays-list" class="flex flex-wrap gap-2"></div>
+              <div id="boss-salary-table-wrap" class="overflow-x-auto"></div>
+            </div>
+
+            <!-- Dedicated Staff Salary Edit & Auto-Calculation Page -->
+            <div id="boss-staff-salary-edit-page" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-200 shadow-md space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                <div>
+                  <h3 id="sal-edit-page-title" class="font-bold text-lg text-slate-900">💼 Staff Salary &amp; Settlement Breakdown</h3>
+                  <p id="sal-edit-page-sub" class="text-xs text-gp-royal font-semibold">--</p>
+                </div>
+                <button type="button" onclick="window.closeBossStaffSalaryPage()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-800">
+                  ← Back to Salary List
+                </button>
+              </div>
+
+              <input type="hidden" id="sal-edit-staff-id" />
+
+              <!-- 4 Auto-Calculated Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200">
+                  <p class="text-xs font-bold text-gp-royal">Total In-Hand Salary</p>
+                  <p id="calc-in-hand-salary" class="font-bold text-2xl text-slate-900 mt-1 tabular-nums">₹0</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+                  <p class="text-xs font-bold text-emerald-700">Total Loyalty Bonus</p>
+                  <p id="calc-loyalty-bonus" class="font-bold text-2xl text-emerald-900 mt-1 tabular-nums">₹0</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200">
+                  <p class="text-xs font-bold text-amber-700">Total Advance</p>
+                  <p id="calc-total-advance" class="font-bold text-2xl text-amber-950 mt-1 tabular-nums">₹0</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-gp-navy text-white">
+                  <p class="text-xs font-bold text-blue-200">Pending Payable</p>
+                  <p id="calc-pending-payable" class="font-bold text-2xl text-amber-300 mt-1 tabular-nums">₹0</p>
+                </div>
+              </div>
+
+              <!-- Editable Inputs (Live Auto-Recalculate) -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <label class="block font-bold text-slate-700 mb-1">Monthly Base Salary (₹)</label>
+                  <input id="sal-page-base" type="number" min="0" oninput="window.recalculateBossSalaryPage()" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-bold" />
+                </div>
+                <div>
+                  <label class="block font-bold text-slate-700 mb-1">Loyalty Bonus (₹)</label>
+                  <input id="sal-page-loyalty" type="number" min="0" oninput="window.recalculateBossSalaryPage()" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-bold text-emerald-800" />
+                </div>
+                <div>
+                  <label class="block font-bold text-slate-700 mb-1">Paid / Settled Amount (₹)</label>
+                  <input id="sal-page-paid" type="number" min="0" oninput="window.recalculateBossSalaryPage()" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-bold text-gp-royal" />
+                </div>
+              </div>
+
+              <button type="button" onclick="window.saveBossStaffSalaryPage()" class="w-full py-3.5 rounded-2xl bg-gp-blue hover:bg-gp-royal text-white font-bold text-sm shadow-sm">
+                💾 Save Salary &amp; Bonus Settings
+              </button>
+            </div>
+          </div>
+
+          <!-- BOSS VIEW 6: LEAVE & ADVANCE -->
+          <div id="boss-view-leaves" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
+            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
+              <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-3">🍃 Leave &amp; Paid Week Off Requests</h3>
+              <div id="boss-leaves-list" class="space-y-3"></div>
+            </div>
+            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
+              <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-3">💸 Salary Advance Requests</h3>
+              <div id="boss-advances-list" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <!-- BOSS VIEW 7: LEARNING VIDEOS -->
           <div id="boss-view-learning" class="hidden space-y-5 animate-view">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
@@ -1038,7 +1190,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 5: DEPT GRAPHS & REWARDS -->
+          <!-- BOSS VIEW 8: DEPT GRAPHS & REWARDS -->
           <div id="boss-view-analytics" class="hidden space-y-5 animate-view">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
               <div class="lg:col-span-8 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
@@ -1066,38 +1218,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 6: EDITABLE SALARY & HOLIDAYS -->
-          <div id="boss-view-monthly" class="hidden space-y-5 animate-view">
-            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4">
-              <div class="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <h3 class="font-bold text-base sm:text-lg text-slate-900">💰 Editable Staff Salary Setup &amp; Paid Holidays</h3>
-                  <p class="text-xs text-slate-500">Edit monthly base salary, extra bonus &amp; deduction for any staff member</p>
-                </div>
-                <div class="flex flex-wrap items-center gap-2">
-                  <input type="date" id="boss-holiday-date" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold" />
-                  <input type="text" id="boss-holiday-name" placeholder="Holiday Name (e.g. Diwali)" class="px-3 py-2 rounded-xl border border-slate-200 text-xs" />
-                  <button type="button" onclick="window.addPaidHoliday()" class="px-3.5 py-2 rounded-xl bg-gp-royal text-white text-xs font-bold">+ Paid Holiday</button>
-                </div>
-              </div>
-              <div id="boss-holidays-list" class="flex flex-wrap gap-2"></div>
-              <div id="boss-salary-table-wrap" class="overflow-x-auto"></div>
-            </div>
-          </div>
-
-          <!-- BOSS VIEW 7: LEAVE & ADVANCE -->
-          <div id="boss-view-leaves" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-5 animate-view">
-            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
-              <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-3">🍃 Leave &amp; Paid Week Off Requests</h3>
-              <div id="boss-leaves-list" class="space-y-3"></div>
-            </div>
-            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs">
-              <h3 class="font-bold text-base sm:text-lg text-slate-900 mb-3">💸 Salary Advance Requests</h3>
-              <div id="boss-advances-list" class="space-y-3"></div>
-            </div>
-          </div>
-
-          <!-- BOSS VIEW 8: STAFF PERSONAL INFO -->
+          <!-- BOSS VIEW 9: STAFF PERSONAL INFO -->
           <div id="boss-view-personal" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div>
               <h3 class="font-bold text-base sm:text-lg text-slate-900">👤 Staff Personal Information Records</h3>
@@ -1106,7 +1227,7 @@
             <div id="boss-personal-info-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
           </div>
 
-          <!-- BOSS VIEW 9: TEAM GROUP CHAT -->
+          <!-- BOSS VIEW 10: TEAM GROUP CHAT -->
           <div id="boss-view-chat" class="hidden animate-view">
             <div class="bg-white rounded-3xl border border-blue-100 shadow-2xs overflow-hidden flex flex-col h-[520px]">
               <div class="px-4 py-3.5 bg-gp-navy text-white flex items-center justify-between">
@@ -1123,7 +1244,7 @@
             </div>
           </div>
 
-          <!-- BOSS VIEW 10: 6-MONTH / 1-YR ARCHIVE -->
+          <!-- BOSS VIEW 11: 6-MONTH / 1-YR ARCHIVE -->
           <div id="boss-view-archive" class="hidden bg-white rounded-3xl p-5 sm:p-6 border border-blue-100 shadow-2xs space-y-4 animate-view">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -1174,46 +1295,6 @@
       <div class="grid grid-cols-2 gap-2.5 mt-5">
         <button type="button" onclick="window.closeModal('modal-checkout-gate'); window.switchStaffTab('tasks');" class="py-3 px-4 rounded-2xl bg-blue-50 text-gp-royal font-bold text-xs">✏️ Update Report First</button>
         <button type="button" onclick="window.confirmFinalStaffCheckOut()" class="py-3 px-4 rounded-2xl bg-gp-navy text-white font-bold text-xs">🏁 Confirm &amp; Check Out</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Boss Attendance Override Modal -->
-  <div id="modal-boss-override" class="hidden fixed inset-0 z-[9000] bg-slate-950/60 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-blue-100 animate-view">
-      <h3 id="override-modal-title" class="font-bold text-lg text-slate-900">🛡️ Boss Attendance Override</h3>
-      <p id="override-modal-sub" class="text-xs text-slate-500 mb-4">--</p>
-      <input type="hidden" id="override-staff-id" />
-      <input type="hidden" id="override-target-date" />
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Attendance Status</label>
-          <select id="override-status-select" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-bold">
-            <option value="Present">Present (Full Day)</option>
-            <option value="Half-Day">Half-Day</option>
-            <option value="Paid Week Off">Paid Week Off</option>
-            <option value="Holiday">Paid Holiday</option>
-            <option value="Absent">Absent</option>
-          </select>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Check-In Time</label>
-            <input id="override-checkin-time" type="text" placeholder="11:00 AM" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold" />
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Check-Out Time</label>
-            <input id="override-checkout-time" type="text" placeholder="10:30 PM" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-semibold" />
-          </div>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Boss Remark / Note</label>
-          <input id="override-remark-input" type="text" placeholder="e.g. Approved by Jagdish Boss" class="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm" />
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-2.5 mt-5">
-        <button type="button" onclick="window.closeModal('modal-boss-override')" class="py-3 rounded-2xl bg-slate-100 text-slate-700 font-bold text-xs">Cancel</button>
-        <button type="button" onclick="window.saveBossAttendanceOverride()" class="py-3 rounded-2xl bg-gp-blue text-white font-bold text-xs">💾 Save Override</button>
       </div>
     </div>
   </div>
@@ -1323,10 +1404,12 @@
       bossDropdownBuilt: false,
       archive90Rows: [],
       commonListenersAttached: false,
-      bossLiveListenerAttached: false
+      bossLiveListenerAttached: false,
+      selectedCalStaffId: null,
+      selectedCalMonthRecords: {}
     };
 
-    // ==================== SERVICE WORKER FOR CROSS-APP / BACKGROUND ALERTS ====================
+    // ==================== SERVICE WORKER FOR ALERTS ====================
     if ("serviceWorker" in navigator) {
       const swCode = `
         self.addEventListener("install", e => self.skipWaiting());
@@ -1447,7 +1530,7 @@
       if (showFeedback) {
         if (perm === "granted") {
           playNotificationChime();
-          window.showToast("Alerts & Sound Active 🔔", "You will receive sound & notification alerts even when switching apps.", "success");
+          window.showToast("Alerts & Sound Active 🔔", "You will receive sound & notification alerts for assigned tasks.", "success");
         } else {
           window.showToast("Permission Needed", "Allow Notifications in browser/phone settings for alerts.", "warn");
         }
@@ -1738,7 +1821,6 @@
         const bossClock = document.getElementById("boss-live-datetime");
         if (bossClock) bossClock.textContent = `${now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} • ${nowStr}`;
 
-        // Keep live break countdown updated smoothly even when Boss views Live Break Status
         if (state.role === "boss") {
           renderBossLiveBreakStatus();
         }
@@ -1779,7 +1861,7 @@
       `;
     }
 
-    // ==================== CHECK-IN DONE (HIDE CHECK-IN BUTTON) + 60:00 BREAK COUNTDOWN ====================
+    // ==================== CHECK-IN DONE + 60:00 BREAK COUNTDOWN ====================
     function updateStaffHomeCards() {
       const d = state.todayAttendance || {};
       document.getElementById("card-checkin-time").textContent = d.checkInTime || "--:--";
@@ -1940,13 +2022,15 @@
         const runSec = Math.max(1, Math.floor((endMs - sessions[openIdx].startMs) / 1000));
         sessions[openIdx] = { ...sessions[openIdx], endMs, endTime: formatTime12(), durationSec: runSec };
         const totalBreakSeconds = (d.totalBreakSeconds || 0) + runSec;
-        const totalBreakMinutes = Math.round(totalBreakSeconds / 60);
+        const totalBreakMinutes = Math.max(1, Math.round(totalBreakSeconds / 60));
         await setDoc(docRef, {
           date: today,
           month: getCurrentMonthISO(),
           staffId: state.profile.id,
+          empId: state.profile.empId,
           staffName: state.profile.name,
           dept: state.profile.dept,
+          onBreakNow: false,
           breakSessions: sessions,
           totalBreakSeconds,
           totalBreakMinutes
@@ -1958,8 +2042,10 @@
           date: today,
           month: getCurrentMonthISO(),
           staffId: state.profile.id,
+          empId: state.profile.empId,
           staffName: state.profile.name,
           dept: state.profile.dept,
+          onBreakNow: true,
           breakSessions: sessions
         }, { merge: true });
         window.showToast("Break Started ☕🧋", "Counting down from 60 minutes.", "info");
@@ -2078,7 +2164,7 @@
       window.showToast("Learning Verified 🎓✓", isAutoVerified ? "Verified & saved." : "Submitted for Boss review.", "success");
     };
 
-    // ==================== FULL MONTH CALENDAR (GRID ABOVE, COUNTS BELOW) + INCENTIVE & SLIP ====================
+    // ==================== FULL MONTH CALENDAR + INCENTIVE & SLIP ====================
     window.renderStaffMonthlyCalendar = async function () {
       const monthStr = document.getElementById("staff-calendar-month-picker").value || getCurrentMonthISO();
       const qAtt = query(collection(db, "attendance"), where("staffId", "==", state.profile.id), where("month", "==", monthStr));
@@ -2107,9 +2193,9 @@
         if (rec) {
           if (rec.lateMinutes > 0) late++;
           if (rec.status === "Present") { present++; badge = "bg-emerald-50 text-emerald-800 border-emerald-200"; label = "P"; }
-          else if (rec.status === "Half-Day") { half++; badge = "bg-amber-50 text-amber-800 border-amber-200"; label = "HD"; }
-          else if (rec.status === "Paid Week Off" || rec.status === "Holiday") { off++; badge = "bg-blue-50 text-gp-royal border-blue-200"; label = "OFF"; }
-          else if (rec.status === "Absent") { absent++; badge = "bg-red-50 text-red-800 border-red-200"; label = "A"; }
+          else if (rec.status === "Half-Day" || rec.status === "Paid Half Day") { half++; badge = "bg-amber-50 text-amber-800 border-amber-200"; label = "HD"; }
+          else if (rec.status === "Paid Week Off" || rec.status === "Week Off" || rec.status === "Holiday" || rec.status === "Paid Leave") { off++; badge = "bg-blue-50 text-gp-royal border-blue-200"; label = "OFF"; }
+          else if (rec.status === "Absent" || rec.status === "Unpaid Leave") { absent++; badge = "bg-red-50 text-red-800 border-red-200"; label = "A"; }
         } else if (holidayDates.has(iso)) {
           off++;
           badge = "bg-blue-50 text-gp-royal border-blue-200";
@@ -2217,27 +2303,27 @@
       document.getElementById("slip-staff-info").textContent = `${p.name} (${p.empId}) • ${p.designation} • Month: ${monthStr}`;
 
       const base = Number(customSal.baseSalary ?? p.baseSalary ?? 18000);
-      const extraBonus = Number(customSal.extraBonus ?? 0);
-      const extraDeduction = Number(customSal.extraDeduction ?? 0);
+      const loyaltyBonus = Number(customSal.loyaltyBonus ?? 0);
+      const extraDeduction = Number(customSal.paidAmount ?? 0);
 
       const approvedIncentives = state.tasks
         .filter(t => doesTaskMatchStaff(t, p) && t.bossApproved)
-        .reduce((sum, t) => sum + Number(t.incentive || 0), 0) + extraBonus;
+        .reduce((sum, t) => sum + Number(t.incentive || 0), 0) + loyaltyBonus;
 
       const approvedAdvances = state.advances
         .filter(a => a.staffId === p.id && a.month === monthStr && a.status === "Approved")
-        .reduce((sum, a) => sum + Number(a.amount || 0), 0) + extraDeduction;
+        .reduce((sum, a) => sum + Number(a.amount || 0), 0);
 
-      const net = Math.max(0, base + approvedIncentives - approvedAdvances);
+      const net = Math.max(0, base + approvedIncentives - approvedAdvances - extraDeduction);
       document.getElementById("slip-base-salary").textContent = `₹${base.toLocaleString('en-IN')}`;
       document.getElementById("slip-incentives").textContent = `+ ₹${approvedIncentives.toLocaleString('en-IN')}`;
-      document.getElementById("slip-deductions").textContent = `- ₹${approvedAdvances.toLocaleString('en-IN')}`;
+      document.getElementById("slip-deductions").textContent = `- ₹${(approvedAdvances + extraDeduction).toLocaleString('en-IN')}`;
       document.getElementById("slip-net-payable").textContent = `₹${net.toLocaleString('en-IN')}`;
     };
 
     // ==================== BOSS PORTAL LOGIC ====================
     function initBossPortal() {
-      document.getElementById("boss-override-date").value = getTodayISO();
+      document.getElementById("boss-att-calendar-month").value = getCurrentMonthISO();
 
       if (!state.bossDropdownBuilt) {
         const targetSelect = document.getElementById("boss-task-target");
@@ -2272,12 +2358,11 @@
 
     window.switchBossTab = function (tabName) {
       sessionStorage.setItem("gp_active_tab_boss", tabName);
-      ["live", "override", "tasks", "learning", "analytics", "monthly", "leaves", "personal", "chat", "archive"].forEach(t => {
+      ["live", "tasks", "override", "breaks", "monthly", "leaves", "learning", "analytics", "personal", "chat", "archive"].forEach(t => {
         const el = document.getElementById(`boss-view-${t}`);
         if (el) el.classList.toggle("hidden", t !== tabName);
       });
 
-      // KPI cards & Live Break Status show ONLY on Dashboard ('live')
       const dashWidgets = document.getElementById("boss-dashboard-widgets");
       if (dashWidgets) dashWidgets.classList.toggle("hidden", tabName !== "live");
 
@@ -2288,6 +2373,7 @@
           : "boss-nav-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl hover:bg-white/10 text-blue-100 text-left transition";
       });
       if (tabName === "override") window.renderBossOverrideList();
+      if (tabName === "breaks") renderBossLiveBreakStatus();
       if (tabName === "analytics") renderBossAnalyticsChart();
       if (tabName === "monthly") renderBossSalaryConfigTable();
       if (tabName === "personal") renderBossPersonalInfoDirectory();
@@ -2316,41 +2402,59 @@
       });
     }
 
+    // Real-time break status for all staff (who is on break, who is not, count & minutes so far)
     function renderBossLiveBreakStatus() {
-      const box = document.getElementById("boss-live-on-break-list");
-      const badge = document.getElementById("boss-on-break-count");
-      if (!box || !badge) return;
+      const grid = document.getElementById("boss-break-status-grid");
+      const summaryPill = document.getElementById("break-page-summary-pill");
+      const sideBadge = document.getElementById("badge-boss-onbreak");
+      if (!grid) return;
 
-      const activeOnBreak = [];
-      STAFF_DIRECTORY.forEach(s => {
-        const rec = state.allTodayAttendance[s.id];
-        if (!rec) return;
+      let onBreakCount = 0;
+      const onBreakNames = [];
+
+      const cardsHtml = STAFF_DIRECTORY.map(s => {
+        const rec = state.allTodayAttendance[s.id] || {};
         const sessions = Array.isArray(rec.breakSessions) ? rec.breakSessions : [];
         const open = sessions.find(sess => !sess.endMs);
+        const priorSec = rec.totalBreakSeconds || ((rec.totalBreakMinutes || 0) * 60);
+        const elapsedSec = open ? Math.max(0, Math.floor((Date.now() - open.startMs) / 1000)) : 0;
+        const totalSec = priorSec + elapsedSec;
+        const minsSoFar = Math.floor(totalSec / 60);
+        const secsSoFar = totalSec % 60;
+
         if (open) {
-          const priorSec = rec.totalBreakSeconds || ((rec.totalBreakMinutes || 0) * 60);
-          const elapsedSec = Math.max(0, Math.floor((Date.now() - open.startMs) / 1000));
-          const remSec = Math.max(0, 3600 - (priorSec + elapsedSec));
-          const mm = String(Math.floor(remSec / 60)).padStart(2, "0");
-          const ss = String(remSec % 60).padStart(2, "0");
-          activeOnBreak.push({ name: s.name, empId: s.empId, dept: s.dept, leftStr: `${mm}:${ss}` });
+          onBreakCount++;
+          onBreakNames.push(s.firstName);
         }
-      });
 
-      badge.textContent = `${activeOnBreak.length} Active`;
-      if (activeOnBreak.length === 0) {
-        box.innerHTML = `<span class="text-slate-400">No staff member is on a break right now.</span>`;
-        return;
+        return `
+          <div class="p-4 rounded-2xl border ${open ? 'bg-amber-50 border-amber-300 shadow-xs' : 'bg-slate-50/70 border-slate-200'} flex items-center justify-between gap-3 text-xs">
+            <div>
+              <p class="font-bold text-sm text-slate-900">${s.name} <span class="text-slate-400 font-normal">(${s.empId})</span></p>
+              <p class="text-[11px] text-slate-500">${s.designation} • ${s.dept}</p>
+              <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full font-bold ${open ? 'bg-amber-400 text-slate-950' : 'bg-emerald-100 text-emerald-800'}">
+                ${open ? '☕ Currently On Break' : 'Not On Break'}
+              </span>
+            </div>
+            <div class="text-right">
+              <p class="text-[11px] font-semibold text-slate-500">Break So Far</p>
+              <p class="font-bold text-base text-slate-900 tabular-nums">${minsSoFar}m ${String(secsSoFar).padStart(2, '0')}s</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      grid.innerHTML = cardsHtml;
+      if (summaryPill) {
+        summaryPill.textContent = onBreakCount > 0
+          ? `${onBreakCount} On Break (${onBreakNames.join(", ")})`
+          : "0 On Break Right Now";
       }
-
-      box.innerHTML = activeOnBreak.map(item => `
-        <span class="px-3 py-1.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-950 font-bold">
-          ☕ ${item.name} (${item.empId}) • ${item.leftStr} left
-        </span>
-      `).join("");
+      if (sideBadge) {
+        sideBadge.textContent = onBreakCount;
+      }
     }
 
-    // Modal for 'Checked In Today' click: Checked-In with time & GPS above, Pending below
     window.openCheckedInTodayModal = function () {
       const checkedInList = [];
       const pendingList = [];
@@ -2415,6 +2519,7 @@
       document.getElementById("kpi-pending-advances").textContent = pendingAdvances;
     }
 
+    // Dashboard Table (No Personal Info or Edit buttons on Dashboard)
     window.renderBossLiveTable = function () {
       const filterDept = document.getElementById("boss-live-dept-filter").value;
       const list = filterDept === "ALL" ? STAFF_DIRECTORY : STAFF_DIRECTORY.filter(s => s.dept === filterDept);
@@ -2429,12 +2534,12 @@
         let statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-semibold">Pending</span>`;
         if (rec.status === "Present" || rec.checkInTime) {
           statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">✓ ${rec.checkInTime || "Present"}</span>`;
-        } else if (rec.status === "Half-Day") {
-          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">🌗 Half-Day</span>`;
-        } else if (rec.status === "Paid Week Off" || rec.status === "Holiday") {
+        } else if (rec.status === "Half-Day" || rec.status === "Paid Half Day") {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">🌗 ${rec.status}</span>`;
+        } else if (rec.status === "Paid Week Off" || rec.status === "Week Off" || rec.status === "Holiday" || rec.status === "Paid Leave") {
           statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-blue-100 text-gp-royal font-bold">🏖️ ${rec.status}</span>`;
-        } else if (rec.status === "Absent") {
-          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 font-bold">✕ Absent</span>`;
+        } else if (rec.status === "Absent" || rec.status === "Unpaid Leave") {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 font-bold">✕ ${rec.status}</span>`;
         }
 
         const reportText = rec.reportSubmitted
@@ -2464,32 +2569,109 @@
       }).join("");
     };
 
-    window.openBossOverrideModal = async function (staffId, targetDate) {
-      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
-      document.getElementById("override-staff-id").value = staffId;
-      document.getElementById("override-target-date").value = targetDate;
-      document.getElementById("override-modal-title").textContent = `🛡️ Override: ${staff.name} (${staff.empId})`;
-      document.getElementById("override-modal-sub").textContent = `${staff.designation} • Date: ${targetDate}`;
+    // ==================== ATTENDANCE -> STAFF EDIT FULL-MONTH CALENDAR PAGE ====================
+    window.renderBossOverrideList = function () {
+      document.getElementById("boss-override-staff-list-card").classList.remove("hidden");
+      document.getElementById("boss-staff-month-calendar-page").classList.add("hidden");
 
-      const snap = await getDoc(doc(db, "attendance", `${targetDate}_${staffId}`));
-      const d = snap.exists() ? snap.data() : {};
-      document.getElementById("override-status-select").value = d.status || "Present";
-      document.getElementById("override-checkin-time").value = d.checkInTime || "11:00 AM";
-      document.getElementById("override-checkout-time").value = d.checkOutTime || "";
-      document.getElementById("override-remark-input").value = d.bossRemark || "Updated by Jagdish Boss";
-
-      document.getElementById("modal-boss-override").classList.remove("hidden");
+      document.getElementById("boss-override-list").innerHTML = STAFF_DIRECTORY.map(s => {
+        const rec = state.allTodayAttendance[s.id] || {};
+        return `
+          <div class="p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-3">
+            <div>
+              <p class="font-bold text-sm text-slate-900">${s.name} <span class="text-xs font-semibold text-slate-400">(${s.empId})</span></p>
+              <p class="text-xs font-semibold text-gp-royal">${s.designation} • Today: <strong>${rec.status || "Pending"}</strong></p>
+            </div>
+            <button type="button" onclick="window.openBossStaffMonthCalendar('${s.id}')" class="px-4 py-2 rounded-xl bg-gp-navy hover:bg-gp-blue text-white text-xs font-bold">
+              Edit
+            </button>
+          </div>
+        `;
+      }).join("");
     };
 
-    window.saveBossAttendanceOverride = async function () {
-      const staffId = document.getElementById("override-staff-id").value;
-      const targetDate = document.getElementById("override-target-date").value;
-      const status = document.getElementById("override-status-select").value;
-      const checkInTime = document.getElementById("override-checkin-time").value.trim();
-      const checkOutTime = document.getElementById("override-checkout-time").value.trim();
-      const bossRemark = document.getElementById("override-remark-input").value.trim();
+    window.openBossStaffMonthCalendar = async function (staffId) {
+      state.selectedCalStaffId = staffId;
       const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const monthStr = document.getElementById("boss-att-calendar-month").value || getCurrentMonthISO();
 
+      document.getElementById("boss-override-staff-list-card").classList.add("hidden");
+      document.getElementById("boss-staff-month-calendar-page").classList.remove("hidden");
+      document.getElementById("boss-cal-editor-title").textContent = `📅 ${staff.name} (${staff.empId}) — Full-Month Calendar`;
+      document.getElementById("boss-cal-editor-sub").textContent = `${staff.designation} • ${staff.dept}`;
+
+      const defaultDayIso = `${monthStr}-01`;
+      document.getElementById("cal-edit-date").value = defaultDayIso;
+      await window.renderBossStaffMonthCalendar();
+    };
+
+    window.closeBossStaffMonthCalendar = function () {
+      document.getElementById("boss-staff-month-calendar-page").classList.add("hidden");
+      document.getElementById("boss-override-staff-list-card").classList.remove("hidden");
+    };
+
+    window.renderBossStaffMonthCalendar = async function () {
+      const staffId = state.selectedCalStaffId;
+      if (!staffId) return;
+      const monthStr = document.getElementById("boss-att-calendar-month").value || getCurrentMonthISO();
+      const snap = await getDocs(query(collection(db, "attendance"), where("staffId", "==", staffId), where("month", "==", monthStr)));
+      const map = {};
+      snap.forEach(d => { map[d.data().date] = d.data(); });
+      state.selectedCalMonthRecords = map;
+
+      const [yr, mo] = monthStr.split("-").map(Number);
+      const firstPad = new Date(yr, mo - 1, 1).getDay();
+      const daysInMonth = new Date(yr, mo, 0).getDate();
+      const cells = [];
+
+      for (let i = 0; i < firstPad; i++) cells.push(`<div class="p-2"></div>`);
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const iso = `${monthStr}-${String(day).padStart(2, "0")}`;
+        const rec = map[iso] || {};
+        const st = rec.status || "--";
+        let cls = "bg-slate-50 text-slate-600 border-slate-200 hover:border-gp-blue";
+        if (st === "Present") cls = "bg-emerald-50 text-emerald-900 border-emerald-300";
+        else if (st === "Paid Half Day" || st === "Half-Day") cls = "bg-amber-50 text-amber-900 border-amber-300";
+        else if (st === "Paid Leave" || st === "Week Off" || st === "Paid Week Off" || st === "Holiday") cls = "bg-blue-50 text-gp-royal border-blue-300";
+        else if (st === "Absent" || st === "Unpaid Leave") cls = "bg-red-50 text-red-900 border-red-300";
+
+        cells.push(`
+          <button type="button" onclick="window.selectCalendarDayForEdit('${iso}')" class="p-2 rounded-xl border ${cls} text-center transition">
+            <div class="text-xs font-bold">${day}</div>
+            <div class="text-[10px] font-bold truncate mt-0.5">${st}</div>
+          </button>
+        `);
+      }
+
+      document.getElementById("boss-staff-month-calendar-grid").innerHTML = cells.join("");
+      window.onBossCalDatePicked();
+    };
+
+    window.selectCalendarDayForEdit = function (iso) {
+      document.getElementById("cal-edit-date").value = iso;
+      window.onBossCalDatePicked();
+    };
+
+    window.onBossCalDatePicked = function () {
+      const iso = document.getElementById("cal-edit-date").value;
+      const rec = state.selectedCalMonthRecords[iso] || {};
+      document.getElementById("cal-edit-status").value = rec.status || "Present";
+      document.getElementById("cal-edit-checkin").value = rec.checkInTime || "11:00 AM";
+      document.getElementById("cal-edit-checkout").value = rec.checkOutTime || "10:30 PM";
+      document.getElementById("cal-edit-remark").value = rec.bossRemark || "";
+    };
+
+    window.saveBossCalendarDayEntry = async function () {
+      const staffId = state.selectedCalStaffId;
+      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const targetDate = document.getElementById("cal-edit-date").value;
+      const status = document.getElementById("cal-edit-status").value;
+      const checkInTime = document.getElementById("cal-edit-checkin").value.trim();
+      const checkOutTime = document.getElementById("cal-edit-checkout").value.trim();
+      const bossRemark = document.getElementById("cal-edit-remark").value.trim();
+
+      if (!staff || !targetDate) return;
       await setDoc(doc(db, "attendance", `${targetDate}_${staffId}`), {
         date: targetDate,
         month: targetDate.slice(0, 7),
@@ -2499,40 +2681,115 @@
         dept: staff.dept,
         designation: staff.designation,
         status,
-        checkInTime: status === "Absent" ? "" : checkInTime,
-        checkOutTime: status === "Absent" ? "" : checkOutTime,
+        checkInTime: (status === "Absent" || status === "Unpaid Leave" || status === "Holiday") ? "" : checkInTime,
+        checkOutTime: (status === "Absent" || status === "Unpaid Leave" || status === "Holiday") ? "" : checkOutTime,
         bossRemark,
         bossOverridden: true,
         updatedAt: serverTimestamp()
       }, { merge: true });
 
-      window.closeModal("modal-boss-override");
-      window.showToast("Attendance Updated 🛡️", `${staff.name} marked as ${status} for ${targetDate}.`, "success");
-      window.renderBossOverrideList();
+      window.showToast("Saved ✓", `${staff.name} (${targetDate}) → ${status}`, "success");
+      await window.renderBossStaffMonthCalendar();
     };
 
-    window.renderBossOverrideList = async function () {
-      const dateStr = document.getElementById("boss-override-date").value || getTodayISO();
-      const snap = await getDocs(query(collection(db, "attendance"), where("date", "==", dateStr)));
-      const map = {};
-      snap.forEach(d => { map[d.data().staffId] = d.data(); });
+    // ==================== EDITABLE SALARY -> DEDICATED AUTO-CALCULATED STAFF PAGE ====================
+    function renderBossSalaryConfigTable() {
+      document.getElementById("boss-salary-list-card").classList.remove("hidden");
+      document.getElementById("boss-staff-salary-edit-page").classList.add("hidden");
 
-      document.getElementById("boss-override-list").innerHTML = STAFF_DIRECTORY.map(s => {
-        const rec = map[s.id] || {};
-        return `
-          <div class="p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-3">
-            <div>
-              <p class="font-bold text-sm text-slate-900">${s.name} <span class="text-xs font-semibold text-slate-400">(${s.empId})</span></p>
-              <p class="text-xs font-semibold text-gp-royal">${s.designation} • Current: <strong>${rec.status || "Not Marked"}</strong></p>
-            </div>
-            <button type="button" onclick="window.openBossOverrideModal('${s.id}', '${dateStr}')" class="px-3.5 py-2 rounded-xl bg-gp-navy hover:bg-gp-blue text-white text-xs font-bold">
-              Edit / Mark
-            </button>
-          </div>
-        `;
-      }).join("");
+      document.getElementById("boss-salary-table-wrap").innerHTML = `
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-blue-50 text-gp-royal font-bold">
+              <th class="p-3">Emp ID</th>
+              <th class="p-3">Staff &amp; Designation</th>
+              <th class="p-3">Base Salary</th>
+              <th class="p-3">Loyalty Bonus</th>
+              <th class="p-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            ${STAFF_DIRECTORY.map(s => {
+              const ov = state.salaryOverrides[s.id] || {};
+              return `
+                <tr>
+                  <td class="p-3 font-bold">${s.empId}</td>
+                  <td class="p-3">
+                    <div class="font-bold text-slate-900">${s.name}</div>
+                    <div class="text-[11px] text-slate-500">${s.designation}</div>
+                  </td>
+                  <td class="p-3 font-bold text-slate-900">₹${Number(ov.baseSalary ?? s.baseSalary).toLocaleString('en-IN')}</td>
+                  <td class="p-3 font-bold text-emerald-700">₹${Number(ov.loyaltyBonus ?? 0).toLocaleString('en-IN')}</td>
+                  <td class="p-3 text-right">
+                    <button type="button" onclick="window.openBossStaffSalaryPage('${s.id}')" class="px-4 py-1.5 rounded-xl bg-gp-blue hover:bg-gp-royal text-white font-bold">
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    window.openBossStaffSalaryPage = function (staffId) {
+      const staff = STAFF_DIRECTORY.find(s => s.id === staffId);
+      const ov = state.salaryOverrides[staffId] || {};
+      document.getElementById("boss-salary-list-card").classList.add("hidden");
+      document.getElementById("boss-staff-salary-edit-page").classList.remove("hidden");
+      document.getElementById("sal-edit-staff-id").value = staffId;
+      document.getElementById("sal-edit-page-title").textContent = `💼 ${staff.name} (${staff.empId}) — Salary & Settlement`;
+      document.getElementById("sal-edit-page-sub").textContent = `${staff.designation} • ${staff.dept}`;
+
+      document.getElementById("sal-page-base").value = ov.baseSalary ?? staff.baseSalary;
+      document.getElementById("sal-page-loyalty").value = ov.loyaltyBonus ?? 0;
+      document.getElementById("sal-page-paid").value = ov.paidAmount ?? 0;
+      window.recalculateBossSalaryPage();
     };
 
+    window.closeBossStaffSalaryPage = function () {
+      document.getElementById("boss-staff-salary-edit-page").classList.add("hidden");
+      document.getElementById("boss-salary-list-card").classList.remove("hidden");
+    };
+
+    window.recalculateBossSalaryPage = function () {
+      const staffId = document.getElementById("sal-edit-staff-id").value;
+      const base = Number(document.getElementById("sal-page-base").value || 0);
+      const loyalty = Number(document.getElementById("sal-page-loyalty").value || 0);
+      const paid = Number(document.getElementById("sal-page-paid").value || 0);
+
+      const totalAdvance = state.advances
+        .filter(a => a.staffId === staffId && a.status === "Approved")
+        .reduce((sum, a) => sum + Number(a.amount || 0), 0);
+
+      const inHandSalary = Math.max(0, base - totalAdvance);
+      const pendingPayable = Math.max(0, base + loyalty - totalAdvance - paid);
+
+      document.getElementById("calc-in-hand-salary").textContent = `₹${inHandSalary.toLocaleString('en-IN')}`;
+      document.getElementById("calc-loyalty-bonus").textContent = `₹${loyalty.toLocaleString('en-IN')}`;
+      document.getElementById("calc-total-advance").textContent = `₹${totalAdvance.toLocaleString('en-IN')}`;
+      document.getElementById("calc-pending-payable").textContent = `₹${pendingPayable.toLocaleString('en-IN')}`;
+    };
+
+    window.saveBossStaffSalaryPage = async function () {
+      const staffId = document.getElementById("sal-edit-staff-id").value;
+      const baseSalary = Number(document.getElementById("sal-page-base").value || 0);
+      const loyaltyBonus = Number(document.getElementById("sal-page-loyalty").value || 0);
+      const paidAmount = Number(document.getElementById("sal-page-paid").value || 0);
+
+      await setDoc(doc(db, "salaryConfig", staffId), {
+        staffId,
+        baseSalary,
+        loyaltyBonus,
+        paidAmount,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+
+      window.showToast("Salary Saved 💰✓", "Auto-calculated salary & bonus updated.", "success");
+    };
+
+    // ==================== PERSONAL INFO & TASK / INCENTIVE APPROVAL ====================
     function renderBossPersonalInfoDirectory() {
       document.getElementById("boss-personal-info-grid").innerHTML = STAFF_DIRECTORY.map(s => {
         const info = state.personalInfoMap[s.id] || {};
@@ -2551,7 +2808,6 @@
       }).join("");
     }
 
-    // ==================== BOSS BROADCAST, STICKY TASK ASSIGN & INCENTIVE APPROVAL ====================
     window.publishStoreAnnouncement = async function (e) {
       e.preventDefault();
       const title = document.getElementById("boss-ann-title").value.trim();
@@ -2671,57 +2927,6 @@
       window.showToast("Learning Status Updated", `Marked as ${status}.`, "success");
     };
 
-    window.saveStaffSalaryRow = async function (staffId) {
-      const baseSalary = Number(document.getElementById(`sal-base-${staffId}`)?.value || 18000);
-      const extraBonus = Number(document.getElementById(`sal-bonus-${staffId}`)?.value || 0);
-      const extraDeduction = Number(document.getElementById(`sal-ded-${staffId}`)?.value || 0);
-
-      await setDoc(doc(db, "salaryConfig", staffId), {
-        staffId,
-        baseSalary,
-        extraBonus,
-        extraDeduction,
-        updatedAt: serverTimestamp()
-      }, { merge: true });
-
-      window.showToast("Salary Saved 💰", `Updated salary settings for ${staffId.toUpperCase()}.`, "success");
-    };
-
-    function renderBossSalaryConfigTable() {
-      document.getElementById("boss-salary-table-wrap").innerHTML = `
-        <table class="w-full text-left text-xs border-collapse">
-          <thead>
-            <tr class="bg-blue-50 text-gp-royal font-bold">
-              <th class="p-3">Emp ID</th>
-              <th class="p-3">Staff &amp; Designation</th>
-              <th class="p-3">Base Salary (₹)</th>
-              <th class="p-3">Extra Bonus (₹)</th>
-              <th class="p-3">Deduction (₹)</th>
-              <th class="p-3 text-right">Save</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
-            ${STAFF_DIRECTORY.map(s => {
-              const ov = state.salaryOverrides[s.id] || {};
-              return `
-                <tr>
-                  <td class="p-3 font-bold">${s.empId}</td>
-                  <td class="p-3">
-                    <div class="font-bold text-slate-900">${s.name}</div>
-                    <div class="text-[11px] text-slate-500">${s.designation}</div>
-                  </td>
-                  <td class="p-3"><input id="sal-base-${s.id}" type="number" value="${ov.baseSalary ?? s.baseSalary}" class="w-28 px-2.5 py-1.5 rounded-xl border border-slate-200 font-bold text-slate-900" /></td>
-                  <td class="p-3"><input id="sal-bonus-${s.id}" type="number" value="${ov.extraBonus ?? 0}" class="w-24 px-2.5 py-1.5 rounded-xl border border-slate-200 font-semibold text-emerald-700" /></td>
-                  <td class="p-3"><input id="sal-ded-${s.id}" type="number" value="${ov.extraDeduction ?? 0}" class="w-24 px-2.5 py-1.5 rounded-xl border border-slate-200 font-semibold text-red-700" /></td>
-                  <td class="p-3 text-right"><button type="button" onclick="window.saveStaffSalaryRow('${s.id}')" class="px-3 py-1.5 rounded-xl bg-gp-blue hover:bg-gp-royal text-white font-bold">Save</button></td>
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        </table>
-      `;
-    }
-
     // ==================== SHARED REAL-TIME LISTENERS ====================
     function subscribeCommonRealtimeData() {
       if (state.commonListenersAttached) return;
@@ -2803,8 +3008,13 @@
         const map = {};
         snap.forEach(d => { map[d.id] = d.data(); });
         state.salaryOverrides = map;
-        if (state.role === "boss" && document.getElementById("boss-view-monthly") && !document.getElementById("boss-view-monthly").classList.contains("hidden")) {
-          renderBossSalaryConfigTable();
+        if (state.role === "boss") {
+          if (document.getElementById("boss-view-monthly") && !document.getElementById("boss-view-monthly").classList.contains("hidden")) {
+            renderBossSalaryConfigTable();
+          }
+          if (document.getElementById("boss-staff-salary-edit-page") && !document.getElementById("boss-staff-salary-edit-page").classList.contains("hidden")) {
+            window.recalculateBossSalaryPage();
+          }
         }
         if (state.role === "staff" && document.getElementById("staff-view-salary") && !document.getElementById("staff-view-salary").classList.contains("hidden")) {
           window.renderStaffSalarySlip();
@@ -2851,7 +3061,12 @@
         arr.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
         state.advances = arr;
         renderLeavesAndAdvances();
-        if (state.role === "boss") updateBossKpiCards();
+        if (state.role === "boss") {
+          updateBossKpiCards();
+          if (document.getElementById("boss-staff-salary-edit-page") && !document.getElementById("boss-staff-salary-edit-page").classList.contains("hidden")) {
+            window.recalculateBossSalaryPage();
+          }
+        }
       });
 
       onSnapshot(collection(db, "groupChat"), (snap) => {
